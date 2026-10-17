@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feature Engineering</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></span><h1>Feature Engineering</h1></div>
+<p class="sub">36 questions</p>
+<div class="roles"><a class="role" href="index.html#role=ds">Data Science</a><a class="role alt" href="index.html#role=aiml">AI/ML</a></div>
+<div class="intro"><blockquote><p>This document offers a comprehensive collection of frequently asked interview questions from a diverse range of companies on the <strong>Feature Engineering</strong> module. Prospective candidates can use this resource to gain valuable insights and prepare for the challenges they may face during the interview process. By familiarizing themselves with the types of questions typically asked, individuals can develop well-thought-out responses that showcase their skills, experience and suitability for the role.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<section class="sec-block" id="sec-0"><h2 class="sec">Frequently Asked Questions</h2>
+<details class="item" id="f1"><summary><span><span class="qn">Q1</span>What is feature engineering in machine learning?</span></summary><div class="answer"><p>Feature engineering is the process of transforming raw data into meaningful features that improve the performance of machine learning models. It involves selecting, modifying, or creating new features from the existing data to enhance predictive accuracy.</p></div></details>
+<details class="item" id="f2"><summary><span><span class="qn">Q2</span>Why is feature engineering important?</span></summary><div class="answer"><p>Feature engineering is crucial because the quality and relevance of the features directly affect the model’s performance. Well-engineered features help algorithms better understand patterns in the data, resulting in more accurate predictions and faster model training.</p></div></details>
+<details class="item" id="f3"><summary><span><span class="qn">Q3</span>What are the common techniques used in feature engineering?</span></summary><div class="answer"><p>Some common techniques include:</p>
+<ul>
+<li>Handling missing data</li>
+<li>Encoding categorical variables</li>
+<li>Feature scaling</li>
+<li>Creating interaction terms</li>
+<li>Binning</li>
+<li>Dimensionality reduction</li>
+</ul></div></details>
+<details class="item" id="f4"><summary><span><span class="qn">Q4</span>What is feature selection, and how does it help reduce overfitting and computational cost?</span></summary><div class="answer"><p>Feature selection is the process of identifying the most important features that contribute to the predictive performance of the model, by eliminating irrelevant or redundant features.</p>
+<p>It helps in several ways:</p>
+<ul>
+<li><strong>Reduces dimensionality</strong> and improves model performance.</li>
+<li><strong>Reduces overfitting:</strong> by keeping only the most relevant features, the model becomes less complex and does not learn noise in the data.</li>
+<li><strong>Reduces computational cost:</strong> fewer features mean less computation for training and inference, faster training and evaluation, and lower memory usage.</li>
+</ul></div></details>
+<details class="item" id="f5"><summary><span><span class="qn">Q5</span>What is the difference between feature selection and feature extraction?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Feature selection</th>
+<th>Feature extraction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What it does</td>
+<td>Selects a subset of the existing features <strong>without altering them</strong></td>
+<td>Creates <strong>new features</strong> by transforming or combining the original features</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>Dropping columns with low importance</td>
+<td>Turning many columns into a few principal components with PCA</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="f6"><summary><span><span class="qn">Q6</span>What is the curse of dimensionality and how does it affect feature engineering?</span></summary><div class="answer"><p>The curse of dimensionality refers to the exponential increase in data points required to cover increasing dimensions. As the number of features increases, the data becomes sparse, making it harder for models to find meaningful patterns.</p>
+<p>Feature engineering techniques like feature selection and dimensionality reduction help mitigate this issue.</p></div></details>
+<details class="item" id="f7"><summary><span><span class="qn">Q7</span>How does feature scaling affect machine learning models? Is it needed for tree-based models?</span></summary><div class="answer"><p>Feature scaling ensures that numerical features are on a similar scale, preventing features with larger values from disproportionately influencing the model. It is especially important for gradient-based algorithms and distance-based models.</p>
+<p><strong>Tree-based models:</strong> scaling techniques like normalization and standardization are generally not required, as these models are insensitive to feature scaling. However, scaling can still be useful for other model types in the same pipeline.</p></div></details>
+<details class="item" id="f8"><summary><span><span class="qn">Q8</span>What is one-hot encoding, and when should it be used? How does it relate to dummy variables?</span></summary><div class="answer"><p>One-hot encoding converts categorical variables into binary vectors. Each category is represented as a binary vector with a single "1" in the position corresponding to the category and "0"s elsewhere. It is used when the categorical variables are nominal.</p>
+<p><strong>Example:</strong> for a <code>Color</code> feature, Red → <code>[1, 0, 0]</code>, Green → <code>[0, 1, 0]</code>, Blue → <code>[0, 0, 1]</code>.</p>
+<p><strong>Dummy variables</strong> are binary variables created from categorical data to represent the presence or absence of a category. One-hot encoding is the most common way to create them.</p></div></details>
+<details class="item" id="f9"><summary><span><span class="qn">Q9</span>What is label encoding, and how is it different from one-hot encoding?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Label encoding</th>
+<th>One-hot encoding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What it does</td>
+<td>Converts categorical values into numerical values (one integer per category)</td>
+<td>Creates a new binary feature for each category</td>
+</tr>
+<tr>
+<td>Typically used when</td>
+<td>The categorical variable has an inherent order</td>
+<td>The categories are nominal (no order)</td>
+</tr>
+<tr>
+<td>Watch out</td>
+<td>On unordered categories the integers imply an order that does not exist</td>
+<td>Can create many columns for high-cardinality features</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="f10"><summary><span><span class="qn">Q10</span>What is target (mean) encoding, and when is it useful?</span></summary><div class="answer"><p>Target encoding, also called mean encoding, replaces categorical values with the mean of the target variable for each category. It captures the relationship between the category and the target variable.</p>
+<p>It is useful for high-cardinality categorical variables, as it reduces dimensionality while preserving predictive information.</p></div></details>
+<details class="item" id="f11"><summary><span><span class="qn">Q11</span>How do you handle missing data in feature engineering? What is imputation?</span></summary><div class="answer"><p>Missing data can be handled by:</p>
+<ul>
+<li><strong>Imputation:</strong> filling missing data with estimated values (e.g., mean, median, or a model prediction).</li>
+<li><strong>Deletion:</strong> removing rows or columns with missing data.</li>
+<li><strong>Algorithms</strong> that handle missing data natively.</li>
+</ul>
+<p>Imputation is necessary to avoid losing data and to prevent biases that missing values may introduce in the model.</p></div></details>
+<details class="item" id="f12"><summary><span><span class="qn">Q12</span>What is polynomial feature generation, and how can it help improve model performance?</span></summary><div class="answer"><p>Polynomial feature generation creates new features by raising existing numerical features to a power or by multiplying features together. This allows models to capture nonlinear relationships between the features and the target variable, so it is useful when such relationships exist.</p>
+<p><strong>Example:</strong> from <code>x1</code> and <code>x2</code>, create <code>x1²</code>, <code>x2²</code> and <code>x1·x2</code>.</p></div></details>
+<details class="item" id="f13"><summary><span><span class="qn">Q13</span>What is feature interaction, and how can it help in feature engineering?</span></summary><div class="answer"><p>Feature interaction refers to creating new features by combining two or more existing features. This helps capture relationships that may not be obvious in the individual features alone.</p>
+<p>The <strong>interaction effect</strong> occurs when the impact of one feature on the target variable depends on the value of another feature. Creating interaction features helps the model capture these relationships more effectively.</p></div></details>
+<details class="item" id="f14"><summary><span><span class="qn">Q14</span>What is feature normalization, and how does it differ from feature standardization?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Normalization</th>
+<th>Standardization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What it does</td>
+<td>Scales features to a range, usually 0 to 1</td>
+<td>Transforms features to have a mean of 0 and a standard deviation of 1</td>
+</tr>
+<tr>
+<td>Based on</td>
+<td>The range of the data</td>
+<td>The distribution of the data</td>
+</tr>
+<tr>
+<td>Formula</td>
+<td><code>(X - min) / (max - min)</code></td>
+<td><code>(X - mean) / standard deviation</code></td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="f15"><summary><span><span class="qn">Q15</span>How can dimensionality reduction techniques improve feature engineering?</span></summary><div class="answer"><p>Dimensionality reduction techniques, such as PCA and LDA, help reduce the number of features by transforming them into a smaller set of new features that capture the most variance or separate classes.</p></div></details>
+<details class="item" id="f16"><summary><span><span class="qn">Q16</span>What is feature importance, and how do you measure it?</span></summary><div class="answer"><p>Feature importance refers to the contribution of each feature to the predictive power of a model. It can be measured using:</p>
+<ul>
+<li><strong>Model-specific methods,</strong> like Gini importance.</li>
+<li><strong>Model-agnostic methods,</strong> like permutation importance.</li>
+</ul></div></details>
+<details class="item" id="f17"><summary><span><span class="qn">Q17</span>What is multicollinearity, and how does it impact feature engineering?</span></summary><div class="answer"><p>Multicollinearity occurs when two or more features are highly correlated, leading to redundancy. This can cause issues in models like linear regression by inflating variance estimates and reducing interpretability.</p>
+<p>It can be addressed by removing correlated features or using regularization techniques.</p></div></details>
+<details class="item" id="f18"><summary><span><span class="qn">Q18</span>How do you deal with outliers in feature engineering?</span></summary><div class="answer"><p>Outliers are data points significantly different from others in the dataset.</p>
+<ul>
+<li><strong>Detecting them:</strong> through statistical methods, visualization, or machine learning techniques like isolation forests or DBSCAN.</li>
+<li><strong>Handling them:</strong> by removing them, transforming the data, or capping and flooring the values.</li>
+</ul></div></details>
+<details class="item" id="f19"><summary><span><span class="qn">Q19</span>What are derived features, and how are they created?</span></summary><div class="answer"><p>Derived features are new features created from the existing ones through mathematical transformations or domain-specific knowledge. They can help capture relationships that may not be apparent in the raw data.</p></div></details>
+<details class="item" id="f20"><summary><span><span class="qn">Q20</span>What is binning in feature engineering?</span></summary><div class="answer"><p>Binning is the process of converting continuous numerical variables into categorical variables by dividing the data into intervals, or bins. It can help reduce the impact of outliers and capture non-linear relationships between features.</p></div></details>
+<details class="item" id="f21"><summary><span><span class="qn">Q21</span>What is the role of domain knowledge in feature engineering?</span></summary><div class="answer"><p>Domain knowledge helps identify relevant features, transform raw data into meaningful representations, and uncover hidden relationships that improve the model’s performance.</p></div></details>
+<details class="item" id="f22"><summary><span><span class="qn">Q22</span>How does handling imbalanced data relate to feature engineering?</span></summary><div class="answer"><p>Handling imbalanced data is part of feature engineering when the target variable is skewed. Techniques such as resampling, SMOTE, or modifying features so that they better represent minority classes can help improve the model's performance on imbalanced datasets.</p></div></details>
+<details class="item" id="f23"><summary><span><span class="qn">Q23</span>What is feature hashing, and when is it useful?</span></summary><div class="answer"><p>Feature hashing maps categorical variables to a fixed-size numerical feature vector using a hash function. It is useful for high-cardinality categorical variables where one-hot encoding would create a very large number of features.</p></div></details>
+<details class="item" id="f24"><summary><span><span class="qn">Q24</span>How can log transformation be used in feature engineering?</span></summary><div class="answer"><p>Log transformation reduces the skewness of the data by transforming features with a wide range of values or highly skewed distributions, making them more normally distributed and suitable for models like linear regression.</p></div></details>
+<details class="item" id="f25"><summary><span><span class="qn">Q25</span>What is discretization, and how is it different from binning?</span></summary><div class="answer"><p>Discretization is the process of converting continuous data into discrete intervals. It is similar to binning, but it can involve more advanced techniques, such as decision trees, to determine the optimal splits rather than using equal intervals.</p></div></details>
+<details class="item" id="f26"><summary><span><span class="qn">Q26</span>What is the importance of handling categorical features in feature engineering?</span></summary><div class="answer"><p>Handling categorical features properly is important because many machine learning algorithms cannot process categorical data directly. Encoding techniques like one-hot encoding, label encoding and target encoding convert categorical features into numerical values suitable for modeling.</p></div></details>
+<details class="item" id="f27"><summary><span><span class="qn">Q27</span>What are temporal features, and how can they be engineered?</span></summary><div class="answer"><p>Temporal features are time-based features, such as day of the week, month or time of day. They can be extracted from date and time variables to capture patterns related to time in the data.</p>
+<p><strong>Example:</strong> from a timestamp, extract <code>day_of_week</code>, <code>month</code>, <code>hour</code> and <code>is_weekend</code>.</p></div></details>
+<details class="item" id="f28"><summary><span><span class="qn">Q28</span>What is frequency encoding in feature engineering?</span></summary><div class="answer"><p>Frequency encoding assigns a numeric value to each category in a categorical variable based on how often that category occurs. This technique preserves the information about how common each category is in the dataset.</p></div></details>
+<details class="item" id="f29"><summary><span><span class="qn">Q29</span>How do you handle multivariate time series in feature engineering?</span></summary><div class="answer"><p>Handling multivariate time series involves creating:</p>
+<ul>
+<li><strong>Lagged features</strong></li>
+<li><strong>Moving averages</strong></li>
+<li><strong>Seasonal and trend components</strong></li>
+</ul>
+<p>Feature engineering in time series helps models understand the temporal dependencies between variables.</p></div></details>
+<details class="item" id="f30"><summary><span><span class="qn">Q30</span>What is target leakage, and how can it be avoided during feature engineering?</span></summary><div class="answer"><p>Target leakage occurs when features contain information from the target variable that would not be available at prediction time.</p>
+<p>It can be avoided by making sure that features only use data that will actually be available at the time of prediction, and by building the training features in exactly the same way.</p></div></details>
+<details class="item" id="f31"><summary><span><span class="qn">Q31</span>How does dimensionality reduction help in feature engineering for text data?</span></summary><div class="answer"><p>Dimensionality reduction techniques like Latent Semantic Analysis (LSA) or Principal Component Analysis (PCA) can help reduce the number of features generated from text data while preserving important information, improving computational efficiency.</p></div></details>
+<details class="item" id="f32"><summary><span><span class="qn">Q32</span>What is principal component analysis (PCA), and how is it applied in feature engineering?</span></summary><div class="answer"><p>PCA is a dimensionality reduction technique that transforms features into a set of orthogonal components that explain the maximum variance in the data. It helps reduce the number of features while retaining essential information.</p></div></details>
+<details class="item" id="f33"><summary><span><span class="qn">Q33</span>How can embedding techniques be used in feature engineering?</span></summary><div class="answer"><p>Embedding techniques, such as word embeddings or entity embeddings, convert categorical or textual data into dense vector representations that capture relationships between categories or words. This is useful for handling high-dimensional data in machine learning models.</p></div></details>
+<details class="item" id="f34"><summary><span><span class="qn">Q34</span>How does encoding cyclical features improve feature engineering?</span></summary><div class="answer"><p>Cyclical features are time-related variables such as hours or days of the week. Encoding them involves representing them as sine and cosine components, which ensures that cyclical relationships are captured by the model and reflects the continuous nature of such features (for example, hour 23 is close to hour 0).</p>
+<pre><code>sin_x = sin(2π · x / period)
+cos_x = cos(2π · x / period)
+</code></pre></div></details>
+<details class="item" id="f35"><summary><span><span class="qn">Q35</span>How does feature engineering differ for structured and unstructured data?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Structured data</th>
+<th>Unstructured data (text, images)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Focus</td>
+<td>Transforming numerical, categorical or ordinal variables</td>
+<td>Extracting meaningful features from raw content</td>
+</tr>
+<tr>
+<td>Typical techniques</td>
+<td>Scaling, encoding, binning, interaction features</td>
+<td>Tokenization, embeddings, image filters</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="f36"><summary><span><span class="qn">Q36</span>What are lag features, and when are they useful?</span></summary><div class="answer"><p>Lag features are the values of previous time steps used as features in time series models. They help capture temporal dependencies, which makes them useful in forecasting tasks, where past observations help predict future values.</p>
+<p><strong>Example:</strong> to predict today’s sales, use <code>sales_t-1</code> (yesterday) and <code>sales_t-7</code> (a week ago) as features.</p></div></details>
+</section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

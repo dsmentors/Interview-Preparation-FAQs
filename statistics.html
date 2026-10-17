@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statistics Interview Prep</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20c3 0 4-16 10-16s7 16 10 16"/><line x1="2" y1="20" x2="22" y2="20"/></svg></span><h1>Statistics Interview Prep</h1></div>
+<p class="sub">40 questions</p>
+<div class="roles"><a class="role" href="index.html#role=ds">Data Science</a><a class="role alt" href="index.html#role=aiml">AI/ML</a><a class="role alt" href="index.html#role=ba">Business Analyst</a></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<section class="sec-block" id="sec-0">
+<details class="item" id="s1"><summary><span><span class="qn">Q1</span>What is the difference between a population and a sample?</span></summary><div class="answer"><ul>
+<li><strong>Population:</strong> the entirety of all items that are being studied.</li>
+<li><strong>Sample:</strong> a finite subset of the population that is selected to represent the entire group. A sample is usually selected because the population is too large or costly to study in its entirety.</li>
+</ul>
+<p><strong>Example:</strong> a census is population data, and a survey is a good example of a sample.</p></div></details>
+<details class="item" id="s2"><summary><span><span class="qn">Q2</span>What is the difference between inferential and descriptive statistics?</span></summary><div class="answer"><ul>
+<li><strong>Descriptive statistics</strong> describes some sample or population.</li>
+<li><strong>Inferential statistics</strong> attempts to infer from some sample to the larger population.</li>
+</ul></div></details>
+<details class="item" id="s3"><summary><span><span class="qn">Q3</span>What are quantitative and qualitative data?</span></summary><div class="answer"><ul>
+<li><strong>Quantitative data</strong> are measures of values or counts and are expressed as numbers. They refer to numerical data (e.g. how many, how much, or how often).</li>
+<li><strong>Qualitative data</strong> are measures of ‘types’ and may be represented by a name, symbol, or a number code. Qualitative data is also known as categorical data.</li>
+</ul></div></details>
+<details class="item" id="s4"><summary><span><span class="qn">Q4</span>What is the meaning of standard deviation?</span></summary><div class="answer"><p>Standard deviation is a statistic that measures the dispersion of a dataset relative to its mean. It is the average amount of variability in your dataset, and it tells you, on average, how far each value lies from the mean.</p>
+<p>A high standard deviation means that values are generally far from the mean, while a low standard deviation indicates that values are clustered close to the mean.</p>
+<p>The standard deviation is calculated as the square root of the variance, by determining each data point’s deviation relative to the mean.</p></div></details>
+<details class="item" id="s5"><summary><span><span class="qn">Q5</span>What is the difference between long format and wide format data?</span></summary><div class="answer"><p>A dataset can be written in two different formats: wide and long.</p>
+<ul>
+<li><strong>Wide format:</strong> a single row for every data point, with multiple columns to hold the values of various attributes.</li>
+<li><strong>Long format:</strong> for each data point there are as many rows as the number of attributes, and each row contains the value of a particular attribute for a given data point.</li>
+</ul></div></details>
+<details class="item" id="s6"><summary><span><span class="qn">Q6</span>Give an example where the median is a better measure than the mean</span></summary><div class="answer"><p>The median is a better measure of central tendency than the mean when the distribution of data values is skewed or when there are clear outliers.</p>
+<p><strong>Example:</strong> household incomes. A few extremely high incomes pull the mean up, while the median better reflects what a typical household earns.</p></div></details>
+<details class="item" id="s7"><summary><span><span class="qn">Q7</span>How do you calculate the needed sample size?</span></summary><div class="answer"><p>To calculate the sample size needed for a survey or experiment:</p>
+<ul>
+<li><strong>Define the population size:</strong> determine the total number of your target demographic. If you are dealing with a larger population, you can approximate the total between several educated guesses.</li>
+<li><strong>Decide on a margin of error:</strong> also known as the “confidence interval”. It indicates how much of a difference you are willing to allow between your sample mean and the mean of the population.</li>
+<li><strong>Choose a confidence level:</strong> it indicates how assured you are that the actual mean will fall within your chosen margin of error. The most common levels are 90%, 95% and 99%, and each corresponds to a z-score.</li>
+<li><strong>Pick a standard deviation:</strong> the level of variance you expect to see in the information gathered. If you don’t know how much variance to expect, a standard deviation of 0.5 is typically a safe choice that ensures your sample size is large enough.</li>
+<li><strong>Calculate your sample size:</strong> use the formula below, or an online sample size calculator.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Confidence level</th>
+<th>Z-score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>90%</td>
+<td>1.645</td>
+</tr>
+<tr>
+<td>95%</td>
+<td>1.96</td>
+</tr>
+<tr>
+<td>99%</td>
+<td>2.576</td>
+</tr>
+</tbody>
+</table>
+<pre><code>Sample size = z² × p(1 − p) / e²
+(p = expected proportion or 0.5, e = margin of error)
+</code></pre>
+<p><strong>Example:</strong> 95% confidence (z = 1.96), p = 0.5 and a 5% margin of error (e = 0.05) gives 1.96² × 0.25 / 0.05² ≈ 385 respondents.</p></div></details>
+<details class="item" id="s8"><summary><span><span class="qn">Q8</span>What are the types of sampling in Statistics?</span></summary><div class="answer"><p>The four main types of data sampling in Statistics are:</p>
+<ul>
+<li><strong>Simple random sampling:</strong> pure random selection. Each individual has the same probability of being chosen to be part of the sample.</li>
+<li><strong>Cluster sampling:</strong> the entire population is divided into clusters. Clusters are identified and included in the sample based on demographic parameters like sex, age and location.</li>
+<li><strong>Stratified sampling:</strong> the population is divided into unique groups that represent the entire population. A sample is then drawn from each group separately.</li>
+<li><strong>Systematic sampling:</strong> sample members are chosen from the larger population by a random starting point and a fixed, periodic interval called the sampling interval. The interval is calculated by dividing the population by the desired sample size. This method has a predefined range, hence it is the least time-consuming.</li>
+</ul></div></details>
+<details class="item" id="s9"><summary><span><span class="qn">Q9</span>What is Bessel’s correction?</span></summary><div class="answer"><p>In statistics, Bessel’s correction is the use of n − 1 instead of n in several formulas, including the sample variance and standard deviation, where n is the number of observations in a sample. It corrects the bias in the estimation of the population variance, and partially corrects the bias in the estimation of the population standard deviation, thereby providing more accurate results.</p></div></details>
+<details class="item" id="s10"><summary><span><span class="qn">Q10</span>What do you understand by the term Normal Distribution?</span></summary><div class="answer"><p>The normal distribution, also known as the Gaussian distribution, is a bell-shaped frequency distribution curve. Most of the data values in a normal distribution tend to cluster around the mean.</p></div></details>
+<details class="item" id="s11"><summary><span><span class="qn">Q11</span>What is the assumption of normality?</span></summary><div class="answer"><p>The assumption of normality says that if many independent random samples are collected from a population and some value of interest (like the sample mean) is calculated for each, then a histogram of the sample means should show a normal distribution.</p></div></details>
+<details class="item" id="s12"><summary><span><span class="qn">Q12</span>How do you convert a normal distribution to standard normal distribution?</span></summary><div class="answer"><p>The standard normal distribution, also called the z-distribution, is a special normal distribution where the mean is equal to 0 and the standard deviation is equal to 1.</p>
+<p>Any nonstandard normal distribution can be standardized by transforming each data value x into a z-score:</p>
+<pre><code>z = (x − µ) / σ
+</code></pre></div></details>
+<details class="item" id="s13"><summary><span><span class="qn">Q13</span>What are left-skewed distribution and right-skewed distribution?</span></summary><div class="answer"><p>Skewness is a way to describe the symmetry of a distribution.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Left-skewed (negative skew)</th>
+<th>Right-skewed (positive skew)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Longer tail</td>
+<td>Left</td>
+<td>Right</td>
+</tr>
+<tr>
+<td>Order of averages</td>
+<td>mean &lt; median &lt; mode</td>
+<td>mean &gt; median &gt; mode</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="s14"><summary><span><span class="qn">Q14</span>What are some of the properties of a normal distribution?</span></summary><div class="answer"><ul>
+<li><strong>Unimodal:</strong> it has only one peak (one mode).</li>
+<li><strong>Symmetric:</strong> it is perfectly symmetrical around its centre, so the right side of the centre is a mirror image of the left side.</li>
+<li><strong>Mean, mode and median are equal:</strong> all are located in the centre.</li>
+<li><strong>Asymptotic:</strong> it is continuous and its tails are asymptotic. The curve approaches the x-axis, but never touches it.</li>
+</ul></div></details>
+<details class="item" id="s15"><summary><span><span class="qn">Q15</span>What is the Binomial Distribution formula?</span></summary><div class="answer"><p>For any random variable X, the binomial distribution formula is:</p>
+<pre><code>P(x; n, p) = C(n, x) · p^x · (1 − p)^(n − x)
+</code></pre>
+<p>Where:</p>
+<ul>
+<li><strong>n</strong> = the number of trials</li>
+<li><strong>x</strong> = 0, 1, 2, …</li>
+<li><strong>p</strong> = probability of success on an individual trial</li>
+<li><strong>q</strong> = 1 − p = probability of failure on an individual trial</li>
+</ul></div></details>
+<details class="item" id="s16"><summary><span><span class="qn">Q16</span>What are the criteria that Binomial distributions must meet?</span></summary><div class="answer"><p>The 4 criteria that binomial distributions must meet are:</p>
+<ul>
+<li>There is a fixed number of trials.</li>
+<li>The outcome of each trial is independent of the others.</li>
+<li>Each trial represents one of two outcomes (“success” or “failure”).</li>
+<li>The probability of “success” p is the same across all trials.</li>
+</ul></div></details>
+<details class="item" id="s17"><summary><span><span class="qn">Q17</span>What is an Outlier?</span></summary><div class="answer"><p>An outlier is a data point that differs significantly from other data points in a dataset. An outlier may be due to variability in measurement, or it may indicate an experimental error.</p>
+<p>Outliers can greatly impact statistical analyses and skew the results of any hypothesis test, so it is important to carefully identify potential outliers in the dataset and deal with them appropriately for accurate results.</p></div></details>
+<details class="item" id="s18"><summary><span><span class="qn">Q18</span>Mention methods to screen for outliers in a dataset.</span></summary><div class="answer"><ul>
+<li><strong>Sorting:</strong> a simple way to check whether certain data points need investigating before using more sophisticated methods. Sort the values from low to high and scan for extremely low or extremely high values.</li>
+<li><strong>Visualization (e.g. box plot):</strong> shows the data distribution at a glance. It highlights the minimum and maximum values (the range), the median and the interquartile range. An outlier is a data point outside the box plot’s whiskers.</li>
+<li><strong>Interquartile range (IQR) method:</strong> helpful if there are few values on the extreme ends of the dataset, but you aren’t sure whether any of them count as outliers. The IQR, also called the midspread, is the range of the middle half of a dataset. It is used to create “fences” around the data, and outliers are any values greater than the upper fence or less than the lower fence.</li>
+<li><strong>Z-score:</strong> how many standard deviations away from the mean a data point is.</li>
+<li><strong>Other methods:</strong> Isolation Forest and DBSCAN clustering.</li>
+</ul>
+<p><strong>To use the IQR method:</strong></p>
+<ol>
+<li>Sort the data from low to high.</li>
+<li>Identify the first quartile (Q1), the median and the third quartile (Q3).</li>
+<li>Calculate the IQR: <code>IQR = Q3 − Q1</code></li>
+<li>Calculate the upper fence <code>Q3 + 1.5 × IQR</code> and the lower fence <code>Q1 − 1.5 × IQR</code>.</li>
+<li>Use the fences to highlight any outliers (all values that fall outside them).</li>
+</ol>
+<p><strong>To use the z-score:</strong> <code>z = (x − µ) / σ</code></p>
+<ul>
+<li>A positive z-score means the data point is above average, and a negative one means it is below average.</li>
+<li>A z-score close to zero means the data point is close to average.</li>
+<li>If the z-score is above or below 3 (taking 3 as the cut-off), the data point is an outlier and is considered unusual.</li>
+</ul></div></details>
+<details class="item" id="s19"><summary><span><span class="qn">Q19</span>What types of biases can you encounter while sampling?</span></summary><div class="answer"><p>Sampling bias occurs when a sample is not representative of the target population during an investigation or a survey. The three main types are:</p>
+<ul>
+<li><strong>Selection bias:</strong> individual or grouped data is selected in a way that is not random.</li>
+<li><strong>Under-coverage bias:</strong> some population members are inadequately represented in the sample.</li>
+<li><strong>Survivorship bias:</strong> the sample concentrates on the ‘surviving’ or existing observations and ignores those that have already ceased to exist. This can lead to wrong conclusions in numerous ways.</li>
+</ul></div></details>
+<details class="item" id="s20"><summary><span><span class="qn">Q20</span>What is the meaning of an inlier?</span></summary><div class="answer"><p>An inlier is a data value that lies within the general distribution of other observed values but is an error. Inliers are difficult to distinguish from good data values, so they are sometimes difficult to find and correct.</p>
+<p><strong>Example:</strong> a value recorded in the wrong units.</p></div></details>
+<details class="item" id="s21"><summary><span><span class="qn">Q21</span>What is hypothesis testing?</span></summary><div class="answer"><p>Hypothesis testing is a type of statistical inference that uses data from a sample to draw conclusions about the population data.</p>
+<p>Before performing the test, an assumption is made about the population parameter. This assumption is called the <strong>null hypothesis</strong> and is denoted by H0. An <strong>alternative hypothesis</strong> (Ha), the logical opposite of the null hypothesis, is then defined.</p>
+<p>The procedure uses sample data to determine whether or not H0 should be rejected. The acceptance of the alternative hypothesis (Ha) follows the rejection of the null hypothesis (H0).</p></div></details>
+<details class="item" id="s22"><summary><span><span class="qn">Q22</span>What is the p-value in hypothesis testing?</span></summary><div class="answer"><p>A p-value is a number that describes the probability of finding the observed or more extreme results when the null hypothesis (H0) is true.</p>
+<p>P-values are used in hypothesis testing to help decide whether to reject the null hypothesis. The smaller the p-value, the stronger the evidence that you should reject the null hypothesis.</p></div></details>
+<details class="item" id="s23"><summary><span><span class="qn">Q23</span>When should you use a t-test vs. a z-test?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>T-test</th>
+<th>Z-test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What it does</td>
+<td>Asks whether a difference between the means of two groups is unlikely to have occurred because of random chance</td>
+<td>Compares a sample to a defined population</td>
+</tr>
+<tr>
+<td>Sample size</td>
+<td>Usually used for limited sample sizes (n &lt; 30)</td>
+<td>Typically used for large samples (n &gt; 30)</td>
+</tr>
+<tr>
+<td>Population standard deviation</td>
+<td>Unknown</td>
+<td>Known</td>
+</tr>
+</tbody>
+</table>
+<p>In short, use a <strong>t-test</strong> when the population standard deviation is unknown or the sample is small, and use a <strong>z-test</strong> when the population standard deviation is known and the sample size exceeds 30.</p></div></details>
+<details class="item" id="s24"><summary><span><span class="qn">Q24</span>What is the difference between one-tail and two-tail hypothesis testing?</span></summary><div class="answer"><ul>
+<li><strong>One-tailed test:</strong> allows for the possibility of an effect in one direction. The critical region lies on only one tail.</li>
+<li><strong>Two-tailed test:</strong> tests for the possibility of an effect in two directions, positive and negative. The critical region lies in both tails.</li>
+</ul></div></details>
+<details class="item" id="s25"><summary><span><span class="qn">Q25</span>What is the difference between type I vs. type II errors?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Type I error</th>
+<th>Type II error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What happens</td>
+<td>A null hypothesis that is true in the population is rejected</td>
+<td>A null hypothesis that is false in the population fails to be rejected</td>
+</tr>
+<tr>
+<td>Also known as</td>
+<td>False positive</td>
+<td>False negative</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="s26"><summary><span><span class="qn">Q26</span>What is the Central Limit Theorem?</span></summary><div class="answer"><p>The Central Limit Theorem (CLT) states that, given a sufficiently large sample size from a population with a finite level of variance, the sampling distribution of the mean will be normally distributed, regardless of whether the population itself is normally distributed.</p></div></details>
+<details class="item" id="s27"><summary><span><span class="qn">Q27</span>What general conditions must be satisfied for the central limit theorem to hold?</span></summary><div class="answer"><p>The sampling distribution of the mean follows a normal distribution under the following conditions:</p>
+<ul>
+<li>The sample size is sufficiently large (i.e. n ≥ 30).</li>
+<li>The samples are independent and identically distributed random variables.</li>
+<li>The population’s distribution has finite variance.</li>
+</ul></div></details>
+<details class="item" id="s28"><summary><span><span class="qn">Q28</span>What are correlation and covariance in statistics?</span></summary><div class="answer"><ul>
+<li><strong>Correlation</strong> indicates how strongly two variables are related. Its value ranges from −1 to +1.<ul>
+<li>−1 is a strong negative correlation: if one variable increases, the other decreases.</li>
+<li>+1 is a positive correlation: an increase in one variable leads to an increase in the other.</li>
+<li>0 means there is no correlation.</li>
+</ul>
+</li>
+<li><strong>Covariance</strong> is a measure of the extent to which a pair of random variables vary with each other. A higher number denotes a higher dependency.</li>
+</ul></div></details>
+<details class="item" id="s29"><summary><span><span class="qn">Q29</span>What is the difference between Point Estimate and Confidence Interval Estimate?</span></summary><div class="answer"><ul>
+<li><strong>Point estimate:</strong> a single value used as an estimate of a population parameter. For example, a sample standard deviation is a point estimate of a population’s standard deviation.</li>
+<li><strong>Confidence interval estimate:</strong> a range of values likely to contain the population parameter. It is the most common type of interval estimate because it tells us how likely the interval is to contain the population parameter.</li>
+</ul></div></details>
+<details class="item" id="s30"><summary><span><span class="qn">Q30</span>Mention the relationship between standard error and margin of error?</span></summary><div class="answer"><p>As the standard error increases, the margin of error also increases.</p>
+<pre><code>Margin of error = Critical value × Standard error of the sample
+</code></pre></div></details>
+<details class="item" id="s31"><summary><span><span class="qn">Q31</span>How would you define Kurtosis?</span></summary><div class="answer"><p>Kurtosis is the extent to which the values in a distribution’s tails differ from the centre of the distribution. It can be used to detect outliers in a data distribution: the higher the kurtosis, the higher the number of outliers in the data.</p></div></details>
+<details class="item" id="s32"><summary><span><span class="qn">Q32</span>What is the proportion of confidence interval that will not contain the population parameter?</span></summary><div class="answer"><p>Alpha (α) is the portion of the confidence interval that will not contain the population parameter.</p>
+<pre><code>α = 1 − CL   (the probability a confidence interval will not include the population parameter)
+1 − α = CL   (the probability the population parameter will be in the interval)
+</code></pre>
+<p><strong>Example:</strong> if the confidence level (CL) is 95%, then α = 1 − 0.95 = 0.05.</p></div></details>
+<details class="item" id="s33"><summary><span><span class="qn">Q33</span>What is the Law of Large Numbers in statistics?</span></summary><div class="answer"><p>According to the law of large numbers, as the number of trials performed increases, the average of the results gets closer to the expected value.</p>
+<p><strong>Example:</strong> the proportion of heads when flipping a fair coin is closer to 0.5 after 100,000 flips than after 50 flips.</p></div></details>
+<details class="item" id="s34"><summary><span><span class="qn">Q34</span>What is the goal of A/B testing?</span></summary><div class="answer"><p>A/B testing is statistical hypothesis testing. It is an analytical method for making decisions that estimates population parameters based on sample statistics.</p>
+<p>The goal is usually to identify changes to a web page that maximize or increase the outcome of interest. A/B testing is a great method to figure out the best online promotional and marketing strategies for your business.</p></div></details>
+<details class="item" id="s35"><summary><span><span class="qn">Q35</span>What do you understand by sensitivity and specificity?</span></summary><div class="answer"><ul>
+<li><strong>Sensitivity:</strong> the proportion of actual positive cases that were predicted as positive (true positives).</li>
+<li><strong>Specificity:</strong> the proportion of actual negative cases that were predicted as negative (true negatives).</li>
+</ul>
+<pre><code>Sensitivity = TP / (TP + FN)
+Specificity = TN / (TN + FP)
+</code></pre></div></details>
+<details class="item" id="s36"><summary><span><span class="qn">Q36</span>What is Resampling and what are the common methods of resampling?</span></summary><div class="answer"><p>Resampling involves selecting randomized cases, with replacement, from the original data sample, in such a way that each drawn sample has several cases that are similar to the original data sample.</p>
+<p>Two common methods of resampling are:</p>
+<ol>
+<li>Bootstrapping and normal resampling</li>
+<li>Cross-validation</li>
+</ol></div></details>
+<details class="item" id="s37"><summary><span><span class="qn">Q37</span>What is Linear Regression?</span></summary><div class="answer"><p>In statistics, linear regression is an approach for modeling the relationship between one or more predictor variables (X) and one outcome variable (y).</p>
+<ul>
+<li>With one predictor variable, it is called <strong>simple linear regression</strong>.</li>
+<li>With more than one predictor variable, it is called <strong>multiple linear regression</strong>.</li>
+</ul></div></details>
+<details class="item" id="s38"><summary><span><span class="qn">Q38</span>What are the assumptions required for linear regression?</span></summary><div class="answer"><p>Linear regression has four key assumptions:</p>
+<ul>
+<li><strong>Linear relationship:</strong> there is a linear relationship between X and the mean of Y.</li>
+<li><strong>Independence:</strong> observations are independent of each other.</li>
+<li><strong>Normality:</strong> the distribution of Y along X should be normal.</li>
+<li><strong>Homoscedasticity:</strong> the variation in the outcome or response variable is the same for any value of X.</li>
+</ul></div></details>
+<details class="item" id="s39"><summary><span><span class="qn">Q39</span>What is a ROC curve?</span></summary><div class="answer"><p>The Receiver Operating Characteristic (ROC) curve is a graphical representation of the performance of a classification model at various thresholds.</p>
+<p>The curve plots the True Positive Rate (TPR) against the False Positive Rate (FPR) at different classification thresholds.</p></div></details>
+<details class="item" id="s40"><summary><span><span class="qn">Q40</span>What is Cost Function?</span></summary><div class="answer"><p>The cost function is an important parameter that measures the performance of a machine learning model for a given dataset.</p>
+<p>It measures how wrong the model is in estimating the relationship between the input and output parameters.</p></div></details>
+</section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

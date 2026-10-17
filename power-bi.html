@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Power BI Business Intelligence</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><h1>Power BI Business Intelligence</h1></div>
+<p class="sub">29 questions</p>
+<div class="roles"><a class="role" href="index.html#role=ba">Business Analyst</a><a class="role alt" href="index.html#role=ds">Data Science</a></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<section class="sec-block" id="sec-0"><div class="secintro"><img src="https://cdn.dribbble.com/users/172256/screenshots/2394651/open-uri20151208-3-1tw838b" alt="" loading="lazy" referrerpolicy="no-referrer" style="max-height:260px" onerror="this.style.display='none'"></div>
+<details class="item" id="p1"><summary><span><span class="qn">Q1</span>What are the important components of Power BI?</span></summary><div class="answer"><p>The important components of Power BI are:</p>
+<ol>
+<li><strong>Data Integration:</strong> connecting to and combining data from multiple sources.</li>
+<li><strong>Data Processing:</strong> cleaning, transforming and modeling the data.</li>
+<li><strong>Data Presentation:</strong> showing the data as visuals in reports and dashboards.</li>
+</ol></div></details>
+<details class="item" id="p2"><summary><span><span class="qn">Q2</span>What is a DAX Function?</span></summary><div class="answer"><img src="https://learn.microsoft.com/en-us/power-bi/transform-model/media/dax-query-view/dax-query-view-format-query.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p><strong>DAX (Data Analysis Expressions)</strong> is a formula language used in Power BI, Power Pivot and SSAS to create custom calculations. DAX functions are similar to Excel functions but are optimized for data models and analytical computations.</p>
+<p><strong>Example:</strong></p>
+<pre><code>Total Sales = SUM(Sales[SalesAmount])
+</code></pre>
+<p>This DAX formula calculates the total sales by summing the <code>SalesAmount</code> column in the <code>Sales</code> table.</p></div></details>
+<details class="item" id="p3"><summary><span><span class="qn">Q3</span>What are the data types of DAX?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Data type</th>
+<th>Description</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Integer</strong></td>
+<td>Whole numbers</td>
+<td><code>1</code>, <code>2</code>, <code>3</code></td>
+</tr>
+<tr>
+<td><strong>Decimal</strong> (floating-point)</td>
+<td>Numbers with a fractional part</td>
+<td><code>3.14</code>, <code>10.5</code></td>
+</tr>
+<tr>
+<td><strong>Boolean</strong></td>
+<td>Logical values</td>
+<td><code>TRUE</code>, <code>FALSE</code></td>
+</tr>
+<tr>
+<td><strong>Text</strong></td>
+<td>Alphanumeric strings</td>
+<td><code>"Power BI"</code>, <code>"Hello"</code></td>
+</tr>
+<tr>
+<td><strong>DateTime</strong></td>
+<td>Date and time values</td>
+<td><code>2023-08-21</code>, <code>15:30:00</code></td>
+</tr>
+<tr>
+<td><strong>Currency</strong></td>
+<td>Specialized number type formatted as currency</td>
+<td></td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="p4"><summary><span><span class="qn">Q4</span>What are the different kinds of Views in Power BI?</span></summary><div class="answer"><ul>
+<li><strong>Report view:</strong> the default view in Power BI Desktop, where you create and arrange visualizations.</li>
+<li><strong>Data view:</strong> shows your data in tabular form, so you can inspect it and work with transformations and calculations.</li>
+<li><strong>Model view:</strong> used to manage relationships between tables and set up your data model.</li>
+</ul></div></details>
+<details class="item" id="p5"><summary><span><span class="qn">Q5</span>What are the important components of the Power BI toolkit, and what do they do?</span></summary><div class="answer"><img src="https://cdn.discuss.boardinfinity.com/original/2X/2/202d839c1c444a6fb2450977205d211d4e03fde9.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Power Query</strong></td>
+<td>Data connection, transformation and loading</td>
+</tr>
+<tr>
+<td><strong>Power Pivot</strong></td>
+<td>Data modeling, creating relationships and writing DAX formulas</td>
+</tr>
+<tr>
+<td><strong>Power View</strong></td>
+<td>Creating interactive visualizations and reports</td>
+</tr>
+<tr>
+<td><strong>Power Map</strong></td>
+<td>3D visualizations that map geographic and temporal data</td>
+</tr>
+<tr>
+<td><strong>Power BI Service</strong></td>
+<td>A cloud-based service for sharing and collaborating on Power BI reports</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="p6"><summary><span><span class="qn">Q6</span>What types of data sources are available in Power BI?</span></summary><div class="answer"><img src="https://www.tutorialspoint.com/power_bi/images/more.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p>The data sources in Power BI Desktop are grouped into these categories in the <strong>Get Data</strong> window:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>What it covers</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>All</strong></td>
+<td>Every available connector</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>File</strong></td>
+<td>Data stored in files</td>
+<td>Excel, CSV, XML, JSON, Text</td>
+</tr>
+<tr>
+<td><strong>Database</strong></td>
+<td>Relational and other databases</td>
+<td>SQL Server, Oracle, MySQL, PostgreSQL</td>
+</tr>
+<tr>
+<td><strong>Power BI</strong></td>
+<td>Data already in Power BI</td>
+<td>Power BI datasets, dataflows</td>
+</tr>
+<tr>
+<td><strong>Azure</strong></td>
+<td>Microsoft Azure services</td>
+<td>Azure SQL Database, Azure Synapse</td>
+</tr>
+<tr>
+<td><strong>Online Services</strong></td>
+<td>Cloud applications</td>
+<td>SharePoint Online, Salesforce, Dynamics 365</td>
+</tr>
+<tr>
+<td><strong>Other</strong></td>
+<td>Everything else</td>
+<td>Web, OData, ODBC, Blank query</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="p7"><summary><span><span class="qn">Q7</span>What is grouping? How can you use it?</span></summary><div class="answer"><p>Power BI Desktop lets you group data points into smaller chunks:</p>
+<ol>
+<li>In the visual, hold <strong>Ctrl</strong> and click to select multiple elements.</li>
+<li>Right-click one of the selected elements and choose <strong>Group</strong>.</li>
+<li>The elements appear together in the groups window, where you can name the group.</li>
+</ol>
+<p><strong>Example:</strong> in a bar chart showing sales by product category, you can group similar categories (for example "Electronics" and "Gadgets") to view them as a single group.</p></div></details>
+<details class="item" id="p8"><summary><span><span class="qn">Q8</span>Explain the term responsive slicers.</span></summary><div class="answer"><p>Responsive slicers in Power BI automatically resize and adjust to fit the available space on your report page. They stay interactive and usable on different screen sizes and devices.</p>
+<p><strong>Example:</strong> a responsive slicer might reduce the number of visible items or change its layout on smaller screens.</p></div></details>
+<details class="item" id="p9"><summary><span><span class="qn">Q9</span>Define the term ‘M language.’</span></summary><div class="answer"><p><strong>M language</strong> is the formula language used in Power Query for data transformation and shaping. It is a functional, case-sensitive language used to create data queries.</p></div></details>
+<details class="item" id="p10"><summary><span><span class="qn">Q10</span>What information is required to create a map in Power Map?</span></summary><div class="answer"><img src="https://media.geeksforgeeks.org/wp-content/uploads/20230119234634/How_To_Create_A_Shape_Map_In_Power_BI_7-768.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><ul>
+<li><strong>Geographical data:</strong> latitude and longitude coordinates, or address information such as city, state, country or ZIP code.</li>
+<li><strong>Time data (optional):</strong> to visualize changes over time, you can include time-based data such as dates or times.</li>
+</ul></div></details>
+<details class="item" id="p11"><summary><span><span class="qn">Q11</span>What are the important features of the Power BI dashboard?</span></summary><div class="answer"><ul>
+<li><strong>Tiles:</strong> each visualization in a Power BI dashboard is represented as a tile.</li>
+<li><strong>Natural language query:</strong> lets users ask questions in plain English and get answers as visualizations.</li>
+<li><strong>Interactive visuals:</strong> dashboards are interactive, so users can drill down and filter data.</li>
+<li><strong>Real-time data:</strong> dashboards can display real-time data using streaming datasets.</li>
+</ul></div></details>
+<details class="item" id="p12"><summary><span><span class="qn">Q12</span>How can you analyze Power BI reports data in Excel?</span></summary><div class="answer"><ol>
+<li>Open the Power BI Admin portal, go to <strong>Tenant settings</strong> and select <strong>Analyze</strong>.</li>
+<li>Check whether the Power BI administrator has enabled the Excel option.</li>
+<li>In the upper right corner, click <strong>Settings</strong> to download and install the Excel updates.</li>
+<li>In the left-hand navigation pane, go to the workspace, click the ellipsis (three dots) of the dataset and select <strong>Analyze in Excel</strong>.</li>
+<li>Download the ODC file, save it and double-click it.</li>
+<li>Sign in with your Power BI user id and password.</li>
+</ol></div></details>
+<details class="item" id="p13"><summary><span><span class="qn">Q13</span>What is Power Pivot, and what are the filters written in Power BI?</span></summary><div class="answer"><p><strong>Power Pivot</strong> is an Excel add-in used for data modeling, creating complex calculations with DAX, and building relationships between tables. It enables large-scale data analysis and the creation of complex data models.</p>
+<p><strong>Filters in Power BI</strong> restrict the data displayed in reports and visuals. They can be applied at various levels:</p>
+<ul>
+<li><strong>Report level:</strong> affects all pages in a report.</li>
+<li><strong>Page level:</strong> affects all visuals on a single report page.</li>
+<li><strong>Visual level:</strong> affects only a specific visual on a report page.</li>
+</ul></div></details>
+<details class="item" id="p14"><summary><span><span class="qn">Q14</span>How can you perform Dynamic filtering in Power BI?</span></summary><div class="answer"><p>Dynamic filtering in Power BI is done using slicers, filters or DAX measures that respond to user input. For example, you can use a slicer to let users filter data by date range, and the visuals update dynamically to reflect the selection.</p>
+<p><strong>Example:</strong> a slicer for selecting a year, which dynamically filters the sales data for that year across all visuals in the report.</p></div></details>
+<details class="item" id="p15"><summary><span><span class="qn">Q15</span>What is the Power Pivot Data Model?</span></summary><div class="answer"><p>The Power Pivot Data Model is an in-memory data modeling engine that lets you create a data model in Excel or Power BI. It supports large datasets, complex relationships and advanced calculations using DAX. The model is built by importing data from multiple sources, defining relationships, and creating calculated columns and measures.</p>
+<p><strong>Example:</strong> a data model that combines sales data from different regions, links the tables through common fields such as <code>RegionID</code>, and calculates total sales per region with DAX measures.</p></div></details>
+<details class="item" id="p16"><summary><span><span class="qn">Q16</span>What is a Power Query?</span></summary><div class="answer"><img src="https://learn.microsoft.com/en-us/power-query/media/power-query-ui/pqui-user-interface.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p><strong>Power Query</strong> is a data connection and transformation tool in Power BI (also available in Excel). It lets users import data from various sources, clean and transform it, and load it into the data model for analysis. It is particularly useful for data wrangling, combining datasets and automating repetitive data processing tasks.</p>
+<p><strong>Example:</strong> importing a CSV file, removing unnecessary columns, and combining it with another dataset from an SQL database.</p></div></details>
+<details class="item" id="p17"><summary><span><span class="qn">Q17</span>What are Tiles in Power BI?</span></summary><div class="answer"><img src="https://learn.microsoft.com/en-us/power-bi/create-reports/media/service-dashboard-edit-tile/power-bi-pin.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p><strong>Tiles</strong> are the individual visual elements that make up a dashboard. Each tile represents a single visualization, such as a chart, map or KPI, and can be pinned from reports or created directly on the dashboard. Tiles can be resized, moved and customized to fit the dashboard layout.</p>
+<p><strong>Example:</strong> a tile showing total sales on a dashboard that summarizes key performance indicators.</p></div></details>
+<details class="item" id="p18"><summary><span><span class="qn">Q18</span>What is an on-premises gateway? Is on-premises access possible in Power BI?</span></summary><div class="answer"><p>An <strong>on-premises gateway</strong> is a bridge that enables secure data transfer between on-premises data sources (such as SQL Server or file systems) and the Power BI service in the cloud.</p>
+<p>Yes, on-premises access is possible in Power BI through this gateway. It lets users refresh datasets, run queries and keep reports and dashboards current, without moving the data to the cloud.</p></div></details>
+<details class="item" id="p19"><summary><span><span class="qn">Q19</span>Name two types of connectivity modes in Power BI?</span></summary><div class="answer"><img src="https://i0.wp.com/urbizedge.com/wp-content/uploads/2023/03/Connection-types-.png?fit=1280%2C720&ssl=1" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><ol>
+<li><strong>Import mode:</strong> data is imported into Power BI, stored in memory and refreshed periodically. It gives high performance and supports complex data modeling and calculations.</li>
+<li><strong>DirectQuery mode:</strong> Power BI queries the data directly from the data source at runtime. It is used for large datasets or when real-time data access is required.</li>
+</ol></div></details>
+<details class="item" id="p20"><summary><span><span class="qn">Q20</span>What is a calculated column?</span></summary><div class="answer"><img src="https://learn.microsoft.com/en-us/power-bi/transform-model/media/desktop-tutorial-create-calculated-columns/vis2.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p>A <strong>calculated column</strong> is a new column created by defining a DAX expression. It is computed row by row for the table and stored in the data model. Calculated columns are useful for deriving new information from existing data.</p>
+<p><strong>Example:</strong> a "Total Sales" column that multiplies <code>Quantity</code> and <code>Price</code> in a <code>Sales</code> table:</p>
+<pre><code>Total Sales = Sales[Quantity] * Sales[Price]
+</code></pre></div></details>
+<details class="item" id="p21"><summary><span><span class="qn">Q21</span>Explain data source filter.</span></summary><div class="answer"><img src="https://docs.microsoft.com/en-us/power-bi/connect-data/media/desktop-data-sources/data-sources-01.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p>A <strong>data source filter</strong> is applied when data is imported into Power BI using Power Query. It restricts the amount of data loaded into the model by filtering out unnecessary rows at the source level, which can improve performance and reduce the size of the dataset.</p>
+<p><strong>Example:</strong> applying a filter to import only the last five years of data from a database table.</p></div></details>
+<details class="item" id="p22"><summary><span><span class="qn">Q22</span>Why use a selection pane in Power BI?</span></summary><div class="answer"><img src="https://zebrabi.com/wp-content/uploads/2020/10/power-bi-selection-pane-view-zebra-webinar-productivity-features.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p>The <strong>Selection Pane</strong> lets you manage the visibility of the visuals on a report page. It is especially useful for complex reports with multiple overlapping visuals. You can show, hide or reorder visuals easily.</p>
+<p><strong>Example:</strong> temporarily hiding a visual during the design process, or setting up buttons that show or hide visuals based on user interaction.</p></div></details>
+<details class="item" id="p23"><summary><span><span class="qn">Q23</span>How to handle Many to Many relationships in Power BI?</span></summary><div class="answer"><p>To handle a <strong>many-to-many relationship</strong>, you can use a bridge (intermediary) table that breaks it down into two one-to-many relationships. Alternatively, you can use the newer feature that allows direct many-to-many relationships through composite models.</p>
+<p><strong>Example:</strong> a bridge table that contains the unique combinations of keys from the two tables, used to establish the relationship.</p></div></details>
+<details class="item" id="p24"><summary><span><span class="qn">Q24</span>Explain xVelocity (in-memory analytics).</span></summary><div class="answer"><img src="https://qph.cf2.quoracdn.net/main-qimg-d8ab88fbd0d9a61f38cdba6a495c79e0-pjlq" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p><strong>xVelocity</strong> (also known as the VertiPaq engine) is the in-memory analytics engine used by Power BI and SQL Server Analysis Services (SSAS). It uses columnar storage and data compression to load large datasets into memory, which makes data retrieval and analytical operations extremely fast.</p>
+<p><strong>Example:</strong> loading millions of rows of sales data into memory, which enables quick aggregation and slicing in Power BI.</p></div></details>
+<details class="item" id="p25"><summary><span><span class="qn">Q25</span>State the main difference between DISTINCT() and VALUES() in DAX?</span></summary><div class="answer"><p>Both functions return a unique list of the values in a column. The difference is how they treat the <strong>blank row</strong>:</p>
+<ul>
+<li><strong><code>VALUES()</code></strong> also returns the blank row that Power BI adds when a relationship has unmatched rows (a referential integrity violation).</li>
+<li><strong><code>DISTINCT()</code></strong> does not return that added blank row. A blank value that really exists in the column is still returned.</li>
+</ul>
+<p><strong>Example:</strong> if a fact table has a key that does not exist in the dimension table, <code>VALUES(Dim[Key])</code> includes a blank for it, while <code>DISTINCT(Dim[Key])</code> leaves it out.</p></div></details>
+<details class="item" id="p26"><summary><span><span class="qn">Q26</span>State the major differences between MAX and MAXA functions.</span></summary><div class="answer"><ul>
+<li><strong><code>MAX</code></strong>: returns the maximum value in a column, considering only numeric values.</li>
+<li><strong><code>MAXA</code></strong>: returns the maximum value in a column, but also evaluates logical values (TRUE = 1, FALSE = 0) and non-numeric data as part of its calculation.</li>
+</ul>
+<p><strong>Example:</strong> in a column with numbers and logical values, <code>MAXA()</code> treats TRUE as 1, whereas <code>MAX()</code> considers only the numeric values.</p></div></details>
+<details class="item" id="p27"><summary><span><span class="qn">Q27</span>What kind of data can you store in Power BI?</span></summary><div class="answer"><ul>
+<li><strong>Fact tables:</strong> the central table in the star schema of a data warehouse. It stores the quantitative information used for analysis, and is not normalized in most cases.</li>
+<li><strong>Dimension tables:</strong> tables in the star schema that store the attributes and dimensions describing the objects stored in a fact table.</li>
+</ul></div></details>
+<details class="item" id="p28"><summary><span><span class="qn">Q28</span>State the main difference between Filter and Slicer.</span></summary><div class="answer"><img src="https://okviz.com/wp-content/uploads/2020/09/Design-Guide-for-Power-BI-Slicers-and-Filters-01.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><ul>
+<li><strong>Filter:</strong> applied at the report, page or visual level to limit the data shown. It is not visible to the report user.</li>
+<li><strong>Slicer:</strong> a visual element that lets users interactively filter the data in a report.</li>
+</ul>
+<p><strong>Example:</strong> a slicer for selecting a product category lets users change what is displayed, while a filter applied to a visual limits the data based on predefined criteria.</p></div></details>
+<details class="item" id="p29"><summary><span><span class="qn">Q29</span>How do you use Buttons in Power BI?</span></summary><div class="answer"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZr1qZKrDI_OZKFp5zlOYJixqmPESwdgxjbw&s" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p><strong>Buttons</strong> are interactive elements used to perform actions such as navigating to other report pages, drilling through data, or triggering bookmarks. They improve user interactivity and experience in a report.</p>
+<p><strong>Example:</strong> a button labeled "Go to Details" that takes users to a detailed report page when clicked.</p></div></details>
+</section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

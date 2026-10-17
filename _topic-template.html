@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Topic Name</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></span><h1>Topic Name</h1></div>
+<p class="sub">3 questions</p>
+<!-- Role tags: solid = core for that role, class="alt" = also useful. Link back to the index filtered by role. -->
+<div class="roles"><a class="role" href="index.html#role=ds">Data Science</a><a class="role" href="index.html#role=aiml">AI/ML</a></div>
+<div class="intro"><blockquote><p>Short topic summary goes here.</p></blockquote></div>
+<div class="tools">
+<input id="q" type="search" placeholder="Search questions...">
+<button type="button" class="primary" id="ex">Expand all</button>
+<button type="button" id="co">Collapse all</button>
+</div>
+<nav class="chips"><a href="#sec-1">Section one</a><a href="#sec-2">Section two</a></nav>
+<section class="sec-block" id="sec-1">
+<h2 class="sec">Section one</h2>
+<details class="item" id="q1-1"><summary>Question with text, list and image?</summary><div class="answer">
+<p>Answer paragraph with <strong>bold</strong> and <code>inline code</code>.</p>
+<ul><li>First point</li><li>Second point</li></ul>
+<img src="assets/sample.png" alt="Describe the image" loading="lazy" onerror="this.style.display='none'">
+</div></details>
+<details class="item" id="q1-2"><summary>Question with a code block?</summary><div class="answer">
+<pre><code>SELECT * FROM employees WHERE salary &gt; 50000;</code></pre>
+</div></details>
+</section>
+<section class="sec-block" id="sec-2">
+<h2 class="sec">Section two</h2>
+<details class="item" id="q2-1"><summary>Question with a table?</summary><div class="answer">
+<table><thead><tr><th>Term</th><th>Meaning</th></tr></thead><tbody><tr><td>A</td><td>First</td></tr><tr><td>B</td><td>Second</td></tr></tbody></table>
+</div></details>
+</section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

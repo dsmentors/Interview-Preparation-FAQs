@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exploratory Data Analysis</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><h1>Exploratory Data Analysis</h1></div>
+<p class="sub">24 questions</p>
+<div class="roles"><a class="role" href="index.html#role=ds">Data Science</a><a class="role" href="index.html#role=ba">Business Analyst</a><a class="role alt" href="index.html#role=aiml">AI/ML</a></div>
+<div class="intro"><img src="https://cdn.dribbble.com/users/1373613/screenshots/4679325/media/4648d0adb623993ea8e12bd1dc0faab5.gif" alt="" loading="lazy" referrerpolicy="no-referrer" style="max-height:200px" onerror="this.style.display='none'"></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<section class="sec-block" id="sec-0"><div class="secintro"><img src="data:image/png;base64,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" alt="" loading="lazy" referrerpolicy="no-referrer" style="max-height:200px" onerror="this.style.display='none'"></div>
+<details class="item" id="e1"><summary><span><span class="qn">Q1</span>What are the different types of data, and why are they important?</span></summary><div class="answer"><h4>Structured Data</h4>
+<ul>
+<li><strong>Definition</strong>: Data that is organized into a clear, predefined structure, usually in rows and columns, like in a spreadsheet or relational database.</li>
+<li><strong>Examples</strong>: Tables in databases, Excel spreadsheets, CSV files.</li>
+<li><strong>Importance</strong>:<ul>
+<li><strong>Ease of Analysis</strong>: Structured data is easy to store, query, and analyze using traditional data management tools like SQL.</li>
+<li><strong>Compatibility with Algorithms</strong>: Many machine learning algorithms are designed to work efficiently with structured data.</li>
+</ul>
+</li>
+</ul>
+<h4>Unstructured Data</h4>
+<ul>
+<li><strong>Definition</strong>: Data that lacks a predefined structure, making it more complex to analyze. It can come in various formats, including text, images, audio, and video.</li>
+<li><strong>Examples</strong>: Emails, social media posts, videos, images, and audio recordings.</li>
+<li><strong>Importance</strong>:<ul>
+<li><strong>Richness of Information</strong>: Unstructured data often contains valuable insights that structured data may not capture, such as sentiments in text or patterns in images.</li>
+<li><strong>Complex Processing</strong>: Requires advanced techniques like natural language processing (NLP) for text, computer vision for images, and audio analysis for sound.</li>
+</ul>
+</li>
+</ul>
+<h4>Semi-Structured Data</h4>
+<ul>
+<li><strong>Definition</strong>: Data that does not fit into a rigid structure like structured data but still contains some organizational properties, such as tags or markers to separate elements.</li>
+<li><strong>Examples</strong>: JSON files, XML files, HTML documents, and log files.</li>
+<li><strong>Importance</strong>:<ul>
+<li><strong>Flexibility</strong>: Semi-structured data offers flexibility in data representation while still being easier to analyze than unstructured data.</li>
+<li><strong>Integration</strong>: Often used in data interchange between systems, making it crucial for integrating diverse data sources.</li>
+</ul>
+</li>
+</ul>
+<h4>Quantitative Data</h4>
+<ul>
+<li><strong>Definition</strong>: Numerical data that can be measured and quantified. It can be further divided into:<ul>
+<li><strong>Discrete Data</strong>: Countable data, like the number of students in a class.</li>
+<li><strong>Continuous Data</strong>: Data that can take any value within a range, like height, weight, or temperature.</li>
+</ul>
+</li>
+<li><strong>Examples</strong>: Sales figures, age, test scores.</li>
+<li><strong>Importance</strong>:<ul>
+<li><strong>Statistical Analysis</strong>: Quantitative data is essential for performing statistical analysis, enabling predictions, and building machine learning models.</li>
+</ul>
+</li>
+</ul>
+<h4>Qualitative Data</h4>
+<ul>
+<li><strong>Definition</strong>: Descriptive data that is not numerical and is used to categorize or describe characteristics.</li>
+<li><strong>Examples</strong>: Colors, names, labels, opinions, and reviews.</li>
+<li><strong>Importance</strong>:<ul>
+<li><strong>Categorical Analysis</strong>: Useful for understanding categories or classes in the data, often transformed into numerical form for analysis.</li>
+<li><strong>Contextual Insights</strong>: Provides context and insights that numbers alone cannot offer, especially in market research or sentiment analysis.</li>
+</ul>
+</li>
+</ul>
+<h4>Time Series Data</h4>
+<ul>
+<li><strong>Definition</strong>: Data points collected or recorded at specific time intervals, often used to track changes over time.</li>
+<li><strong>Examples</strong>: Stock prices, weather data, sensor readings, economic indicators.</li>
+<li><strong>Importance</strong>:<ul>
+<li><strong>Trend Analysis</strong>: Crucial for understanding trends, seasonal patterns, and forecasting future values.</li>
+<li><strong>Temporal Relationships</strong>: Allows the analysis of how variables change over time and their relationships.</li>
+</ul>
+</li>
+</ul>
+<h4>Spatial Data</h4>
+<ul>
+<li><strong>Definition</strong>: Data that represents the physical location and shape of objects, often associated with geographic or location-based information.</li>
+<li><strong>Examples</strong>: GPS coordinates, maps, satellite imagery.</li>
+<li><strong>Importance</strong>:<ul>
+<li><strong>Geographic Analysis</strong>: Essential for location-based services, urban planning, environmental monitoring, and more.</li>
+<li><strong>Visualization</strong>: Often visualized in maps, helping in understanding spatial patterns and relationships.</li>
+</ul>
+</li>
+</ul>
+<h4>Big Data</h4>
+<ul>
+<li><strong>Definition</strong>: Extremely large and complex datasets that require specialized tools and techniques to store, process, and analyze.</li>
+<li><strong>Examples</strong>: Data generated from social media, sensor networks, IoT devices, and large-scale transaction records.</li>
+<li><strong>Importance</strong>:<ul>
+<li><strong>Scalability</strong>: Enables analysis of massive datasets to uncover patterns, trends, and correlations that would be impossible with smaller datasets.</li>
+<li><strong>Innovation</strong>: Drives innovations in fields like artificial intelligence, machine learning, and predictive analytics.</li>
+</ul>
+</li>
+</ul>
+<h4>Importance of Understanding Data Types</h4>
+<p>Understanding the different types of data is crucial for:</p>
+<ul>
+<li><strong>Choosing the Right Tools and Techniques</strong>: Different types of data require specific preprocessing steps, storage solutions, and analysis techniques.</li>
+<li><strong>Building Effective Models</strong>: Knowing the data type helps in selecting appropriate machine learning algorithms and features.</li>
+<li><strong>Ensuring Data Quality</strong>: Properly identifying and handling data types ensures accuracy and reliability in analysis</li>
+</ul></div></details>
+<details class="item" id="e2"><summary><span><span class="qn">Q2</span>What are the key steps in the data analysis process?</span></summary><div class="answer"><ol>
+<li>
+<p><strong>Data Collection:</strong> Gather data from various sources such as databases, APIs, or web scraping.</p>
+</li>
+<li>
+<p><strong>Data Cleaning:</strong> Identify and handle missing, inconsistent, or erroneous data to improve data quality.</p>
+</li>
+<li>
+<p><strong>Data Exploration:</strong> Perform initial analysis using descriptive statistics and visualizations to understand the data's characteristics and identify trends, patterns, or potential issues.</p>
+</li>
+<li>
+<p><strong>Data Transformation:</strong> Modify the data into a suitable format for analysis, such as normalization or aggregation.</p>
+</li>
+<li>
+<p><strong>Data Modeling:</strong> Apply statistical, machine learning, or other analytical techniques to build predictive or explanatory models.</p>
+</li>
+<li>
+<p><strong>Model Evaluation:</strong> Assess model performance using metrics and validation techniques.</p>
+</li>
+<li>
+<p><strong>Interpretation and Communication:</strong> Draw conclusions from the analysis and communicate the results to stakeholders using visualizations, reports, or presentations.</p>
+</li>
+</ol></div></details>
+<details class="item" id="e3"><summary><span><span class="qn">Q3</span>What is Data Cleansing? Explain some of the best practices of the Data Cleansing process?</span></summary><div class="answer"><img src="https://cdn-images-1.medium.com/fit/t/1600/480/1*mf619XEdHd1O2MlyhEKcig.gif" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+<ul>
+<li>
+<p><strong>Data Redundancy:</strong> Identifying and removing duplicates from the data sets</p>
+</li>
+<li>
+<p><strong>Irrelevant Data:</strong> Getting rid of attributes that are not relevant in solving a specific problem</p>
+</li>
+<li>
+<p><strong>Standardization</strong>: Ensure that the data is in a standardized and accessible format.</p>
+</li>
+<li>
+<p><strong>Data Integrity:</strong> Identifying and fixing common errors such as inaccuracy, invalid data, incorrect data entry, missing values, spelling errors, incorrect data ranges.</p>
+</li>
+</ul></div></details>
+<details class="item" id="e4"><summary><span><span class="qn">Q4</span>Why is Data Cleansing and preprocessing important in data analysis?</span></summary><div class="answer"><ul>
+<li><strong>Improve Data Quality:</strong> Handling missing, inconsistent, or erroneous data increases the reliability and accuracy of the analysis.</li>
+<li><strong>Enhance Model Performance:</strong> Clean and preprocessed data can lead to better model performance by reducing noise and focusing on relevant features.</li>
+<li><strong>Save Time and Resources:</strong> Preprocessing helps streamline the analysis process, making it more efficient and reducing the likelihood of errors or rework.</li>
+<li><strong>Ensure Data Compatibility:</strong> Data preprocessing ensures compatibility between various data sources, making it easier to integrate and analyze data from</li>
+</ul></div></details>
+<details class="item" id="e5"><summary><span><span class="qn">Q5</span>What are the Preprocessing steps in machine learning?</span></summary><div class="answer"><img src="https://miro.medium.com/v2/resize:fit:900/1*sLu4Ag_138qIltTNM_rqmA.gif" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+<p>The acronym M.O.S.T.E stands for common preprocessing steps in machine learning:</p>
+<h4>M - Missing Value Treatment</h4>
+<ul>
+<li><strong>Handling Missing Data</strong>: Identify and address missing values in the dataset. Techniques include:<ul>
+<li><strong>Imputation</strong>: Replace missing values with the mean, median, mode, or other statistical measures.</li>
+<li><strong>Deletion</strong>: Remove rows or columns with missing data (if appropriate).</li>
+<li><strong>Flagging</strong>: Mark missing values as a separate category.</li>
+</ul>
+</li>
+</ul>
+<h4>O - Outlier Detection and Treatment</h4>
+<ul>
+<li><strong>Identifying Outliers</strong>: Detect values that deviate significantly from the rest of the data, which might distort analysis.<ul>
+<li>Techniques include using z-scores, IQR (Interquartile Range), or visual methods like box plots.</li>
+</ul>
+</li>
+<li><strong>Handling Outliers</strong>: Options include:<ul>
+<li><strong>Capping/Flooring</strong>: Limiting the values to a maximum or minimum threshold.</li>
+<li><strong>Transformation</strong>: Applying log, square root, or other transformations to reduce the impact of outliers.</li>
+<li><strong>Removal</strong>: Excluding outliers from the dataset.</li>
+</ul>
+</li>
+</ul>
+<h4>S - Scaling</h4>
+<ul>
+<li><strong>Standardization/Normalization</strong>: Adjust the scale of the data to bring all features to a comparable range, especially important for algorithms sensitive to the scale of data, like SVM or KNN.<ul>
+<li><strong>Standardization</strong>: Rescale data to have a mean of 0 and a standard deviation of 1.</li>
+<li><strong>Normalization</strong>: Rescale data to fit within a specific range, usually 0 to 1.</li>
+</ul>
+</li>
+</ul>
+<h4>T - Transformation</h4>
+<ul>
+<li><strong>Feature Engineering and Transformation</strong>: Modify or create new features from the existing ones to enhance model performance.<ul>
+<li><strong>Log Transformation</strong>: Apply logarithmic transformation to reduce skewness.</li>
+<li><strong>Polynomial Features</strong>: Create polynomial terms from existing features to capture non-linear relationships.</li>
+</ul>
+</li>
+</ul>
+<h4>E - Encoding</h4>
+<ul>
+<li><strong>Encoding Categorical Variables</strong>: Convert categorical variables into numerical formats for model compatibility.<ul>
+<li><strong>Label Encoding</strong>: Assigns an integer value to each category.</li>
+<li><strong>One-Hot Encoding</strong>: Converts categorical variables into a series of binary variables.</li>
+</ul>
+</li>
+</ul></div></details>
+<details class="item" id="e6"><summary><span><span class="qn">Q6</span>How should a data analyst handle missing or null values?</span></summary><div class="answer"><img src="https://www.cut-daily.com/content/images/2021/08/missing.gif" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+<ul>
+<li>Drop Rows with more than 50% missing values</li>
+<li>Impute missing values with central tendency measures such as mean or median</li>
+<li>For categorical attributes, impute missing values with the most frequent category (mode)</li>
+<li>Predicting the missing values with regression or classification models</li>
+<li>Using machine algorithms such as K-NN that supports missing values while making a prediction</li>
+</ul></div></details>
+<details class="item" id="e7"><summary><span><span class="qn">Q7</span>What are some methods to handle missing data in a time series dataset?</span></summary><div class="answer"><h4>Forward Fill (Last Observation Carried Forward - LOCF)</h4>
+<ul>
+<li><strong>Description</strong>: Replaces the missing value with the most recent preceding value in the time series.</li>
+<li><strong>Use Case</strong>: Effective when the data points are expected to change gradually over time.</li>
+<li><strong>Example</strong>: If the temperature is missing for a particular hour, it is replaced by the temperature from the previous hour.</li>
+</ul>
+<h4>Backward Fill (Next Observation Carried Backward - NOCB)</h4>
+<ul>
+<li><strong>Description</strong>: Replaces the missing value with the next available value in the time series.</li>
+<li><strong>Use Case</strong>: Useful when the data is expected to remain constant or change slowly over time.</li>
+<li><strong>Example</strong>: If sales data is missing for a day, it can be filled using the sales data from the following day.</li>
+</ul>
+<h4>Linear Interpolation</h4>
+<ul>
+<li><strong>Description</strong>: Fills missing values by interpolating between the preceding and following data points using a straight line.</li>
+<li><strong>Use Case</strong>: Suitable when data is assumed to change linearly over time.</li>
+<li><strong>Example</strong>: If stock prices are missing for a few days, linear interpolation can estimate the missing prices based on surrounding data points.</li>
+</ul>
+<h4>Moving Average</h4>
+<ul>
+<li><strong>Description</strong>: Replaces missing values with the average of the surrounding data points within a specified window.</li>
+<li><strong>Use Case</strong>: Useful when data has short-term fluctuations and you want to smooth these out while filling in gaps.</li>
+<li><strong>Example</strong>: In a daily weather dataset, if a temperature reading is missing, it can be replaced by the average temperature of the days before and after the missing value.</li>
+</ul>
+<h4>Seasonal Decomposition</h4>
+<ul>
+<li><strong>Description</strong>: Decomposes the time series into trend, seasonal, and residual components, and fills missing values based on these components.</li>
+<li><strong>Use Case</strong>: Effective for time series with strong seasonal patterns.</li>
+<li><strong>Example</strong>: For monthly sales data with a clear seasonal pattern, missing values can be filled by estimating the seasonal component.</li>
+</ul>
+<h4>Interpolation with Spline or Polynomial Functions</h4>
+<ul>
+<li><strong>Description</strong>: Fits a spline or polynomial function to the data points and uses this function to estimate the missing values.</li>
+<li><strong>Use Case</strong>: Effective when the time series has a non-linear trend.</li>
+<li><strong>Example</strong>: For a time series with a curvilinear pattern, spline interpolation can provide a better estimate of missing values than linear interpolation.</li>
+</ul>
+<h4>Using a Model-Based Approach</h4>
+<ul>
+<li><strong>Description</strong>: Uses models like ARIMA (AutoRegressive Integrated Moving Average), Kalman Filter, or state-space models to predict and fill in missing values based on the time series properties.</li>
+<li><strong>Use Case</strong>: Suitable for complex time series where simpler methods might not capture the underlying dynamics.</li>
+<li><strong>Example</strong>: If a time series follows an ARIMA model, missing values can be predicted using the model's fitted values.</li>
+</ul>
+<h4>Imputation with K-Nearest Neighbors (KNN)</h4>
+<ul>
+<li><strong>Description</strong>: Fills missing values based on the nearest neighbor's values in terms of similarity, considering both time and other available features.</li>
+<li><strong>Use Case</strong>: Useful when additional features or external data can help estimate the missing values.</li>
+<li><strong>Example</strong>: If you have missing values in sales data, KNN can use similar days' data (e.g., days with similar weather or holidays) to estimate the missing values.</li>
+</ul>
+<h4>Filling with a Global Constant or Mean</h4>
+<ul>
+<li><strong>Description</strong>: Replaces all missing values with a global constant, such as the overall mean, median, or a domain-specific constant.</li>
+<li><strong>Use Case</strong>: Simple and fast but may introduce bias if the data has strong trends or seasonality.</li>
+<li><strong>Example</strong>: For a small percentage of missing data, filling with the overall mean of the series might be acceptable.</li>
+</ul>
+<h4>Removing or Dropping Missing Values</h4>
+<ul>
+<li><strong>Description</strong>: Removes any time steps with missing values.</li>
+<li><strong>Use Case</strong>: Suitable when the proportion of missing data is small and the remaining data is sufficient for analysis.</li>
+<li><strong>Example</strong>: In a large dataset with only a few missing entries, it might be easier to drop the missing data points rather than imputing them.</li>
+</ul></div></details>
+<details class="item" id="e8"><summary><span><span class="qn">Q8</span>Describe Visual methods to identify outliers in a Dataset?</span></summary><div class="answer"><img src="https://ouzhang.me/blog/outlier-series/outliers-part3/featured.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+<ul>
+<li><strong>Boxplot:</strong><ul>
+<li><strong>Description</strong>: A boxplot visualizes the distribution of data and highlights outliers. The box represents the interquartile range (IQR), while points outside 1.5 times the IQR (above the third quartile or below the first quartile) are considered outliers.</li>
+<li><strong>Use Case</strong>: Effective for quickly spotting outliers in a univariate dataset.</li>
+</ul>
+</li>
+<li><strong>Scatter Plot:</strong><ul>
+<li><strong>Description</strong>: A scatter plot helps identify outliers in bivariate data by showing data points that deviate significantly from the general pattern.</li>
+<li><strong>Use Case</strong>: Useful for identifying outliers in relationships between two variables.</li>
+</ul>
+</li>
+<li><strong>Histogram:</strong><ul>
+<li><strong>Description</strong>: A histogram shows the frequency distribution of a dataset. Outliers can be identified as values that fall far from the bulk of the data.</li>
+<li><strong>Use Case</strong>: Suitable for understanding the distribution and spotting anomalies.</li>
+</ul>
+</li>
+</ul></div></details>
+<details class="item" id="e9"><summary><span><span class="qn">Q9</span>Explain Interquartile range?</span></summary><div class="answer"><p>The interquartile range (IQR) is similar to the normal range, except that it includes only the middle 50% of the observations in the distribution. One quarter of the observations at the lower end and another quarter at the upper end are excluded when computing it. In other words, it is the difference between the third quartile and the first quartile.</p>
+<pre><code>IQR = Q3 - Q1
+</code></pre>
+<p>Where:</p>
+<ul>
+<li><strong>Q3</strong> is the third quartile</li>
+<li><strong>Q1</strong> is the first quartile</li>
+</ul></div></details>
+<details class="item" id="e10"><summary><span><span class="qn">Q10</span>Describe Statistical methods to identify outliers in a Dataset?</span></summary><div class="answer"><ul>
+<li><strong>Z-Score:</strong><ul>
+<li><strong>Description</strong>: The Z-score measures how many standard deviations a data point is from the mean. A data point with a Z-score greater than 3 or less than -3 is typically considered an outlier.</li>
+<li><strong>Use Case</strong>: Effective for normally distributed data.</li>
+</ul>
+</li>
+<li><strong>IQR Method:</strong><ul>
+<li><strong>Description</strong>: The IQR method calculates the range between the first quartile (Q1) and the third quartile (Q3). Outliers are identified as values below Q1−1.5×IQR or above Q3+1.5×IQRQ3</li>
+<li><strong>Use Case</strong>: Works well with skewed data distributions.</li>
+</ul>
+</li>
+<li><strong>Modified Z-Score (for skewed data):</strong><ul>
+<li><strong>Description</strong>: A variation of the Z-score that uses the median and median absolute deviation (MAD) instead of the mean and standard deviation. A common threshold for identifying outliers is a modified Z-score greater than 3.5.</li>
+<li><strong>Use Case</strong>: More robust for non-normally distributed data.</li>
+</ul>
+</li>
+</ul></div></details>
+<details class="item" id="e11"><summary><span><span class="qn">Q11</span>Describe ML methods to identify outliers in a Dataset?</span></summary><div class="answer"><ul>
+<li><strong>DBSCAN (Density-Based Spatial Clustering of Applications with Noise):</strong><ul>
+<li><strong>Description</strong>: DBSCAN is a clustering algorithm that can identify outliers as points that do not belong to any cluster (classified as noise).</li>
+<li><strong>Use Case</strong>: Useful for spatial data or data with clusters of varying shapes.</li>
+</ul>
+</li>
+</ul></div></details>
+<details class="item" id="e12"><summary><span><span class="qn">Q12</span>Describe methods to treat outliers in a Dataset?</span></summary><div class="answer"><ul>
+<li><strong>Remove Outliers:</strong><ul>
+<li><strong>Description</strong>: Simply removing outliers from the dataset can be a straightforward approach. This method is most effective when the outliers are errors or when their influence is negligible.</li>
+<li><strong>Use Case</strong>: Suitable when outliers are rare or result from data entry errors.</li>
+<li><strong>Caution</strong>: Removing too many data points can result in loss of valuable information.</li>
+</ul>
+</li>
+<li><strong>Transform Data:</strong><ul>
+<li><strong>Log Transformation:</strong><ul>
+<li><strong>Description</strong>: Applying a logarithmic transformation to the data can reduce the impact of outliers by compressing the range of the data.</li>
+<li><strong>Use Case</strong>: Effective for positively skewed data.</li>
+</ul>
+</li>
+<li><strong>Square Root or Cube Root Transformation:</strong><ul>
+<li><strong>Description</strong>: These transformations can also reduce the influence of outliers, especially for data that is skewed or has a long tail.</li>
+<li><strong>Use Case</strong>: Suitable for reducing the impact of outliers in right-skewed data.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Cap or Winsorize:</strong><ul>
+<li><strong>Description</strong>: Capping involves setting a threshold and replacing outliers with the nearest non-outlying value within that threshold. Winsorizing replaces extreme values with percentiles, such as the 1st and 99th percentiles.</li>
+<li><strong>Use Case</strong>: Maintains the dataset size while reducing the influence of outliers.</li>
+<li><strong>Example</strong>: In a salary dataset, extreme values could be capped at a specific upper percentile to reduce their impact on analysis.</li>
+</ul>
+</li>
+<li><strong>Impute with Mean/Median/Mode:</strong><ul>
+<li><strong>Description</strong>: Replace outliers with the mean, median, or mode of the data. The median is often preferred as it is less sensitive to outliers.</li>
+<li><strong>Use Case</strong>: Effective when outliers are due to errors or when retaining the dataset size is important.</li>
+<li><strong>Example</strong>: In a housing price dataset, an unusually high value could be replaced with the median price.</li>
+</ul>
+</li>
+<li><strong>Use Robust Statistical Methods:</strong><ul>
+<li><strong>Robust Regression:</strong><ul>
+<li><strong>Description</strong>: Robust regression methods like RANSAC or Huber regression are less sensitive to outliers and can provide better estimates.</li>
+<li><strong>Use Case</strong>: Suitable for datasets where outliers cannot be easily removed or transformed.</li>
+</ul>
+</li>
+<li><strong>Median Absolute Deviation (MAD):</strong><ul>
+<li><strong>Description</strong>: Instead of the standard deviation, the MAD is used as a measure of variability that is less affected by outliers.</li>
+<li><strong>Use Case</strong>: Effective in descriptive statistics and when dealing with skewed data.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Modeling Techniques:</strong><ul>
+<li><strong>Tree-Based Models:</strong><ul>
+<li><strong>Description</strong>: Algorithms like Random Forests or Gradient Boosting are less sensitive to outliers as they rely on decision trees, which can naturally handle variations in data.</li>
+<li><strong>Use Case</strong>: Preferable when building predictive models with datasets that contain outliers.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></div></details>
+<details class="item" id="e13"><summary><span><span class="qn">Q13</span>What are the differences between normalizing and standardizing a dataset, and when would you use each?</span></summary><div class="answer"><h4>Normalization</h4>
+<ul>
+<li><strong>Definition</strong>: Normalization rescales the features of your dataset so that they lie within a specific range, typically [0, 1] or [-1, 1]. The most common normalization technique is <strong>Min-Max scaling</strong>.</li>
+</ul>
+<img src="https://resv2.craft.do/user/full/6d22b2b8-0d01-adb1-291b-7aea9220db75/doc/d1be5fd8-eb36-88fa-8766-924c3bceecbf/8d415710-9ffb-4129-926b-78c16e19fb85" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+<pre><code>X_norm = (X - X_min) / (X_max - X_min)
+</code></pre>
+<ul>
+<li><strong>When to Use</strong>:<ul>
+<li><strong>When Features Have Different Scales</strong>: If your dataset contains features with different ranges (e.g., age in years, income in thousands), normalization ensures that all features contribute equally to the model.</li>
+<li><strong>In Algorithms Sensitive to Feature Scales</strong>: Normalization is crucial in distance-based algorithms like <strong>K-Nearest Neighbors (KNN)</strong>, <strong>K-Means Clustering</strong>, and <strong>Principal Component Analysis (PCA)</strong> because these methods rely on distance calculations that can be disproportionately affected by features with larger scales.</li>
+<li><strong>When Using Neural Networks</strong>: Neural networks generally perform better when the input features are normalized, as it helps with faster convergence during training.</li>
+</ul>
+</li>
+</ul>
+<h4>Standardization</h4>
+<ul>
+<li><strong>Definition</strong>: Standardization transforms the features of your dataset so that they have a mean of 0 and a standard deviation of 1. This is also known as <strong>Z-score normalization</strong>.</li>
+</ul>
+<img src="https://resv2.craft.do/user/full/6d22b2b8-0d01-adb1-291b-7aea9220db75/doc/d1be5fd8-eb36-88fa-8766-924c3bceecbf/548728cb-cec8-460d-9514-e94568182a3e" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+<pre><code>Z = (X - mean) / standard deviation
+</code></pre>
+<ul>
+<li><strong>When to Use</strong>:<ul>
+<li><strong>When Features Follow a Gaussian Distribution</strong>: Standardization is particularly effective when the data is normally distributed. It makes the data easier to analyze statistically and fits the assumptions of many machine learning algorithms.</li>
+<li><strong>In Algorithms Assuming Normality</strong>: Algorithms like <strong>Linear Regression</strong>, <strong>Logistic Regression</strong>, and <strong>Support Vector Machines (SVM)</strong> often assume that the input data is normally distributed. Standardization makes these assumptions more valid.</li>
+<li><strong>When Working with Regularization</strong>: In algorithms like <strong>Ridge Regression</strong> and <strong>Lasso Regression</strong>, standardization is important because these methods apply regularization terms that are sensitive to the scale of the input features.</li>
+</ul>
+</li>
+</ul>
+<h4>Differences Between Normalization and Standardization</h4>
+<img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/Normalization_vs_Standardization.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+<ul>
+<li><strong>Scale</strong>:<ul>
+<li><strong>Normalization</strong>: Rescales data to a specific range (e.g., [0, 1]).</li>
+<li><strong>Standardization</strong>: Centers data around the mean and scales it to unit variance.</li>
+</ul>
+</li>
+<li><strong>Impact on Data Distribution</strong>:<ul>
+<li><strong>Normalization</strong>: Does not assume any particular distribution of the data.</li>
+<li><strong>Standardization</strong>: Assumes that the data is approximately normally distributed.</li>
+</ul>
+</li>
+<li><strong>When to Use</strong>:<ul>
+<li><strong>Normalization</strong>: Best for when you need to bound data within a certain range or in algorithms that depend on distance metrics.</li>
+<li><strong>Standardization</strong>: Best for algorithms that assume normality or when dealing with features that have outliers, as it’s less sensitive to outliers compared to normalization.</li>
+</ul>
+</li>
+</ul></div></details>
+<details class="item" id="e14"><summary><span><span class="qn">Q14</span>What are the different transformation techniques and when to use?</span></summary><div class="answer"><img src="https://www.tibco.com/content/dam/tibco/images/graphics/infographics/data-transformation-diagram.svg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+<h4>Logarithmic Transformation</h4>
+<ul>
+<li><strong>Definition</strong>: Applies a logarithm to each data point, reducing skewness and stabilizing variance.</li>
+<li><strong>When to Use</strong>:<ul>
+<li><strong>Positive Skew</strong>: Useful when the data is positively skewed, as it compresses the larger values.</li>
+<li><strong>Exponential Growth</strong>: Ideal for data that grows exponentially, as it linearizes the growth.</li>
+</ul>
+</li>
+<li><strong>When Not to Use</strong>:<ul>
+<li><strong>Negative or Zero Values</strong>: Not suitable for data with zero or negative values, as the logarithm is undefined for these.</li>
+<li><strong>No Skewness</strong>: Avoid using when the data is already normally distributed, as it may distort the data unnecessarily.</li>
+</ul>
+</li>
+</ul>
+<h4>Square Root Transformation</h4>
+<ul>
+<li><strong>Definition</strong>: Applies a square root to each data point, reducing the impact of large outliers and skewness.</li>
+<li><strong>When to Use</strong>:<ul>
+<li><strong>Mild Positive Skew</strong>: Effective when the data has a mild positive skew.</li>
+<li><strong>Variance Reduction</strong>: Helps reduce variance and stabilize data.</li>
+</ul>
+</li>
+<li><strong>When Not to Use</strong>:<ul>
+<li><strong>Negative Values</strong>: Like logarithmic transformation, it’s not suitable for negative values.</li>
+<li><strong>No Skewness</strong>: Unnecessary for normally distributed data.</li>
+</ul>
+</li>
+</ul>
+<h4>Box-Cox Transformation</h4>
+<ul>
+<li><strong>Definition</strong>: A family of power transformations that make the data more normally distributed.</li>
+<li><strong>When to Use</strong>:<ul>
+<li><strong>Non-Normal Data</strong>: Particularly useful when data needs to be normalized.</li>
+<li><strong>Positive Data</strong>: Effective for data with only positive values.</li>
+</ul>
+</li>
+<li><strong>When Not to Use</strong>:<ul>
+<li><strong>Negative or Zero Values</strong>: Not suitable for data with zero or negative values.</li>
+<li><strong>Already Normal Data</strong>: If data is already close to normal distribution, it may not be needed.</li>
+</ul>
+</li>
+</ul>
+<h4>Reciprocal Transformation</h4>
+<ul>
+<li><strong>Definition</strong>: Applies the reciprocal (1/X) to each data point, strongly reducing the effect of large values.</li>
+<li><strong>When to Use</strong>:<ul>
+<li><strong>High Positive Skew</strong>: Useful for highly positively skewed data.</li>
+<li><strong>Outliers</strong>: Effective in situations where extreme outliers are present.</li>
+</ul>
+</li>
+<li><strong>When Not to Use</strong>:<ul>
+<li><strong>Zero Values</strong>: Unsuitable for data with zero values, as it would result in undefined values.</li>
+<li><strong>Negative Values</strong>: Not recommended for negative values, as it can invert their sign.</li>
+</ul>
+</li>
+</ul>
+<h4>Logit Transformation</h4>
+<ul>
+<li><strong>Definition</strong>: Applies a logit function to data typically bounded between 0 and 1, often used in logistic regression.</li>
+<li><strong>When to Use</strong>:<ul>
+<li><strong>Probability Data</strong>: Effective for data representing probabilities or proportions.</li>
+<li><strong>Logistic Regression</strong>: Commonly used in logistic regression modeling.</li>
+</ul>
+</li>
+<li><strong>When Not to Use</strong>:<ul>
+<li><strong>Data Outside [0, 1]</strong>: Not suitable for data that isn’t bounded between 0 and 1.</li>
+<li><strong>Non-Probability Data</strong>: Unnecessary for non-probability or non-proportion data.</li>
+</ul>
+</li>
+</ul></div></details>
+<details class="item" id="e15"><summary><span><span class="qn">Q15</span>What are the different types of Encoding techniques and when to use and not to use?</span></summary><div class="answer"><img src="https://miro.medium.com/v2/resize:fit:1400/0*sMfIy5pgbSgSYjG5.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+<h4>Binary Encoding</h4>
+<ul>
+<li><strong>Definition</strong>: Converts each category into binary code and then splits the binary digits into separate columns.</li>
+<li><strong>Example</strong>: For <code>{'Red': 0, 'Green': 1, 'Blue': 2}</code>, the binary encoding might look like <code>{'Red': [0, 0], 'Green': [0, 1], 'Blue': [1, 0]}</code></li>
+<li><strong>When to Use</strong>:<ul>
+<li><strong>High Cardinality</strong>: Useful for categorical features with many levels, as it reduces dimensionality compared to one-hot encoding.</li>
+<li><strong>When Memory is a Concern</strong>: Reduces memory usage by creating fewer columns than one-hot encoding.</li>
+</ul>
+</li>
+<li><strong>When Not to Use</strong>:<ul>
+<li><strong>Small Datasets</strong>: May not be necessary for datasets with few categories or when interpretability of encoded values is essential.</li>
+</ul>
+</li>
+</ul>
+<h4>Label Encoding</h4>
+<ul>
+<li><strong>Definition</strong>: Converts each category into a unique integer label.</li>
+<li><strong>Example</strong>: <code>{'Red': 0, 'Green': 1, 'Blue': 2}</code></li>
+<li><strong>When to Use</strong>:<ul>
+<li><strong>Target Labels and Tree-Based Models</strong>: Fine for encoding the target variable, or for features used with tree-based models, which are not misled by the integer order.</li>
+<li><strong>Binary Categories</strong>: Can be effective for binary categorical variables.</li>
+</ul>
+</li>
+<li><strong>When Not to Use</strong>:<ul>
+<li><strong>Nominal Data with Linear or Distance-Based Models</strong>: Avoid for unordered categories (e.g., 'Red', 'Green', 'Blue'), as the integers impose an arbitrary order that can mislead these models.</li>
+</ul>
+</li>
+</ul>
+<h4>Ordinal Encoding</h4>
+<ul>
+<li><strong>Definition</strong>: Assigns an integer value to each category based on its order, similar to label encoding but specifically for ordinal data.</li>
+<li><strong>Example</strong>: For <code>{'Low', 'Medium', 'High'}</code>, the encoding might be <code>{'Low': 1, 'Medium': 2, 'High': 3}</code></li>
+<li><strong>When to Use</strong>:<ul>
+<li><strong>Ordered Categories</strong>: Ideal for features where the categories have a natural order.</li>
+</ul>
+</li>
+<li><strong>When Not to Use</strong>:<ul>
+<li><strong>Nominal Data</strong>: Not suitable for unordered categories, as it imposes a misleading order.</li>
+</ul>
+</li>
+</ul>
+<h4>One-Hot Encoding</h4>
+<ul>
+<li><strong>Definition</strong>: Converts each category into a binary vector with a length equal to the number of categories. Each vector has a single '1' and the rest '0'.</li>
+<li><strong>Example</strong>: For <code>{'Red', 'Green', 'Blue'}</code>, the encoding could be <code>{'Red': [1, 0, 0], 'Green': [0, 1, 0], 'Blue': [0, 0, 1]}</code></li>
+<li><strong>When to Use</strong>:<ul>
+<li><strong>Nominal Data</strong>: Ideal for non-ordinal categorical features with no intrinsic order.</li>
+<li><strong>Low Cardinality</strong>: Effective when the number of categories is relatively small.</li>
+</ul>
+</li>
+<li><strong>When Not to Use</strong>:<ul>
+<li><strong>High Cardinality</strong>: Not suitable for features with many levels (e.g., 'Country' with 200+ categories), as it increases dimensionality and can lead to sparse matrices.</li>
+</ul>
+</li>
+</ul>
+<h4>Target (Mean) Encoding</h4>
+<ul>
+<li><strong>Definition</strong>: Replaces categories with the mean of the target variable for each category.</li>
+<li><strong>Example</strong>: For a binary classification problem with a target mean of 0.7 for 'Red' and 0.3 for 'Blue', 'Red' becomes 0.7, and 'Blue' becomes 0.3.</li>
+<li><strong>When to Use</strong>:<ul>
+<li><strong>High Cardinality</strong>: Works well for high-cardinality categorical features.</li>
+<li><strong>When There’s a Strong Correlation</strong>: Ideal when there’s a strong correlation between the categorical feature and the target variable.</li>
+</ul>
+</li>
+<li><strong>When Not to Use</strong>:<ul>
+<li><strong>Small Datasets</strong>: Can lead to overfitting, especially if the dataset is small and the categories are infrequent.</li>
+<li><strong>Unsupervised Learning</strong>: Not suitable for unsupervised learning tasks, as it depends on the target variable.</li>
+</ul>
+</li>
+</ul>
+<h4>Frequency Encoding</h4>
+<ul>
+<li><strong>Definition</strong>: Replaces each category with its frequency in the dataset.</li>
+<li><strong>Example</strong>: If 'Red' appears 50 times and 'Blue' 30 times, they are encoded as 50 and 30, respectively.</li>
+<li><strong>When to Use</strong>:<ul>
+<li><strong>High Cardinality</strong>: Useful for features with many levels, reducing the complexity compared to one-hot encoding.</li>
+<li><strong>When Frequency is Indicative</strong>: Effective when the frequency of a category is important for the model.</li>
+</ul>
+</li>
+<li><strong>When Not to Use</strong>:<ul>
+<li><strong>Equally Frequent Categories</strong>: Less effective when all categories have similar frequencies, as it may not provide much distinction.</li>
+<li><strong>Large Imbalance</strong>: If the frequency distribution is highly skewed, it can mislead the model.</li>
+</ul>
+</li>
+</ul>
+<h4>Leave-One-Out Encoding</h4>
+<ul>
+<li><strong>Definition</strong>: Similar to target encoding, but each category's mean target is calculated by excluding the current row.</li>
+<li><strong>Example</strong>: If 'Red' is associated with an average target of 0.7, and the current row has a target of 1, the encoding might exclude this row’s target value when computing the mean.</li>
+<li><strong>When to Use</strong>:<ul>
+<li><strong>High Cardinality</strong>: Helps reduce overfitting compared to target encoding while still capturing the relationship with the target.</li>
+<li><strong>Small Datasets</strong>: Suitable when the dataset is small and overfitting is a concern.</li>
+</ul>
+</li>
+<li><strong>When Not to Use</strong>:<ul>
+<li><strong>Complexity</strong>: Adds complexity to the encoding process and may be computationally expensive for large datasets.</li>
+</ul>
+</li>
+</ul>
+<h4>Hashing Encoding</h4>
+<ul>
+<li><strong>Definition</strong>: Converts categories into a fixed number of columns using a hashing function, which may result in collisions (two categories mapping to the same value).</li>
+<li><strong>When to Use</strong>:<ul>
+<li><strong>Very High Cardinality</strong>: Effective when the number of unique categories is extremely high, such as in NLP tasks with thousands of words.</li>
+<li><strong>Memory Constraints</strong>: Useful when you need to limit the number of features due to memory constraints.</li>
+</ul>
+</li>
+<li><strong>When Not to Use</strong>:<ul>
+<li><strong>Interpretability</strong>: Not ideal when interpretability is crucial, as the hashed values are arbitrary.</li>
+<li><strong>Risk of Collisions</strong>: Avoid if collisions (different categories mapping to the same value) could significantly impact the model's performance.</li>
+</ul>
+</li>
+</ul></div></details>
+<details class="item" id="e16"><summary><span><span class="qn">Q16</span>What are the differences between descriptive, inferential, and predictive analytics?</span></summary><div class="answer"><img src="https://blog.pwskills.com/wp-content/uploads/2023/10/Descriptive-vs-Inferential-Statistics-1.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+<p><strong>Descriptive, inferential, and predictive analytics serve different purposes in data analysis:</strong></p>
+<ul>
+<li><strong>Descriptive Analytics:</strong> Focuses on summarizing and visualizing historical data to understand past trends and patterns. Descriptive analytics uses measures of central tendency, dispersion, and graphical representations such as bar charts, pie charts, and histograms to represent the data.</li>
+<li><strong>Inferential Analytics:</strong> Aims to draw conclusions about a population based on a sample of the data. Inferential analytics involves hypothesis testing, confidence intervals, and the use of probability distributions to make inferences about the underlying population.</li>
+<li><strong>Predictive Analytics:</strong> Focuses on using historical data to make predictions about future events or trends. Predictive analytics employs statistical and machine learning techniques, such as regression analysis, time series forecasting, and classification algorithms, to build models that forecast future outcomes based on patterns in the data.</li>
+</ul></div></details>
+<details class="item" id="e17"><summary><span><span class="qn">Q17</span>Explain the key concepts in statistics and probability used in data analysis?</span></summary><div class="answer"><ul>
+<li><strong>Descriptive Statistics:</strong> Summarize and describe the main features of a dataset, such as mean, median, mode, range, variance, and standard deviation.</li>
+<li><strong>Probability Distributions:</strong> Describe the likelihood of outcomes for a random variable, such as normal, binomial, or Poisson distributions.</li>
+<li><strong>Hypothesis Testing:</strong> Assess whether a statement about a population parameter is likely true or false, using tests such as t-test, chi-square test, or ANOVA.</li>
+<li><strong>Confidence Intervals:</strong> Estimate a population parameter with a specific level of confidence, indicating the range within which the true value likely lies.</li>
+<li><strong>Regression Analysis:</strong> Investigate the relationship between a dependent variable and one or more independent variables, using techniques like linear regression, logistic regression, or multivariate regression</li>
+</ul></div></details>
+<details class="item" id="e18"><summary><span><span class="qn">Q18</span>What is the five-number summary in statistics?</span></summary><div class="answer"><p>The five-number summary is useful in descriptive analysis and includes the following five elements:</p>
+<ul>
+<li>The Minimum – smallest value in the data set</li>
+<li>The First Quartile – 25% mark, which is denoted by Q1</li>
+<li>The median – the middle value in the data set, when sorted in an ascending order</li>
+<li>The Third Quartile – 75% mark, which is denoted by Q3</li>
+<li>The maximum – biggest value in the data set</li>
+</ul></div></details>
+<details class="item" id="e19"><summary><span><span class="qn">Q19</span>Explain univariate, bivariate, and multivariate analysis?</span></summary><div class="answer"><img src="data:image/png;base64,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" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+<ul>
+<li>
+<p><strong>Univariate analysis:</strong> Univariate is a form of data analysis where a single variable is analyzed to describe and find patterns that exist within it. It is the simplest form of data analysis as it doesn’t deal with causes or relationships.</p>
+</li>
+<li>
+<p><strong>Bivariate Analysis:</strong> Bivariate analysis measures the correlation between two variables. This technique is used by researchers when they aim to draw comparisons between two variables.</p>
+</li>
+<li>
+<p><strong>Multivariate Analysis:</strong> Multivariate analysis is used to study complex data sets. In this form of analysis, a dependent variable is represented in terms of several independent variables observations available to establish such a relationship.</p>
+</li>
+</ul></div></details>
+<details class="item" id="e20"><summary><span><span class="qn">Q20</span>Explain histograms and bar graphs?</span></summary><div class="answer"><img src="https://plot.ly/static/img/literacy/fig4.gif" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+<ul>
+<li>
+<p><strong>Histograms</strong>: Histogram is the most commonly used method to represent frequency distribution. A histogram is a series of vertical bars having areas that are in the same proportion as the frequencies of a frequency distribution. The class intervals of the variables are shown on the horizontal axis (x-axis) and the frequencies of the class intervals are shown on the vertical axis (y-axis).</p>
+</li>
+<li>
+<p><strong>Bar graphs:</strong> Bar graphs are the most popular and commonly used form of graphical representation. It is used to represent the values of categorical data on charts. A bar graph can be plotted either vertically or horizontally. In a vertical bar graph, the categories are shown on the horizontal axis (x-axis) and their corresponding values are shown on the vertical axis (y-axis).</p>
+</li>
+</ul></div></details>
+<details class="item" id="e21"><summary><span><span class="qn">Q21</span>How is box plot different from histograms?</span></summary><div class="answer"><img src="https://miro.medium.com/v2/resize:fit:1400/1*G5GJ9_M68FBFeZB2wePnjQ.gif" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+<ul>
+<li>Both boxplots and histograms are used to show the distribution of data, however, they depict different information.</li>
+<li>Boxplots are also known as box and whiskers plots, and are more suited to provide a visual depiction of the range of the data, the mean, the interquartile ranges. Boxplots provide a summary of variation in large datasets. It also helps to detect outliers present in the data being analyzed.</li>
+<li>Histogram is a series of vertical bars having areas that are in the same proportion as the frequencies of a frequency distribution. The class intervals of the variables are shown on the horizontal axis (x-axis) and the frequencies of the class intervals are shown on the vertical axis (y-axis). The histogram helps to understand the spread of the data, see if the data is symmetric or skewed, and also identify outliers in the data.</li>
+</ul></div></details>
+<details class="item" id="e22"><summary><span><span class="qn">Q22</span>Explain violin plot?</span></summary><div class="answer"><p>A violin plot is a data visualization tool that combines aspects of a box plot and a density plot to provide a deeper understanding of the distribution of a dataset. It is particularly useful for visualizing the distribution of numerical data across different categories or groups. Here’s a detailed explanation of its components and how to interpret it:</p>
+<h4>Components of a Violin Plot</h4>
+<h4>Kernel Density Estimate (KDE) Curve</h4>
+<ul>
+<li>The most prominent feature of a violin plot is the KDE curve, which shows the estimated probability density function of the data. This curve provides a smoothed estimate of the data's distribution, highlighting where the data is concentrated.</li>
+<li>The width of the violin at different values indicates the density of data points; wider sections represent higher density.</li>
+</ul>
+<h4>Box Plot Elements</h4>
+<ul>
+<li>Inside the violin plot, you may find elements of a box plot, including the median, quartiles, and potential outliers. These are often displayed as a box with whiskers and a central line (median), providing a summary of the data's central tendency and spread.</li>
+</ul>
+<h4>Violin Shape</h4>
+<ul>
+<li>The shape of the violin plot resembles a violin, with a bulbous section in the middle indicating the density of the data. The plot is symmetrical, showing the distribution on both sides of the central axis.</li>
+</ul></div></details>
+<details class="item" id="e23"><summary><span><span class="qn">Q23</span>Can you explain how to detect multicollinearity in a dataset?</span></summary><div class="answer"><p><strong>Multicollinearity</strong> occurs when two or more predictors in a regression model are highly correlated. It can make it difficult to estimate the relationship between each predictor and the dependent variable.</p>
+<p><strong>How to detect it</strong></p>
+<ul>
+<li><strong>Variance Inflation Factor (VIF):</strong> quantifies the severity of multicollinearity. A VIF value greater than 5 (or 10, depending on the source) suggests high multicollinearity.</li>
+<li><strong>Correlation matrix:</strong> review it as a preliminary step to spot highly correlated variables.</li>
+</ul>
+<p><strong>How to handle it</strong></p>
+<ul>
+<li>Drop one of the correlated variables.</li>
+<li>Combine correlated variables into one.</li>
+<li>Use regularization techniques that can cope with correlated predictors (like Ridge regression).</li>
+</ul></div></details>
+<details class="item" id="e24"><summary><span><span class="qn">Q24</span>Explain Scatterplot?</span></summary><div class="answer"><img src="https://i.sstatic.net/8twrP.gif" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+<p>Scatterplots are a simple and effective tool for data visualization. A scatterplot is used to understand the relationship between two variables. Each dot in a scatter plot represents values of the x-axis versus the y-axis. For example: each dot of a scatter plot with weight on the x-axis and height on the y-axis represents the relationship between the weight and height of a particular person.</p></div></details>
+</section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

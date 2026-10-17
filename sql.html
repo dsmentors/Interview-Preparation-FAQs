@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SQL Interview Prep</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span><h1>SQL Interview Prep</h1></div>
+<p class="sub">63 questions</p>
+<div class="roles"><a class="role" href="index.html#role=ds">Data Science</a><a class="role" href="index.html#role=ba">Business Analyst</a><a class="role alt" href="index.html#role=aiml">AI/ML</a></div>
+<div class="intro"><blockquote><p>A complete SQL interview prep guide: core concepts, hands-on query practice and scenario-based questions, from basic queries to advanced ones, to help you build problem-solving skills and answer SQL questions with confidence.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<nav class="chips"><a href="#sec-0">Q/A Preps <small>24</small></a><a href="#sec-1">SQL Queries <small>30</small></a><a href="#sec-2">SQL Questions <small>9</small></a></nav>
+<section class="sec-block" id="sec-0"><h2 class="sec">Q/A Preps</h2><div class="secintro"><img src="https://resv2.craft.do/user/full/6d22b2b8-0d01-adb1-291b-7aea9220db75/doc/4e1fd823-48e1-2dbb-2578-1639994a7e39/aa332549-31f3-4b36-9922-929844145e1f" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+<details class="item" id="a1"><summary><span>What are the differences between DDL, DML, DQL and DCL in SQL?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Full form</th>
+<th>Used for</th>
+<th>Commands</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DDL</strong></td>
+<td>Data Definition Language</td>
+<td>Defining and changing the structure of database objects</td>
+<td><code>CREATE</code>, <code>ALTER</code>, <code>DROP</code>, <code>TRUNCATE</code>, <code>RENAME</code></td>
+</tr>
+<tr>
+<td><strong>DML</strong></td>
+<td>Data Manipulation Language</td>
+<td>Changing the data inside tables</td>
+<td><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></td>
+</tr>
+<tr>
+<td><strong>DQL</strong></td>
+<td>Data Query Language</td>
+<td>Reading data</td>
+<td><code>SELECT</code></td>
+</tr>
+<tr>
+<td><strong>DCL</strong></td>
+<td>Data Control Language</td>
+<td>Permissions and access control</td>
+<td><code>GRANT</code>, <code>REVOKE</code></td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="a2"><summary><span>What is the difference between the “DELETE” and “TRUNCATE” commands?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>DELETE</th>
+<th>TRUNCATE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Category</td>
+<td>DML command</td>
+<td>DDL command</td>
+</tr>
+<tr>
+<td>What it removes</td>
+<td>Rows that match a <code>WHERE</code> condition (or all rows)</td>
+<td>All rows of the table</td>
+</tr>
+<tr>
+<td><code>WHERE</code> clause</td>
+<td>Allowed</td>
+<td>Not allowed</td>
+</tr>
+<tr>
+<td>Locking</td>
+<td>Row lock, each row is locked while it is deleted</td>
+<td>Table lock, the whole table is locked</td>
+</tr>
+<tr>
+<td>Identity column</td>
+<td>Keeps the current identity value</td>
+<td>Resets the identity to its seed value</td>
+</tr>
+<tr>
+<td>Permission needed</td>
+<td><code>DELETE</code> permission on the table</td>
+<td>At least <code>ALTER</code> permission on the table</td>
+</tr>
+<tr>
+<td>Transaction log</td>
+<td>Logs an entry for every deleted row</td>
+<td>Logs only the page deallocations</td>
+</tr>
+<tr>
+<td>Transaction space</td>
+<td>Uses more</td>
+<td>Uses less</td>
+</tr>
+<tr>
+<td>Triggers</td>
+<td>Activates triggers, because each deletion is logged</td>
+<td>Cannot activate triggers, because row deletions are not logged</td>
+</tr>
+<tr>
+<td>Indexed views</td>
+<td>Can be used</td>
+<td>Cannot be used</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="a3"><summary><span>What is the difference between the “WHERE” clause and the “HAVING” clause?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>WHERE</th>
+<th>HAVING</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Used with</td>
+<td><code>SELECT</code>, <code>UPDATE</code> and <code>DELETE</code></td>
+<td><code>SELECT</code> only</td>
+</tr>
+<tr>
+<td>Filters</td>
+<td>Individual rows</td>
+<td>Groups of summarized rows</td>
+</tr>
+<tr>
+<td>Runs</td>
+<td>Before <code>GROUP BY</code></td>
+<td>After <code>GROUP BY</code></td>
+</tr>
+<tr>
+<td>Aggregate functions</td>
+<td>Not allowed (unless inside a sub-query)</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>Columns</td>
+<td>Any column</td>
+<td>Must be in the <code>GROUP BY</code> clause or be aggregated</td>
+</tr>
+</tbody>
+</table>
+<p><code>WHERE</code> limits the rows that go into the grouping, while <code>HAVING</code> limits the groups that come out of it.</p>
+<pre><code class="language-sql">SELECT Department, SUM(Salary) AS Total_Salary
+FROM EmployeeDetail
+WHERE Salary &gt; 1000           -- filters rows first
+GROUP BY Department
+HAVING SUM(Salary) &gt; 50000;   -- then filters the groups
+</code></pre></div></details>
+<details class="item" id="a4"><summary><span>What is the difference between “Primary Key” and “Unique Key”?</span></summary><div class="answer"><ol>
+<li>A table can have only one Primary Key, but it can have more than one Unique Key.</li>
+<li>A Primary Key cannot have a <code>NULL</code> value, whereas a Unique Key may have a <code>NULL</code> value (only one <code>NULL</code> in SQL Server).</li>
+<li>By default, a Primary Key creates a clustered index, whereas a Unique Key creates a unique non-clustered index.</li>
+<li>A Primary Key supports an auto-increment value, whereas a Unique Key does not.</li>
+</ol></div></details>
+<details class="item" id="a5"><summary><span>What are super, primary, candidate and foreign keys?</span></summary><div class="answer"><ul>
+<li><strong>Super key:</strong> a set of attributes of a relation on which all other attributes depend. No two rows can have the same value for the super key attributes.</li>
+<li><strong>Candidate key:</strong> a minimal super key, meaning no proper subset of its attributes is a super key.</li>
+<li><strong>Primary key:</strong> the candidate key chosen as the most important one. A table cannot have more than one primary key.</li>
+<li><strong>Foreign key:</strong> a field (or collection of fields) in one table that refers to the primary key of another table.</li>
+</ul></div></details>
+<details class="item" id="a6"><summary><span>What is Normalization?</span></summary><div class="answer"><p>Database normalization is a design process, based on a set of rules, for organizing data in a relational database so that <strong>redundancy is minimized</strong>. It usually means dividing a database into two or more tables and defining relationships between them, so that additions, deletions and modifications of a field can be made in just one table and then flow through the rest of the database via those relationships.</p>
+<p>Relation schemas are analysed using their functional dependencies and primary keys to achieve two properties:</p>
+<ol>
+<li>Minimizing redundancy</li>
+<li>Minimizing insertion, deletion and update anomalies</li>
+</ol>
+<p>Schemas that do not meet these properties are decomposed into smaller relation schemas that do.</p></div></details>
+<details class="item" id="a7"><summary><span>What are the different types of normalization?</span></summary><div class="answer"><p>In database design we start with a single table holding all possible columns, which contains a lot of redundant data. Normalization removes that redundancy by splitting the table in a well-defined way.</p>
+<ol>
+<li><strong>First Normal Form (1NF):</strong> all underlying domains contain atomic values only. After 1NF we can still have redundant data.</li>
+<li><strong>Second Normal Form (2NF):</strong> the relation is in 1NF and every non-key attribute is fully dependent on the primary key. After 2NF we can still have redundant data.</li>
+<li><strong>Third Normal Form (3NF):</strong> the relation is in 2NF and every non-key attribute is non-transitively dependent on the primary key.</li>
+</ol></div></details>
+<details class="item" id="a8"><summary><span>What is De-normalization?</span></summary><div class="answer"><p>De-normalization is the process of optimizing the performance of a database by adding redundant data. It is sometimes necessary because current DBMSs implement the relational model imperfectly. A true relational DBMS would allow a fully normalized database at the logical level while providing physical storage tuned for high performance.</p>
+<p>De-normalization is a technique to move from higher to lower normal forms of database modeling in order to speed up database access.</p></div></details>
+<details class="item" id="a9"><summary><span>What is the difference between “Stored Procedure” and “Function”?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Stored Procedure</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Parameters</td>
+<td>Input and output</td>
+<td>Input only</td>
+</tr>
+<tr>
+<td>DML (<code>INSERT</code>/<code>UPDATE</code>/<code>DELETE</code>)</td>
+<td>Allowed</td>
+<td>Not allowed</td>
+</tr>
+<tr>
+<td>Use in a <code>SELECT</code> statement</td>
+<td>Cannot be used</td>
+<td>Can be used</td>
+</tr>
+<tr>
+<td>Use in <code>WHERE</code>/<code>HAVING</code>/<code>SELECT</code> sections</td>
+<td>Cannot be used</td>
+<td>Can be used anywhere</td>
+</tr>
+<tr>
+<td><code>TRY…CATCH</code> block</td>
+<td>Allowed</td>
+<td>Not allowed</td>
+</tr>
+<tr>
+<td>Transaction management</td>
+<td>Allowed</td>
+<td>Not allowed</td>
+</tr>
+<tr>
+<td>Joins</td>
+<td>Cannot be joined</td>
+<td>Can be joined</td>
+</tr>
+<tr>
+<td>Return value</td>
+<td>0 or n values (max 1024)</td>
+<td>Exactly 1 value (mandatory)</td>
+</tr>
+<tr>
+<td>Calling</td>
+<td>A procedure can call a function</td>
+<td>A function cannot call a procedure</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="a10"><summary><span>What is the difference between “Clustered Index” and “Non-Clustered Index”?</span></summary><div class="answer"><p>A <strong>clustered index</strong> decides how the data is physically stored on disk, so only one clustered index can exist per table. A <strong>non-clustered index</strong> does not define the physical order of the data, only a logical order. Typically a tree (B-Tree or B+ Tree) is built whose leaves point to the disk records.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Clustered index</th>
+<th>Non-clustered index</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data storage</td>
+<td>Stores the table data physically in key order, and re-sorts it whenever a value is inserted or updated</td>
+<td>Creates a separate list of key values with pointers to the data rows</td>
+</tr>
+<tr>
+<td>Extra storage</td>
+<td>None, it is the table storage</td>
+<td>Needs separate storage for the index</td>
+</tr>
+<tr>
+<td>Table structure</td>
+<td>Rows stored in a sorted B-Tree (clustered table)</td>
+<td>Rows stored unsorted in a heap</td>
+</tr>
+<tr>
+<td>Per table</td>
+<td>Only one</td>
+<td>Many</td>
+</tr>
+<tr>
+<td>Created by default</td>
+<td>With the Primary Key constraint</td>
+<td>With the Unique Key constraint</td>
+</tr>
+<tr>
+<td>Leaf node</td>
+<td>Contains the actual data</td>
+<td>Contains pointers to the data rows</td>
+</tr>
+<tr>
+<td>Index Id</td>
+<td>Always 1</td>
+<td>Greater than 1</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="a11"><summary><span>What is a view in SQL? How to create one</span></summary><div class="answer"><p>A view is a <strong>virtual table</strong> based on the result set of an SQL statement. It is created with the <code>CREATE VIEW</code> syntax.</p>
+<pre><code class="language-sql">CREATE VIEW HighSalaryEmployees AS
+SELECT FirstName, Salary
+FROM EmployeeDetail
+WHERE Salary &gt; 600000;
+</code></pre></div></details>
+<details class="item" id="a12"><summary><span>What are the uses of views?</span></summary><div class="answer"><ol>
+<li>A view can represent a subset of the data in a table, limiting how much of the underlying tables is exposed. A user may be allowed to query the view while being denied access to the base table.</li>
+<li>Views can join and simplify multiple tables into a single virtual table.</li>
+<li>Views can act as aggregated tables, where the database engine aggregates data (sum, average, etc.) and presents the calculated results.</li>
+<li>Views can hide the complexity of data. For example, a view can appear as Sales2000 or Sales2001 while transparently partitioning the actual underlying table.</li>
+<li>Depending on the SQL engine used, views can provide extra security.</li>
+</ol></div></details>
+<details class="item" id="a13"><summary><span>What is a materialized view?</span></summary><div class="answer"><p>A materialized view is also a view, but it is <strong>disk based</strong>: the result is physically stored. It is refreshed at the interval specified in its definition, and it can be indexed.</p></div></details>
+<details class="item" id="a14"><summary><span>What are the advantages and disadvantages of views in a database?</span></summary><div class="answer"><p><strong>Advantages</strong></p>
+<ol>
+<li>A view does not store data in a separate physical location.</li>
+<li>A view can hide some of the columns of a table.</li>
+<li>Views can provide access restriction, since inserting, updating and deleting data is not possible through certain views.</li>
+</ol>
+<p><strong>Disadvantages</strong></p>
+<ol>
+<li>When a table is dropped, the associated view becomes irrelevant.</li>
+<li>A view is built when a query requests data from it, so it can be a bit slow.</li>
+<li>Views created over large tables occupy more memory.</li>
+</ol></div></details>
+<details class="item" id="a15"><summary><span>What is a Trigger?</span></summary><div class="answer"><p>A trigger is code associated with <code>INSERT</code>, <code>UPDATE</code> or <code>DELETE</code> operations. It runs automatically whenever the associated query is executed on the table. Triggers are useful for maintaining integrity in the database.</p></div></details>
+<details class="item" id="a16"><summary><span>What is a transaction? What are ACID properties?</span></summary><div class="answer"><p>A database transaction is a set of database operations that must be treated as a whole: either all operations are executed or none of them. A bank transfer is a good example, where both the debit and the credit must happen, or neither.</p>
+<p><strong>ACID</strong> (Atomicity, Consistency, Isolation, Durability) is the set of properties that guarantees database transactions are processed reliably.</p>
+<ol>
+<li><strong>Atomicity:</strong> a transaction consists of many steps. If all steps complete, the result is reflected in the database; if any step fails, everything is rolled back.</li>
+<li><strong>Consistency:</strong> the database moves from one consistent state to another if the transaction succeeds, and remains in the original state if it fails.</li>
+<li><strong>Isolation:</strong> every transaction should operate as if it were the only transaction in the system.</li>
+<li><strong>Durability:</strong> once a transaction has completed successfully, the updated rows/records must be available to all other transactions on a permanent basis.</li>
+</ol></div></details>
+<details class="item" id="a17"><summary><span>What are indexes?</span></summary><div class="answer"><p>A database index is a data structure that improves the speed of data retrieval on a table, at the cost of additional writes and extra storage space for a copy of the data.</p>
+<p>Data can be stored on disk in only one order. To search quickly on different values (for example with a binary search), indexes are created on the table. They need extra disk space, but they make searches on frequently used values much faster.</p></div></details>
+<details class="item" id="a18"><summary><span>How do you implement one-to-one, one-to-many and many-to-many relationships while designing tables?</span></summary><div class="answer"><ul>
+<li><strong>One-to-One:</strong> can be implemented as a single table, and rarely as two tables with a primary key and foreign key relationship.</li>
+<li><strong>One-to-Many:</strong> implemented by splitting the data into two tables with a primary key and foreign key relationship.</li>
+<li><strong>Many-to-Many:</strong> implemented using a junction table, with the keys from both tables forming the composite primary key of the junction table.</li>
+</ul></div></details>
+<details class="item" id="a19"><summary><span>What is a Database Lock?</span></summary><div class="answer"><p>A database lock tells a transaction whether the data item in question is currently being used by other transactions.</p></div></details>
+<details class="item" id="a20"><summary><span>What are the types of locks?</span></summary><div class="answer"><ol>
+<li><strong>Shared lock:</strong> while a shared lock is applied to a data item, other transactions can only read the item, but cannot write to it.</li>
+<li><strong>Exclusive lock:</strong> while an exclusive lock is applied to a data item, other transactions can neither read nor write it.</li>
+</ol></div></details>
+<details class="item" id="a21"><summary><span>What are wildcards used in a database for pattern matching?</span></summary><div class="answer"><p>The SQL <code>LIKE</code> operator is used for pattern matching.</p>
+<table>
+<thead>
+<tr>
+<th>Wildcard</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%</code></td>
+<td>Any string of zero or more characters</td>
+<td><code>LIKE 'a%'</code> finds names starting with a</td>
+</tr>
+<tr>
+<td><code>_</code></td>
+<td>Exactly one character</td>
+<td><code>LIKE '_a%'</code> finds names with a as the second letter</td>
+</tr>
+<tr>
+<td><code>[ ]</code></td>
+<td>Any single character in the set (SQL Server)</td>
+<td><code>LIKE '[abc]%'</code></td>
+</tr>
+<tr>
+<td><code>[^ ]</code></td>
+<td>Any single character not in the set (SQL Server)</td>
+<td><code>LIKE '[^abc]%'</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>LIKE</code> takes more time to process, so keep these suggestions in mind:</p>
+<ol>
+<li>Don't overuse wildcards. If another search operator will do, use it instead.</li>
+<li>When you do use wildcards, try not to put them at the beginning of the search pattern unless absolutely necessary. Patterns that begin with a wildcard are the slowest to process.</li>
+<li>Pay careful attention to the placement of the wildcard symbols. If they are misplaced, you might not return the data you intended.</li>
+</ol></div></details>
+<details class="item" id="a22"><summary><span>Define Join and explain the different types of joins</span></summary><div class="answer"><p>To avoid data duplication, data is stored in related tables. The <code>JOIN</code> keyword is used to fetch data from related tables.</p>
+<ul>
+<li><strong>Inner join:</strong> returns rows when there is at least one match in both tables.</li>
+<li><strong>Left (outer) join:</strong> returns all rows from the left table, even if there are no matches in the right table.</li>
+<li><strong>Right (outer) join:</strong> returns all rows from the right table, even if there are no matches in the left table.</li>
+<li><strong>Full (outer) join:</strong> returns all rows when there is a match in either of the tables.</li>
+</ul></div></details>
+<details class="item" id="a23"><summary><span>What is a Self-Join?</span></summary><div class="answer"><p>A self-join is a query that joins a table to itself. Aliases must be used to distinguish the two copies of the same table when comparing them.</p></div></details>
+<details class="item" id="a24"><summary><span>What is a Cross Join?</span></summary><div class="answer"><p>A cross join returns every combination of rows: each row of the first table is combined with each row of the second table.</p></div></details>
+</section>
+<section class="sec-block" id="sec-1"><h2 class="sec">SQL Queries</h2><div class="secintro"><p>The queries below use the <code>EmployeeDetail</code> table (columns used: EmployeeID, FirstName, LastName, Salary, Department) and the <code>ProjectDetail</code> table (columns used: EmployeeDetailID, ProjectName), shown in the image. Queries 21 to 25 use Oracle sample tables (<code>EMP</code>, <code>DEPT</code>) and Oracle syntax; the rest is SQL Server (T-SQL).</p><img src="https://media.licdn.com/dms/image/D4D22AQFUNB3MFsvpvA/feedshare-shrink_2048_1536/0/1701918376593?e=2147483647&v=beta&t=S3PtX2xXW3SuXNk-KpmYDnOlalK5ddhlitiyaGYqnOU" alt="EmployeeDetail and ProjectDetail tables" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+<details class="item" id="b1"><summary><span><span class="qn">Q1</span>Write a query to get all employee detail from “EmployeeDetail” table</span></summary><div class="answer"><pre><code class="language-sql">SELECT * FROM EmployeeDetail;
+</code></pre></div></details>
+<details class="item" id="b2"><summary><span><span class="qn">Q2</span>Write a query to get only “FirstName” column from “EmployeeDetail” table</span></summary><div class="answer"><pre><code class="language-sql">SELECT FirstName FROM EmployeeDetail;
+</code></pre></div></details>
+<details class="item" id="b3"><summary><span><span class="qn">Q3</span>Write a query to get FirstName in upper case as “First Name”</span></summary><div class="answer"><pre><code class="language-sql">SELECT UPPER(FirstName) AS [First Name] FROM EmployeeDetail;
+</code></pre></div></details>
+<details class="item" id="b4"><summary><span><span class="qn">Q4</span>Write a query to combine FirstName and LastName and display it as “Name” (also include a white space between first name and last name)</span></summary><div class="answer"><pre><code class="language-sql">SELECT CONCAT(FirstName, ' ', LastName) AS [Name] FROM EmployeeDetail;
+</code></pre></div></details>
+<details class="item" id="b5"><summary><span><span class="qn">Q5</span>Select employee detail whose name is “Vikas”</span></summary><div class="answer"><pre><code class="language-sql">SELECT * FROM EmployeeDetail WHERE FirstName = 'Vikas';
+</code></pre></div></details>
+<details class="item" id="b6"><summary><span><span class="qn">Q6</span>Get all employee detail from EmployeeDetail table whose “FirstName” starts with the letter ‘a’</span></summary><div class="answer"><pre><code class="language-sql">SELECT * FROM EmployeeDetail WHERE FirstName LIKE 'a%';
+</code></pre></div></details>
+<details class="item" id="b7"><summary><span><span class="qn">Q7</span>Get employee details from “EmployeeDetail” table whose Salary is greater than 600000</span></summary><div class="answer"><pre><code class="language-sql">SELECT * FROM EmployeeDetail WHERE Salary &gt; 600000;
+</code></pre></div></details>
+<details class="item" id="b8"><summary><span><span class="qn">Q8</span>Get employee details from “EmployeeDetail” table whose Salary is between 500000 and 600000</span></summary><div class="answer"><pre><code class="language-sql">SELECT * FROM EmployeeDetail WHERE Salary BETWEEN 500000 AND 600000;
+</code></pre></div></details>
+<details class="item" id="b9"><summary><span><span class="qn">Q9</span>Select the second highest salary from “EmployeeDetail” table</span></summary><div class="answer"><pre><code class="language-sql">SELECT TOP 1 Salary
+FROM (SELECT TOP 2 Salary FROM EmployeeDetail ORDER BY Salary DESC) T
+ORDER BY Salary ASC;
+</code></pre>
+<p>Another way, using a sub-query:</p>
+<pre><code class="language-sql">SELECT MAX(Salary) FROM EmployeeDetail
+WHERE Salary &lt; (SELECT MAX(Salary) FROM EmployeeDetail);
+</code></pre></div></details>
+<details class="item" id="b10"><summary><span><span class="qn">Q10</span>Write the query to get the department and department-wise total (sum) salary from “EmployeeDetail” table</span></summary><div class="answer"><pre><code class="language-sql">SELECT Department, SUM(Salary) AS [Total Salary]
+FROM EmployeeDetail
+GROUP BY Department;
+</code></pre></div></details>
+<details class="item" id="b11"><summary><span><span class="qn">Q11</span>Write the query to get the department and department-wise total (sum) salary, displayed in ascending order of salary</span></summary><div class="answer"><pre><code class="language-sql">SELECT Department, SUM(Salary) AS [Total Salary]
+FROM EmployeeDetail
+GROUP BY Department
+ORDER BY SUM(Salary) ASC;
+</code></pre></div></details>
+<details class="item" id="b12"><summary><span><span class="qn">Q12</span>Write the query to get the department and department-wise total (sum) salary, displayed in descending order of salary</span></summary><div class="answer"><pre><code class="language-sql">SELECT Department, SUM(Salary) AS [Total Salary]
+FROM EmployeeDetail
+GROUP BY Department
+ORDER BY SUM(Salary) DESC;
+</code></pre></div></details>
+<details class="item" id="b13"><summary><span><span class="qn">Q13</span>Write the query to get the department, the number of employees in each department and the total (sum) salary of each department from “EmployeeDetail” table</span></summary><div class="answer"><pre><code class="language-sql">SELECT Department, COUNT(*) AS [Dept Counts], SUM(Salary) AS [Total Salary]
+FROM EmployeeDetail
+GROUP BY Department;
+</code></pre></div></details>
+<details class="item" id="b14"><summary><span><span class="qn">Q14</span>Get department-wise average salary from “EmployeeDetail” table, ordered by salary ascending</span></summary><div class="answer"><pre><code class="language-sql">SELECT Department, AVG(Salary) AS [Average Salary]
+FROM EmployeeDetail
+GROUP BY Department
+ORDER BY AVG(Salary) ASC;
+</code></pre></div></details>
+<details class="item" id="b15"><summary><span><span class="qn">Q15</span>Get employee name and project name, ordered by FirstName, from “EmployeeDetail” and “ProjectDetail” for those employees who have already been assigned a project</span></summary><div class="answer"><pre><code class="language-sql">SELECT FirstName, ProjectName
+FROM EmployeeDetail A
+INNER JOIN ProjectDetail B ON A.EmployeeID = B.EmployeeDetailID
+ORDER BY FirstName;
+</code></pre></div></details>
+<details class="item" id="b16"><summary><span><span class="qn">Q16</span>Get employee name and project name, ordered by FirstName, for all employees, even those who have not been assigned a project</span></summary><div class="answer"><pre><code class="language-sql">SELECT FirstName, ProjectName
+FROM EmployeeDetail A
+LEFT OUTER JOIN ProjectDetail B ON A.EmployeeID = B.EmployeeDetailID
+ORDER BY FirstName;
+</code></pre>
+<p>Employees without a project show <code>NULL</code> in <code>ProjectName</code>.</p></div></details>
+<details class="item" id="b17"><summary><span><span class="qn">Q17</span>Get employee name and project name, ordered by FirstName, for all employees; if no project is assigned, display “-No Project Assigned”</span></summary><div class="answer"><pre><code class="language-sql">SELECT FirstName, ISNULL(ProjectName, '-No Project Assigned') AS ProjectName
+FROM EmployeeDetail A
+LEFT OUTER JOIN ProjectDetail B ON A.EmployeeID = B.EmployeeDetailID
+ORDER BY FirstName;
+</code></pre></div></details>
+<details class="item" id="b18"><summary><span><span class="qn">Q18</span>Get all project names, even those that do not match any EmployeeID in the left table, ordered by FirstName, from “EmployeeDetail” and “ProjectDetail”</span></summary><div class="answer"><pre><code class="language-sql">SELECT FirstName, ProjectName
+FROM EmployeeDetail A
+RIGHT OUTER JOIN ProjectDetail B ON A.EmployeeID = B.EmployeeDetailID
+ORDER BY FirstName;
+</code></pre></div></details>
+<details class="item" id="b19"><summary><span><span class="qn">Q19</span>Write a query to find the employee names who have not been assigned any project, and display “-No Project Assigned” (tables: EmployeeDetail, ProjectDetail)</span></summary><div class="answer"><pre><code class="language-sql">SELECT FirstName, ISNULL(ProjectName, '-No Project Assigned') AS [ProjectName]
+FROM EmployeeDetail A
+LEFT OUTER JOIN ProjectDetail B ON A.EmployeeID = B.EmployeeDetailID
+WHERE ProjectName IS NULL;
+</code></pre></div></details>
+<details class="item" id="b20"><summary><span><span class="qn">Q20</span>Write a query to find the project names which are not assigned to any employee (tables: EmployeeDetail, ProjectDetail)</span></summary><div class="answer"><pre><code class="language-sql">SELECT ProjectName
+FROM EmployeeDetail A
+RIGHT OUTER JOIN ProjectDetail B ON A.EmployeeID = B.EmployeeDetailID
+WHERE FirstName IS NULL;
+</code></pre></div></details>
+<details class="item" id="b21"><summary><span><span class="qn">Q21</span>Write the query to fetch the employee name and project of employees who have been assigned more than one project</span></summary><div class="answer"><pre><code class="language-sql">SELECT EmployeeID, FirstName, ProjectName
+FROM EmployeeDetail E
+INNER JOIN ProjectDetail P ON E.EmployeeID = P.EmployeeDetailID
+WHERE EmployeeID IN (SELECT EmployeeDetailID
+                     FROM ProjectDetail
+                     GROUP BY EmployeeDetailID
+                     HAVING COUNT(*) &gt; 1);
+</code></pre></div></details>
+<details class="item" id="b22"><summary><span><span class="qn">Q22</span>How to find the Nth maximum salary?</span></summary><div class="answer"><p>Oracle syntax (<code>&amp;N</code> is a substitution variable, so you are asked for the value of N):</p>
+<pre><code class="language-sql">SELECT DISTINCT SAL
+FROM EMP A
+WHERE &amp;N = (SELECT COUNT(DISTINCT B.SAL) FROM EMP B WHERE A.SAL &lt;= B.SAL);
+</code></pre>
+<p>Another way, using <code>DENSE_RANK</code> (here N = 3):</p>
+<pre><code class="language-sql">SELECT DISTINCT Salary
+FROM (SELECT Salary, DENSE_RANK() OVER (ORDER BY Salary DESC) AS rnk
+      FROM EmployeeDetail) T
+WHERE rnk = 3;
+</code></pre></div></details>
+<details class="item" id="b23"><summary><span><span class="qn">Q23</span>How to use the EXISTS clause?</span></summary><div class="answer"><p><code>EXISTS</code> returns true when the sub-query returns at least one row. This query lists only the departments that have employees:</p>
+<pre><code class="language-sql">SELECT DNAME, DEPTNO
+FROM DEPT
+WHERE EXISTS (SELECT * FROM EMP WHERE DEPT.DEPTNO = EMP.DEPTNO);
+</code></pre></div></details>
+<details class="item" id="b24"><summary><span><span class="qn">Q24</span>How to delete the duplicate rows alone in a table?</span></summary><div class="answer"><p>Oracle syntax (uses <code>ROWID</code>). It keeps one row per <code>DEPTNO</code> and deletes the rest:</p>
+<pre><code class="language-sql">DELETE DEPT
+WHERE ROWID NOT IN (SELECT MAX(ROWID) FROM DEPT GROUP BY DEPTNO HAVING COUNT(*) &gt;= 1);
+</code></pre></div></details>
+<details class="item" id="b25"><summary><span><span class="qn">Q25</span>How to find the max salary without using the MAX function?</span></summary><div class="answer"><pre><code class="language-sql">SELECT DISTINCT SAL
+FROM EMP1
+WHERE SAL NOT IN (SELECT SAL FROM EMP1
+                  WHERE SAL &lt; ANY (SELECT SAL FROM EMP1));
+</code></pre>
+<p>The inner query returns every salary that has a bigger salary above it, so what is left after <code>NOT IN</code> is the highest salary.</p></div></details>
+<details class="item" id="b26"><summary><span><span class="qn">Q26</span>How can I eliminate duplicate values in a table?</span></summary><div class="answer"><p>Oracle syntax (uses <code>ROWID</code>). It keeps the row with the smallest <code>ROWID</code> for each set of key values:</p>
+<pre><code class="language-sql">DELETE FROM table_name A
+WHERE ROWID &gt; (SELECT MIN(ROWID) FROM table_name B
+               WHERE A.key_values = B.key_values);
+</code></pre></div></details>
+<details class="item" id="b27"><summary><span><span class="qn">Q27</span>How to set a primary key and foreign key relationship using a query? (Set the EmployeeDetailID column of the ProjectDetail table as a foreign key referencing EmployeeID)</span></summary><div class="answer"><pre><code class="language-sql">ALTER TABLE ProjectDetail
+ADD CONSTRAINT fk_EmployeeDetailID_Eid FOREIGN KEY (EmployeeDetailID)
+REFERENCES EmployeeDetail (EmployeeID);
+</code></pre></div></details>
+<details class="item" id="b28"><summary><span><span class="qn">Q28</span>Write the query to print the first letter of a name in upper case and all other letters in lower case (EmployeeDetail table)</span></summary><div class="answer"><pre><code class="language-sql">SELECT UPPER(SUBSTRING(FirstName, 1, 1)) + LOWER(SUBSTRING(FirstName, 2, LEN(FirstName) - 1)) AS [FirstName]
+FROM EmployeeDetail;
+</code></pre></div></details>
+<details class="item" id="b29"><summary><span><span class="qn">Q29</span>Write the query to get ProjectName and the respective EmployeeName (FirstName) of everyone working on it; if more than one employee works on the same project, show them in the same cell separated by a comma, for example “Task Tracker : Vikas, Ashish”</span></summary><div class="answer"><pre><code class="language-sql">SELECT ProjectName,
+       STUFF((SELECT ', ' + FirstName
+              FROM EmployeeDetail E1
+              INNER JOIN ProjectDetail P1 ON E1.EmployeeID = P1.EmployeeDetailID
+              WHERE P1.ProjectName = P2.ProjectName
+              FOR XML PATH('')), 1, 2, '') AS [Employee Name]
+FROM EmployeeDetail E2
+INNER JOIN ProjectDetail P2 ON E2.EmployeeID = P2.EmployeeDetailID
+GROUP BY ProjectName;
+</code></pre>
+<p>In SQL Server 2017 and later the same result is simpler with <code>STRING_AGG</code>:</p>
+<pre><code class="language-sql">SELECT ProjectName, STRING_AGG(FirstName, ', ') AS [Employee Name]
+FROM EmployeeDetail E
+INNER JOIN ProjectDetail P ON E.EmployeeID = P.EmployeeDetailID
+GROUP BY ProjectName;
+</code></pre></div></details>
+<details class="item" id="b30"><summary><span><span class="qn">Q30</span>FuelDetail table (ID, Fuel, Date): find out when the driver filled petrol in the car</span></summary><div class="answer"><p>The <code>Fuel</code> column holds the fuel quantity at a particular time while the car is travelling (see the table image at the top of this section). An example:</p>
+<ul>
+<li>The car starts driving at 10 AM on 25 April with 10 litres of petrol.</li>
+<li>At 11 AM there are 9 litres, and at 12 PM there are 8 litres.</li>
+<li>At 2 PM (14:00) there are 12 litres, which means the driver filled petrol at 2 PM on 25 April 2014.</li>
+<li>The next fill-ups were at 7 PM and 11 PM on 25 April 2014.</li>
+</ul>
+<pre><code class="language-sql">SELECT c1.Fuel AS [Fuel quantity Now],    c1.[Date] AS [Refill time],
+       c.Fuel  AS [Fuel quantity Before], c.[Date]  AS [Previous reading]
+FROM FuelDetail c
+JOIN FuelDetail c1
+  ON c1.[Date] = (SELECT MIN([Date]) FROM FuelDetail WHERE [Date] &gt; c.[Date])
+WHERE c1.Fuel &gt; c.Fuel;
+</code></pre>
+<p>Each row <code>c</code> is joined with the next reading in time (<code>c1</code>). If the fuel went up between the two readings, the driver filled petrol.</p></div></details>
+</section>
+<section class="sec-block" id="sec-2"><h2 class="sec">SQL Questions</h2><div class="secintro"><img src="https://cdn.dribbble.com/users/1008970/screenshots/6284515/blog_post_sql.gif" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+<details class="item ref" open><summary><span>Reference tables used in these questions (Sales, SKU, Store, Fiscal_Yr_Wk)</span></summary><div class="answer"><p><strong>Sales table</strong></p>
+<table>
+<thead>
+<tr>
+<th>Retailer</th>
+<th>Store #</th>
+<th>SKU</th>
+<th>Week</th>
+<th>Year</th>
+<th>Units</th>
+<th>Dollars</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>101</td>
+<td>727</td>
+<td>599506</td>
+<td>16</td>
+<td>2021</td>
+<td>3</td>
+<td>545</td>
+</tr>
+<tr>
+<td>102</td>
+<td>2686</td>
+<td>1004823827</td>
+<td>19</td>
+<td>2021</td>
+<td>2</td>
+<td>43.94</td>
+</tr>
+<tr>
+<td>101</td>
+<td>6173</td>
+<td>681059</td>
+<td>18</td>
+<td>2021</td>
+<td>10</td>
+<td>65.55</td>
+</tr>
+<tr>
+<td>101</td>
+<td>2578</td>
+<td>1002878652</td>
+<td>21</td>
+<td>2021</td>
+<td>2</td>
+<td>16.4</td>
+</tr>
+<tr>
+<td>102</td>
+<td>1419</td>
+<td>625356</td>
+<td>19</td>
+<td>2021</td>
+<td>0</td>
+<td>55</td>
+</tr>
+<tr>
+<td>101</td>
+<td>727</td>
+<td>599506</td>
+<td>16</td>
+<td>2021</td>
+<td>3</td>
+<td>545</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SKU table</strong></p>
+<p><img alt="SKU table" src="https://resv2.craft.do/user/full/6d22b2b8-0d01-adb1-291b-7aea9220db75/doc/4e1fd823-48e1-2dbb-2578-1639994a7e39/5da6baef-1501-47dc-8337-803b16fea676" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></p>
+<p><strong>Store table</strong></p>
+<table>
+<thead>
+<tr>
+<th>Store #</th>
+<th>Store Name</th>
+<th>Store Address</th>
+<th>Store City</th>
+<th>State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>362</td>
+<td>HARAHAN</td>
+<td>5151 CITRUS BLVD</td>
+<td>HARAHAN</td>
+<td>LA</td>
+</tr>
+<tr>
+<td>6220</td>
+<td>GLASTONBURY</td>
+<td>115 PUTNAM BLVD</td>
+<td>GLASTONBURY</td>
+<td>LM</td>
+</tr>
+<tr>
+<td>2844</td>
+<td>MAPLE GROVE</td>
+<td>GROVE CIRCLE</td>
+<td>MAPLE GROVE</td>
+<td>CT</td>
+</tr>
+<tr>
+<td>485</td>
+<td>LOWE'S OF FT. OGLETHORPE</td>
+<td>2215 BATTLEFIELD PKWY</td>
+<td>FORT OGLETHORPE</td>
+<td>GA</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Fiscal_Yr_Wk table</strong></p>
+<table>
+<thead>
+<tr>
+<th>Week_ending_Dt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017-02-12 00:00:00.000</td>
+</tr>
+<tr>
+<td>2017-02-19 00:00:00.000</td>
+</tr>
+<tr>
+<td>2017-02-26 00:00:00.000</td>
+</tr>
+<tr>
+<td>2017-03-05 00:00:00.000</td>
+</tr>
+<tr>
+<td>2017-03-12 00:00:00.000</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="c1"><summary><span><span class="qn">Q1</span>Write a query to get the top 4 highest selling states</span></summary><div class="answer"><p>Joins the Sales table to the Store table to get each store's state, then adds up the dollars per state.</p>
+<pre><code class="language-sql">SELECT TOP 4 st.State, SUM(s.Dollars) AS Total_Dollars
+FROM Sales s
+JOIN Store st ON s.[Store #] = st.[Store #]
+GROUP BY st.State
+ORDER BY Total_Dollars DESC;
+</code></pre>
+<blockquote>
+<p>“Highest selling” is measured here by dollars. Use <code>SUM(s.Units)</code> if it should be by units.</p>
+</blockquote></div></details>
+<details class="item" id="c2"><summary><span><span class="qn">Q2</span>Print the number of stores having sales less than 50 in each week for the year 2021</span></summary><div class="answer"><p>First add up each store's sales per week, keep the store-weeks under 50, then count the stores for every week.</p>
+<pre><code class="language-sql">SELECT Week, COUNT(*) AS Stores_Below_50
+FROM (SELECT Week, [Store #], SUM(Dollars) AS Week_Dollars
+      FROM Sales
+      WHERE Year = 2021
+      GROUP BY Week, [Store #]
+      HAVING SUM(Dollars) &lt; 50) T
+GROUP BY Week
+ORDER BY Week;
+</code></pre></div></details>
+<details class="item" id="c3"><summary><span><span class="qn">Q3</span>Write a query to get Store, Store Name, SKU, Category, and the total dollars and average units for each</span></summary><div class="answer"><pre><code class="language-sql">SELECT s.[Store #], st.[Store Name], s.SKU, k.Category,
+       SUM(s.Dollars) AS Total_Dollars,
+       AVG(CAST(s.Units AS DECIMAL(10, 2))) AS Avg_Units
+FROM Sales s
+JOIN Store st ON s.[Store #] = st.[Store #]
+JOIN SKU k ON s.SKU = k.SKU
+GROUP BY s.[Store #], st.[Store Name], s.SKU, k.Category;
+</code></pre>
+<blockquote>
+<p>The SKU table is shown as an image, so the query assumes it has <code>SKU</code> and <code>Category</code> columns. Adjust the names to match your table. The <code>CAST</code> stops SQL Server from rounding the average down to a whole number.</p>
+</blockquote></div></details>
+<details class="item" id="c4"><summary><span><span class="qn">Q4</span>From the Fiscal_Yr_Wk table get the Month and Year from Week_ending_Dt. Give an alias to each column</span></summary><div class="answer"><pre><code class="language-sql">SELECT Week_ending_Dt,
+       MONTH(Week_ending_Dt) AS [Month],
+       YEAR(Week_ending_Dt)  AS [Year]
+FROM Fiscal_Yr_Wk;
+</code></pre>
+<p>Use <code>DATENAME(MONTH, Week_ending_Dt)</code> instead of <code>MONTH(...)</code> to get the month name (for example February) rather than the number.</p></div></details>
+<details class="item" id="c5"><summary><span><span class="qn">Q5</span>Suppose we have 2 tables with 10 rows each. What will be the maximum and minimum number of rows we get after joining these two tables?</span></summary><div class="answer"><p>It depends on the type of join:</p>
+<table>
+<thead>
+<tr>
+<th>Join type</th>
+<th>Minimum rows</th>
+<th>Maximum rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INNER JOIN</code></td>
+<td>0</td>
+<td>100</td>
+</tr>
+<tr>
+<td><code>LEFT JOIN</code></td>
+<td>10</td>
+<td>100</td>
+</tr>
+<tr>
+<td><code>RIGHT JOIN</code></td>
+<td>10</td>
+<td>100</td>
+</tr>
+<tr>
+<td><code>FULL OUTER JOIN</code></td>
+<td>10</td>
+<td>100</td>
+</tr>
+<tr>
+<td><code>CROSS JOIN</code></td>
+<td>100</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The maximum is 10 × 10 = 100, when every row of one table matches every row of the other (for example all join keys are the same).</li>
+<li>An inner join returns 0 rows when no keys match.</li>
+<li>A left or right join always keeps every row of the preserved table, so the minimum is 10.</li>
+<li>A full outer join returns 10 rows when the rows pair up one-to-one, 20 when nothing matches, and 100 when everything matches.</li>
+<li>A cross join has no join condition, so it always returns exactly 100 rows.</li>
+</ul></div></details>
+<details class="item" id="c6"><summary><span><span class="qn">Q6</span>Write a query to get the total number of units and sales (Sales table) of each store (pull only the top 10) in the year 2020</span></summary><div class="answer"><pre><code class="language-sql">SELECT TOP 10 [Store #],
+       SUM(Units)   AS Total_Units,
+       SUM(Dollars) AS Total_Sales
+FROM Sales
+WHERE Year = 2020
+GROUP BY [Store #]
+ORDER BY Total_Sales DESC;
+</code></pre>
+<blockquote>
+<p>“Top 10” is ranked by sales here. Change the <code>ORDER BY</code> to <code>Total_Units</code> to rank by units.</p>
+</blockquote></div></details>
+<details class="item" id="c7"><summary><span><span class="qn">Q7</span>What is the order of execution in an SQL query?</span></summary><div class="answer"><p>SQL does not run a query in the order it is written. The logical order is:</p>
+<ol>
+<li><code>FROM</code> (including <code>JOIN</code>s)</li>
+<li><code>WHERE</code></li>
+<li><code>GROUP BY</code></li>
+<li><code>HAVING</code></li>
+<li><code>SELECT</code> (expressions and aliases are computed here)</li>
+<li><code>DISTINCT</code></li>
+<li><code>ORDER BY</code></li>
+<li><code>TOP</code> / <code>LIMIT</code> / <code>OFFSET</code></li>
+</ol>
+<p>This is why a column alias defined in <code>SELECT</code> cannot be used in <code>WHERE</code>, but it can be used in <code>ORDER BY</code>.</p></div></details>
+<details class="item" id="c8"><summary><span><span class="qn">Q8</span>Write a SQL query to extract the ids who haven’t transacted in the month of ‘jan’</span></summary><div class="answer"><p>Given the table (called <code>Transactions</code> here):</p>
+<table>
+<thead>
+<tr>
+<th>Id</th>
+<th>Month</th>
+<th>amt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>jan</td>
+<td>23</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Feb</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1</td>
+<td>March</td>
+<td>14</td>
+</tr>
+<tr>
+<td>2</td>
+<td>jan</td>
+<td>23</td>
+</tr>
+<tr>
+<td>3</td>
+<td>jan</td>
+<td>4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>March</td>
+<td>5</td>
+</tr>
+<tr>
+<td>5</td>
+<td>jan</td>
+<td>12</td>
+</tr>
+<tr>
+<td>2</td>
+<td>April</td>
+<td>34</td>
+</tr>
+<tr>
+<td>3</td>
+<td>April</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Feb</td>
+<td>1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>jan</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-sql">SELECT DISTINCT Id
+FROM Transactions
+WHERE Id NOT IN (SELECT Id FROM Transactions WHERE Month = 'jan');
+</code></pre>
+<p>Another way, with <code>GROUP BY</code> and <code>HAVING</code>:</p>
+<pre><code class="language-sql">SELECT Id
+FROM Transactions
+GROUP BY Id
+HAVING SUM(CASE WHEN Month = 'jan' THEN 1 ELSE 0 END) = 0;
+</code></pre>
+<p>Result: only Id <strong>4</strong> has no transaction in January.</p></div></details>
+<details class="item" id="c9"><summary><span><span class="qn">Q9</span>Write a SQL query to change the structure of Table A into Table B (wide format to long format)</span></summary><div class="answer"><p><strong>Table A</strong></p>
+<table>
+<thead>
+<tr>
+<th>Id</th>
+<th>dt_flag</th>
+<th>nb_flag</th>
+<th>ws_flag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Best</td>
+<td>Rest</td>
+<td>Rest</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Rest</td>
+<td>Rest</td>
+<td>Best</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Best</td>
+<td>Best</td>
+<td>Rest</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table B</strong></p>
+<table>
+<thead>
+<tr>
+<th>Id</th>
+<th>lob</th>
+<th>flag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>dt</td>
+<td>Best</td>
+</tr>
+<tr>
+<td>1</td>
+<td>nb</td>
+<td>Rest</td>
+</tr>
+<tr>
+<td>1</td>
+<td>ws</td>
+<td>Rest</td>
+</tr>
+<tr>
+<td>2</td>
+<td>dt</td>
+<td>Rest</td>
+</tr>
+<tr>
+<td>2</td>
+<td>nb</td>
+<td>Rest</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ws</td>
+<td>Best</td>
+</tr>
+<tr>
+<td>3</td>
+<td>dt</td>
+<td>Best</td>
+</tr>
+<tr>
+<td>3</td>
+<td>nb</td>
+<td>Best</td>
+</tr>
+<tr>
+<td>3</td>
+<td>ws</td>
+<td>Rest</td>
+</tr>
+</tbody>
+</table>
+<p>Stack one <code>SELECT</code> per flag column with <code>UNION ALL</code>:</p>
+<pre><code class="language-sql">SELECT Id, 'dt' AS lob, dt_flag AS flag FROM TableA
+UNION ALL
+SELECT Id, 'nb', nb_flag FROM TableA
+UNION ALL
+SELECT Id, 'ws', ws_flag FROM TableA
+ORDER BY Id, lob;
+</code></pre>
+<p>Another way in SQL Server, using <code>CROSS APPLY</code> with a <code>VALUES</code> list:</p>
+<pre><code class="language-sql">SELECT a.Id, v.lob, v.flag
+FROM TableA a
+CROSS APPLY (VALUES ('dt', a.dt_flag),
+                    ('nb', a.nb_flag),
+                    ('ws', a.ws_flag)) v(lob, flag)
+ORDER BY a.Id, v.lob;
+</code></pre></div></details>
+</section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

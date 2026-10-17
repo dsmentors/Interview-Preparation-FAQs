@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pandas Interview Prep</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg></span><h1>Pandas Interview Prep</h1></div>
+<p class="sub">34 questions</p>
+<div class="roles"><a class="role" href="index.html#role=ds">Data Science</a><a class="role" href="index.html#role=aiml">AI/ML</a><a class="role alt" href="index.html#role=ba">Business Analyst</a></div>
+<div class="intro"><blockquote><p>Frequently asked Pandas interview questions covering Series and DataFrames, reading and writing data, indexing and selection, grouping and merging, time series, missing data and more. Use it to prepare clear, well-structured answers backed by working code examples.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<nav class="chips"><a href="#sec-0">FAQs <small>34</small></a></nav>
+<section class="sec-block" id="sec-0"><h2 class="sec">FAQs</h2>
+<details class="item" id="a1"><summary><span>What is Pandas?</span></summary><div class="answer"><p><strong>Pandas</strong> is a Python library built on top of NumPy, designed for efficient data manipulation and analysis. It provides high-performance, easy-to-use data structures and data analysis tools. Pandas is particularly useful for handling large datasets, and it is a cornerstone library in data science and machine learning workflows.</p></div></details>
+<details class="item" id="a2"><summary><span>What are the different types of data structures in Pandas?</span></summary><div class="answer"><p>Pandas primarily offers two fundamental data structures:</p><ul><li><strong>Series:</strong> a one-dimensional labeled array capable of holding any data type (integers, strings, floats, Python objects, etc.). It is similar to a NumPy array but with an index. It can be created from a list, array or dictionary.</li><li><strong>DataFrame:</strong> a two-dimensional labeled data structure with columns of potentially different data types. It can be created from a list of dictionaries, a NumPy array, a Series or another DataFrame.</li></ul><p><img src="https://hossainlab.github.io/pandas/_images/pandas.png" alt="Series and DataFrame data structures in Pandas" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></p></div></details>
+<details class="item" id="a3"><summary><span>What is a Series in Pandas?</span></summary><div class="answer"><p><strong>A Pandas Series is a one-dimensional labeled array capable of holding any data type.</strong> Think of it as a single column in a spreadsheet or database table. It is built on top of NumPy arrays and offers more flexibility and functionality.</p><p><strong>Key characteristics of a Series:</strong></p><ul><li><strong>Data:</strong> can hold any data type (integers, floats, strings, objects, etc.).</li><li><strong>Index:</strong> labels for each data point. By default, it is a range of integers starting from 0.</li><li><strong>Name:</strong> an optional name for the Series.</li></ul><p><strong>Example:</strong></p><pre><code class="language-python">import pandas as pd
+import numpy as np
+
+data = [&#x27;apple&#x27;, &#x27;banana&#x27;, &#x27;cherry&#x27;]
+series = pd.Series(data)  # Create a Series from a list
+
+data = np.array([&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;])
+series = pd.Series(data)  # Create a Series from a NumPy array
+</code></pre><p><strong>Key operations on a Series:</strong></p><ul><li><strong>Indexing and slicing:</strong> accessing elements using labels or positions.</li><li><strong>Mathematical operations:</strong> applying arithmetic, logical and comparison operations.</li><li><strong>Sorting:</strong> sorting values based on the index or the data.</li><li><strong>Filtering:</strong> selecting elements based on conditions.</li><li><strong>Aggregation:</strong> performing calculations like sum, mean, median, etc.</li></ul></div></details>
+<details class="item" id="a4"><summary><span>What are the different ways to create a Series?</span></summary><div class="answer"><p>There are many ways to create a Pandas Series. A few of them are shown below with examples.</p><ul><li><strong>Empty Series:</strong> call the <code>pandas.Series()</code> constructor without any data.</li><li><strong>Series from an array:</strong> import NumPy and pass an array created with <code>np.array()</code> to the constructor.</li><li><strong>Series from a list:</strong> pass a Python list to the <code>Series()</code> constructor.</li><li><strong>Series from a dictionary:</strong> the keys of the dictionary are used as the index of the Series.</li><li><strong>Series from a scalar value:</strong> an index must be provided. The scalar value is repeated until all the index labels are filled.</li><li><strong>Series using NumPy functions:</strong> functions such as <code>numpy.linspace()</code> and <code>numpy.random.randn()</code> can also be used to create a Series.</li><li><strong>Series using the range function:</strong> pass a Python <code>range</code> to the constructor.</li></ul><p><strong>Sample code:</strong></p><pre><code class="language-python">import pandas as pd
+import numpy as np
+
+print(pd.Series())  # Empty Series
+
+data = np.array([10, 20, 30, 40, 50])
+series = pd.Series(data)  # Series from a NumPy array
+
+list_data = [&#x27;s&#x27;, &#x27;c&#x27;, &#x27;i&#x27;, &#x27;e&#x27;, &#x27;n&#x27;, &#x27;c&#x27;, &#x27;e&#x27;]
+list_ser = pd.Series(list_data)  # Series from a list
+
+dict_data = {&#x27;First_Box&#x27;: 50, &#x27;Second_Box&#x27;: 100, &#x27;Third_Box&#x27;: 150}
+dict_ser = pd.Series(dict_data)  # Series from a dictionary
+
+scl_ser = pd.Series(10, index=[0, 1, 2, 3, 4, 5])  # Series from a scalar value
+
+np_ser1 = pd.Series(np.linspace(3, 33, 3))  # Series using a NumPy function
+np_ser2 = pd.Series(np.random.randn(3))     # Series using a NumPy function
+
+rng_series = pd.Series(range(5))  # Series using the range function
+</code></pre></div></details>
+<details class="item" id="a5"><summary><span>What is a DataFrame in Pandas?</span></summary><div class="answer"><p>A DataFrame in Pandas is a two-dimensional, size-mutable, labeled data structure with columns that can hold different data types. It is essentially a powerful and flexible spreadsheet-like structure within Python, designed for efficient data analysis and manipulation. Some key characteristics of a DataFrame:</p><ul><li><strong>Rows and columns:</strong> data is organized in a tabular format with rows and columns.</li><li><strong>Heterogeneous data:</strong> columns can hold different data types (integers, strings, floats, booleans, etc.).</li><li><strong>Labeled axes:</strong> each row has an index label (often used as the row label) and each column has a name.</li><li><strong>Relationships between rows and columns:</strong> data in different columns can be related and analyzed together.</li></ul><p><strong>Example:</strong></p><pre><code class="language-python">import pandas as pd
+
+data = {&#x27;column1&#x27;: [1, 2, 3], &#x27;column2&#x27;: [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]}
+df = pd.DataFrame(data)  # Create a DataFrame from a dictionary
+</code></pre><p><strong>Common operations on DataFrames:</strong></p><ul><li><strong>Accessing data:</strong> using indexing and selection techniques to retrieve specific values or subsets of data.</li><li><strong>Data manipulation:</strong> cleaning, transforming and organizing data using various methods.</li><li><strong>Mathematical operations:</strong> performing calculations on data within or between columns.</li><li><strong>Aggregation and grouping:</strong> summarizing data by groups or applying functions to groups.</li><li><strong>Merging and joining:</strong> combining data from multiple DataFrames based on certain criteria.</li></ul></div></details>
+<details class="item" id="a6"><summary><span>What are the different ways to create a DataFrame in Pandas?</span></summary><div class="answer"><p>Like a Series, a DataFrame can be created in several ways:</p><ul><li><strong>Empty DataFrame:</strong> call the <code>pandas.DataFrame()</code> constructor without any data.</li><li><strong>From a list or list of lists:</strong> pass the list to the <code>DataFrame()</code> constructor. For a list of lists, pass the main list along with the column names.</li><li><strong>From a dictionary:</strong> pass the dictionary to the <code>DataFrame()</code> constructor. The keys become the column names and the values become the data of the columns.</li><li><strong>From a Pandas Series:</strong> a Series can also be passed to the constructor to create a DataFrame.</li></ul><p><strong>Example:</strong></p><pre><code class="language-python">import pandas as pd
+
+df1 = pd.DataFrame()  # Empty DataFrame
+
+lst = [&#x27;Alphabet&#x27;, &#x27;Binary&#x27;, &#x27;Correlation&#x27;, &#x27;Database&#x27;]
+df2 = pd.DataFrame(lst)  # From a list
+
+lst1 = [[1, &#x27;Encoding&#x27;], [2, &#x27;Scaling&#x27;], [3, &#x27;Balancing&#x27;]]
+df3 = pd.DataFrame(lst1, columns=[&#x27;Id&#x27;, &#x27;Data&#x27;])  # From a list of lists
+
+data = {&#x27;Name&#x27;: [&#x27;Tom&#x27;, &#x27;nick&#x27;, &#x27;krish&#x27;, &#x27;jack&#x27;], &#x27;Age&#x27;: [20, 21, 19, 18]}
+df4 = pd.DataFrame(data)  # From a dictionary
+
+lst5 = pd.Series([&#x27;Alphabet&#x27;, &#x27;Binary&#x27;, &#x27;Correlation&#x27;, &#x27;Database&#x27;])
+print(pd.DataFrame(lst5))  # From a Series
+</code></pre></div></details>
+<details class="item" id="a7"><summary><span>How can we create a copy of a Series or DataFrame?</span></summary><div class="answer"><p>There are two ways to copy a Series or DataFrame: a shallow copy and a deep copy.</p><p><strong>Shallow copy:</strong> a new object is created, but the indices and the data of the original object are not copied. Only the references to them are copied. In pandas versions before 3.0, this means a change made through one object is reflected in the other. From pandas 3.0, Copy-on-Write is the default, so modifying a shallow copy no longer changes the original.</p><pre><code class="language-python">og_series = pd.Series(range(10))
+dummy = og_series.copy(deep=False)  # Shallow copy using the copy() function
+dummy2 = og_series                  # Plain assignment: not a copy, both names refer to the same object
+</code></pre><p><strong>Deep copy:</strong> a new object with its own indices and data. Changes made to the copy are not reflected in the original Series or DataFrame. This is the default for <code>copy()</code>.</p><pre><code class="language-python">og_series = pd.Series(range(10))
+dummy = og_series.copy(deep=True)  # Deep copy using the copy() function
+</code></pre></div></details>
+<details class="item" id="a8"><summary><span>How do you read data from various file formats (e.g. CSV, Excel, SQL) using Pandas?</span></summary><div class="answer"><p>Pandas provides easy-to-use functions to read data from various file formats such as CSV, Excel and SQL.</p><p><strong>CSV:</strong></p><pre><code class="language-python">filepath = &quot;your_data.csv&quot;
+df = pd.read_csv(filepath)
+df = pd.read_csv(filepath, delimiter=&#x27;;&#x27;)  # when values are separated by a custom delimiter
+</code></pre><p><strong>Excel:</strong></p><pre><code class="language-python">df = pd.read_excel(&quot;file.xlsx&quot;)
+df = pd.read_excel(&quot;file.xlsx&quot;, sheet_name=&quot;Sheet1&quot;)  # read a specific sheet
+</code></pre><p><strong>SQL databases</strong> (requires a connection object):</p><pre><code class="language-python">from sqlalchemy import create_engine
+
+engine = create_engine(&#x27;sqlite:///database.db&#x27;)
+df = pd.read_sql(&#x27;SELECT * FROM table_name&#x27;, con=engine)
+</code></pre></div></details>
+<details class="item" id="a9"><summary><span>How do you write data to various file formats (e.g. CSV, Excel, SQL) using Pandas?</span></summary><div class="answer"><p>Just like reading, Pandas has functions to write data to various file formats. A few are shown below.</p><p><strong>CSV:</strong></p><pre><code class="language-python">df.to_csv(&#x27;file.csv&#x27;, index=False)
+df.to_csv(&#x27;file.csv&#x27;, sep=&#x27;;&#x27;, index=False)  # with a custom delimiter
+</code></pre><p><strong>Excel:</strong></p><pre><code class="language-python">df.to_excel(&#x27;file.xlsx&#x27;, index=False)
+
+# Write to a specific sheet
+with pd.ExcelWriter(&#x27;file.xlsx&#x27;) as writer:
+    df.to_excel(writer, sheet_name=&#x27;Sheet1&#x27;, index=False)
+</code></pre><p><strong>SQL databases</strong> (requires a connection object):</p><pre><code class="language-python">from sqlalchemy import create_engine
+
+engine = create_engine(&#x27;sqlite:///database.db&#x27;)
+df.to_sql(&#x27;table_name&#x27;, con=engine, if_exists=&#x27;replace&#x27;, index=False)
+</code></pre></div></details>
+<details class="item" id="a10"><summary><span>How do you access the first and last few rows of a DataFrame?</span></summary><div class="answer"><p>Pandas has built-in methods for this: <code>head()</code> and <code>tail()</code>.</p><p><strong>head():</strong> returns the first n rows of a DataFrame. Without an argument, <code>df.head()</code> returns the first 5 rows. <code>df.head(8)</code> returns the first 8 rows.</p><p><strong>tail():</strong> returns the last n rows of a DataFrame. Without an argument, <code>df.tail()</code> returns the last 5 rows. <code>df.tail(9)</code> returns the last 9 rows.</p><pre><code class="language-python">df.head()    # first 5 rows
+df.head(8)   # first 8 rows
+df.tail()    # last 5 rows
+df.tail(9)   # last 9 rows
+</code></pre></div></details>
+<details class="item" id="a11"><summary><span>What is reindexing in Pandas?</span></summary><div class="answer"><p>Reindexing is a technique for changing the row or column labels (index) of a DataFrame or Series. It lets you conform the data to a new set of labels while optionally filling in missing values.</p><p><strong>Purpose:</strong></p><ul><li>Rearrange existing data based on a new set of labels.</li><li>Insert missing values for labels that are not present in the original data.</li></ul><p><strong>Functionality:</strong></p><ul><li><code>df.reindex(new_index)</code>: reindexes the DataFrame or Series using the provided <code>new_index</code>.</li><li>Options to handle missing values: <code>fill_value</code> specifies a value to fill missing entries (the default is NaN), and <code>method</code> defines a filling method (e.g. <code>&#x27;ffill&#x27;</code> for forward fill, <code>&#x27;bfill&#x27;</code> for backward fill).</li></ul><pre><code class="language-python">import pandas as pd
+
+data = {&#x27;col1&#x27;: [1, 2, 3], &#x27;col2&#x27;: [10, 20, 30]}
+df = pd.DataFrame(data, index=[&#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;])
+
+new_index = [&#x27;A&#x27;, &#x27;X&#x27;, &#x27;B&#x27;, &#x27;Y&#x27;, &#x27;C&#x27;]
+reindexed_df = df.reindex(new_index, fill_value=0)  # missing labels are filled with 0
+print(reindexed_df)
+# Output:
+#    col1  col2
+# A     1    10
+# X     0     0
+# B     2    20
+# Y     0     0
+# C     3    30
+</code></pre></div></details>
+<details class="item" id="a12"><summary><span>How do you select a single column of a DataFrame?</span></summary><div class="answer"><p>There are two primary ways to select a single column from a DataFrame:</p><ul><li><strong>Square brackets (bracket notation):</strong> the most common and intuitive approach. Write the DataFrame followed by the column name inside square brackets, e.g. <code>df[&#x27;column_name&#x27;]</code>.</li><li><strong>Dot notation (attribute access):</strong> less common. It works only if the column name is a valid Python attribute name (no spaces or special characters), e.g. <code>df.column_name</code>.</li></ul><p><strong>Which method to use?</strong></p><p>Dot notation is generally discouraged because it can conflict with actual DataFrame attributes or methods. Square brackets (<code>df[&#x27;column_name&#x27;]</code>) are safer, more explicit and work in every case.</p></div></details>
+<details class="item" id="a13"><summary><span>How do you rename a column in a DataFrame?</span></summary><div class="answer"><ul><li>Use the <code>rename()</code> function. It can rename a single column or several columns at once.</li></ul><pre><code class="language-python">df.rename(columns={&#x27;column1&#x27;: &#x27;COLUMN_1&#x27;, &#x27;column2&#x27;: &#x27;COLUMN_2&#x27;}, inplace=True)
+</code></pre><p>Direct assignment is less flexible but works for simple renaming of a single column:</p><pre><code class="language-python">df[&#x27;new_name&#x27;] = df[&#x27;old_name&#x27;]
+del df[&#x27;old_name&#x27;]
+</code></pre><p>Another way is the <code>set_axis()</code> function, which takes the new column names and the axis to replace. It returns a new DataFrame (the <code>inplace</code> argument has been removed):</p><pre><code class="language-python">df = df.set_axis([&#x27;COLUMN_1&#x27;, &#x27;COLUMN_2&#x27;], axis=1)
+</code></pre><p>To add a prefix or suffix to all column names, use <code>add_prefix()</code> or <code>add_suffix()</code>:</p><pre><code class="language-python">df = df.add_prefix(&#x27;PREFIX_&#x27;)
+df = df.add_suffix(&#x27;_suffix&#x27;)
+</code></pre></div></details>
+<details class="item" id="a14"><summary><span>How do you add an index, row or column to an existing DataFrame?</span></summary><div class="answer"><ul><li><strong>Add a column:</strong> assign a list, Series or scalar to a new column name: <code>df[&#x27;new_col&#x27;] = values</code>.</li><li><strong>Add a row:</strong> use <code>df.loc[len(df)] = [...]</code> to place a row at the next position, or combine DataFrames with <code>pd.concat()</code>. The older <code>DataFrame.append()</code> has been removed.</li><li><strong>Add an index:</strong> use <code>df.set_index(&#x27;col&#x27;)</code> to turn a column into the index, or assign a list directly with <code>df.index = [...]</code>.</li></ul><pre><code class="language-python">import pandas as pd
+
+df = pd.DataFrame({&#x27;Name&#x27;: [&#x27;Tom&#x27;, &#x27;Nick&#x27;], &#x27;Age&#x27;: [20, 21]})
+
+# Add a column
+df[&#x27;City&#x27;] = [&#x27;Pune&#x27;, &#x27;Delhi&#x27;]
+
+# Add a row (using loc with the next index position)
+df.loc[len(df)] = [&#x27;Krish&#x27;, 19, &#x27;Mumbai&#x27;]
+
+# Add a row (using concat)
+new_row = pd.DataFrame([{&#x27;Name&#x27;: &#x27;Jack&#x27;, &#x27;Age&#x27;: 18, &#x27;City&#x27;: &#x27;Chennai&#x27;}])
+df = pd.concat([df, new_row], ignore_index=True)
+
+# Set a column as the index
+df = df.set_index(&#x27;Name&#x27;)
+print(df)
+# Output:
+#        Age     City
+# Name               
+# Tom     20     Pune
+# Nick    21    Delhi
+# Krish   19   Mumbai
+# Jack    18  Chennai
+</code></pre><p><strong>Related: deleting a row or column</strong></p><p>A row or column can be deleted with <code>df.drop()</code>, passing the row or column name as the parameter. It returns a new DataFrame unless <code>inplace=True</code> is used.</p><p><strong>To delete a column</strong></p><pre><code class="language-python">df.drop([&#x27;Column_Name&#x27;], axis=1)
+</code></pre><p><strong>To delete a row</strong></p><pre><code class="language-python">df.drop([Row_Index_Number], axis=0)
+</code></pre></div></details>
+<details class="item" id="a15"><summary><span>How do you set and reset the index in a Pandas DataFrame?</span></summary><div class="answer"><p>The index of a DataFrame can be set with the <code>set_index()</code> method, which uses a column (or a list, Series or another array) as the index.</p><pre><code class="language-python">df.set_index(&#x27;Column_Name&#x27;)
+</code></pre><p>The index can be reset with the <code>reset_index()</code> method. It resets the index to the default integer index beginning at 0.</p><pre><code class="language-python">df.reset_index(inplace=True)
+</code></pre></div></details>
+<details class="item" id="a16"><summary><span>What is the difference between iloc and loc?</span></summary><div class="answer"><p>Before discussing <code>iloc</code> and <code>loc</code>, the image below helps to understand the labels and the positional index of rows and columns:</p><p><img src="https://resv2.craft.do/user/full/e1326a1d-b56e-afac-4582-71c2b0f93d96/doc/8d91cdf8-3eb0-4303-960c-0bbd5668f6fc/2d8caf3b-9e74-43f8-a8d7-3ea8da5cf48c" alt="Row and column labels versus positional index in a DataFrame" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></p><p>The primary difference is how they access the rows and columns of a DataFrame. The table below shows the difference between <code>iloc</code> and <code>loc</code>:</p><table><thead><tr><th>iloc</th><th>loc</th></tr></thead><tbody><tr><td>A position-based (integer) selection method</td><td>A label-based selection method</td></tr><tr><td>Accesses rows and columns by their integer positions</td><td>Accesses rows and columns using their labels or names</td></tr><tr><td>Positions start from 0 for both rows and columns</td><td>Selection can be based on row labels, column labels, or a combination of both</td></tr><tr><td>Used for integer-based slicing; accepts single integers, or lists or arrays of integers, for specific rows or columns</td><td>Used for label-based slicing; accepts single labels, or lists or arrays of labels, for specific rows or columns</td></tr><tr><td>Syntax:<br><code>df.iloc[row_index, column_index]</code></td><td>Syntax:<br><code>df.loc[row_label, column_label]</code></td></tr></tbody></table></div></details>
+<details class="item" id="a17"><summary><span>How do you find the correlation using Pandas?</span></summary><div class="answer"><p>The <code>DataFrame.corr()</code> method finds the pairwise correlation of the columns of a DataFrame. Missing values are ignored, but non-numeric columns must be excluded, so pass <code>numeric_only=True</code> if the DataFrame has any.</p><pre><code class="language-python">df.corr(numeric_only=True)
+</code></pre></div></details>
+<details class="item" id="a18"><summary><span>What is the difference between pivot_table() and groupby()?</span></summary><div class="answer"><p>Both <code>pivot_table()</code> and <code>groupby()</code> are powerful methods for aggregating and summarizing data. The table below shows the difference:</p><table><thead><tr><th><code>pivot_table()</code></th><th><code>groupby()</code></th></tr></thead><tbody><tr><td>Summarizes and aggregates data in a tabular format</td><td>Performs aggregation on grouped data of one or more columns</td></tr><tr><td>Used to transform data by reshaping it based on column values</td><td>Used to group data based on categorical variables, then apply various aggregation functions to each group</td></tr><tr><td>Can handle multiple levels of grouping and aggregation, providing flexibility in summarizing data</td><td>Groups by column values and creates a GroupBy object, then aggregation functions such as sum, mean and count can be applied to the groups</td></tr><tr><td>Used when we want to compare data across multiple dimensions</td><td>Used to summarize data within groups</td></tr></tbody></table></div></details>
+<details class="item" id="a19"><summary><span>How do you use groupby() with multiple aggregations?</span></summary><div class="answer"><p>When we need several aggregations on grouped data, we use the <code>agg()</code> function. Below is <code>groupby()</code> with a single aggregation and with multiple aggregations.</p><p><strong>Single aggregation:</strong></p><pre><code class="language-python">result = df.groupby(&#x27;Category&#x27;).sum()
+result = df.groupby(&#x27;Category&#x27;).mean()
+</code></pre><p><strong>Multiple aggregations:</strong></p><p>Suppose the DataFrame has three columns: Category, Values1 and Values2.</p><pre><code class="language-python">result = df.groupby(&#x27;Category&#x27;).agg({
+    &#x27;Values1&#x27;: [&#x27;sum&#x27;, &#x27;mean&#x27;, &#x27;max&#x27;],
+    &#x27;Values2&#x27;: [&#x27;min&#x27;, &#x27;mean&#x27;]
+})
+</code></pre></div></details>
+<details class="item" id="a20"><summary><span>What is the difference between map(), applymap() and apply()?</span></summary><div class="answer"><p>The <code>map()</code>, <code>applymap()</code> and <code>apply()</code> methods apply functions or transformations to the elements of a DataFrame or Series. The table below shows the difference:</p><table><thead><tr><th><code>map()</code></th><th><code>applymap()</code></th><th><code>apply()</code></th></tr></thead><tbody><tr><td>Defined only on a Series</td><td>Defined only on a DataFrame</td><td>Defined on both Series and DataFrame</td></tr><tr><td>Applies a function or a dictionary to each element of the Series</td><td>Applies a function to each element of the DataFrame</td><td>Applies a function along a specific axis of the DataFrame, or to a Series</td></tr><tr><td><code>Series.map()</code> works element-wise and is used for element-wise transformations or mappings</td><td><code>DataFrame.applymap()</code> works element-wise, applying the function to each element in the DataFrame</td><td><code>DataFrame.apply()</code> works on entire rows or columns (one Series at a time)</td></tr><tr><td>Used for a simple transformation or mapping of each element of a Series</td><td>Used to apply a function to each individual element of a DataFrame</td><td>Used to apply a function that aggregates or transforms data across rows or columns</td></tr></tbody></table><blockquote><p><code>DataFrame.applymap()</code> was renamed <code>DataFrame.map()</code> in pandas 2.1 and has been removed in pandas 3.0. Use <code>DataFrame.map()</code> in current versions.</p></blockquote></div></details>
+<details class="item" id="a21"><summary><span>What is the difference between merge() and concat()?</span></summary><div class="answer"><p>The table below shows the difference between <code>merge()</code> and <code>concat()</code>:</p><table><thead><tr><th><code>merge()</code></th><th><code>concat()</code></th></tr></thead><tbody><tr><td>Used to join exactly 2 DataFrames based on a common column or index</td><td>Used to join 2 or more DataFrames along a particular axis, i.e. rows or columns</td></tr><tr><td>Performs different types of joins: inner, outer, left and right</td><td>Concatenates by appending the DataFrames one below the other (along the rows) or side by side (along the columns)</td></tr><tr><td>The join type and column names have to be specified</td><td>Performs row-wise concatenation by default (<code>axis=0</code>). For column-wise concatenation, use <code>axis=1</code></td></tr><tr><td>Multiple columns can be merged if needed</td><td>Does not match or join on column values</td></tr><tr><td>Used when we want to combine data based on a shared column or index</td><td>Commonly used to combine DataFrames vertically or horizontally without any matching criteria</td></tr></tbody></table></div></details>
+<details class="item" id="a22"><summary><span>What is a time series in Pandas?</span></summary><div class="answer"><p>A time series is a collection of data points with timestamps. It depicts the evolution of a quantity over time. Pandas provides various functions to handle time series data efficiently. It is used to work with timestamps, resample time series to different periods, work with missing data, slice data using timestamps, and more.</p><table><thead><tr><th>Pandas built-in function</th><th>Operation</th></tr></thead><tbody><tr><td><code>pandas.to_datetime(DataFrame[&#x27;Date&#x27;])</code></td><td>Convert the ‘Date’ column of the DataFrame to datetime dtype</td></tr><tr><td><code>DataFrame.set_index(&#x27;Date&#x27;, inplace=True)</code></td><td>Set ‘Date’ as the index</td></tr><tr><td><code>DataFrame.resample(&#x27;h&#x27;).sum()</code></td><td>Resample the time series to a different frequency (e.g. hourly, daily, weekly, monthly)</td></tr><tr><td><code>DataFrame.interpolate()</code></td><td>Fill missing values using linear interpolation</td></tr><tr><td><code>DataFrame.loc[start_date:end_date]</code></td><td>Slice the data based on timestamps</td></tr></tbody></table></div></details>
+<details class="item" id="a23"><summary><span>What is a Timedelta in Pandas?</span></summary><div class="answer"><p>A Timedelta is the difference between two dates or times. Similar to the <code>timedelta</code> object in the Python <code>datetime</code> module, a Pandas <code>Timedelta</code> represents a duration or a difference in time. Pandas has a dedicated data type for handling durations or time differences in a DataFrame or Series.</p><p>A Timedelta object is created with <code>pd.Timedelta()</code>, providing the number of weeks, days, hours, minutes, seconds, milliseconds, etc. as parameters.</p><pre><code class="language-python">duration = pd.Timedelta(days=7, hours=4, minutes=30, seconds=23)
+</code></pre><p>With the Timedelta data type you can easily perform arithmetic, comparisons and other time-related manipulations. It can express durations in different units such as days, hours, minutes, seconds, milliseconds and microseconds.</p><pre><code class="language-python">duration + pd.Timedelta(&#x27;2 days 6 hours&#x27;)  # Timedelta(&#x27;9 days 10:30:23&#x27;)
+</code></pre></div></details>
+<details class="item" id="a24"><summary><span>How do you convert a string to a datetime in Pandas?</span></summary><div class="answer"><p>A Python string can be converted to a datetime object using the Pandas <code>to_datetime()</code> function, or the <code>strptime()</code> method of Python's <code>datetime</code> module. It returns the date and time object corresponding to the date string, parsed according to the format given.</p><p>Using <code>pandas.to_datetime()</code> to convert a string to a datetime object:</p><pre><code class="language-python">date_string = &#x27;2023-07-17&#x27;
+date_time = pd.to_datetime(date_string)
+</code></pre></div></details>
+<details class="item" id="a25"><summary><span>How do you do feature encoding with Pandas methods?</span></summary><div class="answer"><p>Pandas has a few built-in methods for feature encoding.</p><p><strong>Label encoding:</strong></p><p>Label encoding converts categorical data into numerical data so that a machine-learning model can use it. With Pandas, use <code>pandas.Categorical().codes</code> or <code>pandas.factorize()</code> to replace the categorical values with numerical values.</p><p><strong>One-hot encoding:</strong></p><p>One-hot encoding represents categorical data as numerical values in a machine-learning model. It creates a separate binary variable for each category in the data. The value of the binary variable is 1 if the observation belongs to that category and 0 otherwise. It can improve the performance of the model. To apply one-hot encoding, create dummy columns for the DataFrame using the <code>get_dummies()</code> method.</p></div></details>
+<details class="item" id="a26"><summary><span>How do you create a chart using Pandas?</span></summary><div class="answer"><p>Pandas provides built-in plotting through its integration with Matplotlib. These methods allow quick and easy visualization of data directly from DataFrames and Series. Some of the most commonly used plotting methods:</p><p><strong>Boxplot:</strong></p><p>A boxplot summarizes the distribution of the data using its quartiles and is used for detecting outliers. Create it with the <code>boxplot()</code> method of a DataFrame, providing the column to plot.</p><pre><code class="language-python">DataFrame.boxplot(column=&#x27;Col_Name&#x27;, grid=False)
+</code></pre><p><strong>Distribution plot (histogram):</strong></p><p>A distribution plot shows how the values of a dataset are spread out. In Pandas, a histogram can be created with the <code>plot.hist()</code> method.</p><pre><code class="language-python">DataFrame[&#x27;Numerical_Col_Name&#x27;].plot.hist()
+</code></pre><p><strong>A few more:</strong></p><table><thead><tr><th>Plot</th><th>Code</th></tr></thead><tbody><tr><td>Line plot</td><td><code>df[&#x27;column_name&#x27;].plot()</code></td></tr><tr><td>Vertical bar</td><td><code>df.plot.bar()</code></td></tr><tr><td>Horizontal bar</td><td><code>df.plot.barh()</code></td></tr><tr><td>Scatter plot</td><td><code>df.plot.scatter(x=&#x27;column_x&#x27;, y=&#x27;column_y&#x27;)</code></td></tr></tbody></table></div></details>
+<details class="item" id="a27"><summary><span>What are the built-in methods to see descriptive statistics in Pandas?</span></summary><div class="answer"><p>Pandas provides several built-in methods that generate descriptive statistics summarizing the central tendency, dispersion and shape of a dataset's distribution. They work on both Series and DataFrames.</p><p><strong>describe():</strong> <code>DataFrame.describe()</code> generates descriptive statistics, excluding NaN values.</p><ul><li>For numeric data, it returns count, mean, std, min, 25%, 50%, 75% and max.</li><li>For object data (e.g. strings), it returns count, unique, top and freq.</li></ul><p>You can also get specific statistics separately with dedicated methods:</p><ul><li><code>DataFrame.mean()</code>: calculates the mean</li><li><code>DataFrame.median()</code>: calculates the median</li><li><code>DataFrame.mode()</code>: calculates the mode</li><li><code>DataFrame.var()</code>: calculates the variance</li><li><code>DataFrame.std()</code>: calculates the standard deviation</li><li><code>DataFrame.quantile()</code>: calculates quantiles, with the quantile value as a parameter</li></ul></div></details>
+<details class="item" id="a28"><summary><span>How do you sort a DataFrame?</span></summary><div class="answer"><p>A DataFrame can be sorted in ascending or descending order by a particular column using the <code>sort_values()</code> method, providing the column name to sort by. You can also sort by multiple columns. To sort in descending order, pass the additional parameter <code>ascending=False</code>.</p><pre><code class="language-python">DataFrame.sort_values(by=&#x27;Age&#x27;, ascending=True)
+</code></pre></div></details>
+<details class="item" id="a29"><summary><span>How do you check for and remove duplicate values in Pandas?</span></summary><div class="answer"><p>Duplicate values can be checked with the <code>duplicated()</code> method.</p><pre><code class="language-python">DataFrame.duplicated()
+</code></pre><p>To remove the duplicated values, use the <code>drop_duplicates()</code> method.</p><pre><code class="language-python">DataFrame.drop_duplicates()
+</code></pre></div></details>
+<details class="item" id="a30"><summary><span>How do you handle missing data in Pandas?</span></summary><div class="answer"><p>Handling missing data is a common task in data analysis, and Pandas provides several methods to do it efficiently. Here are the common techniques for detecting, dropping and filling missing data.</p><p><strong>Detecting missing data</strong></p><p><strong>1. isnull() and notnull()</strong></p><p>These methods return a DataFrame of the same shape as the original, where each element is a boolean indicating whether the value is missing (True) or not (False).</p><pre><code class="language-python">df.isnull()
+df.notnull()
+</code></pre><p><strong>2. isna() and notna()</strong></p><p>These are aliases for <code>isnull()</code> and <code>notnull()</code>.</p><pre><code class="language-python">df.isna()
+df.notna()
+</code></pre><p><strong>3. sum()</strong></p><p>Summing the result of <code>isnull()</code> or <code>isna()</code> gives the count of missing values per column.</p><pre><code class="language-python">df.isnull().sum()
+</code></pre><p><strong>Dropping missing data: dropna()</strong></p><pre><code class="language-python">df_dropped = df.dropna()                    # drop rows with any missing values
+df_dropped = df.dropna(subset=[&#x27;A&#x27;, &#x27;B&#x27;])  # drop rows with missing values in specific columns
+df_dropped = df.dropna(axis=1)             # drop columns with any missing values
+df_dropped = df.dropna(how=&#x27;all&#x27;)          # drop rows where all elements are missing
+df_dropped = df.dropna(thresh=3)           # keep only rows with at least 3 non-NA values
+</code></pre><p><strong>Filling missing data</strong></p><p><strong>1. fillna()</strong></p><p>Fills missing values with a specified value, or from a dictionary. For forward or backward filling, use <code>ffill()</code> and <code>bfill()</code>.</p><pre><code class="language-python">df_filled = df.fillna(0)                             # fill with a specific value
+df_filled = df.ffill()                               # forward fill
+df_filled = df.bfill()                               # backward fill
+df_filled = df.fillna({&#x27;A&#x27;: 0, &#x27;B&#x27;: 1})              # fill different columns with different values
+df_filled = df.fillna(df.mean(numeric_only=True))    # fill with the mean of each numeric column
+</code></pre><p><strong>2. interpolate()</strong></p><p>Estimates (interpolates) missing values in a Series or DataFrame.</p><pre><code class="language-python">df_interpolated = df.interpolate()
+</code></pre><p><strong>3. replace()</strong></p><p>Replaces missing values with another value.</p><pre><code class="language-python">import numpy as np
+
+df_replaced = df.replace(np.nan, 0)
+</code></pre></div></details>
+<details class="item" id="a31"><summary><span>Why doesn’t DataFrame.shape have parentheses?</span></summary><div class="answer"><p>In Pandas, <code>DataFrame.shape</code> does not have parentheses because it is an attribute of the DataFrame, not a method. Here is the difference between attributes and methods, and why <code>shape</code> is an attribute:</p><ul><li><strong>Attributes:</strong> variables associated with a DataFrame object. They store information about the DataFrame and do not require parentheses when accessed.</li><li><strong>Methods:</strong> functions associated with a DataFrame object. They perform operations on the DataFrame and often take additional arguments. Methods require parentheses to be called, even if they take no arguments.</li></ul><pre><code class="language-python">df.shape    # attribute: no parentheses, e.g. (3, 2)
+df.head()   # method: parentheses required
+</code></pre></div></details>
+<details class="item" id="a32"><summary><span>What is a rolling mean and how do you calculate it in Pandas?</span></summary><div class="answer"><p>A rolling mean, also known as a moving average, is a statistical method used to analyze time series data by calculating the average of different subsets of the full dataset. In Pandas, the <code>rolling()</code> function creates a rolling window that can be followed by an aggregation function such as <code>mean()</code>, <code>sum()</code> or <code>max()</code> to compute rolling statistics.</p><p><strong>Calculating a rolling mean in Pandas:</strong></p><pre><code class="language-python">DataFrame.rolling(window, min_periods=None, center=False, win_type=None, on=None).mean()
+</code></pre><p><strong>Parameters</strong></p><ul><li><code>window</code>: size of the moving window, i.e. the number of observations used to calculate the statistic.</li><li><code>min_periods</code>: minimum number of observations in the window required to have a value (the default is the size of the window).</li><li><code>center</code>: set the labels at the center of the window (default is False).</li><li><code>win_type</code>: a window type (e.g. 'boxcar', 'triang', 'blackman') if using weighted windows.</li><li><code>on</code>: for a DataFrame, the column to use for the rolling calculation.</li></ul><p><strong>Example:</strong></p><pre><code class="language-python">s = pd.Series([1, 2, 3, 4, 5, 6])
+print(s.rolling(window=3).mean())
+# Output:
+# 0    NaN
+# 1    NaN
+# 2    2.0
+# 3    3.0
+# 4    4.0
+# 5    5.0
+# dtype: float64
+</code></pre></div></details>
+<details class="item" id="a33"><summary><span>How do you use the pd.cut() and pd.qcut() functions in Pandas?</span></summary><div class="answer"><p>The <code>pd.cut()</code> and <code>pd.qcut()</code> functions are used for binning or discretizing continuous data into discrete intervals or bins. They help categorize numerical data, making it easier to analyze distributions and patterns.</p><p><strong>pd.cut()</strong></p><p>The <code>pd.cut()</code> function segments and sorts data values into bins or intervals. You can specify the exact bin edges or the number of equal-width bins.</p><pre><code class="language-python">pd.cut(x, bins, right=True, labels=None, retbins=False, precision=3, include_lowest=False, duplicates=&#x27;raise&#x27;)
+</code></pre><p><strong>Parameters</strong></p><ul><li><code>x</code>: the data to be binned (array-like).</li><li><code>bins</code>: the criteria to bin by. Can be an integer for the number of equal-width bins, or a sequence of bin edges.</li><li><code>right</code>: whether the intervals are closed on the right (default is True).</li><li><code>labels</code>: labels for the resulting bins. If False, returns only integer indicators.</li><li><code>retbins</code>: whether to return the bins or not (default is False).</li><li><code>precision</code>: precision at which to store and display the bin labels.</li><li><code>include_lowest</code>: whether the first interval should be left-inclusive or not.</li><li><code>duplicates</code>: whether to allow bin edges of the same value or not.</li></ul><pre><code class="language-python">ages = pd.Series([5, 17, 25, 40, 62, 80])
+print(pd.cut(ages, bins=[0, 18, 60, 100], labels=[&#x27;child&#x27;, &#x27;adult&#x27;, &#x27;senior&#x27;]))
+# Output:
+# 0     child
+# 1     child
+# 2     adult
+# 3     adult
+# 4    senior
+# 5    senior
+# dtype: category
+</code></pre><p><strong>pd.qcut()</strong></p><p>The <code>pd.qcut()</code> function segments and sorts data values into bins based on quantiles, so each bin has (approximately) the same number of data points.</p><pre><code class="language-python">pd.qcut(x, q, labels=None, retbins=False, precision=3, duplicates=&#x27;raise&#x27;)
+</code></pre><p><strong>Parameters</strong></p><ul><li><code>x</code>: the data to be binned (array-like).</li><li><code>q</code>: the number of quantiles (e.g. 4 for quartiles, 10 for deciles) or a list of quantiles.</li><li><code>labels</code>: labels for the resulting bins. If False, returns only integer indicators.</li><li><code>retbins</code>: whether to return the bins or not (default is False).</li><li><code>precision</code>: precision at which to store and display the bin labels.</li><li><code>duplicates</code>: whether to allow bin edges of the same value or not.</li></ul><pre><code class="language-python">scores = pd.Series([1, 2, 3, 4, 5, 6, 7, 8])
+print(pd.qcut(scores, q=4, labels=[&#x27;Q1&#x27;, &#x27;Q2&#x27;, &#x27;Q3&#x27;, &#x27;Q4&#x27;]))
+# Output:
+# 0    Q1
+# 1    Q1
+# 2    Q2
+# 3    Q2
+# 4    Q3
+# 5    Q3
+# 6    Q4
+# 7    Q4
+# dtype: category
+</code></pre></div></details>
+<details class="item" id="a34"><summary><span>How do you use the query() function in Pandas?</span></summary><div class="answer"><p>The <code>query()</code> function provides a convenient way to filter DataFrame rows using a query string. It allows a more readable, SQL-like syntax for row selection.</p><pre><code class="language-python">DataFrame.query(expr, inplace=False, **kwargs)
+</code></pre><p><strong>Basic:</strong></p><pre><code class="language-python">result = df.query(&#x27;age &gt; 25&#x27;)
+</code></pre><p><strong>Multiple conditions:</strong></p><pre><code class="language-python">result = df.query(&#x27;age &gt; 25 and score &gt; 80&#x27;)
+</code></pre><p><strong>String operations:</strong></p><pre><code class="language-python">result = df.query(&#x27;name.str.startswith(&quot;A&quot;) or name.str.startswith(&quot;D&quot;)&#x27;)
+</code></pre></div></details>
+</section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

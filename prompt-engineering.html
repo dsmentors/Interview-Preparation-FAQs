@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prompt Engineering</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><h1>Prompt Engineering</h1></div>
+<p class="sub">52 questions</p>
+<div class="roles"><a class="role" href="index.html#role=aiml">AI/ML</a></div>
+<div class="intro"><blockquote><p>This document offers a comprehensive collection of frequently asked interview questions from a diverse range of companies on Prompt Engineering module. Prospective candidates can use this resource to gain valuable insights and prepare themselves for the challenges they may face during the interview process. By familiarizing themselves with the types of questions typically asked, individuals can develop well-thought-out responses that showcase their skills, experience, and suitability for the role.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<section class="sec-block" id="sec-0"><h2 class="sec">Frequently Asked Questions</h2>
+<details class="item" id="p1"><summary><span><span class="qn">Q1</span>What is prompt engineering in AI?</span></summary><div class="answer"><p>Prompt engineering refers to the process of designing inputs (prompts) for AI language models like GPT to generate desired outputs. It requires crafting precise and structured prompts to guide the model in producing accurate, relevant, and useful results.</p></div></details>
+<details class="item" id="p2"><summary><span><span class="qn">Q2</span>Why is prompt clarity important?</span></summary><div class="answer"><p>Clear prompts are essential because they help reduce ambiguity. If a prompt is vague or unclear, the model might generate irrelevant or incoherent responses. In contrast, a well-defined prompt leads to more focused and precise outputs.</p></div></details>
+<details class="item" id="p3"><summary><span><span class="qn">Q3</span>How does prompt length affect model responses?</span></summary><div class="answer"><p>The length of a prompt can significantly influence the quality of the model's response:</p>
+<ul>
+<li><strong>Too short:</strong> may not provide enough context, leading to generic or incomplete answers.</li>
+<li><strong>Too long:</strong> may overwhelm the model, causing it to lose focus on the essential parts of the query.</li>
+<li><strong>Balanced:</strong> offers sufficient detail without overwhelming the model.</li>
+</ul></div></details>
+<details class="item" id="p4"><summary><span><span class="qn">Q4</span>How can you improve a prompt for a creative task?</span></summary><div class="answer"><p>To improve a prompt for a creative task, you can provide specific instructions, add examples, and clarify the expected tone or style. For instance, specifying whether you want a formal or informal response, or requesting a particular narrative style, helps steer the model toward the desired creative outcome.</p></div></details>
+<details class="item" id="p5"><summary><span><span class="qn">Q5</span>What is few-shot prompting, and how does it improve prompt performance?</span></summary><div class="answer"><p>Few-shot prompting involves providing the model with a few examples of input-output pairs related to the task before asking for a specific response. This guides the model’s behavior by showing how to structure the output.</p>
+<p>With only a few examples of the desired output, the model understands a new task and generalizes better, producing more accurate responses on related prompts.</p>
+<p><strong>Example:</strong></p>
+<pre><code>Translate English to French.
+sea otter -&gt; loutre de mer
+cheese -&gt; fromage
+apple -&gt;
+</code></pre></div></details>
+<details class="item" id="p6"><summary><span><span class="qn">Q6</span>What is zero-shot prompting?</span></summary><div class="answer"><p>Zero-shot prompting asks the model to perform a task without providing any prior examples. The prompt solely contains instructions, and the model relies on its training to generate an appropriate response based on the given task.</p>
+<p><strong>Example:</strong></p>
+<pre><code>Translate the word &quot;apple&quot; to French.
+</code></pre></div></details>
+<details class="item" id="p7"><summary><span><span class="qn">Q7</span>How does task specificity influence the output?</span></summary><div class="answer"><p>When a task is described in a specific, clear, and detailed manner, the model is more likely to provide accurate and relevant responses. Vague prompts, on the other hand, lead to generic or incorrect outputs because the model struggles to identify the user’s intent.</p></div></details>
+<details class="item" id="p8"><summary><span><span class="qn">Q8</span>What role does prompt context play?</span></summary><div class="answer"><p>Context helps the model understand the task better by setting the framework within which the response should be generated. By providing relevant background information or framing the question appropriately, you can guide the model toward producing more accurate and on-topic answers.</p></div></details>
+<details class="item" id="p9"><summary><span><span class="qn">Q9</span>How can you make a prompt more structured?</span></summary><div class="answer"><p>You can make a prompt more structured by using clear, step-by-step instructions or specifying a desired format (e.g., bullet points, paragraphs). This guides the model on how to organize its response and often leads to more coherent and well-organized results.</p></div></details>
+<details class="item" id="p10"><summary><span><span class="qn">Q10</span>What are prompt templates, and why are they useful?</span></summary><div class="answer"><p>Prompt templates are pre-designed structures that can be reused for multiple tasks by simply filling in specific variables. These templates standardize the prompt format and help maintain consistency in the outputs, particularly in large-scale or repetitive tasks.</p>
+<p><strong>Example:</strong></p>
+<pre><code>Summarize the following {document_type} in {number} bullet points:
+{text}
+</code></pre></div></details>
+<details class="item" id="p11"><summary><span><span class="qn">Q11</span>How does using examples within a prompt affect the model’s response?</span></summary><div class="answer"><p>Including examples within a prompt helps the model understand the expected format or style of the response. It essentially provides a blueprint for the model to follow, increasing the likelihood of generating accurate and contextually relevant outputs.</p></div></details>
+<details class="item" id="p12"><summary><span><span class="qn">Q12</span>What is the difference between a direct prompt and an indirect prompt?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Direct prompt</th>
+<th>Indirect prompt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Style</td>
+<td>Clearly states the task or question</td>
+<td>More open-ended; the model has to infer the task from broader context</td>
+</tr>
+<tr>
+<td>Ambiguity</td>
+<td>Leaves little room for ambiguity</td>
+<td>Can lead to less accurate results</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>"List three benefits of regular exercise."</td>
+<td>"Why do people go to the gym?"</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="p13"><summary><span><span class="qn">Q13</span>How does the use of constraints in a prompt improve model responses?</span></summary><div class="answer"><p>Constraints, such as specifying word limits, tone, or structure, help focus the model’s response. By narrowing down the scope of the task, constraints prevent the model from generating overly broad or irrelevant answers and ensure the response meets the user’s specific requirements.</p></div></details>
+<details class="item" id="p14"><summary><span><span class="qn">Q14</span>What is chain-of-thought prompting, and how does it work?</span></summary><div class="answer"><p>Chain-of-thought prompting involves asking the model to reason through a problem step by step, rather than providing a single direct answer. This method is particularly useful for complex or multi-step tasks, as it allows the model to break down the problem and deliver more logical and accurate results.</p>
+<p><strong>Example:</strong></p>
+<pre><code>A train travels 60 km in 1.5 hours. What is its average speed?
+Think step by step before giving the final answer.
+</code></pre></div></details>
+<details class="item" id="p15"><summary><span><span class="qn">Q15</span>Why is iterative prompt engineering important?</span></summary><div class="answer"><p>Iterative prompt engineering involves refining and adjusting prompts over time based on the quality of responses. Since language models may not always provide perfect results on the first attempt, tweaking the prompt iteratively allows you to improve the relevance and accuracy of the outputs.</p></div></details>
+<details class="item" id="p16"><summary><span><span class="qn">Q16</span>How does prompting differ between GPT and BERT models?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>GPT</th>
+<th>BERT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model type</td>
+<td>Generative model</td>
+<td>Bidirectional encoder model</td>
+</tr>
+<tr>
+<td>Designed for</td>
+<td>Producing text based on the input prompt</td>
+<td>Tasks like classification, processing the entire input sequence at once</td>
+</tr>
+<tr>
+<td>Prompts</td>
+<td>Often open-ended generation tasks</td>
+<td>More structured and task-specific (e.g., question answering, text classification)</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="p17"><summary><span><span class="qn">Q17</span>How do multi-turn prompts work, and what is context persistence?</span></summary><div class="answer"><p>Multi-turn prompts involve a conversation-like interaction where the model remembers previous prompts and responses. This is useful in scenarios requiring context over multiple interactions, such as dialogue systems or sequential question answering.</p>
+<p><strong>Context persistence</strong> is the model’s ability to remember and reference information from earlier turns in a conversation. Maintaining context allows for more coherent and relevant responses across multiple interactions.</p></div></details>
+<details class="item" id="p18"><summary><span><span class="qn">Q18</span>What is the role of temperature in prompt engineering?</span></summary><div class="answer"><p>The temperature setting in models like GPT controls the randomness of the output:</p>
+<ul>
+<li><strong>Lower temperature:</strong> more deterministic and focused responses.</li>
+<li><strong>Higher temperature:</strong> more creativity, with more varied outputs.</li>
+</ul>
+<p>The temperature can be adjusted based on whether you need a creative or a precise response.</p></div></details>
+<details class="item" id="p19"><summary><span><span class="qn">Q19</span>How does bias manifest in prompt engineering, and how can prompts promote fairness?</span></summary><div class="answer"><p>Bias in prompt engineering is the possibility of skewed outputs based on how the prompt is framed. If a prompt leads the model toward a particular viewpoint or answer, it can introduce bias into the results. <strong>Implicit bias</strong> arises when a prompt unintentionally leads the model toward a biased or stereotypical response.</p>
+<p>To reduce bias and improve the model’s fairness:</p>
+<ul>
+<li>Design neutral, balanced prompts and avoid leading questions that push the model toward biased or unfair outputs.</li>
+<li>Use diverse and balanced prompts.</li>
+<li>Test prompts for unintended outcomes.</li>
+</ul></div></details>
+<details class="item" id="p20"><summary><span><span class="qn">Q20</span>What is the importance of prompt validation?</span></summary><div class="answer"><p>Prompt validation ensures that the designed prompt consistently produces accurate and desired outputs across different contexts. By testing the prompt in various scenarios, you can assess its reliability and make adjustments to enhance its performance.</p></div></details>
+<details class="item" id="p21"><summary><span><span class="qn">Q21</span>How can you address model hallucination and incorporate factual accuracy through prompt design?</span></summary><div class="answer"><p>Model hallucination occurs when the AI generates plausible but incorrect information. To minimize it and promote factual accuracy, prompts can:</p>
+<ul>
+<li>explicitly ask for verified data, verifiable information or sources,</li>
+<li>include constraints on speculative content, and</li>
+<li>guide the model to avoid ungrounded assertions, keeping its answers correct and grounded.</li>
+</ul></div></details>
+<details class="item" id="p22"><summary><span><span class="qn">Q22</span>How does prompt rephrasing improve model performance?</span></summary><div class="answer"><p>Rephrasing a prompt can lead to a clearer or more direct interpretation by the model, improving the quality of the response. Sometimes slight changes in wording or structure make the prompt more interpretable, especially for ambiguous or complex queries.</p></div></details>
+<details class="item" id="p23"><summary><span><span class="qn">Q23</span>What are best practices for designing open-ended prompts?</span></summary><div class="answer"><p>For open-ended prompts, it’s important to balance creativity and relevance. Providing enough context, examples, or constraints helps ensure the model produces responses that are both diverse and aligned with the desired outcome.</p></div></details>
+<details class="item" id="p24"><summary><span><span class="qn">Q24</span>How do prompts differ for creative versus analytical tasks?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Creative tasks</th>
+<th>Analytical tasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prompt style</td>
+<td>Allows flexibility and exploration</td>
+<td>Precise and structured</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>High</td>
+<td>Lower</td>
+</tr>
+<tr>
+<td>Goal</td>
+<td>Varied, imaginative output</td>
+<td>Accurate and focused output</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="p25"><summary><span><span class="qn">Q25</span>Why is prompt diversity important, and how does it benefit generative AI tasks?</span></summary><div class="answer"><p>Prompt diversity involves using varied phrasing, format, context or examples to approach complex tasks from different angles. It helps to:</p>
+<ul>
+<li>cover edge cases,</li>
+<li>reduce the risk of repetitive or narrow responses, and</li>
+<li>let the model explore a wider range of potential outputs, which is particularly beneficial for creative tasks like storytelling, where diverse prompts lead to richer, more varied responses.</li>
+</ul></div></details>
+<details class="item" id="p26"><summary><span><span class="qn">Q26</span>What are prompt embeddings, and how do they work?</span></summary><div class="answer"><p>Prompt embeddings refer to the vector representations of prompts used in certain models. They capture semantic meaning and help the model understand the underlying task, improving the accuracy and relevance of the responses.</p></div></details>
+<details class="item" id="p27"><summary><span><span class="qn">Q27</span>What is task-specific prompt engineering?</span></summary><div class="answer"><p>Task-specific prompt engineering involves tailoring the prompt design to the particular task at hand, whether it's summarization, question-answering, or creative writing. Customizing prompts in this way improves the accuracy and relevance of the generated content.</p></div></details>
+<details class="item" id="p28"><summary><span><span class="qn">Q28</span>What is the importance of prompt feedback loops?</span></summary><div class="answer"><p>Prompt feedback loops involve collecting and analyzing the model's responses and using those insights to iteratively refine the prompt. This helps fine-tune prompts to achieve more accurate and reliable outputs, and over time enhances the accuracy and relevance of the generated outputs.</p></div></details>
+<details class="item" id="p29"><summary><span><span class="qn">Q29</span>What is the significance of token limits in prompt engineering?</span></summary><div class="answer"><p>Token limits determine the maximum length of a prompt and the resulting output. Staying within token limits ensures the model can process the entire input without truncating important information, which is critical for long and detailed prompts.</p></div></details>
+<details class="item" id="p30"><summary><span><span class="qn">Q30</span>How does prompt specificity impact creativity?</span></summary><div class="answer"><p>Prompt specificity can restrict the creative freedom of the model. A highly specific prompt may limit the range of outputs, while a more open-ended prompt can encourage the model to explore a wider range of creative possibilities.</p></div></details>
+<details class="item" id="p31"><summary><span><span class="qn">Q31</span>How does the training data influence prompt engineering?</span></summary><div class="answer"><p>The quality and diversity of the model’s training data can impact how well it responds to different prompts. Understanding the scope of the training data helps in designing prompts that align with the model’s knowledge and capabilities.</p></div></details>
+<details class="item" id="p32"><summary><span><span class="qn">Q32</span>What is prompt chaining, and how does it help with complex tasks?</span></summary><div class="answer"><p>Prompt chaining involves breaking down complex tasks into smaller, sequential prompts. This approach helps the model tackle each step individually, leading to more accurate and manageable outputs for multi-step tasks.</p></div></details>
+<details class="item" id="p33"><summary><span><span class="qn">Q33</span>How can sentiment be controlled in a model’s response using prompts?</span></summary><div class="answer"><p>By explicitly mentioning the desired tone or sentiment in the prompt (e.g., "respond positively" or "use a formal tone"), the model can be guided to align its output with the specified emotional or stylistic parameters.</p></div></details>
+<details class="item" id="p34"><summary><span><span class="qn">Q34</span>How does prompt engineering differ for multilingual models?</span></summary><div class="answer"><p>In multilingual models, prompts need to consider language nuances, idioms, and cultural contexts. A well-engineered prompt in one language may not yield the same quality of response in another language, so adjustments may be necessary for accurate cross-lingual performance.</p></div></details>
+<details class="item" id="p35"><summary><span><span class="qn">Q35</span>Why is prompt personalization important?</span></summary><div class="answer"><p>Personalization in prompts allows for more tailored responses, especially in user-facing applications. By including user-specific information or preferences in the prompt, the model can provide more relevant and customized outputs.</p></div></details>
+<details class="item" id="p36"><summary><span><span class="qn">Q36</span>How can you prevent model repetition through prompt design?</span></summary><div class="answer"><p>To avoid repetitive responses, you can use prompt variations:</p>
+<ul>
+<li>rephrase the prompt,</li>
+<li>introduce new constraints, or</li>
+<li>adjust parameters like temperature,</li>
+</ul>
+<p>to encourage more diverse and unique outputs.</p></div></details>
+<details class="item" id="p37"><summary><span><span class="qn">Q37</span>How does prompt granularity affect model reasoning?</span></summary><div class="answer"><p>Granular prompts that break down tasks into smaller, clearly defined parts help improve the model’s reasoning abilities. Instead of asking a broad question, breaking it into smaller, logically connected steps can lead to more accurate and thoughtful responses.</p></div></details>
+<details class="item" id="p38"><summary><span><span class="qn">Q38</span>What are negative examples in prompt engineering?</span></summary><div class="answer"><p>Negative examples provide instances of incorrect or undesired responses to show the model what not to generate. Including negative examples in few-shot prompting helps reduce the likelihood of the model producing unwanted outputs.</p>
+<p><strong>Example:</strong></p>
+<pre><code>Write a product description. Do NOT use clichés like &quot;game-changer&quot; or &quot;revolutionary&quot;.
+</code></pre></div></details>
+<details class="item" id="p39"><summary><span><span class="qn">Q39</span>How can prompt ambiguity be addressed?</span></summary><div class="answer"><p>Ambiguity in prompts can be addressed by clarifying vague terms, adding specific instructions, and using examples. Clearly defined tasks and expectations reduce the risk of misinterpretation by the model.</p></div></details>
+<details class="item" id="p40"><summary><span><span class="qn">Q40</span>How can domain-specific language be incorporated into prompts?</span></summary><div class="answer"><p>For domain-specific tasks, incorporating relevant jargon, technical terms, or specialized knowledge helps the model align its output with the expected level of expertise, improving the accuracy of responses in fields like medicine or law.</p></div></details>
+<details class="item" id="p41"><summary><span><span class="qn">Q41</span>What is the role of prompt evaluation metrics, and how do you measure the success of prompt engineering?</span></summary><div class="answer"><p>Prompt evaluation metrics help assess how effective a prompt is at producing accurate and relevant results. Depending on the task, they may include:</p>
+<ul>
+<li>relevance</li>
+<li>coherence</li>
+<li>accuracy</li>
+<li>creativity</li>
+</ul>
+<p>Success in prompt engineering is measured by how consistently the model produces accurate, relevant and coherent outputs in response to the prompt. It can be evaluated through testing, user feedback and comparison with desired outcomes.</p></div></details>
+<details class="item" id="p42"><summary><span><span class="qn">Q42</span>How can prompts be used to simulate dialogue in conversational AI?</span></summary><div class="answer"><p>In conversational AI, prompts can be designed to simulate a back-and-forth dialogue by asking follow-up questions, providing context for ongoing interactions, and adjusting tone to mimic natural conversation dynamics.</p></div></details>
+<details class="item" id="p43"><summary><span><span class="qn">Q43</span>How does fine-tuning differ from prompt engineering?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Fine-tuning</th>
+<th>Prompt engineering</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What it does</td>
+<td>Trains the model on a specific dataset to improve its performance on certain tasks</td>
+<td>Designs the input prompt to guide the model’s pre-trained capabilities toward the desired outputs</td>
+</tr>
+<tr>
+<td>Further training</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="p44"><summary><span><span class="qn">Q44</span>How can prompts guide model self-reflection?</span></summary><div class="answer"><p>Prompts can be designed to ask the model to reflect on its own response or reasoning, encouraging more thoughtful and logical outputs. For example, prompting the model to explain its answer step by step can help ensure accuracy and clarity.</p></div></details>
+<details class="item" id="p45"><summary><span><span class="qn">Q45</span>How do reverse prompts work in AI?</span></summary><div class="answer"><p>Reverse prompts involve generating a task or question based on an existing output. For instance, the model could be asked to create a prompt that would lead to a particular response, testing its understanding of input-output relationships.</p></div></details>
+<details class="item" id="p46"><summary><span><span class="qn">Q46</span>How does prompt engineering interact with reinforcement learning models?</span></summary><div class="answer"><p>In reinforcement learning models, prompts can be used to define the task or goal. The model then uses feedback from its environment or interactions to adjust its behavior, learning to improve based on the effectiveness of the prompt.</p></div></details>
+<details class="item" id="p47"><summary><span><span class="qn">Q47</span>How can prompt design influence ethical AI behavior?</span></summary><div class="answer"><p>Prompt design plays a crucial role in ensuring ethical AI behavior by framing questions and tasks in a way that promotes fairness, inclusivity, and responsible decision-making, while avoiding harmful biases or unethical suggestions.</p></div></details>
+<details class="item" id="p48"><summary><span><span class="qn">Q48</span>How does model scaling impact prompt design?</span></summary><div class="answer"><p>As models scale in size and complexity, prompt design may need to become more detailed to leverage the model’s full capabilities. Larger models tend to perform better with nuanced, context-rich prompts, allowing for more sophisticated outputs.</p></div></details>
+<details class="item" id="p49"><summary><span><span class="qn">Q49</span>How does prompt design vary across different industries?</span></summary><div class="answer"><p>In different industries, prompt design must account for domain-specific language, goals, and constraints. For instance, a legal prompt may require precision in terminology, while a creative writing prompt may prioritize flexibility and imaginative freedom.</p></div></details>
+<details class="item" id="p50"><summary><span><span class="qn">Q50</span>How can large-scale prompt engineering be automated?</span></summary><div class="answer"><p>Large-scale prompt engineering can be automated through:</p>
+<ul>
+<li><strong>Prompt templates</strong></li>
+<li><strong>Automated testing frameworks</strong></li>
+<li><strong>Iterative machine learning techniques</strong> that optimize prompts based on the responses generated over time</li>
+</ul></div></details>
+<details class="item" id="p51"><summary><span><span class="qn">Q51</span>What is the role of interpretability in prompt engineering?</span></summary><div class="answer"><p>Interpretability refers to how easily the model’s output can be understood and traced back to the prompt. Clear, well-structured prompts improve interpretability, making it easier to explain how the model arrived at a particular conclusion.</p></div></details>
+<details class="item" id="p52"><summary><span><span class="qn">Q52</span>How can prompt engineering be used in machine translation?</span></summary><div class="answer"><p>In machine translation, prompts can be designed to specify the target language, tone, or formality level, improving the quality and accuracy of translations by guiding the model’s linguistic choices based on the desired output.</p></div></details>
+</section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

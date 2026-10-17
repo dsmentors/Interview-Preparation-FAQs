@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tableau Business Intelligence</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg></span><h1>Tableau Business Intelligence</h1></div>
+<p class="sub">28 questions</p>
+<div class="roles"><a class="role" href="index.html#role=ba">Business Analyst</a><a class="role alt" href="index.html#role=ds">Data Science</a></div>
+<div class="intro"><blockquote><p>A client dashboard is a great way to share updates with clients. Unlike reports, a dashboard is typically a link that clients can click on at any time to see the most recent updates about a project.</p></blockquote><img src="https://thinklytics.com/wp-content/uploads/2017/07/tableau-logo-tableau-software.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" style="max-height:80px" onerror="this.style.display='none'"></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<section class="sec-block" id="sec-0"><div class="secintro"><img src="https://help.tableau.com/current/pro/desktop/en-us/Img/animations.gif" alt="" loading="lazy" referrerpolicy="no-referrer" style="max-height:260px" onerror="this.style.display='none'"></div>
+<details class="item" id="t1"><summary><span>What are Measures and Dimensions?</span></summary><div class="answer"><img src="https://www.thedataschool.co.uk/content/images/2022/12/image-387.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><ul>
+<li><strong>Measures:</strong> quantitative data, typically numerical, that can be aggregated. They are used for calculations such as sums and averages. Examples: sales revenue, profit and quantity sold.</li>
+<li><strong>Dimensions:</strong> qualitative data, typically categorical, used to slice and dice the measures. They give the data context. Examples: product names, regions and dates.</li>
+</ul></div></details>
+<details class="item" id="t2"><summary><span>What are the different data types in Tableau?</span></summary><div class="answer"><img src="https://images.shiksha.com/mediadata/ugcDocuments/images/wordpressImages/2022_03_MicrosoftTeams-image-226.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p>Tableau supports the following data types:</p>
+<table>
+<thead>
+<tr>
+<th>Data type</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>String</strong></td>
+<td>Text data</td>
+<td>"Product Name"</td>
+</tr>
+<tr>
+<td><strong>Number</strong> (Integer and Float)</td>
+<td>Numeric data</td>
+<td>100 (integer), 99.99 (float)</td>
+</tr>
+<tr>
+<td><strong>Boolean</strong></td>
+<td>True/False values</td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><strong>Date/Time</strong></td>
+<td>Date and time data</td>
+<td>"2024-08-21" or "2024-08-21 14:30:00"</td>
+</tr>
+<tr>
+<td><strong>Geographical</strong></td>
+<td>Data representing geographical locations</td>
+<td>Country, State, City</td>
+</tr>
+<tr>
+<td><strong>Cluster/Group</strong></td>
+<td>Data that can be grouped into clusters or categories</td>
+<td></td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="t3"><summary><span>How many maximum tables can you join in Tableau?</span></summary><div class="answer"><p>In Tableau, you can join up to <strong>32 tables</strong> in a single data source.</p></div></details>
+<details class="item" id="t4"><summary><span>What is Data Blending?</span></summary><div class="answer"><img src="https://media.geeksforgeeks.org/wp-content/uploads/20210210190026/Screenshot381.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p>Data blending is a technique used to combine data from <strong>multiple data sources</strong>. Unlike joins, which combine tables from a single data source, blending lets you work with data from different sources as if they were from the same source.</p>
+<p>The <strong>primary</strong> data source drives the visualization, and the <strong>secondary</strong> data source supplements it with related data.</p></div></details>
+<details class="item" id="t5"><summary><span>What is the default Data Blending Join?</span></summary><div class="answer"><p>The default data blending join in Tableau is a <strong>left join</strong>. The primary data source is the left table and the secondary data source is the right table. The blend includes all rows from the primary source and only the matching rows from the secondary source.</p></div></details>
+<details class="item" id="t6"><summary><span>What is the difference between Discrete and Continuous in Tableau?</span></summary><div class="answer"><img src="https://miro.medium.com/v2/resize:fit:1200/1*vcK5vPFRirmV5g0oIVmZKg.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><table>
+<thead>
+<tr>
+<th></th>
+<th>Discrete</th>
+<th>Continuous</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Values</td>
+<td>A finite number of distinct values</td>
+<td>Any value within a range</td>
+</tr>
+<tr>
+<td>Typical data</td>
+<td>Often categorical</td>
+<td>Typically numerical</td>
+</tr>
+<tr>
+<td>Shown in the view as</td>
+<td>Headers</td>
+<td>An axis</td>
+</tr>
+<tr>
+<td>Pill colour</td>
+<td>Blue</td>
+<td>Green</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>Product categories like "Electronics" and "Clothing"</td>
+<td>Sales revenue, temperature over time</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="t7"><summary><span>What is the difference between Join and Data Blending?</span></summary><div class="answer"><img src="https://static.wixstatic.com/media/babf44_dbef0bdca0af4f4dac7a14861ecba4dd~mv2.jpg/v1/fill/w_980,h_572,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/babf44_dbef0bdca0af4f4dac7a14861ecba4dd~mv2.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><table>
+<thead>
+<tr>
+<th></th>
+<th>Join</th>
+<th>Data blending</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Combines</td>
+<td>Multiple tables within the <strong>same</strong> data source, based on a common field</td>
+<td>Data from <strong>different</strong> data sources, not just different tables in one source</td>
+</tr>
+<tr>
+<td>Where it happens</td>
+<td>At the database level</td>
+<td>At the Tableau level, after the data has been retrieved from the sources</td>
+</tr>
+<tr>
+<td>Result</td>
+<td>A single, unified dataset</td>
+<td>The primary source drives the view and the secondary source supplements it</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="t8"><summary><span>What is the difference between Live and Extract?</span></summary><div class="answer"><img src="https://www.zuar.com/blog/content/images/2023/11/tableau-live-connection-vs-extract.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><table>
+<thead>
+<tr>
+<th></th>
+<th>Live connection</th>
+<th>Extract</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>How it works</td>
+<td>Tableau connects directly to the data source</td>
+<td>Tableau creates a snapshot of the data at a specific point in time</td>
+</tr>
+<tr>
+<td>Data freshness</td>
+<td>Changes in the source are reflected in real time</td>
+<td>Refreshed periodically</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>Needs a constant connection to the data source</td>
+<td>Stored locally, can work offline</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Depends on the data source</td>
+<td>Faster</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="t9"><summary><span>Will making changes in the Story reflect in the Worksheet and Dashboard?</span></summary><div class="answer"><p>No. Changes made in the Story will <strong>not</strong> reflect in the worksheets or dashboards. A Story is a sequence of sheets that tells a narrative, and it does not affect the underlying worksheets or dashboards.</p>
+<p>However, changes in worksheets and dashboards will reflect in the Story if those elements are part of the Story.</p></div></details>
+<details class="item" id="t10"><summary><span>How do you parameterize components in your reports?</span></summary><div class="answer"><p>Parameters let you dynamically change values in calculations, filters or reference lines. You can create a parameter to let users interactively control a value, such as selecting a date range, adjusting a threshold, or switching between different measures.</p>
+<p><strong>Example:</strong> create a parameter that lets users select a region, which then filters the data to show results only for that region.</p></div></details>
+<details class="item" id="t11"><summary><span>Explain .tde, .twb, and other extensions.</span></summary><div class="answer"><img src="https://www.thedataschool.co.uk/content/images/wordpress/2019/08/Table-2.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Name</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.tde</code></td>
+<td>Tableau Data Extract</td>
+<td>A compressed snapshot of data, optimized for performance</td>
+</tr>
+<tr>
+<td><code>.hyper</code></td>
+<td>Hyper extract</td>
+<td>The newer format that replaces <code>.tde</code>, with better performance and scalability</td>
+</tr>
+<tr>
+<td><code>.twb</code></td>
+<td>Tableau Workbook</td>
+<td>An XML file with all the information about a workbook (connections, dashboards and worksheets). It does <strong>not</strong> contain the data itself</td>
+</tr>
+<tr>
+<td><code>.twbx</code></td>
+<td>Tableau Packaged Workbook</td>
+<td>A package that includes the <code>.twb</code> file along with data extracts, images and custom geocoding used in the workbook</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="t12"><summary><span>Explain different types of JOINS supported by Tableau.</span></summary><div class="answer"><img src="https://help.tableau.com/current/pro/desktop/en-us/Img/data_model_single_tablewjoin4.gif" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p>Tableau supports the following types of joins:</p>
+<ul>
+<li><strong>Inner join:</strong> returns only the rows with matching keys in both tables.</li>
+<li><strong>Left join:</strong> returns all rows from the left table and the matching rows from the right table. Non-matching rows from the right table are filled with nulls.</li>
+<li><strong>Right join:</strong> returns all rows from the right table and the matching rows from the left table. Non-matching rows from the left table are filled with nulls.</li>
+<li><strong>Full outer join:</strong> returns all rows when there is a match in either table. Non-matching rows are filled with nulls.</li>
+</ul></div></details>
+<details class="item" id="t13"><summary><span>What is the difference between Histogram and Bar Chart?</span></summary><div class="answer"><img src="https://media.geeksforgeeks.org/wp-content/uploads/20201012162204/t277.gif" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><table>
+<thead>
+<tr>
+<th></th>
+<th>Histogram</th>
+<th>Bar chart</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shows</td>
+<td>The distribution of a single continuous measure, split into bins or intervals</td>
+<td>A comparison of categories or groups, with bar length showing the magnitude of a measure</td>
+</tr>
+<tr>
+<td>Bars represent</td>
+<td>The frequency of data points within each interval</td>
+<td>One category each</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>Distribution of customer ages</td>
+<td>Total sales by product category</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="t14"><summary><span>What is a Calculation Field?</span></summary><div class="answer"><img src="https://help.tableau.com/current/pro/desktop/en-us/Img/calcs_tips1.gif" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p>A <strong>calculated field</strong> is a new field created by the user to calculate data dynamically. It lets you create new data from existing data in your dataset by applying formulas or calculations.</p>
+<p>For example, a calculated field for profit, subtracting the cost from the revenue:</p>
+<pre><code>Profit = [Revenue] - [Cost]
+</code></pre></div></details>
+<details class="item" id="t15"><summary><span>What’s a Heat Map?</span></summary><div class="answer"><img src="https://www.tableau.com/sites/default/files/2021-09/Heatmap%20-%20Bad%20-%20900x650.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p>A <strong>heat map</strong> is a visualization that displays data in a matrix format, where individual values are represented by different colors. It shows the magnitude of a phenomenon as color in two dimensions, with the colors determined by the values of the data points. Heat maps are particularly useful for spotting patterns, trends and correlations in data.</p></div></details>
+<details class="item" id="t16"><summary><span>What’s a Tree Map?</span></summary><div class="answer"><img src="https://help.tableau.com/current/pro/desktop/en-us/Img/tree_3_10.0.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p>A <strong>tree map</strong> displays hierarchical data using nested rectangles. Each branch of the hierarchy gets a rectangle, which is then tiled with smaller rectangles representing its sub-branches. The area of each rectangle is proportional to the data value it represents. Tree maps are useful for displaying large amounts of hierarchical data in a compact space.</p></div></details>
+<details class="item" id="t17"><summary><span>What’s a Bullet Graph?</span></summary><div class="answer"><img src="https://help.tableau.com/current/pro/desktop/en-us/Img/bullet_graph1.gif" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p>A <strong>bullet graph</strong> is a variation of a bar chart, developed by Stephen Few, used to display a single measure against a target or to compare performance against a benchmark. It includes:</p>
+<ul>
+<li>a main bar that shows the primary measure,</li>
+<li>a vertical line that marks the target, and</li>
+<li>background bars for qualitative ranges (for example poor, average, good).</li>
+</ul></div></details>
+<details class="item" id="t18"><summary><span>What’s a Gantt Chart?</span></summary><div class="answer"><img src="https://playfairdata.com/wp-content/uploads/2022/05/3-Ways-to-Make-Gorgeous-Gantt-Charts-in-Tableau.gif" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p>A <strong>Gantt chart</strong> is a type of bar chart that represents a project schedule. It shows the start and finish dates of the elements of a project. In Tableau, Gantt charts give a visual representation of tasks or activities over time, where the length of each bar represents the duration of the task.</p></div></details>
+<details class="item" id="t19"><summary><span>What’s a Dual Axis?</span></summary><div class="answer"><img src="https://help.tableau.com/current/pro/desktop/en-us/Img/addfield7.gif" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p>A <strong>dual axis</strong> chart plots two measures on the same chart with two different axes (left and right). It is particularly useful when you want to compare two related metrics that have different scales, such as sales revenue and profit margin.</p></div></details>
+<details class="item" id="t20"><summary><span>Name All Types of Filters Available in Tableau</span></summary><div class="answer"><img src="https://help.tableau.com/current/pro/desktop/en-us/Img/calculations_lod_filters.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p>Tableau offers several types of filters:</p>
+<ul>
+<li><strong>Extract filters:</strong> applied when you extract data from a data source.</li>
+<li><strong>Data source filters:</strong> applied at the data source level, filtering data across all worksheets that use that data source.</li>
+<li><strong>Context filters:</strong> an independent filter that creates a context for all other filters.</li>
+<li><strong>Dimension filters:</strong> applied to categorical data.</li>
+<li><strong>Measure filters:</strong> applied to quantitative data.</li>
+<li><strong>Table calculation filters:</strong> applied to the results of table calculations.</li>
+<li><strong>Relative date filters:</strong> filter data based on date ranges relative to the current date.</li>
+<li><strong>Top N filters:</strong> show only the top N values.</li>
+</ul></div></details>
+<details class="item" id="t21"><summary><span>What Are the Components of a Dashboard in Tableau?</span></summary><div class="answer"><p>A Tableau dashboard consists of the following components:</p>
+<ul>
+<li><strong>Views:</strong> the visualizations themselves.</li>
+<li><strong>Legends:</strong> explain the meaning of the colors, sizes and shapes used.</li>
+<li><strong>Filters:</strong> let users interact with the dashboard and change the views based on certain criteria.</li>
+<li><strong>Parameters:</strong> user-defined variables that can drive interactive elements in the dashboard.</li>
+<li><strong>Text, images and web content:</strong> static elements that add context or branding.</li>
+<li><strong>Actions:</strong> define interactivity between the sheets within the dashboard.</li>
+</ul></div></details>
+<details class="item" id="t22"><summary><span>What’s a Blended Axis?</span></summary><div class="answer"><img src="https://help.tableau.com/current/pro/desktop/en-us/Img/hide_reshow_header.gif" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p>A <strong>blended axis</strong> is used when you want to blend two measures into a single axis in the same chart. The measures share the same axis and are plotted as overlapping or side-by-side bars.</p></div></details>
+<details class="item" id="t23"><summary><span>What is the Difference Between Grouping and Sets?</span></summary><div class="answer"><img src="https://help.tableau.com/current/pro/desktop/en-us/Img/ex_groups14.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><table>
+<thead>
+<tr>
+<th></th>
+<th>Groups</th>
+<th>Sets</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What it is</td>
+<td>Combines multiple members into a single group, like a custom category</td>
+<td>A custom field that defines a subset of data based on certain conditions</td>
+</tr>
+<tr>
+<td>Behaviour</td>
+<td>Static</td>
+<td>Can be dynamic (changes when the data changes) or fixed</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>Group several product categories into a "High-End Products" group</td>
+<td>Used in more advanced calculations and logic</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="t24"><summary><span>Do We Have Any Way to Handle Null Values in Tableau?</span></summary><div class="answer"><p>Yes, Tableau provides several ways to handle null values:</p>
+<ul>
+<li><strong>Filter out</strong> null values using the Filters shelf.</li>
+<li><strong>Replace</strong> null values with a specific value, using the <code>ZN</code> function for measures or the <code>IFNULL</code> function for dimensions.</li>
+<li><strong>Show</strong> null values as a specific label or color in your visualization.</li>
+</ul></div></details>
+<details class="item" id="t25"><summary><span>What is a Pareto Chart?</span></summary><div class="answer"><img src="https://help.tableau.com/current/pro/desktop/en-us/Img/pareto4.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><p>A <strong>Pareto chart</strong> contains both bars and a line graph. The bars show individual values in descending order, and the line shows the cumulative total. It is based on the Pareto principle, which states that 80% of effects come from 20% of the causes. Pareto charts help identify the most significant factors in a dataset.</p></div></details>
+<details class="item" id="t26"><summary><span>What is Disaggregation and Aggregation of Data?</span></summary><div class="answer"><ul>
+<li><strong>Aggregation:</strong> combining multiple values into a single value, such as a sum, average or count.</li>
+<li><strong>Disaggregation:</strong> displaying all data points individually without aggregating them. This is useful when you want to see the raw data points rather than a summarized view.</li>
+</ul></div></details>
+<details class="item" id="t27"><summary><span>What’s the Difference Between a Worksheet, Dashboard, Story, and a Workbook in Tableau?</span></summary><div class="answer"><img src="https://help.tableau.com/current/guides/get-started-tutorial/en-us/Img/Story5_updated.gif" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><table>
+<thead>
+<tr>
+<th></th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Worksheet</strong></td>
+<td>A single view or visualization</td>
+</tr>
+<tr>
+<td><strong>Dashboard</strong></td>
+<td>A collection of multiple worksheets and supporting information (like filters and legends) displayed together</td>
+</tr>
+<tr>
+<td><strong>Story</strong></td>
+<td>A sequence of dashboards or worksheets that work together to convey information</td>
+</tr>
+<tr>
+<td><strong>Workbook</strong></td>
+<td>A file that contains worksheets, dashboards and stories</td>
+</tr>
+</tbody>
+</table></div></details>
+<details class="item" id="t28"><summary><span>How Do You Create Cascading Filters Without Using a Context Filter?</span></summary><div class="answer"><p>Cascading filters (also called dependent filters) are filters where the choices in one filter depend on what is selected in another.</p>
+<p>The simplest way without a context filter is the <strong>Only Relevant Values</strong> option:</p>
+<ol>
+<li>Show the filters as quick filters (right-click the filter and choose <strong>Show Filter</strong>).</li>
+<li>Open the dropdown of the dependent filter and choose <strong>Only Relevant Values</strong>.</li>
+<li>Now its list only contains the values that remain after the other filters are applied. For example, after picking a Region, the State filter lists only the states of that region.</li>
+</ol>
+<p>Other ways to get the same result:</p>
+<ul>
+<li><strong>Filter actions</strong> on a dashboard, where selecting a mark in one sheet filters the others.</li>
+<li><strong>Calculated fields or sets</strong> that depend on the selections of other filters or parameters.</li>
+</ul></div></details>
+</section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python Interview Prep</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span><h1>Python Interview Prep</h1></div>
+<p class="sub">33 questions</p>
+<div class="roles"><a class="role" href="index.html#role=ds">Data Science</a><a class="role" href="index.html#role=aiml">AI/ML</a><a class="role alt" href="index.html#role=ba">Business Analyst</a></div>
+<div class="intro"><blockquote><p>Frequently asked Python interview questions covering core concepts, functions, exception handling, OOP, iterators and generators, file handling and concurrency. Use it to prepare clear, well-structured answers that show your skills and experience.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<nav class="chips"><a href="#sec-0">FAQs <small>33</small></a></nav>
+<section class="sec-block" id="sec-0"><h2 class="sec">FAQs</h2>
+<details class="item" id="a1"><summary><span>What is the difference between lists and tuples?</span></summary><div class="answer"><p><strong>Lists</strong> are mutable, ordered collections of items, written in square brackets <code>[]</code>.</p><p><strong>Tuples</strong> are immutable, ordered collections, written in parentheses <code>()</code>.</p></div></details>
+<details class="item" id="a2"><summary><span>What is the difference between mutable and immutable data types?</span></summary><div class="answer"><p><strong>Mutable</strong> data types can be changed after creation (e.g. lists, dictionaries, sets).</p><p><strong>Immutable</strong> data types cannot be changed after creation (e.g. strings, tuples, numbers).</p></div></details>
+<details class="item" id="a3"><summary><span>What is a decorator?</span></summary><div class="answer"><p>A decorator is a function that modifies the behavior of another function. It wraps the original function to extend its behavior without permanently modifying it.</p><pre><code class="language-python">def log_call(func):
+    def wrapper(*args, **kwargs):
+        print(f&quot;Calling {func.__name__}&quot;)
+        return func(*args, **kwargs)
+    return wrapper
+
+@log_call
+def greet(name):
+    return f&quot;Hello, {name}!&quot;
+
+print(greet(&quot;Alice&quot;))
+# Calling greet
+# Hello, Alice!
+</code></pre></div></details>
+<details class="item" id="a4"><summary><span>List a few built-in data types in Python.</span></summary><div class="answer"><p>A few of Python's built-in data types:</p><table><thead><tr><th>Category</th><th>Types</th></tr></thead><tbody><tr><td>Numeric</td><td><code>int</code>, <code>float</code>, <code>complex</code></td></tr><tr><td>Sequence</td><td><code>list</code>, <code>tuple</code>, <code>range</code></td></tr><tr><td>Text</td><td><code>str</code></td></tr><tr><td>Set</td><td><code>set</code>, <code>frozenset</code></td></tr><tr><td>Mapping</td><td><code>dict</code></td></tr><tr><td>Boolean</td><td><code>bool</code></td></tr><tr><td>None</td><td><code>NoneType</code></td></tr></tbody></table></div></details>
+<details class="item" id="a5"><summary><span>What are operators in Python?</span></summary><div class="answer"><p>Operators are special symbols used to perform operations on values and variables. Common types include arithmetic, comparison, logical, assignment and membership operators.</p></div></details>
+<details class="item" id="a6"><summary><span>What is an exception in Python? How do you handle exceptions?</span></summary><div class="answer"><p>An exception is an error that occurs during program execution. The <code>try</code>, <code>except</code> and <code>finally</code> blocks are used to handle exceptions.</p><ul><li><strong>try:</strong> contains the code that might raise an exception.</li><li><strong>except:</strong> runs only if an exception occurs in the <code>try</code> block.</li><li><strong>else</strong> (optional)<strong>:</strong> runs only if no exception occurs.</li><li><strong>finally:</strong> always runs, whether or not an exception occurred.</li></ul><pre><code class="language-python">try:
+    result = 10 / 0
+except ZeroDivisionError:
+    print(&quot;Cannot divide by zero&quot;)
+else:
+    print(result)
+finally:
+    print(&quot;Done&quot;)
+# Cannot divide by zero
+# Done
+</code></pre></div></details>
+<details class="item" id="a7"><summary><span>What is raise in Python?</span></summary><div class="answer"><p>The <code>raise</code> statement is used to manually trigger an exception. It is useful when you want to signal that an error or exceptional condition has occurred in your program.</p><p>By raising an exception, you transfer control to exception handling code, which can manage or respond to the error appropriately.</p><p><strong>Syntax:</strong></p><pre><code class="language-python">raise ExceptionType(&quot;message&quot;)
+</code></pre><p><strong>Example:</strong></p><pre><code class="language-python">def divide(a, b):
+    if b == 0:
+        raise ZeroDivisionError(&quot;Division by zero is not allowed.&quot;)
+    return a / b
+
+try:
+    result = divide(10, 0)
+except ZeroDivisionError as e:
+    print(e)  # Output: Division by zero is not allowed.
+</code></pre></div></details>
+<details class="item" id="a8"><summary><span>What is a custom exception?</span></summary><div class="answer"><p>A custom exception is an exception you create yourself by defining a new class that inherits from Python's built-in <code>Exception</code> class (or one of its subclasses). Custom exceptions let you define specific error conditions in your code and raise them when needed.</p><p><strong>Example:</strong></p><pre><code class="language-python"># Define a custom exception
+class CustomError(Exception):
+    pass
+
+# Function that raises the custom exception
+def check_value(value):
+    if value &lt; 0:
+        raise CustomError(&quot;Value cannot be negative.&quot;)
+    return value
+
+try:
+    check_value(-1)
+except CustomError as e:
+    print(&quot;Caught a custom exception:&quot;, e)
+# Output: Caught a custom exception: Value cannot be negative.
+</code></pre></div></details>
+<details class="item" id="a9"><summary><span>What are arguments? What is the difference between positional and keyword arguments?</span></summary><div class="answer"><p>Arguments are values passed to a function when it is called. They provide input data for the function to process. There are two main types:</p><p><strong>I. Positional arguments</strong></p><ul><li><strong>Order matters:</strong> the position of the argument decides which parameter it is assigned to.</li><li><strong>No keyword:</strong> you don't specify the parameter name when passing the argument.</li></ul><p><strong>II. Keyword arguments</strong></p><ul><li><strong>Order doesn't matter:</strong> you specify the parameter name and its value explicitly.</li><li><strong>Keyword:</strong> you use the parameter name followed by an equals sign (<code>=</code>) when passing the argument.</li></ul><p><strong>Key difference</strong></p><table><thead><tr><th>Feature</th><th>Positional arguments</th><th>Keyword arguments</th></tr></thead><tbody><tr><td><strong>Order</strong></td><td>Important</td><td>Not important</td></tr><tr><td><strong>Syntax</strong></td><td><code>func(val1, val2)</code></td><td><code>func(para2=val2, para1=val1)</code></td></tr><tr><td><strong>Flexibility</strong></td><td>Less flexible</td><td>More flexible</td></tr></tbody></table><pre><code class="language-python">def introduce(name, age):
+    print(f&quot;{name} is {age} years old&quot;)
+
+introduce(&quot;Alice&quot;, 30)           # positional
+introduce(age=30, name=&quot;Alice&quot;)  # keyword
+</code></pre></div></details>
+<details class="item" id="a10"><summary><span>What is list comprehension? Give an example.</span></summary><div class="answer"><p>List comprehension is a concise syntax for creating a list from an existing iterable.</p><pre><code class="language-python">list1 = [2, 7, 9, 10]
+new_list = [i ** 2 for i in list1]
+print(new_list)  # [4, 49, 81, 100]
+</code></pre></div></details>
+<details class="item" id="a11"><summary><span>What is a lambda function?</span></summary><div class="answer"><p>A lambda function is a small, anonymous function, meaning a function without a name. It is defined using the <code>lambda</code> keyword.</p><p><strong>Syntax:</strong></p><pre><code class="language-python">lambda arguments: expression
+</code></pre><ul><li><code>lambda</code>: keyword used to define a lambda function.</li><li><code>arguments</code>: optional arguments to the function.</li><li><code>expression</code>: the expression that is evaluated and returned.</li></ul><p><strong>Example:</strong></p><pre><code class="language-python">square = lambda x: x ** 2
+result = square(5)
+print(result)  # 25
+</code></pre></div></details>
+<details class="item" id="a12"><summary><span>What is the purpose of break, continue and pass in Python?</span></summary><div class="answer"><p><strong>break</strong></p><ul><li><strong>Terminates the loop:</strong> when encountered, the loop is exited immediately and the program continues with the next statement after the loop.</li><li>Often used when a specific condition is met and you want to stop the loop early.</li></ul><p><strong>continue</strong></p><ul><li><strong>Skips the current iteration:</strong> the rest of the current iteration is skipped and the loop moves on to the next one.</li><li>Useful for skipping certain elements or conditions inside the loop.</li></ul><p><strong>pass</strong></p><ul><li><strong>Does nothing:</strong> it is a null operation, used as a placeholder when a statement is syntactically required but no action is needed.</li><li>Common in incomplete code blocks or as a temporary placeholder.</li></ul></div></details>
+<details class="item" id="a13"><summary><span>What is meant by front end and back end in web development?</span></summary><div class="answer"><p><strong>Front end</strong></p><p>The front end is the part of a web application that interacts directly with the user. It includes everything users see and interact with in their web browser. Front-end development focuses on user experience (UX) and user interface (UI) design.</p><p><strong>Back end</strong></p><p>The back end is the part of a web application that runs on the server and is responsible for the application's logic, database interactions and server configuration. Back-end development focuses on data management, application logic and server-side operations.</p></div></details>
+<details class="item" id="a14"><summary><span>What is an API?</span></summary><div class="answer"><p>An API (Application Programming Interface) is a set of rules and protocols that allows different software applications to communicate with each other. APIs define the methods and data structures developers can use to interact with external software components, operating systems, libraries or other services.</p></div></details>
+<details class="item" id="a15"><summary><span>What is the Global Interpreter Lock (GIL) in Python?</span></summary><div class="answer"><p>The Global Interpreter Lock (GIL) is a mutex (mutual exclusion lock) that protects access to Python objects, preventing multiple threads from executing Python bytecode at the same time in a multi-threaded program. The lock is needed because CPython's memory management is not thread-safe.</p><p>The GIL ensures that only one thread executes in the Python interpreter at any one time. This simplifies memory management and garbage collection, but it also limits the concurrency of CPU-bound Python programs.</p></div></details>
+<details class="item" id="a16"><summary><span>What is a recursive function in Python? Give an example.</span></summary><div class="answer"><p>A recursive function is a function that calls itself. It needs a base case to stop the recursion. Here is a recursive function that calculates the factorial of a number:</p><pre><code class="language-python">def factorial(n):
+    if n == 0:        # base case
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+print(factorial(5))  # Output: 120
+</code></pre></div></details>
+<details class="item" id="a17"><summary><span>What is file handling?</span></summary><div class="answer"><p>File handling in Python means performing operations such as creating, opening, reading, writing and closing files. Python provides built-in functions and methods to work with files easily.</p><p><code>open()</code> is the function used to open a file, and it returns a file object. It takes two main arguments:</p><ul><li>File name</li><li>Mode (see the question on file modes below)</li></ul><pre><code class="language-python">open(file_name, mode)
+</code></pre></div></details>
+<details class="item" id="a18"><summary><span>What is the difference between methods and functions?</span></summary><div class="answer"><p><strong>Functions</strong></p><p>A function is a block of reusable code that performs a specific task, defined using the <code>def</code> keyword. Functions can be defined at global scope, inside modules, or inside other functions (nested functions).</p><ul><li>They are not inherently associated with any object or class.</li><li>They are called by name followed by parentheses, optionally passing arguments.</li></ul><p><strong>Example:</strong></p><pre><code class="language-python">def greet(name):
+    return f&quot;Hello, {name}!&quot;
+
+print(greet(&quot;Alice&quot;))  # Output: Hello, Alice!
+</code></pre><p><strong>Methods</strong></p><p>A method is a function that is associated with an object and defined inside a class. Methods operate on the data contained in the objects of that class. They are called on an object using dot notation, and the object instance is passed implicitly as the first argument, conventionally named <code>self</code>.</p><p><strong>Example:</strong></p><pre><code class="language-python">class Greeter:
+    def __init__(self, name):
+        self.name = name
+
+    def greet(self):
+        return f&quot;Hello, {self.name}!&quot;
+
+greeter = Greeter(&quot;Alice&quot;)
+print(greeter.greet())  # Output: Hello, Alice!
+</code></pre></div></details>
+<details class="item" id="a19"><summary><span>What is slicing in Python?</span></summary><div class="answer"><p>Slicing is a technique used to extract a portion of a sequence such as a list, tuple or string. It uses the colon <code>:</code> operator inside square brackets: <code>sequence[start:stop:step]</code>.</p><ul><li><strong>start:</strong> the starting index of the slice (inclusive). Defaults to <code>0</code>.</li><li><strong>stop:</strong> the ending index of the slice (exclusive), so the slice includes elements up to, but not including, this index. Defaults to the length of the sequence.</li><li><strong>step:</strong> the step size, i.e. how many elements to skip. Defaults to <code>1</code>.</li></ul><p><strong>Example:</strong></p><pre><code class="language-python">my_list = [0, 1, 2, 3, 4, 5]
+print(my_list[:3])   # Output: [0, 1, 2]
+print(my_list[3:])   # Output: [3, 4, 5]
+print(my_list[::2])  # Output: [0, 2, 4]
+</code></pre></div></details>
+<details class="item" id="a20"><summary><span>Explain the *args and **kwargs syntax in Python.</span></summary><div class="answer"><p><code>*args</code> passes a variable number of non-keyword arguments to a function. They are collected into a <strong>tuple</strong> inside the function.</p><p><code>**kwargs</code> passes a variable number of keyword arguments to a function. They are collected into a <strong>dictionary</strong> inside the function.</p><p><strong>Example: *args</strong></p><pre><code class="language-python">def my_function(*args):
+    for arg in args:
+        print(arg)
+
+my_function(1, 2, 3, &quot;hello&quot;)  # Output: 1 2 3 hello (one per line)
+</code></pre><p><strong>Example: **kwargs</strong></p><pre><code class="language-python">def my_function(**kwargs):
+    for key, value in kwargs.items():
+        print(f&quot;{key}: {value}&quot;)
+
+my_function(name=&quot;Alice&quot;, age=30, city=&quot;New York&quot;)
+# name: Alice
+# age: 30
+# city: New York
+</code></pre></div></details>
+<details class="item" id="a21"><summary><span>What is the difference between the is and == operators in Python?</span></summary><div class="answer"><ul><li><code>is</code> checks whether two variables refer to the same object in memory (identity).</li><li><code>==</code> checks whether two objects have the same value (equality).</li></ul><pre><code class="language-python">a = [1, 2, 3]
+b = a         # b refers to the same object as a
+c = a.copy()  # c is a new object with the same values
+
+print(a is b)   # True
+print(a is c)   # False
+print(a == c)   # True
+</code></pre></div></details>
+<details class="item" id="a22"><summary><span>What is the difference between map, filter and reduce in Python?</span></summary><div class="answer"><ul><li><code>map</code> applies a given function to each item of an iterable and returns an iterator.</li><li><code>filter</code> keeps the items of an iterable for which a given function returns true, and returns an iterator.</li><li><code>reduce</code> applies a function cumulatively to the items of an iterable and reduces it to a single value. It must be imported from <code>functools</code>.</li></ul><pre><code class="language-python">from functools import reduce
+
+nums = [1, 2, 3, 4]
+print(list(map(lambda x: x * 2, nums)))         # [2, 4, 6, 8]
+print(list(filter(lambda x: x % 2 == 0, nums)))  # [2, 4]
+print(reduce(lambda a, b: a + b, nums))          # 10
+</code></pre></div></details>
+<details class="item" id="a23"><summary><span>Explain method overriding and provide an example.</span></summary><div class="answer"><p>Method overriding occurs when a subclass provides its own implementation of a method that is already defined in its parent class.</p><p><strong>Key points:</strong></p><ul><li>Overriding allows customization of inherited behavior.</li><li>The version of the method that runs depends on the type of the object.</li><li>The overriding method should keep the same name and parameters as the parent method.</li></ul><p><strong>Example:</strong></p><pre><code class="language-python">class Animal:
+    def make_sound(self):
+        print(&quot;Generic animal sound&quot;)
+
+class Dog(Animal):
+    def make_sound(self):
+        print(&quot;Woof!&quot;)
+
+class Cat(Animal):
+    def make_sound(self):
+        print(&quot;Meow!&quot;)
+
+# Create objects
+animal = Animal()
+dog = Dog()
+cat = Cat()
+
+# Call make_sound on different objects
+animal.make_sound()  # Output: Generic animal sound
+dog.make_sound()     # Output: Woof!
+cat.make_sound()     # Output: Meow!
+</code></pre><ul><li>The <code>Animal</code> class defines a general <code>make_sound</code> method.</li><li>The <code>Dog</code> and <code>Cat</code> classes override <code>make_sound</code> to provide their own sounds.</li><li>When we call <code>make_sound</code> on each object, the overridden version for that object's type is executed.</li></ul></div></details>
+<details class="item" id="a24"><summary><span>What is PEP 8 and why is it important?</span></summary><div class="answer"><p>PEP 8 is the style guide for Python code.</p><ul><li><strong>Readability:</strong> code that follows PEP 8 is easier to understand and maintain.</li><li><strong>Consistency:</strong> when multiple developers follow the same style guide, collaboration improves and confusion is reduced.</li><li><strong>Professionalism:</strong> following PEP 8 shows attention to detail.</li><li><strong>Community standard:</strong> most Python projects and organizations adopt PEP 8, making it the de-facto standard.</li></ul><p><strong>A few PEP 8 guidelines:</strong></p><ul><li>Consistent indentation (4 spaces)</li><li>Maximum line length of 79 characters</li><li>Meaningful naming conventions (e.g. <code>snake_case</code> for variables and functions)</li><li>Proper use of whitespace</li><li>Docstring conventions</li></ul></div></details>
+<details class="item" id="a25"><summary><span>What is the difference between a for loop and a while loop in Python?</span></summary><div class="answer"><p><strong>for loop</strong></p><ul><li><strong>Iterates over a sequence:</strong> used when you know beforehand how many times to run a block of code.</li><li>The sequence can be a list, tuple, string, dictionary, set or any iterable object.</li></ul><pre><code class="language-python">for item in sequence:
+    # block of code
+</code></pre><p><strong>while loop</strong></p><ul><li><strong>Repeats as long as a condition is true:</strong> used when you don't know beforehand how many times the code should run.</li><li>The condition is checked at the beginning of each iteration.</li></ul><pre><code class="language-python">while condition:
+    # block of code
+</code></pre></div></details>
+<details class="item" id="a26"><summary><span>What is an iterator?</span></summary><div class="answer"><p>An iterator is an object that implements the iterator protocol, which consists of two methods:</p><ul><li><code>__iter__()</code>: returns the iterator object itself.</li><li><code>__next__()</code>: returns the next item in the sequence, and raises <code>StopIteration</code> when there are no more items.</li></ul><p>Iterators are used to traverse iterable objects such as lists, tuples and strings. They are created using the <code>iter()</code> function.</p><pre><code class="language-python">my_list = [1, 2, 3]
+my_iter = iter(my_list)
+print(next(my_iter))  # Output: 1
+print(next(my_iter))  # Output: 2
+</code></pre></div></details>
+<details class="item" id="a27"><summary><span>What is a generator?</span></summary><div class="answer"><p>A generator is a special type of iterator created using a function with the <code>yield</code> keyword. Calling a generator function returns a generator object without running the function body immediately.</p><p>Execution pauses at each <code>yield</code> statement, saving its state and returning the yielded value. The next time <code>next()</code> is called, the function resumes from where it left off.</p><pre><code class="language-python">def my_generator():
+    for i in range(5):
+        yield i
+
+my_gen = my_generator()
+print(next(my_gen))  # Output: 0
+print(next(my_gen))  # Output: 1
+</code></pre></div></details>
+<details class="item" id="a28"><summary><span>What are the modes in file handling?</span></summary><div class="answer"><p>A file mode defines how a file is opened. The common modes are:</p><ul><li><code>&quot;r&quot;</code>: read mode (default). Opens a file for reading.</li><li><code>&quot;w&quot;</code>: write mode. Opens a file for writing (creates a new file or truncates an existing one).</li><li><code>&quot;a&quot;</code>: append mode. Opens a file for appending (writes data at the end of the file).</li><li><code>&quot;b&quot;</code>: binary mode. Used together with other modes to open a file in binary format (e.g. <code>&quot;rb&quot;</code>, <code>&quot;wb&quot;</code>).</li><li><code>&quot;x&quot;</code>: exclusive creation mode. Creates a new file and raises an error if the file already exists.</li></ul><pre><code class="language-python">with open(&quot;example.txt&quot;, &quot;r&quot;) as file:
+    content = file.read()  # reads the entire file
+    print(content)
+</code></pre></div></details>
+<details class="item" id="a29"><summary><span>Can you explain the zip concept in Python?</span></summary><div class="answer"><p>The built-in <code>zip</code> function combines two or more iterables (e.g. lists, tuples) into a single iterator of tuples. Each tuple contains the elements from each iterable at the same index, so it "zips" the iterables together element by element.</p><p><strong>Key points:</strong></p><ul><li><code>zip</code> takes multiple iterables and combines them element-wise into tuples.</li><li>The result is as long as the shortest input iterable. If the iterables have different lengths, it stops at the end of the shortest one.</li><li>It returns an iterator of tuples. To get a list of tuples, pass the result to <code>list()</code>.</li></ul><pre><code class="language-python">list1 = [1, 2, 3, 4]
+list2 = [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]
+zipped = zip(list1, list2)
+print(list(zipped))  # Output: [(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]
+</code></pre></div></details>
+<details class="item" id="a30"><summary><span>Can you explain the concept of concurrency in Python?</span></summary><div class="answer"><p>Concurrency is the ability of a program to handle multiple tasks at the same time, or at least give the appearance of doing so. Python supports it in three main ways, each with its own use cases, advantages and limitations:</p><ul><li><strong>Threading:</strong> multiple threads run inside a single process and share memory (<code>threading</code> module). Best for I/O-bound tasks such as network calls or file reads. Because of the GIL, threads do not run Python code in parallel, so it does not speed up CPU-bound work.</li><li><strong>Multiprocessing:</strong> multiple processes run independently, each with its own memory and its own interpreter (<code>multiprocessing</code> module). Gives true parallelism across CPU cores, so it suits CPU-bound tasks.</li><li><strong>Asynchronous programming:</strong> a single thread runs an event loop that switches between tasks while they wait, using <code>async</code>/<code>await</code> (<code>asyncio</code> module). Best for handling many I/O-bound tasks efficiently, such as thousands of network requests.</li></ul></div></details>
+<details class="item" id="a31"><summary><span>What is the difference between multiprocessing and multithreading?</span></summary><div class="answer"><p><strong>Multiprocessing</strong> uses multiple processes to perform tasks concurrently. Each process runs independently and has its own memory space. Tasks can run in parallel on multiple CPU cores, which suits CPU-bound tasks.</p><p><strong>Key points:</strong></p><ul><li>Independent processes</li><li>True parallelism</li><li>No GIL limitation</li><li>Inter-process communication (IPC) needed to share data</li></ul><p><strong>Multithreading</strong> uses multiple threads within a single process. Threads share the memory space and resources of the process, which makes communication between them easier and more efficient.</p><p><strong>Key points:</strong></p><ul><li>Shared memory space</li><li>Concurrency but limited parallelism</li><li>Simpler communication</li><li>Lightweight</li></ul><table><thead><tr><th>Type</th><th>Multiprocessing</th><th>Multithreading</th></tr></thead><tbody><tr><td>Pros</td><td>&bull; True parallelism (uses multiple CPU cores)<br>&bull; Suitable for CPU-bound tasks</td><td>&bull; Lower memory usage (threads share the same memory space)<br>&bull; Easier and more efficient communication between threads<br>&bull; Suitable for I/O-bound tasks<br>&bull; Lower overhead in thread creation and management</td></tr><tr><td>Cons</td><td>&bull; Higher memory usage (each process has its own memory space)<br>&bull; More complex communication between processes<br>&bull; Higher overhead in process creation and management</td><td>&bull; Limited by the GIL in Python (not suitable for CPU-bound tasks that need true parallelism)</td></tr></tbody></table></div></details>
+<details class="item" id="a32"><summary><span>Can you describe object-oriented programming and its concepts?</span></summary><div class="answer"><p>Object-oriented programming (OOP) is a programming paradigm built around objects, which are instances of classes. The key concepts are:</p><ul><li><strong>Class:</strong> a blueprint or template for creating objects. It defines the properties (attributes) and behaviors (methods) that objects of the class have.</li><li><strong>Object:</strong> an instance of a class. Objects are created from the structure defined by the class and can interact with each other to perform tasks.</li><li><strong>Encapsulation:</strong> bundling data (attributes) and the methods that operate on it into a single unit (the class). It hides the internal state and requires interaction to go through the object's methods.</li><li><strong>Inheritance:</strong> the mechanism by which one class inherits properties and behaviors from another. The class being inherited from is the base class or superclass, and the class inheriting is the derived class or subclass. Inheritance promotes code reuse and allows hierarchical relationships between classes.</li><li><strong>Polymorphism:</strong> the ability of different objects to respond in their own way to the same method call. Methods can be written to handle objects of a certain class and also work with its subclasses, which can override or extend the superclass behavior.</li><li><strong>Abstraction:</strong> hiding complex implementation details and showing only the essential features of an object. It reduces complexity and improves understandability.</li></ul></div></details>
+<details class="item" id="a33"><summary><span>What is the difference between multiple inheritance and multilevel inheritance?</span></summary><div class="answer"><p>Both are ways to build relationships between classes, but they differ in structure and in how classes inherit from each other.</p><p><strong>Multiple inheritance</strong></p><ul><li><strong>Definition:</strong> a class inherits attributes and methods from more than one parent class.</li><li><strong>Example:</strong> given classes A and B, a third class C can inherit from both A and B at the same time.</li><li><strong>Usage:</strong> useful when a class needs behaviors and attributes from several sources. It can lead to complexity and ambiguity known as the diamond problem, when two parent classes share a common ancestor. Python resolves this using the method resolution order (MRO).</li></ul><pre><code class="language-python">class A:
+    pass
+
+class B:
+    pass
+
+class C(A, B):  # multiple inheritance
+    pass
+</code></pre><p><strong>Multilevel inheritance</strong></p><ul><li><strong>Definition:</strong> a chain of inheritance where a derived class serves as the base class for another class, forming a hierarchy.</li><li><strong>Example:</strong> class A is inherited by class B, and class B is inherited by class C.</li><li><strong>Usage:</strong> sets up a parent-child relationship where each subclass inherits attributes and methods from its immediate superclass.</li></ul><pre><code class="language-python">class A:
+    pass
+
+class B(A):
+    pass
+
+class C(B):  # multilevel inheritance
+    pass
+</code></pre><p><strong>Key differences</strong></p><ul><li><strong>Structure:</strong> multiple inheritance inherits from several classes at the same level, whereas multilevel inheritance is a chain in which each subclass inherits from its immediate superclass.</li><li><strong>Complexity:</strong> multiple inheritance can lead to the diamond problem. Multilevel inheritance is a linear hierarchy, so it is simpler to structure and manage.</li><li><strong>Usage:</strong> multiple inheritance is used when a class needs several sources at once, while multilevel inheritance builds a hierarchy where each subclass adds more specific behavior.</li></ul><p><img src="https://www.edubridgeindia.com/blog/wp-content/uploads/2022/03/Java-inheritance.jpg" alt="Types of inheritance diagram" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></p></div></details>
+</section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
