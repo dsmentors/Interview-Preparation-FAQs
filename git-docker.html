@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Git, Docker and CI/CD Interview Prep</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span><h1>Git, Docker and CI/CD Interview Prep</h1></div>
+<p class="sub">72 questions</p>
+<div class="roles"><a class="role" href="index.html#role=aiml">AI/ML</a><a class="role alt" href="index.html#role=ds">Data Science</a></div>
+<div class="intro"><blockquote><p>Git, Docker and CI/CD interview questions for beginners: version control basics, branching and merging, undoing mistakes, collaboration, containers, Dockerfiles, volumes, networking, Docker Compose, pipelines, deployment strategies and real-world practice.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<nav class="chips"><a href="#sec-0">Git fundamentals <small>7</small></a><a href="#sec-1">Branching and merging <small>7</small></a><a href="#sec-2">Undoing changes and fixing mistakes <small>6</small></a><a href="#sec-3">Collaboration and good practice <small>4</small></a><a href="#sec-4">Docker fundamentals <small>6</small></a><a href="#sec-5">Dockerfile and images <small>7</small></a><a href="#sec-6">Volumes, networking and Docker Compose <small>6</small></a><a href="#sec-7">Docker in practice <small>5</small></a><a href="#sec-8">CI/CD fundamentals <small>6</small></a><a href="#sec-9">CI tools and pipeline configuration <small>6</small></a><a href="#sec-10">Deployment strategies and releases <small>6</small></a><a href="#sec-11">CI/CD for Docker, ML and real-world scenarios <small>6</small></a></nav>
+<section class="sec-block" id="sec-0"><h2 class="sec">Git fundamentals</h2><details class="item" id="g1"><summary><span><span class="qn">Q1</span>What is Git, and how is it different from GitHub?</span></summary><div class="answer"><p><strong>Git</strong> is a distributed version control system that records the history of changes to your files, so you can go back to earlier versions, work on features in parallel and collaborate without overwriting each other’s work. "Distributed" means every developer has a full copy of the repository and its history, so most operations work offline.</p>
+<p><strong>GitHub, GitLab and Bitbucket</strong> are hosting services built around Git. They add remote storage, pull requests, code review, issue tracking and CI/CD.</p></div></details><details class="item" id="g2"><summary><span><span class="qn">Q2</span>What are the three areas of Git (working directory, staging area and repository)?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Area</th>
+<th>What it is</th>
+<th>Moved with</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Working directory</strong></td>
+<td>The files you are editing on disk</td>
+<td>Your editor</td>
+</tr>
+<tr>
+<td><strong>Staging area (index)</strong></td>
+<td>A preview of what will go into the next commit</td>
+<td><code>git add</code></td>
+</tr>
+<tr>
+<td><strong>Repository (.git)</strong></td>
+<td>The permanent history of commits</td>
+<td><code>git commit</code></td>
+</tr>
+</tbody>
+</table>
+<p>The staging area lets you choose exactly which changes go into each commit.</p></div></details><details class="item" id="g3"><summary><span><span class="qn">Q3</span>What are the basic Git commands in a daily workflow?</span></summary><div class="answer"><pre><code class="language-bash">git clone &lt;url&gt;              # copy a remote repository
+git status                   # see changed and staged files
+git add file.py              # stage a file (git add . stages everything)
+git commit -m &quot;Add feature&quot;  # save the staged changes as a commit
+git pull                     # get the latest changes from the remote
+git push                     # upload your commits to the remote
+git log --oneline            # view the commit history
+git diff                     # see unstaged changes
+</code></pre></div></details><details class="item" id="g4"><summary><span><span class="qn">Q4</span>What is the difference between <code>git fetch</code> and <code>git pull</code>?</span></summary><div class="answer"><ul>
+<li><strong><code>git fetch</code></strong> downloads new commits and branches from the remote but <strong>does not change your working files or current branch</strong>. It is safe, and lets you review the changes first.</li>
+<li><strong><code>git pull</code></strong> is <code>git fetch</code> followed by a merge (or a rebase with <code>git pull --rebase</code>) into your current branch.</li>
+</ul></div></details><details class="item" id="g5"><summary><span><span class="qn">Q5</span>What is the difference between clone, fork and branch?</span></summary><div class="answer"><ul>
+<li><strong>Clone:</strong> copies a repository to your computer.</li>
+<li><strong>Fork:</strong> copies someone else’s repository <strong>to your own account on the hosting service</strong>, so you can change it freely and propose changes back through a pull request.</li>
+<li><strong>Branch:</strong> a separate line of development <strong>inside the same repository</strong>.</li>
+</ul></div></details><details class="item" id="g6"><summary><span><span class="qn">Q6</span>What is HEAD, and what is a detached HEAD?</span></summary><div class="answer"><p><code>HEAD</code> is a pointer to the <strong>commit you are currently on</strong>, normally through the current branch.</p>
+<p>A <strong>detached HEAD</strong> happens when you check out a specific commit or tag instead of a branch. New commits then do not belong to any branch and can be lost. To keep that work, create a branch from there:</p>
+<pre><code class="language-bash">git switch -c my-new-branch
+</code></pre></div></details><details class="item" id="g7"><summary><span><span class="qn">Q7</span>What is <code>.gitignore</code>, and how do you stop tracking a file that is already committed?</span></summary><div class="answer"><p><code>.gitignore</code> lists file patterns Git should not track, such as <code>__pycache__/</code>, <code>.env</code>, <code>*.log</code>, virtual environments and large data files.</p>
+<p>It does not affect files that are <strong>already tracked</strong>. To stop tracking one:</p>
+<pre><code class="language-bash">git rm --cached secrets.env     # remove from Git but keep the file on disk
+echo &quot;secrets.env&quot; &gt;&gt; .gitignore
+git commit -m &quot;Stop tracking secrets.env&quot;
+</code></pre></div></details></section>
+<section class="sec-block" id="sec-1"><h2 class="sec">Branching and merging</h2><details class="item" id="g8"><summary><span><span class="qn">Q8</span>What is a branch, and why use branches?</span></summary><div class="answer"><p>A branch is a lightweight, movable pointer to a commit, which gives you an <strong>isolated line of work</strong>. Teams use one branch per feature or fix, so unfinished work does not affect the main code, and it can be reviewed before it is merged.</p>
+<pre><code class="language-bash">git switch -c feature/login     # create and switch to a new branch
+git switch main                 # switch back
+git branch -d feature/login     # delete a merged branch
+</code></pre>
+<p>(<code>git checkout -b feature/login</code> does the same in older Git versions.)</p></div></details><details class="item" id="g9"><summary><span><span class="qn">Q9</span>What is the difference between <code>git merge</code> and <code>git rebase</code>?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Merge</th>
+<th>Rebase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What it does</td>
+<td>Combines two branches, usually creating a <strong>merge commit</strong></td>
+<td><strong>Replays your commits</strong> on top of another branch</td>
+</tr>
+<tr>
+<td>History</td>
+<td>Preserves the real history, which can look branched</td>
+<td>Creates a <strong>linear</strong> history</td>
+</tr>
+<tr>
+<td>Commit IDs</td>
+<td>Unchanged</td>
+<td>Rewritten (new commits)</td>
+</tr>
+<tr>
+<td>Safe on shared branches</td>
+<td>Yes</td>
+<td><strong>No</strong>, avoid rebasing commits that others already have</td>
+</tr>
+</tbody>
+</table>
+<p>A common practice is to rebase your own local feature branch onto the latest <code>main</code> to keep it up to date, then merge it through a pull request.</p></div></details><details class="item" id="g10"><summary><span><span class="qn">Q10</span>What is a fast-forward merge?</span></summary><div class="answer"><p>A fast-forward happens when the branch you merge into <strong>has not moved since your branch was created</strong>. Git simply moves the branch pointer forward, with no merge commit. If both branches have new commits (they have diverged), Git creates a <strong>three-way merge</strong> with a merge commit instead. You can force a merge commit with <code>git merge --no-ff</code>.</p></div></details><details class="item" id="g11"><summary><span><span class="qn">Q11</span>What is a merge conflict, and how do you resolve it?</span></summary><div class="answer"><p>A conflict occurs when Git cannot automatically combine changes, usually because <strong>both branches changed the same lines</strong>. Git marks the file:</p>
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+your version
+=======
+their version
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/login
+</code></pre>
+<p>To resolve it:</p>
+<ol>
+<li>Open the conflicted files (<code>git status</code> lists them) and edit them to the correct final content, removing the markers.</li>
+<li>Stage the files: <code>git add &lt;file&gt;</code>.</li>
+<li>Finish with <code>git commit</code> (for a merge) or <code>git rebase --continue</code> (for a rebase).</li>
+</ol>
+<p>You can cancel with <code>git merge --abort</code>.</p></div></details><details class="item" id="g12"><summary><span><span class="qn">Q12</span>What is <code>git cherry-pick</code>?</span></summary><div class="answer"><p>It applies <strong>one specific commit</strong> from another branch onto your current branch, creating a new commit with the same changes.</p>
+<pre><code class="language-bash">git cherry-pick &lt;commit-hash&gt;
+</code></pre>
+<p>It is useful for copying a bug fix to a release branch without merging the whole branch.</p></div></details><details class="item" id="g13"><summary><span><span class="qn">Q13</span>What is <code>git stash</code>, and when do you use it?</span></summary><div class="answer"><p><code>git stash</code> temporarily saves your uncommitted changes and returns the working directory to a clean state, so you can switch branches without committing half-finished work.</p>
+<pre><code class="language-bash">git stash              # save the changes
+git switch other-branch
+git stash pop          # bring the changes back (and remove them from the stash)
+git stash list         # see saved stashes
+</code></pre></div></details><details class="item" id="g14"><summary><span><span class="qn">Q14</span>What are the common branching strategies?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>How it works</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GitHub Flow</strong></td>
+<td><code>main</code> is always deployable; short-lived feature branches merged by pull request</td>
+<td>Teams that deploy often</td>
+</tr>
+<tr>
+<td><strong>Git Flow</strong></td>
+<td>Long-lived <code>main</code> and <code>develop</code> branches, plus feature, release and hotfix branches</td>
+<td>Scheduled releases and several versions in production</td>
+</tr>
+<tr>
+<td><strong>Trunk-based development</strong></td>
+<td>Everyone commits small changes to <code>main</code> (the trunk) often, using feature flags</td>
+<td>Mature CI/CD teams that need fast integration</td>
+</tr>
+</tbody>
+</table></div></details></section>
+<section class="sec-block" id="sec-2"><h2 class="sec">Undoing changes and fixing mistakes</h2><details class="item" id="g15"><summary><span><span class="qn">Q15</span>What is the difference between <code>git reset</code>, <code>git revert</code> and <code>git restore</code>?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+<th>Safe on shared history?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git revert &lt;commit&gt;</code></td>
+<td>Creates a <strong>new commit that undoes</strong> an earlier commit</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>git reset</code></td>
+<td><strong>Moves the branch pointer</strong> back, removing commits from the history</td>
+<td>No, rewrites history</td>
+</tr>
+<tr>
+<td><code>git restore &lt;file&gt;</code></td>
+<td>Discards changes in a file or unstages it</td>
+<td>Local only</td>
+</tr>
+</tbody>
+</table>
+<p><code>git reset</code> has three modes:</p>
+<ul>
+<li><code>--soft</code>: moves <code>HEAD</code> only; the changes stay <strong>staged</strong>.</li>
+<li><code>--mixed</code> (default): resets the staging area; the changes stay in the working directory.</li>
+<li><code>--hard</code>: also discards the changes in the working directory (destructive).</li>
+</ul></div></details><details class="item" id="g16"><summary><span><span class="qn">Q16</span>How do you undo the last commit or change its message?</span></summary><div class="answer"><pre><code class="language-bash">git commit --amend -m &quot;Better message&quot;   # change the message (or add staged changes) of the last commit
+git reset --soft HEAD~1                  # undo the commit, keep the changes staged
+git reset --hard HEAD~1                  # undo the commit and DISCARD the changes
+git revert HEAD                          # safe way if the commit was already pushed
+</code></pre>
+<p>Avoid amending or resetting commits that you have already pushed and others may have pulled.</p></div></details><details class="item" id="g17"><summary><span><span class="qn">Q17</span>How do you recover a deleted branch or lost commits?</span></summary><div class="answer"><p>Use <strong><code>git reflog</code></strong>, which records where <code>HEAD</code> has been (for a limited time, 90 days by default for reachable entries). Find the commit hash and recreate the branch:</p>
+<pre><code class="language-bash">git reflog
+git switch -c recovered-branch &lt;commit-hash&gt;
+</code></pre></div></details><details class="item" id="g18"><summary><span><span class="qn">Q18</span>What do you do if you accidentally commit a password or API key?</span></summary><div class="answer"><ol>
+<li><strong>Revoke and rotate the secret immediately.</strong> Assume it is compromised, even if you remove it, because it may already be in clones, forks or logs.</li>
+<li>Remove it from the history using a tool such as <code>git filter-repo</code> or BFG Repo-Cleaner, then force-push (coordinate with the team).</li>
+<li>Add the file to <code>.gitignore</code> and use environment variables or a secrets manager from now on.</li>
+<li>Consider adding a pre-commit secret scanner.</li>
+</ol></div></details><details class="item" id="g19"><summary><span><span class="qn">Q19</span>What is interactive rebase, and what is it used for?</span></summary><div class="answer"><p><code>git rebase -i HEAD~3</code> lets you edit the last three commits before sharing them: <strong>squash</strong> several commits into one, <strong>reword</strong> messages, <strong>reorder</strong> or <strong>drop</strong> commits. It is used to keep history clean (for example squashing “fix typo” commits) and, like all rebasing, should only be done on commits that have not been shared.</p></div></details><details class="item" id="g20"><summary><span><span class="qn">Q20</span>What is <code>git bisect</code>?</span></summary><div class="answer"><p>It finds the commit that introduced a bug using <strong>binary search</strong>. You mark one commit as good and one as bad, and Git checks out the middle commit for you to test. After a few steps it points to the first bad commit.</p>
+<pre><code class="language-bash">git bisect start
+git bisect bad            # the current commit is broken
+git bisect good v1.0      # this older version worked
+# test, then run `git bisect good` or `git bisect bad` until Git finds the culprit
+git bisect reset
+</code></pre></div></details></section>
+<section class="sec-block" id="sec-3"><h2 class="sec">Collaboration and good practice</h2><details class="item" id="g21"><summary><span><span class="qn">Q21</span>What is a pull request, and what does a good code review process look like?</span></summary><div class="answer"><p>A pull request (PR, or merge request in GitLab) proposes merging a branch into another and is the place for <strong>review, discussion and automated checks</strong>.</p>
+<p>Good practice: keep PRs small and focused, write a clear description, make CI run tests and linting before review, require at least one approval, respond to comments constructively, and merge only when checks pass.</p></div></details><details class="item" id="g22"><summary><span><span class="qn">Q22</span>What is the difference between a lightweight tag and an annotated tag?</span></summary><div class="answer"><p>Tags mark specific commits, usually releases such as <code>v1.0.0</code>.</p>
+<ul>
+<li><strong>Lightweight tag:</strong> just a name pointing to a commit.</li>
+<li><strong>Annotated tag:</strong> a full Git object with the tagger, date and message, and it can be signed. It is recommended for releases.</li>
+</ul>
+<pre><code class="language-bash">git tag -a v1.0.0 -m &quot;First release&quot;
+git push origin v1.0.0
+</code></pre></div></details><details class="item" id="g23"><summary><span><span class="qn">Q23</span>How do you work with remotes, and why use <code>--force-with-lease</code>?</span></summary><div class="answer"><pre><code class="language-bash">git remote -v                       # list remotes
+git remote add origin &lt;url&gt;         # add a remote
+git push -u origin feature/login    # push and set the upstream branch
+</code></pre>
+<p>After rewriting your own branch (for example with a rebase), you must force-push. Prefer <strong><code>git push --force-with-lease</code></strong>, which refuses to overwrite the remote branch if someone else has pushed new commits you do not have, unlike a plain <code>--force</code>.</p></div></details><details class="item" id="g24"><summary><span><span class="qn">Q24</span>What makes a good commit and a good commit message?</span></summary><div class="answer"><ul>
+<li><strong>One logical change per commit,</strong> so it is easy to review, revert and bisect.</li>
+<li>A short <strong>summary line</strong> (about 50 characters) in the imperative mood: “Add login validation”.</li>
+<li>A body that explains <strong>why</strong> the change was made, when it is not obvious.</li>
+<li>Do not commit generated files, secrets, large datasets or model files. Use <code>.gitignore</code>, <strong>Git LFS</strong> for large binary files, or a tool such as DVC for data and models.</li>
+</ul></div></details></section>
+<section class="sec-block" id="sec-4"><h2 class="sec">Docker fundamentals</h2><details class="item" id="g25"><summary><span><span class="qn">Q25</span>What is Docker, and what is a container?</span></summary><div class="answer"><p>Docker is a platform for building, shipping and running applications in <strong>containers</strong>. A container is a lightweight, isolated process that packages the application together with its libraries and dependencies, so it runs the same way on a laptop, a server or the cloud. It solves the “works on my machine” problem.</p></div></details><details class="item" id="g26"><summary><span><span class="qn">Q26</span>What is the difference between a container and a virtual machine?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Container</th>
+<th>Virtual machine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Operating system</td>
+<td>Shares the <strong>host OS kernel</strong></td>
+<td>Runs a <strong>full guest OS</strong> on a hypervisor</td>
+</tr>
+<tr>
+<td>Size</td>
+<td>Megabytes</td>
+<td>Gigabytes</td>
+</tr>
+<tr>
+<td>Startup</td>
+<td>Seconds or less</td>
+<td>Minutes</td>
+</tr>
+<tr>
+<td>Isolation</td>
+<td>Process-level (good)</td>
+<td>Stronger, hardware-level</td>
+</tr>
+<tr>
+<td>Resource use</td>
+<td>Light, many per host</td>
+<td>Heavier</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="g27"><summary><span><span class="qn">Q27</span>What is the difference between a Docker image and a container?</span></summary><div class="answer"><ul>
+<li>An <strong>image</strong> is a read-only template made of layers: the application code, runtime, libraries and settings.</li>
+<li>A <strong>container</strong> is a <strong>running instance</strong> of an image, with a thin writable layer on top.</li>
+</ul>
+<p>An image is like a class, and a container is like an object created from it. You can start many containers from one image. Images are stored in a <strong>registry</strong> such as Docker Hub.</p></div></details><details class="item" id="g28"><summary><span><span class="qn">Q28</span>How does Docker work internally (client, daemon, registry)?</span></summary><div class="answer"><ul>
+<li>The <strong>Docker client</strong> (the <code>docker</code> command) sends commands to the <strong>Docker daemon</strong> (<code>dockerd</code>) through an API.</li>
+<li>The <strong>daemon</strong> builds images and creates, runs and manages containers, networks and volumes.</li>
+<li>A <strong>registry</strong> stores and distributes images (<code>docker pull</code> and <code>docker push</code>).</li>
+</ul>
+<p>Containers use Linux features: <strong>namespaces</strong> for isolation and <strong>cgroups</strong> for resource limits.</p></div></details><details class="item" id="g29"><summary><span><span class="qn">Q29</span>What are the most common Docker commands?</span></summary><div class="answer"><pre><code class="language-bash">docker build -t myapp:1.0 .                  # build an image from a Dockerfile
+docker run -d -p 8000:8000 --name api myapp:1.0   # run a container in the background
+docker ps                                    # list running containers (-a shows all)
+docker logs -f api                           # follow the logs
+docker exec -it api sh                       # open a shell inside a running container
+docker stop api                              # stop gracefully
+docker rm api                                # remove a stopped container
+docker images                                # list images
+docker rmi myapp:1.0                         # remove an image
+docker pull python:3.11-slim                 # download an image
+docker push myuser/myapp:1.0                 # upload an image to a registry
+</code></pre>
+<p>Useful <code>docker run</code> options: <code>-d</code> (background), <code>-p host:container</code> (publish a port), <code>-v</code> (mount a volume), <code>-e</code> (environment variable), <code>--rm</code> (delete when it exits).</p></div></details><details class="item" id="g30"><summary><span><span class="qn">Q30</span>Why is Docker useful in data science and machine learning projects?</span></summary><div class="answer"><ul>
+<li><strong>Reproducible environments:</strong> the same Python version and library versions everywhere.</li>
+<li><strong>Easy sharing and deployment</strong> of models and APIs.</li>
+<li><strong>Isolation</strong> between projects with conflicting dependencies.</li>
+<li><strong>Portability</strong> between a laptop, cloud servers and Kubernetes.</li>
+<li><strong>Consistency</strong> between training, testing and production environments, which supports MLOps pipelines.</li>
+</ul></div></details></section>
+<section class="sec-block" id="sec-5"><h2 class="sec">Dockerfile and images</h2><details class="item" id="g31"><summary><span><span class="qn">Q31</span>What is a Dockerfile, and what are its main instructions?</span></summary><div class="answer"><p>A Dockerfile is a text file with step-by-step instructions to build an image.</p>
+<table>
+<thead>
+<tr>
+<th>Instruction</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FROM</code></td>
+<td>The base image to start from</td>
+</tr>
+<tr>
+<td><code>WORKDIR</code></td>
+<td>Sets the working directory</td>
+</tr>
+<tr>
+<td><code>COPY</code> / <code>ADD</code></td>
+<td>Copies files into the image</td>
+</tr>
+<tr>
+<td><code>RUN</code></td>
+<td>Runs a command <strong>while building</strong> (for example <code>pip install</code>)</td>
+</tr>
+<tr>
+<td><code>ENV</code></td>
+<td>Sets an environment variable</td>
+</tr>
+<tr>
+<td><code>EXPOSE</code></td>
+<td>Documents the port the app listens on</td>
+</tr>
+<tr>
+<td><code>USER</code></td>
+<td>Sets the user to run as</td>
+</tr>
+<tr>
+<td><code>CMD</code> / <code>ENTRYPOINT</code></td>
+<td>Defines what runs <strong>when the container starts</strong></td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="g32"><summary><span><span class="qn">Q32</span>What is the difference between <code>CMD</code> and <code>ENTRYPOINT</code>?</span></summary><div class="answer"><ul>
+<li><strong><code>ENTRYPOINT</code></strong> sets the main executable that always runs.</li>
+<li><strong><code>CMD</code></strong> provides the <strong>default command or default arguments</strong>, which are easy to override at <code>docker run</code>.</li>
+</ul>
+<pre><code class="language-dockerfile">ENTRYPOINT [&quot;python&quot;, &quot;app.py&quot;]
+CMD [&quot;--port&quot;, &quot;8000&quot;]
+</code></pre>
+<p><code>docker run myimage</code> runs <code>python app.py --port 8000</code>, and <code>docker run myimage --port 9000</code> replaces only the <code>CMD</code> part. With only <code>CMD</code>, anything you add after the image name replaces the whole command.</p></div></details><details class="item" id="g33"><summary><span><span class="qn">Q33</span>What is the difference between <code>COPY</code> and <code>ADD</code>?</span></summary><div class="answer"><p>Both copy files into the image. <code>ADD</code> also <strong>extracts local tar archives</strong> and can <strong>download from URLs</strong>, which makes its behavior less obvious. Best practice is to use <code>COPY</code> unless you specifically need those extra features.</p></div></details><details class="item" id="g34"><summary><span><span class="qn">Q34</span>What are image layers, and how does build caching work?</span></summary><div class="answer"><p>Each instruction creates a <strong>layer</strong>. Docker caches layers and reuses them when the instruction and everything before it has not changed. When a layer changes, all the following layers are rebuilt.</p>
+<p>So order instructions from <strong>least to most frequently changing</strong>: install dependencies first, copy your source code last.</p>
+<pre><code class="language-dockerfile">COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt   # cached unless requirements change
+COPY . .                                              # changes often, so it comes last
+</code></pre></div></details><details class="item" id="g35"><summary><span><span class="qn">Q35</span>What is a multi-stage build, and why use it?</span></summary><div class="answer"><p>A multi-stage build uses several <code>FROM</code> stages in one Dockerfile. You build or compile in an early stage with all the tools, then <strong>copy only the results</strong> into a small final image. The final image is smaller and has fewer security risks.</p>
+<pre><code class="language-dockerfile">FROM python:3.11 AS builder
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --user --no-cache-dir -r requirements.txt
+
+FROM python:3.11-slim
+WORKDIR /app
+COPY --from=builder /root/.local /root/.local
+COPY . .
+ENV PATH=/root/.local/bin:$PATH
+CMD [&quot;python&quot;, &quot;app.py&quot;]
+</code></pre></div></details><details class="item" id="g36"><summary><span><span class="qn">Q36</span>How do you reduce the size of a Docker image?</span></summary><div class="answer"><ul>
+<li>Use a <strong>slim</strong> or minimal base image (<code>python:3.11-slim</code>; Alpine can cause compatibility issues with some Python packages).</li>
+<li>Use <strong>multi-stage builds</strong>.</li>
+<li>Add a <strong><code>.dockerignore</code></strong> file to leave out <code>.git</code>, data, virtual environments and notebooks.</li>
+<li>Use <code>pip install --no-cache-dir</code>, and clean package caches in the same <code>RUN</code> step.</li>
+<li>Combine related commands, and install only what you need.</li>
+</ul></div></details><details class="item" id="g37"><summary><span><span class="qn">Q37</span>Why should you avoid the <code>latest</code> tag?</span></summary><div class="answer"><p><code>latest</code> is just a default tag name, not a guarantee of the newest or a stable version, and it can change under you. Using it makes builds <strong>non-reproducible</strong> and can break deployments unexpectedly. Pin specific versions (for example <code>python:3.11.9-slim</code>, or <code>myapp:1.4.2</code>) in Dockerfiles and deployments.</p></div></details></section>
+<section class="sec-block" id="sec-6"><h2 class="sec">Volumes, networking and Docker Compose</h2><details class="item" id="g38"><summary><span><span class="qn">Q38</span>What is the difference between volumes, bind mounts and tmpfs?</span></summary><div class="answer"><p>Container storage is temporary: data in the writable layer is lost when the container is removed. To keep it:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>What it is</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Volume</strong></td>
+<td>Storage managed by Docker</td>
+<td>Databases and persistent data in production</td>
+</tr>
+<tr>
+<td><strong>Bind mount</strong></td>
+<td>A host folder mounted into the container</td>
+<td>Development: edit code on the host and see it in the container</td>
+</tr>
+<tr>
+<td><strong>tmpfs</strong></td>
+<td>Stored in the host’s memory only</td>
+<td>Temporary or sensitive data</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-bash">docker run -v mydata:/var/lib/postgresql/data postgres:16
+</code></pre></div></details><details class="item" id="g39"><summary><span><span class="qn">Q39</span>How does networking work in Docker?</span></summary><div class="answer"><ul>
+<li><strong>bridge</strong> (default): containers on the same host get private IPs and can talk to each other. On a <strong>user-defined bridge</strong>, containers can reach each other by <strong>name</strong>.</li>
+<li><strong>host:</strong> the container shares the host’s network (no isolation, no port mapping needed).</li>
+<li><strong>none:</strong> no network.</li>
+<li><strong>overlay:</strong> connects containers across several hosts (Swarm, Kubernetes-style setups).</li>
+</ul>
+<p>To reach a container from outside, publish a port with <code>-p 8000:8000</code>.</p></div></details><details class="item" id="g40"><summary><span><span class="qn">Q40</span>What is the difference between <code>EXPOSE</code> and publishing a port with <code>-p</code>?</span></summary><div class="answer"><p><code>EXPOSE</code> in a Dockerfile only <strong>documents</strong> which port the application uses. It does not make the port reachable from outside. <strong><code>-p host_port:container_port</code></strong> (or <code>ports:</code> in Compose) actually <strong>publishes</strong> the port on the host.</p></div></details><details class="item" id="g41"><summary><span><span class="qn">Q41</span>What is Docker Compose, and when do you use it?</span></summary><div class="answer"><p>Docker Compose defines and runs <strong>multi-container applications</strong> with one YAML file, for example an API plus a database.</p>
+<pre><code class="language-yaml">services:
+  api:
+    build: .
+    ports:
+      - &quot;8000:8000&quot;
+    environment:
+      - DATABASE_URL=postgresql://user:pass@db:5432/app
+    depends_on:
+      - db
+  db:
+    image: postgres:16
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=app
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+</code></pre>
+<pre><code class="language-bash">docker compose up -d      # start everything
+docker compose down       # stop and remove the containers
+</code></pre>
+<p>Services reach each other by service name (here <code>db</code>). The passwords above are for demonstration only; use secrets in real projects.</p></div></details><details class="item" id="g42"><summary><span><span class="qn">Q42</span>How do you handle environment variables and secrets in Docker?</span></summary><div class="answer"><p>Pass settings at run time with <code>-e</code>, <code>--env-file</code> or <code>environment:</code> in Compose, instead of writing them in the image. <strong>Never put secrets in the Dockerfile, in <code>ENV</code>, or in files copied into the image</strong>, because they stay in the image layers. Use the secret features of your platform (Docker secrets, Kubernetes secrets or a secrets manager).</p></div></details><details class="item" id="g43"><summary><span><span class="qn">Q43</span>What are Docker restart policies?</span></summary><div class="answer"><p>They control what happens when a container exits: <code>no</code> (default, never restart), <code>on-failure</code> (restart only on errors), <code>always</code> (restart whenever it stops) and <code>unless-stopped</code> (like always, but not after you stopped it manually).</p>
+<pre><code class="language-bash">docker run -d --restart unless-stopped myapp:1.0
+</code></pre></div></details></section>
+<section class="sec-block" id="sec-7"><h2 class="sec">Docker in practice</h2><details class="item" id="g44"><summary><span><span class="qn">Q44</span>How would you containerize a FastAPI or ML model service?</span></summary><div class="answer"><pre><code class="language-dockerfile">FROM python:3.11-slim
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+RUN useradd -m appuser
+USER appuser
+
+EXPOSE 8000
+CMD [&quot;uvicorn&quot;, &quot;main:app&quot;, &quot;--host&quot;, &quot;0.0.0.0&quot;, &quot;--port&quot;, &quot;8000&quot;]
+</code></pre>
+<pre><code class="language-bash">docker build -t ml-api:1.0 .
+docker run -d -p 8000:8000 ml-api:1.0
+</code></pre>
+<p>For large model files, mount them as a volume or download them from a registry or storage at startup, instead of baking them into every image.</p></div></details><details class="item" id="g45"><summary><span><span class="qn">Q45</span>A container exits immediately after starting. How do you debug it?</span></summary><div class="answer"><ol>
+<li><strong><code>docker ps -a</code></strong> shows the container and its exit code.</li>
+<li><strong><code>docker logs &lt;container&gt;</code></strong> shows the error output.</li>
+<li>Check the <code>CMD</code> or <code>ENTRYPOINT</code>: a container stops when its main process ends, for example when the app crashes or runs in the background.</li>
+<li>Start a shell in the image to investigate: <code>docker run -it --entrypoint sh myimage</code>.</li>
+<li>Use <strong><code>docker inspect</code></strong> to check the configuration, environment variables and mounts.</li>
+</ol></div></details><details class="item" id="g46"><summary><span><span class="qn">Q46</span>What are the Docker security best practices?</span></summary><div class="answer"><ul>
+<li><strong>Run as a non-root user</strong> (<code>USER</code>).</li>
+<li>Use <strong>minimal, trusted base images</strong> and pin versions.</li>
+<li><strong>Scan images</strong> for vulnerabilities (for example Trivy or Docker Scout).</li>
+<li>Keep <strong>secrets out of images</strong>.</li>
+<li>Limit resources and capabilities, and use a read-only filesystem where possible.</li>
+<li>Keep Docker and the base images <strong>updated</strong>.</li>
+</ul></div></details><details class="item" id="g47"><summary><span><span class="qn">Q47</span>How do Git and Docker fit together in a CI/CD pipeline?</span></summary><div class="answer"><ol>
+<li>A developer <strong>pushes code</strong> to a Git branch and opens a pull request.</li>
+<li>The CI system <strong>runs tests and checks</strong> on the change.</li>
+<li>After the merge, CI <strong>builds a Docker image</strong> from the Dockerfile and tags it with the version or commit hash.</li>
+<li>The image is <strong>pushed to a registry</strong>.</li>
+<li>The deployment step (a server, Docker Compose or Kubernetes) <strong>pulls that exact image</strong> and runs it, so what was tested is what runs in production.</li>
+</ol></div></details><details class="item" id="g48"><summary><span><span class="qn">Q48</span>What is the difference between Docker Swarm and Kubernetes?</span></summary><div class="answer"><p>Both are <strong>container orchestrators</strong> that run containers across many machines.</p>
+<ul>
+<li><strong>Docker Swarm</strong> is built into Docker, simple to set up, with fewer features.</li>
+<li><strong>Kubernetes</strong> is the industry standard: more complex, but with powerful scaling, rolling updates, self-healing, a large ecosystem and wide cloud support.</li>
+</ul>
+<p>Most production systems today use Kubernetes or a managed service built on it.</p></div></details></section>
+<section class="sec-block" id="sec-8"><h2 class="sec">CI/CD fundamentals</h2><details class="item" id="g49"><summary><span><span class="qn">Q49</span>What is CI/CD, and why is it used?</span></summary><div class="answer"><p><strong>CI/CD</strong> stands for Continuous Integration and Continuous Delivery (or Deployment). It is the practice of automatically building, testing and releasing code every time a change is made, instead of doing those steps by hand.</p>
+<ul>
+<li><strong>CI:</strong> developers merge small changes into a shared branch often, and each merge triggers an automated build and test run.</li>
+<li><strong>CD:</strong> code that passes the checks is automatically prepared for release, or released, to an environment.</li>
+</ul>
+<p>It is used to catch bugs early, avoid painful last-minute integration problems and make releases fast and repeatable.</p></div></details><details class="item" id="g50"><summary><span><span class="qn">Q50</span>What is the difference between Continuous Integration, Continuous Delivery and Continuous Deployment?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Practice</th>
+<th>What happens automatically</th>
+<th>Production release</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Continuous Integration</strong></td>
+<td>Build and test on every merge or pull request</td>
+<td>Not covered</td>
+</tr>
+<tr>
+<td><strong>Continuous Delivery</strong></td>
+<td>CI plus packaging and deployment to staging, so every passing change is <em>ready</em> to release</td>
+<td>A person approves it (manual step)</td>
+</tr>
+<tr>
+<td><strong>Continuous Deployment</strong></td>
+<td>Everything above, plus deployment to production</td>
+<td>Fully automatic, no manual approval</td>
+</tr>
+</tbody>
+</table>
+<p>The abbreviation CD is used for both delivery and deployment, so it is worth asking which one a team means.</p></div></details><details class="item" id="g51"><summary><span><span class="qn">Q51</span>What are the typical stages of a CI/CD pipeline?</span></summary><div class="answer"><ol>
+<li><strong>Source:</strong> a push, pull request or tag triggers the pipeline and the code is checked out.</li>
+<li><strong>Build:</strong> install dependencies and compile or package the code.</li>
+<li><strong>Static checks:</strong> linting, formatting and type checks.</li>
+<li><strong>Test:</strong> unit tests first, then integration tests.</li>
+<li><strong>Security scan:</strong> dependency and image vulnerability scans, and secret detection.</li>
+<li><strong>Package:</strong> create the artifact, such as a Docker image, and push it to a registry.</li>
+<li><strong>Deploy to staging</strong> and run smoke or end-to-end tests.</li>
+<li><strong>Deploy to production</strong> (with approval in Continuous Delivery), then monitor.</li>
+</ol>
+<p>Cheap, fast checks run first so that the pipeline fails early and saves time.</p></div></details><details class="item" id="g52"><summary><span><span class="qn">Q52</span>What is a quality gate in a pipeline?</span></summary><div class="answer"><p>A <strong>quality gate</strong> is a condition that must pass before a change can move to the next stage or be merged. If the gate fails, the pipeline stops.</p>
+<ul>
+<li>All tests pass.</li>
+<li>Code coverage stays above an agreed threshold.</li>
+<li>Linting and type checks are clean.</li>
+<li>No critical vulnerabilities are found.</li>
+<li>Required code reviews are approved.</li>
+</ul>
+<p>On GitHub or GitLab you enforce this with <strong>branch protection rules</strong> that require the pipeline checks to pass before a pull request can be merged.</p></div></details><details class="item" id="g53"><summary><span><span class="qn">Q53</span>What is a build artifact, and why should you build once and deploy the same artifact everywhere?</span></summary><div class="answer"><p>An <strong>artifact</strong> is the output of a build that gets deployed, for example a Docker image, a Python wheel, a JAR file or a trained model file. Artifacts are stored in a registry or artifact repository such as Docker Hub, GitHub Container Registry, Amazon ECR, Nexus or Artifactory.</p>
+<p>The same artifact is promoted from staging to production, so <strong>what was tested is exactly what ships</strong>. Rebuilding for each environment can produce subtle differences, such as a different dependency version. Tag artifacts with a version or the commit hash, and avoid relying on the <code>latest</code> tag, so you always know what is running and can roll back to a specific version.</p></div></details><details class="item" id="g54"><summary><span><span class="qn">Q54</span>What is pipeline as code, and what can trigger a pipeline?</span></summary><div class="answer"><p><strong>Pipeline as code</strong> means the pipeline is defined in a file stored in the repository, for example <code>.github/workflows/*.yml</code> (GitHub Actions), <code>.gitlab-ci.yml</code> (GitLab CI) or a <code>Jenkinsfile</code>. The pipeline is then versioned, reviewed in pull requests and reproducible, instead of being configured by clicking in a web interface.</p>
+<p>Common triggers:</p>
+<ul>
+<li>A push to a branch or a pull request.</li>
+<li>A tag or a release, often used to publish.</li>
+<li>A schedule (cron), for example a nightly build or dependency scan.</li>
+<li>A manual run, for example <code>workflow_dispatch</code> in GitHub Actions.</li>
+<li>Another pipeline or an external webhook.</li>
+</ul></div></details></section>
+<section class="sec-block" id="sec-9"><h2 class="sec">CI tools and pipeline configuration</h2><details class="item" id="g55"><summary><span><span class="qn">Q55</span>What are the main concepts in GitHub Actions?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Workflow</strong></td>
+<td>An automated process defined in a YAML file in <code>.github/workflows/</code></td>
+</tr>
+<tr>
+<td><strong>Event</strong></td>
+<td>What starts the workflow, such as <code>push</code>, <code>pull_request</code> or <code>schedule</code></td>
+</tr>
+<tr>
+<td><strong>Job</strong></td>
+<td>A group of steps that run on the same runner. Jobs run in parallel unless you set <code>needs</code></td>
+</tr>
+<tr>
+<td><strong>Step</strong></td>
+<td>One task in a job: a shell command (<code>run</code>) or a reusable action (<code>uses</code>)</td>
+</tr>
+<tr>
+<td><strong>Runner</strong></td>
+<td>The machine that executes a job, either GitHub-hosted or self-hosted</td>
+</tr>
+<tr>
+<td><strong>Action</strong></td>
+<td>A reusable unit of work, such as <code>actions/checkout</code></td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="g56"><summary><span><span class="qn">Q56</span>Write a basic GitHub Actions workflow that runs tests for a Python project.</span></summary><div class="answer"><pre><code class="language-yaml">name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: &quot;3.11&quot;
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: pytest
+</code></pre>
+<p>On every push to <code>main</code> and on every pull request, it checks out the code, installs Python 3.11, installs the dependencies (with the pip cache enabled) and runs <code>pytest</code>. If any step fails, the job fails and the pull request shows a failed check.</p></div></details><details class="item" id="g57"><summary><span><span class="qn">Q57</span>How do GitHub Actions, GitLab CI and Jenkins compare?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>GitHub Actions</th>
+<th>GitLab CI/CD</th>
+<th>Jenkins</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Config file</td>
+<td>YAML in <code>.github/workflows/</code></td>
+<td><code>.gitlab-ci.yml</code></td>
+<td><code>Jenkinsfile</code> (Groovy)</td>
+</tr>
+<tr>
+<td>Hosting</td>
+<td>Built into GitHub, hosted runners available</td>
+<td>Built into GitLab, hosted or self-managed runners</td>
+<td>Self-hosted server you maintain</td>
+</tr>
+<tr>
+<td>Strength</td>
+<td>Easy start, large marketplace of actions</td>
+<td>Everything in one platform</td>
+<td>Very flexible, huge plugin ecosystem</td>
+</tr>
+<tr>
+<td>Trade-off</td>
+<td>Tied to GitHub</td>
+<td>Tied to GitLab</td>
+<td>You manage upgrades, plugins and security</td>
+</tr>
+</tbody>
+</table>
+<p>The concepts (stages, jobs, runners, artifacts, secrets) are the same across tools, so learning one makes the others easy.</p></div></details><details class="item" id="g58"><summary><span><span class="qn">Q58</span>What is a Jenkinsfile? Show a simple declarative pipeline.</span></summary><div class="answer"><p>A <strong>Jenkinsfile</strong> is the pipeline definition stored in the repository for Jenkins. The <strong>declarative</strong> syntax is the structured, beginner-friendly form: a pipeline contains stages, and each stage contains steps.</p><pre><code class="language-groovy">pipeline {
+    agent any
+    stages {
+        stage(&#x27;Install&#x27;) {
+            steps { sh &#x27;pip install -r requirements.txt&#x27; }
+        }
+        stage(&#x27;Test&#x27;) {
+            steps { sh &#x27;pytest&#x27; }
+        }
+        stage(&#x27;Build image&#x27;) {
+            steps { sh &#x27;docker build -t ml-api:${BUILD_NUMBER} .&#x27; }
+        }
+    }
+    post {
+        failure { echo &#x27;Pipeline failed&#x27; }
+    }
+}
+</code></pre>
+<p><code>agent</code> says where the pipeline runs, <code>stages</code> are the phases shown in the Jenkins interface, and the <code>post</code> block runs actions after the pipeline finishes, for example on failure.</p></div></details><details class="item" id="g59"><summary><span><span class="qn">Q59</span>How do you handle secrets in a CI/CD pipeline?</span></summary><div class="answer"><p>Store secrets in the CI platform&rsquo;s secret store (for example GitHub Actions secrets or GitLab CI variables marked as masked) and read them at run time. They are masked in logs.</p><pre><code class="language-yaml">steps:
+  - name: Deploy
+    run: ./deploy.sh
+    env:
+      API_TOKEN: ${{ secrets.API_TOKEN }}
+</code></pre>
+<ul>
+<li><strong>Never commit secrets</strong> to Git, and never print them in logs.</li>
+<li>Give each secret the <strong>least privilege</strong> it needs and rotate it regularly.</li>
+<li>Prefer <strong>short-lived credentials</strong>, for example OIDC federation to a cloud provider, over long-lived keys.</li>
+<li>Be careful with pull requests from forks: GitHub does not pass repository secrets to them by default, which prevents malicious code from stealing them.</li>
+<li>Add a <strong>secret scanner</strong> (for example gitleaks) to catch accidental commits.</li>
+</ul></div></details><details class="item" id="g60"><summary><span><span class="qn">Q60</span>How do caching and matrix builds make a pipeline better?</span></summary><div class="answer"><p><strong>Caching</strong> stores files that are expensive to recreate, such as downloaded dependencies or Docker layers, so later runs reuse them. In the workflow above, <code>cache: pip</code> does this for Python packages.</p>
+<p>A <strong>matrix build</strong> runs the same job several times with different values, for example Python versions or operating systems, in parallel. It proves the code works in every supported combination.</p><pre><code class="language-yaml">jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [&quot;3.10&quot;, &quot;3.11&quot;, &quot;3.12&quot;]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: pytest
+</code></pre>
+<p>This creates three parallel jobs, one for each Python version.</p></div></details></section>
+<section class="sec-block" id="sec-10"><h2 class="sec">Deployment strategies and releases</h2><details class="item" id="g61"><summary><span><span class="qn">Q61</span>What environments are used in a delivery pipeline, and how does code move between them?</span></summary><div class="answer"><ul>
+<li><strong>Development:</strong> where developers run and test their changes, locally or in a shared environment.</li>
+<li><strong>Staging (or QA):</strong> a copy of production used for integration and acceptance tests.</li>
+<li><strong>Production:</strong> what real users use.</li>
+</ul>
+<p>The same artifact is <strong>promoted</strong> from one environment to the next after the checks pass, and only configuration (environment variables, database URLs, secrets) changes between them. Staging should look as much like production as practical, otherwise it cannot catch environment-specific bugs.</p></div></details><details class="item" id="g62"><summary><span><span class="qn">Q62</span>What is the difference between rolling, blue-green and canary deployments?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>How it works</th>
+<th>Rollback</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Rolling</strong></td>
+<td>Replace instances gradually, a few at a time</td>
+<td>Roll the update back the same way</td>
+<td>Old and new versions run together for a while</td>
+</tr>
+<tr>
+<td><strong>Blue-green</strong></td>
+<td>Run two identical environments, then switch all traffic from blue (old) to green (new)</td>
+<td>Switch traffic back instantly</td>
+<td>Needs double the resources</td>
+</tr>
+<tr>
+<td><strong>Canary</strong></td>
+<td>Send a small share of traffic (for example 5%) to the new version, then increase it if metrics look healthy</td>
+<td>Send traffic back to the old version</td>
+<td>Needs good monitoring and traffic control</td>
+</tr>
+</tbody>
+</table>
+<p>Canary limits the number of users affected by a bad release, and blue-green gives the fastest rollback.</p></div></details><details class="item" id="g63"><summary><span><span class="qn">Q63</span>How do you roll back a bad deployment?</span></summary><div class="answer"><p>Because artifacts are versioned, the safest rollback is to <strong>redeploy the previous known-good version</strong>.</p>
+<ul>
+<li><strong>Kubernetes:</strong> <code>kubectl rollout undo deployment/&lt;name&gt;</code> returns to the previous revision.</li>
+<li><strong>Blue-green:</strong> switch traffic back to the old environment.</li>
+<li><strong>Feature flag:</strong> turn the new feature off without redeploying.</li>
+<li><strong>Git:</strong> use <code>git revert</code> to create a new commit that undoes the change, then let the pipeline deploy it. Avoid rewriting shared history with <code>git reset --force</code>.</li>
+</ul>
+<p>Database changes make rollback harder, so write migrations that are <strong>backward compatible</strong> (for example add a column first and remove the old one in a later release).</p></div></details><details class="item" id="g64"><summary><span><span class="qn">Q64</span>What are feature flags, and how do they relate to CI/CD?</span></summary><div class="answer"><p>A <strong>feature flag</strong> (or toggle) is a switch in the code or in a configuration service that turns a feature on or off at run time, without a new deployment.</p>
+<p>They separate <strong>deploying</strong> code from <strong>releasing</strong> a feature. Unfinished work can be merged to the main branch often and deployed safely while hidden, which supports trunk-based development. Flags also allow gradual rollouts to a percentage of users and act as an instant kill switch when something breaks.</p>
+<p>The downside is extra code paths, so remove flags once a feature is fully released.</p></div></details><details class="item" id="g65"><summary><span><span class="qn">Q65</span>What is Infrastructure as Code, and why is it used in CI/CD?</span></summary><div class="answer"><p><strong>Infrastructure as Code (IaC)</strong> means defining servers, networks, databases and other infrastructure in files that are stored in Git, instead of creating them by hand in a console. Common tools are Terraform and AWS CloudFormation for provisioning, and Ansible for configuring machines.</p>
+<ul>
+<li>Environments are <strong>reproducible</strong>, so staging and production can be created from the same definition.</li>
+<li>Changes go through <strong>pull requests and review</strong> and have a history.</li>
+<li>The pipeline can create, update or destroy infrastructure automatically.</li>
+<li>It removes manual &ldquo;snowflake&rdquo; servers that nobody can rebuild.</li>
+</ul></div></details><details class="item" id="g66"><summary><span><span class="qn">Q66</span>What is GitOps?</span></summary><div class="answer"><p><strong>GitOps</strong> is a way of operating infrastructure and deployments where <strong>Git is the single source of truth</strong> for the desired state of the system. To change production, you open a pull request that changes the configuration files, and you do not run commands against the cluster directly.</p>
+<p>An agent running in the cluster, such as <strong>Argo CD</strong> or <strong>Flux</strong>, continuously compares the cluster with the repository and <strong>pulls and applies</strong> any difference. This gives you an audit trail through Git history, easy rollbacks by reverting a commit, and automatic correction if someone changes the cluster by hand.</p></div></details></section>
+<section class="sec-block" id="sec-11"><h2 class="sec">CI/CD for Docker, ML and real-world scenarios</h2><details class="item" id="g67"><summary><span><span class="qn">Q67</span>How do you build and push a Docker image from a CI pipeline?</span></summary><div class="answer"><p>The pipeline logs in to the registry using secrets, builds the image from the Dockerfile and pushes it with a tag that identifies the commit, so every image can be traced back to its code.</p><pre><code class="language-yaml">name: Build and push image
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: myuser/ml-api:${{ github.sha }}
+</code></pre>
+<p>Tagging with the commit hash (<code>github.sha</code>) instead of only <code>latest</code> gives exact versions to deploy and roll back to. The registry token is stored as a secret and is never written in the file.</p></div></details><details class="item" id="g68"><summary><span><span class="qn">Q68</span>How is CI/CD for machine learning different from CI/CD for normal software?</span></summary><div class="answer"><p>An ML system changes because of <strong>code, data and models</strong>, not just code, so the pipeline needs extra steps. This practice is called <strong>MLOps</strong>.</p>
+<ul>
+<li><strong>Data validation:</strong> check schema, missing values and distribution before training.</li>
+<li><strong>Continuous training (CT):</strong> retrain automatically on a schedule or when new data or drift appears.</li>
+<li><strong>Model evaluation as a gate:</strong> a new model is promoted only if it beats the current one on agreed metrics.</li>
+<li><strong>Versioning:</strong> track data (for example with DVC), experiments and models (for example in an MLflow model registry), together with the code commit.</li>
+<li><strong>Monitoring after deployment:</strong> watch prediction quality, data drift and latency, since a model can degrade without any code change.</li>
+</ul></div></details><details class="item" id="g69"><summary><span><span class="qn">Q69</span>What is the difference between trunk-based development and Gitflow, and which suits CI/CD better?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Trunk-based development</th>
+<th>Gitflow</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Branches</td>
+<td>One main branch plus short-lived branches (hours to a day or two)</td>
+<td>Long-lived <code>develop</code>, plus feature, release and hotfix branches</td>
+</tr>
+<tr>
+<td>Merge frequency</td>
+<td>Very often, at least daily</td>
+<td>When a feature or release is finished</td>
+</tr>
+<tr>
+<td>Unfinished work</td>
+<td>Hidden behind feature flags</td>
+<td>Kept on its own branch</td>
+</tr>
+<tr>
+<td>Fits</td>
+<td>Continuous delivery and deployment</td>
+<td>Scheduled, versioned releases</td>
+</tr>
+</tbody>
+</table>
+<p>Trunk-based development fits CI/CD better, because the idea of integrating continuously breaks down when branches live for weeks and merge conflicts pile up.</p></div></details><details class="item" id="g70"><summary><span><span class="qn">Q70</span>Your pipeline fails randomly, and re-running it makes it pass. What do you do?</span></summary><div class="answer"><p>This is a <strong>flaky</strong> failure. Re-running until green hides the problem and teaches the team to ignore failures, so I would find the cause.</p>
+<ul>
+<li>Compare the logs of failed and passed runs to see which test or step fails.</li>
+<li>Look for the usual causes: tests that depend on each other or on run order, shared state, timing and sleeps, random data without a fixed seed, and calls to real external services or networks.</li>
+<li>Fix the cause: isolate state, set seeds, mock external calls and wait for conditions instead of fixed delays.</li>
+<li>If a fix will take time, <strong>quarantine</strong> the test so it does not block everyone, and track it until fixed.</li>
+<li>Record the flaky-test rate so the issue stays visible.</li>
+</ul></div></details><details class="item" id="g71"><summary><span><span class="qn">Q71</span>Your pipeline takes 40 minutes. How do you speed it up?</span></summary><div class="answer"><p>I would first measure which stages take the most time, then work on those.</p>
+<ul>
+<li><strong>Cache</strong> dependencies and Docker layers, and order the Dockerfile so rarely changing layers come first.</li>
+<li><strong>Run independent jobs in parallel</strong>, and split a large test suite across several runners.</li>
+<li><strong>Fail fast:</strong> run lint and unit tests before slow integration tests.</li>
+<li>Run only what is needed, for example with path filters so a docs change does not trigger a full build.</li>
+<li>Use smaller base images and avoid downloading large files on every run.</li>
+<li>Move slow end-to-end or nightly checks to a scheduled pipeline.</li>
+</ul></div></details><details class="item" id="g72"><summary><span><span class="qn">Q72</span>How would you design a CI/CD pipeline for a machine learning API service?</span></summary><div class="answer"><ol>
+<li><strong>On a pull request:</strong> lint, type check, run unit tests, and run a small test that loads the model and checks the API response format. Scan dependencies and check for committed secrets. Branch protection requires all of these to pass.</li>
+<li><strong>On merge to main:</strong> build the Docker image, tag it with the commit hash, scan the image and push it to the registry.</li>
+<li><strong>Deploy to staging</strong> by pulling that exact image, then run smoke tests and a quick check of model quality on a fixed test set.</li>
+<li><strong>Deploy to production</strong> after approval, using a canary or rolling release, with health checks that trigger automatic rollback if they fail.</li>
+<li><strong>After release:</strong> monitor latency, errors and prediction drift, and keep a scheduled retraining pipeline that promotes a new model only if it passes the evaluation gate.</li>
+</ol>
+<p>Secrets live in the CI secret store, the model file comes from a model registry or storage and is not committed to Git, and every step is defined as code in the repository.</p></div></details></section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
