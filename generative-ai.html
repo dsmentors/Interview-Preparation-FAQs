@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generative AI Interview Prep</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg></span><h1>Generative AI Interview Prep</h1></div>
+<p class="sub">54 questions</p>
+<div class="roles"><a class="role" href="index.html#role=aiml">AI/ML</a><a class="role" href="index.html#role=se">Software Engineer (AI/ML)</a><a class="role alt" href="index.html#role=da">Data Analytics</a><a class="role alt" href="index.html#role=ds">Data Science</a><a class="role alt" href="index.html#role=ba">Business Analyst</a></div>
+<div class="intro"><blockquote><p>Target roles: Data Science / AI-ML Engineer. Level: fresher and 1-3 years. Questions are ordered from basic to advanced within each section.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<nav class="chips"><a href="#sec-0">Generative AI fundamentals <small>6</small></a><a href="#sec-1">Transformer architecture and attention <small>8</small></a><a href="#sec-2">LLM training and adaptation <small>7</small></a><a href="#sec-3">Prompt engineering and decoding <small>6</small></a><a href="#sec-4">RAG and vector databases <small>9</small></a><a href="#sec-5">Evaluation, hallucination and safety <small>6</small></a><a href="#sec-6">Other generative models (GANs, VAEs, diffusion) <small>5</small></a><a href="#sec-7">Applied GenAI: APIs, agents and deployment <small>7</small></a></nav>
+<section class="sec-block" id="sec-0"><h2 class="sec">Generative AI fundamentals</h2><details class="item" id="g1"><summary><span><span class="qn">Q1</span>What is generative AI?</span></summary><div class="answer"><p>Generative AI refers to models that learn the patterns in training data and use them to produce new content, such as text, images, code, audio or video. Instead of only labeling or predicting something about an input, the model creates new output that resembles the data it learned from. Examples are ChatGPT-style assistants for text and Stable Diffusion for images.</p></div></details><details class="item" id="g2"><summary><span><span class="qn">Q2</span>What is the difference between generative and discriminative models?</span></summary><div class="answer"><p>A generative model learns how the data itself is distributed, so it can create new samples. A discriminative model learns the boundary between classes, so it can only predict a label for a given input.</p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Generative</th>
+<th>Discriminative</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What it models</td>
+<td>P(x) or P(x, y)</td>
+<td>P(y given x)</td>
+</tr>
+<tr>
+<td>Main output</td>
+<td>New data samples</td>
+<td>Labels or values</td>
+</tr>
+<tr>
+<td>Examples</td>
+<td>GPT, VAE, GAN, diffusion, Naive Bayes</td>
+<td>Logistic regression, SVM, random forest</td>
+</tr>
+<tr>
+<td>Typical use</td>
+<td>Text/image generation, data augmentation</td>
+<td>Classification, regression</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="g3"><summary><span><span class="qn">Q3</span>What is a Large Language Model (LLM)?</span></summary><div class="answer"><p>An LLM is a neural network, almost always a transformer, trained on very large text corpora to predict the next token in a sequence. Because it is trained on so much text, it picks up grammar, facts, reasoning patterns and coding conventions, and can be steered to do many tasks through prompts. "Large" refers to billions of parameters and to the scale of the training data.</p></div></details><details class="item" id="g4"><summary><span><span class="qn">Q4</span>What is tokenization, and why do LLMs use subword tokens?</span></summary><div class="answer"><p>Tokenization splits text into units called tokens, and each token maps to an integer ID the model can process. Most LLMs use subword methods such as Byte Pair Encoding (BPE), which keep frequent words as single tokens and split rare words into pieces. This avoids the huge vocabulary of word-level tokenizers and the very long sequences of character-level ones, and it handles unseen words without an "unknown" token. As a rough rule, one English word is about 1.3 tokens on average, and this varies by tokenizer and language.</p></div></details><details class="item" id="g5"><summary><span><span class="qn">Q5</span>What is the difference between tokens, embeddings and the context window?</span></summary><div class="answer"><p>These three are often confused. A token is a discrete piece of text, an embedding is the vector the model uses for it, and the context window is how many tokens the model can handle at once.</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>What it is</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Token</td>
+<td>A text unit with an integer ID</td>
+<td>"unhappy" becomes ["un", "happy"]</td>
+</tr>
+<tr>
+<td>Embedding</td>
+<td>A dense vector representing a token (or a whole text)</td>
+<td>A 768-number vector</td>
+</tr>
+<tr>
+<td>Context window</td>
+<td>Maximum tokens (prompt plus output) the model can attend to in one call</td>
+<td>8K, 128K tokens, depending on the model</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="g6"><summary><span><span class="qn">Q6</span>How does an LLM generate text?</span></summary><div class="answer"><p>An LLM generates text autoregressively. It reads the tokens so far, produces a score (logit) for every token in its vocabulary, converts the scores to probabilities with softmax, picks one token, appends it, and repeats until it hits a stop token or a length limit. How the token is picked (greedy, sampling) is controlled by decoding settings.</p>
+<pre><code class="language-python">import numpy as np
+
+def softmax(x):
+    e = np.exp(x - np.max(x))
+    return e / e.sum()
+
+vocab = [&quot;the&quot;, &quot;cat&quot;, &quot;sat&quot;, &quot;mat&quot;]
+logits = np.array([0.5, 2.0, 1.0, 0.1])   # model scores for the next token
+probs = softmax(logits)
+print(vocab[int(np.argmax(probs))])       # greedy choice: cat
+</code></pre></div></details></section>
+<section class="sec-block" id="sec-1"><h2 class="sec">Transformer architecture and attention</h2><details class="item" id="g7"><summary><span><span class="qn">Q7</span>Why did transformers replace RNNs and LSTMs for language tasks?</span></summary><div class="answer"><p>Transformers process all tokens in a sequence in parallel, which makes training much faster on GPUs. Attention also connects any two tokens directly, so long-range dependencies don't have to pass through many sequential steps where the signal fades. The trade-off is that standard attention cost grows quadratically with sequence length.</p></div></details><details class="item" id="g8"><summary><span><span class="qn">Q8</span>What is self-attention, intuitively?</span></summary><div class="answer"><p>Self-attention lets each token look at every other token in the sequence and decide how much each one matters for building its own representation. In "The animal didn't cross the street because it was tired", attention helps "it" draw more information from "animal" than from "street". The output for each token is a weighted mix of information from all tokens, with the weights learned from context.</p></div></details><details class="item" id="g9"><summary><span><span class="qn">Q9</span>What are Query, Key and Value in attention, and what is the formula?</span></summary><div class="answer"><p>Each token's embedding is projected into three vectors. The Query describes what the token is looking for, the Key describes what each token offers for matching, and the Value is the content that actually gets passed on. The Query is compared with all Keys to get weights, and those weights mix the Values.</p>
+<p><strong>Formula:</strong></p>
+<pre><code>Attention(Q, K, V) = softmax(Q K^T / sqrt(d_k)) V
+</code></pre>
+<pre><code class="language-python">import numpy as np
+
+def softmax(x):
+    e = np.exp(x - x.max(axis=-1, keepdims=True))
+    return e / e.sum(axis=-1, keepdims=True)
+
+def attention(Q, K, V):
+    d_k = Q.shape[-1]
+    scores = Q @ K.T / np.sqrt(d_k)
+    weights = softmax(scores)
+    return weights @ V, weights
+
+rng = np.random.default_rng(0)
+Q, K, V = (rng.normal(size=(4, 8)) for _ in range(3))
+out, w = attention(Q, K, V)
+print(out.shape)          # (4, 8)
+print(w.sum(axis=-1))     # each row sums to 1
+</code></pre></div></details><details class="item" id="g10"><summary><span><span class="qn">Q10</span>Why do we divide by sqrt(d_k) in attention?</span></summary><div class="answer"><p>If Query and Key components have roughly unit variance, their dot product has variance of about d_k, so scores grow as the dimension grows. Large scores push softmax into a saturated region where one weight is close to 1 and the rest close to 0, which gives very small gradients and slows training. Dividing by sqrt(d_k) brings the variance back to about 1.</p></div></details><details class="item" id="g11"><summary><span><span class="qn">Q11</span>What is multi-head attention and why use it?</span></summary><div class="answer"><p>Multi-head attention runs several attention operations in parallel, each with its own Q, K and V projections, then concatenates the results and applies a final linear projection. Each head can focus on a different relationship, such as syntax, nearby words or long-distance references. The per-head dimension is usually d_model / number_of_heads, so the total cost stays similar to a single large head.</p></div></details><details class="item" id="g12"><summary><span><span class="qn">Q12</span>Why do transformers need positional encoding?</span></summary><div class="answer"><p>Self-attention has no built-in sense of order, so without extra information "dog bites man" and "man bites dog" would look the same to it. Positional information is added so the model knows where each token sits. The original transformer used fixed sinusoidal encodings added to the embeddings, BERT-style models use learned position embeddings, and many recent LLMs use rotary embeddings (RoPE).</p></div></details><details class="item" id="g13"><summary><span><span class="qn">Q13</span>What is the difference between encoder-only, decoder-only and encoder-decoder models?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Attention</th>
+<th>Typical models</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Encoder-only</td>
+<td>Bidirectional (sees whole input)</td>
+<td>BERT, RoBERTa</td>
+<td>Classification, NER, embeddings, search</td>
+</tr>
+<tr>
+<td>Decoder-only</td>
+<td>Causal (sees only previous tokens)</td>
+<td>GPT family, Llama</td>
+<td>Text generation, chat, code</td>
+</tr>
+<tr>
+<td>Encoder-decoder</td>
+<td>Encoder reads input, decoder generates with cross-attention</td>
+<td>T5, BART</td>
+<td>Translation, summarization</td>
+</tr>
+</tbody>
+</table>
+<p>Most modern general-purpose LLMs are decoder-only.</p></div></details><details class="item" id="g14"><summary><span><span class="qn">Q14</span>Why does a longer context get so expensive, and what is the KV cache?</span></summary><div class="answer"><p>Standard self-attention builds an n x n score matrix, so doubling the input length roughly quadruples attention compute and memory. During generation, the model would otherwise recompute Keys and Values for all earlier tokens at every step. The KV cache stores them so each new token only computes its own, which speeds up generation but makes memory grow linearly with context length and batch size. This is why long contexts raise both latency and GPU memory use.</p></div></details></section>
+<section class="sec-block" id="sec-2"><h2 class="sec">LLM training and adaptation</h2><details class="item" id="g15"><summary><span><span class="qn">Q15</span>What is the difference between pretraining, fine-tuning and prompting?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>What changes</th>
+<th>Data needed</th>
+<th>Cost</th>
+<th>Use when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pretraining</td>
+<td>All weights, from scratch</td>
+<td>Trillions of tokens</td>
+<td>Extremely high</td>
+<td>Almost never for most teams</td>
+</tr>
+<tr>
+<td>Fine-tuning</td>
+<td>Model weights (all or some)</td>
+<td>Hundreds to thousands of examples</td>
+<td>Medium</td>
+<td>You need consistent style, format or domain behavior</td>
+</tr>
+<tr>
+<td>Prompting</td>
+<td>Nothing, only the input</td>
+<td>None to a few examples</td>
+<td>Lowest</td>
+<td>Always try first</td>
+</tr>
+</tbody>
+</table>
+<p>A good default order is prompting, then RAG if knowledge is the gap, then fine-tuning if behavior is the gap.</p></div></details><details class="item" id="g16"><summary><span><span class="qn">Q16</span>What is instruction tuning (supervised fine-tuning)?</span></summary><div class="answer"><p>Supervised fine-tuning (SFT) trains a pretrained model on pairs of instructions and ideal responses so that it follows instructions rather than just continuing text. A base model asked "Summarize this" may continue the sentence, whereas an instruction-tuned model gives a summary. The data quality matters more than quantity, and a small clean dataset often beats a large noisy one.</p></div></details><details class="item" id="g17"><summary><span><span class="qn">Q17</span>What is RLHF and why is it used?</span></summary><div class="answer"><p>Reinforcement Learning from Human Feedback aligns a model with human preferences. The typical steps are:</p>
+<ul>
+<li>Run SFT so the model follows instructions.</li>
+<li>Collect human rankings of multiple model outputs and train a reward model to predict those preferences.</li>
+<li>Optimize the language model against the reward model with reinforcement learning (PPO is common), with a penalty to keep it close to the SFT model.</li>
+</ul>
+<p>It makes outputs more helpful and safer. Newer methods such as DPO skip the explicit reward model, but you only need the concept at this level.</p></div></details><details class="item" id="g18"><summary><span><span class="qn">Q18</span>What is parameter-efficient fine-tuning, and how does LoRA work?</span></summary><div class="answer"><p>PEFT methods adapt a model by training a small number of extra parameters while the base weights stay frozen. LoRA (Low-Rank Adaptation) represents the weight update as the product of two small matrices: W_new = W + (alpha / r) * B A, where W is d x d, B is d x r, A is r x d and r is small (for example 8 or 16). Only A and B are trained, so memory and storage drop sharply, and you can keep one base model with many small adapters.</p>
+<pre><code class="language-python">d, r = 4096, 8
+full = d * d              # parameters in one full weight matrix
+lora = d * r + r * d      # parameters in A and B
+print(full, lora, f&quot;{lora / full:.2%}&quot;)   # 16777216 65536 0.39%
+</code></pre></div></details><details class="item" id="g19"><summary><span><span class="qn">Q19</span>What is catastrophic forgetting, and how do you reduce it?</span></summary><div class="answer"><p>Catastrophic forgetting is when fine-tuning on a narrow dataset makes the model lose general abilities it had before. You can reduce it by using LoRA or other PEFT methods, using a low learning rate and few epochs, mixing some general data into the fine-tuning set, and evaluating on general benchmarks as well as the target task. Checking only the target task is the usual mistake, because it hides the regression.</p></div></details><details class="item" id="g20"><summary><span><span class="qn">Q20</span>What is quantization and why is it used?</span></summary><div class="answer"><p>Quantization stores model weights (and sometimes activations) in lower precision, such as 8-bit or 4-bit integers instead of 16-bit floats. This cuts memory use and often speeds up inference, so larger models fit on smaller GPUs. The cost is a small, usually modest, accuracy drop that depends on the model and method. At this level, knowing the purpose and the trade-off is enough.</p></div></details><details class="item" id="g21"><summary><span><span class="qn">Q21</span>What would you do if you have 1,000 labeled examples and one GPU and need to adapt a 7B model?</span></summary><div class="answer"><p>I would first check whether prompting or few-shot examples already meet the need. If not, I would use a parameter-efficient approach: LoRA, or QLoRA, which loads the frozen base model in 4-bit and trains LoRA adapters, so it fits in limited GPU memory. I would hold out a validation set, train for a small number of epochs with a low learning rate, and compare against the prompting baseline on both the target task and a few general tasks. If gains are small, I would improve data quality before training longer.</p></div></details></section>
+<section class="sec-block" id="sec-3"><h2 class="sec">Prompt engineering and decoding</h2><details class="item" id="g22"><summary><span><span class="qn">Q22</span>What are zero-shot, few-shot and chain-of-thought prompting?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>What you give the model</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zero-shot</td>
+<td>Only the instruction</td>
+<td>Simple, well-known tasks</td>
+</tr>
+<tr>
+<td>Few-shot</td>
+<td>Instruction plus a few worked examples</td>
+<td>Enforcing format or style</td>
+</tr>
+<tr>
+<td>Chain-of-thought (CoT)</td>
+<td>Ask for or demonstrate step-by-step reasoning</td>
+<td>Math, logic, multi-step problems</td>
+</tr>
+</tbody>
+</table>
+<p>Example CoT prompt: "A shop sells pens at 12 rupees each. I buy 7 and pay with a 100-rupee note. Think step by step and give the change." Reasoning models do this internally, so explicit CoT matters less for them.</p></div></details><details class="item" id="g23"><summary><span><span class="qn">Q23</span>What is the difference between a system prompt and a user prompt?</span></summary><div class="answer"><p>The system prompt sets persistent behavior for the whole conversation, such as role, tone, rules and output format. The user prompt carries the specific request for that turn. Models are trained to give system instructions higher priority, but this is not a security guarantee, so critical rules should also be enforced in application code.</p></div></details><details class="item" id="g24"><summary><span><span class="qn">Q24</span>What do temperature, top-k and top-p control?</span></summary><div class="answer"><p>All three control how the next token is sampled.</p>
+<ul>
+<li>Temperature divides the logits before softmax. Low values sharpen the distribution (more predictable), high values flatten it (more varied).</li>
+<li>Top-k keeps only the k most likely tokens and samples among them.</li>
+<li>Top-p (nucleus sampling) keeps the smallest set of tokens whose cumulative probability reaches p, so the candidate set size adapts to the context.</li>
+</ul>
+<pre><code class="language-python">import numpy as np
+
+def softmax(x):
+    e = np.exp(x - np.max(x))
+    return e / e.sum()
+
+logits = np.array([2.0, 1.0, 0.1])
+for T in (0.5, 1.0, 2.0):
+    print(T, np.round(softmax(logits / T), 3))
+# 0.5 [0.864 0.117 0.019]
+# 1.0 [0.659 0.242 0.099]
+# 2.0 [0.502 0.304 0.194]
+</code></pre></div></details><details class="item" id="g25"><summary><span><span class="qn">Q25</span>Does temperature 0 guarantee the same output every time?</span></summary><div class="answer"><p>No. Temperature 0 means greedy decoding, which is deterministic in theory, but many hosted APIs can still return slightly different outputs. Causes include floating-point differences from parallel GPU computation, batching effects and ties between near-equal tokens. If exact reproducibility matters, use a seed parameter where the provider offers one, cache outputs, and design the application to tolerate small variation.</p></div></details><details class="item" id="g26"><summary><span><span class="qn">Q26</span>What is the difference between greedy, beam search and sampling?</span></summary><div class="answer"><p>Greedy decoding picks the single most likely token at each step, which is fast but can be repetitive and miss better overall sequences. Beam search keeps the top N partial sequences at each step and returns the best full sequence, which suits translation and summarization where there is a "correct" output but tends to produce dull text in open-ended chat. Sampling (with temperature, top-k or top-p) draws from the distribution, which gives varied, natural text and is the default for chat and creative tasks.</p></div></details><details class="item" id="g27"><summary><span><span class="qn">Q27</span>Your prompt returns valid JSON only 70% of the time. How would you fix it?</span></summary><div class="answer"><p>I would work through fixes from cheapest to most robust:</p>
+<ul>
+<li>State the exact schema in the prompt and add one or two examples of correct output.</li>
+<li>Lower temperature and tell the model to return only JSON with no extra text.</li>
+<li>Use the provider's structured output or JSON mode, or function calling with a schema, if available.</li>
+<li>Validate the output in code (for example with a JSON schema or Pydantic) and retry with the error message on failure.</li>
+<li>Log failures and test on a fixed set of inputs so each change can be measured rather than judged by feel.</li>
+</ul></div></details></section>
+<section class="sec-block" id="sec-4"><h2 class="sec">RAG and vector databases</h2><details class="item" id="g28"><summary><span><span class="qn">Q28</span>What is Retrieval-Augmented Generation (RAG) and why use it?</span></summary><div class="answer"><p>RAG retrieves relevant documents from an external knowledge source at query time and gives them to the LLM as context, so the answer is grounded in that content. It lets the model use private or up-to-date information without retraining, reduces hallucination, and allows citing sources. The model's weights are unchanged, and knowledge is updated by updating the document store.</p></div></details><details class="item" id="g29"><summary><span><span class="qn">Q29</span>RAG vs fine-tuning: when do you choose which?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>RAG</th>
+<th>Fine-tuning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Best for</td>
+<td>Fresh, private or large knowledge</td>
+<td>Style, tone, format, task behavior</td>
+</tr>
+<tr>
+<td>Updating knowledge</td>
+<td>Update the index, immediately effective</td>
+<td>Retrain</td>
+</tr>
+<tr>
+<td>Source citation</td>
+<td>Easy</td>
+<td>Hard</td>
+</tr>
+<tr>
+<td>Hallucination control</td>
+<td>Better, grounded in retrieved text</td>
+<td>No direct grounding</td>
+</tr>
+<tr>
+<td>Upfront cost</td>
+<td>Pipeline and index setup</td>
+<td>Training data and compute</td>
+</tr>
+</tbody>
+</table>
+<p>A common mistake is to fine-tune a model to "teach it facts". Fine-tuning shapes behavior, but it is an unreliable way to store knowledge, and the two approaches can be combined.</p></div></details><details class="item" id="g30"><summary><span><span class="qn">Q30</span>What are embeddings and how does similarity search work?</span></summary><div class="answer"><p>An embedding model converts text into a dense vector so that texts with similar meaning end up close together. To search, you embed the query and find the document vectors nearest to it, usually by cosine similarity: cos(a, b) = (a . b) / (|a| * |b|).</p>
+<pre><code class="language-python">import numpy as np
+
+def cosine(a, b):
+    return a @ b / (np.linalg.norm(a) * np.linalg.norm(b))
+
+query = np.array([1, 0, 1])
+docs = {&quot;d1&quot;: np.array([1, 0, 1]),
+        &quot;d2&quot;: np.array([1, 1, 0]),
+        &quot;d3&quot;: np.array([0, 1, 0])}
+ranked = sorted(docs, key=lambda k: cosine(query, docs[k]), reverse=True)
+for name in ranked:
+    print(name, f&quot;{cosine(query, docs[name]):.2f}&quot;)
+# d1 1.00
+# d2 0.50
+# d3 0.00
+</code></pre></div></details><details class="item" id="g31"><summary><span><span class="qn">Q31</span>What is a vector database and what is approximate nearest neighbor (ANN) search?</span></summary><div class="answer"><p>A vector database stores embeddings with metadata and returns the nearest vectors to a query quickly. Exact search compares the query against every vector, which gets slow at millions of vectors. ANN indexes (such as HNSW or IVF) trade a small loss in recall for much lower latency. Examples include FAISS, Chroma, Pinecone, Weaviate and pgvector, and you only need to know that ANN exists and why, not the index internals.</p></div></details><details class="item" id="g32"><summary><span><span class="qn">Q32</span>What are the steps in a basic RAG pipeline?</span></summary><div class="answer"><ul>
+<li>Ingest: load documents, clean them and split them into chunks.</li>
+<li>Index: embed each chunk and store the vectors with metadata.</li>
+<li>Retrieve: embed the user query and fetch the top-k similar chunks.</li>
+<li>Augment: place the chunks and the question into a prompt template.</li>
+<li>Generate: the LLM answers using only the supplied context, ideally with citations.</li>
+</ul></div></details><details class="item" id="g33"><summary><span><span class="qn">Q33</span>How do you choose a chunking strategy?</span></summary><div class="answer"><p>Chunks that are too small lose context, and chunks that are too large dilute relevance and waste tokens. Common options are fixed-size chunks with overlap, sentence- or paragraph-based splitting, and structure-aware splitting by headings or sections. Start with a few hundred tokens and 10 to 20 percent overlap, then tune using retrieval metrics on real questions.</p>
+<pre><code class="language-python">def chunk(text, size=200, overlap=40):
+    step = size - overlap
+    return [text[i:i + size] for i in range(0, max(len(text) - overlap, 1), step)]
+
+pieces = chunk(&quot;a&quot; * 500)
+print([len(p) for p in pieces])   # [200, 200, 180]
+</code></pre></div></details><details class="item" id="g34"><summary><span><span class="qn">Q34</span>What is the difference between dense, sparse and hybrid retrieval?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>How it matches</th>
+<th>Strength</th>
+<th>Weakness</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sparse (BM25, TF-IDF)</td>
+<td>Exact keyword overlap</td>
+<td>Names, IDs, rare terms</td>
+<td>Misses paraphrases</td>
+</tr>
+<tr>
+<td>Dense (embeddings)</td>
+<td>Semantic similarity</td>
+<td>Paraphrases, meaning</td>
+<td>Can miss exact terms and codes</td>
+</tr>
+<tr>
+<td>Hybrid</td>
+<td>Combines both scores</td>
+<td>Best overall coverage</td>
+<td>More components to tune</td>
+</tr>
+</tbody>
+</table>
+<p>Hybrid retrieval is a common production choice.</p></div></details><details class="item" id="g35"><summary><span><span class="qn">Q35</span>What is reranking and why add it?</span></summary><div class="answer"><p>Retrieval first fetches a broad set of candidates (for example top 50) cheaply using embeddings. A reranker, usually a cross-encoder that reads the query and each candidate together, then rescores them and keeps the best few (for example top 5). It is more accurate than embedding similarity alone but too slow to run over the whole corpus, so it works as a second stage. It improves precision and reduces noise in the prompt.</p></div></details><details class="item" id="g36"><summary><span><span class="qn">Q36</span>Your RAG chatbot gives wrong answers. How do you debug it?</span></summary><div class="answer"><p>I would not start by blaming the LLM. I would work in this order:</p>
+<ul>
+<li>Check retrieval: for failing questions, are the right chunks in the top-k? If not, the problem is chunking, the embedding model, the query or missing documents.</li>
+<li>Check the context: is the answer split across chunks, truncated, or buried among irrelevant text? Consider overlap, reranking or a smaller k.</li>
+<li>Check the prompt: does it tell the model to answer only from the context and to say when it doesn't know?</li>
+<li>Check generation last: only if the right context was supplied and the answer is still wrong is it a model issue.</li>
+</ul>
+<p>I would build a small test set of questions with known source passages so each fix can be measured.</p></div></details></section>
+<section class="sec-block" id="sec-5"><h2 class="sec">Evaluation, hallucination and safety</h2><details class="item" id="g37"><summary><span><span class="qn">Q37</span>Why do LLMs hallucinate?</span></summary><div class="answer"><p>An LLM is trained to produce the most plausible next token, not to verify truth. When it lacks knowledge, or the prompt pushes it to answer anyway, it produces fluent but wrong text. Other contributors are gaps or errors in training data, outdated knowledge and ambiguous prompts. Hallucination is therefore a consequence of how probabilistic generation works, not a simple bug to patch.</p></div></details><details class="item" id="g38"><summary><span><span class="qn">Q38</span>How do you reduce hallucinations in a production system?</span></summary><div class="answer"><ul>
+<li>Ground answers with RAG and require citations to retrieved sources.</li>
+<li>Instruct the model to say "I don't know" when the context lacks the answer.</li>
+<li>Use lower temperature for factual tasks.</li>
+<li>Constrain outputs with schemas and validate them in code.</li>
+<li>Add verification, such as a second check that every claim is supported by the retrieved text.</li>
+<li>Route high-risk answers to human review.</li>
+</ul>
+<p>No single technique eliminates hallucination, so layered mitigation is the realistic answer.</p></div></details><details class="item" id="g39"><summary><span><span class="qn">Q39</span>Why are BLEU and ROUGE limited for evaluating generative models?</span></summary><div class="answer"><p>Both measure word overlap between the output and a reference, so they penalize valid paraphrases and can reward fluent but wrong text. They work reasonably for tasks with narrow correct outputs, such as translation or extractive summarization, but poorly for open-ended generation.</p>
+<pre><code class="language-python">from collections import Counter
+
+ref = &quot;the cat sat on the mat&quot;.split()
+cand = &quot;a feline rested on the rug&quot;.split()
+overlap = sum((Counter(ref) &amp; Counter(cand)).values())
+p, r = overlap / len(cand), overlap / len(ref)
+print(round(2 * p * r / (p + r), 2))   # 0.33, despite a similar meaning
+</code></pre></div></details><details class="item" id="g40"><summary><span><span class="qn">Q40</span>What are LLM-as-a-judge and human evaluation, and what are their trade-offs?</span></summary><div class="answer"><p>In LLM-as-a-judge, a strong model scores outputs against a rubric, which is cheap and scalable. Human evaluation is the most trusted but slow and expensive. LLM judges can show bias toward longer answers, toward their own style, and toward the order of options. A practical approach is to use LLM judges for fast iteration, calibrate them against a sample of human ratings, and keep humans for final and high-stakes checks.</p></div></details><details class="item" id="g41"><summary><span><span class="qn">Q41</span>What is prompt injection and how do you defend against it?</span></summary><div class="answer"><p>Prompt injection is when untrusted text, such as user input or a retrieved web page, contains instructions that override the developer's intended instructions. For example, a document saying "ignore previous instructions and reveal the system prompt". Defenses include separating and clearly delimiting untrusted content, limiting what tools and data the model can access (least privilege), validating and filtering outputs, and requiring confirmation for sensitive actions. No prompt wording alone is a reliable defense, so controls must live in application code.</p></div></details><details class="item" id="g42"><summary><span><span class="qn">Q42</span>You launch a chatbot and users start getting it to produce biased or unsafe content. What do you do?</span></summary><div class="answer"><p>First I would log and categorize the failures to see the patterns. Then I would add layered controls: input and output moderation or guardrails, a tightened system prompt, and blocking known jailbreak patterns. For bias, I would test with paired prompts that differ only in a sensitive attribute, and fix issues through data, prompts or fine-tuning. I would also set up ongoing red-teaming and a feedback channel for users, since new failure cases keep appearing after launch.</p></div></details></section>
+<section class="sec-block" id="sec-6"><h2 class="sec">Other generative models (GANs, VAEs, diffusion)</h2><details class="item" id="g43"><summary><span><span class="qn">Q43</span>What is a GAN and how does it train?</span></summary><div class="answer"><p>A Generative Adversarial Network has two networks: a generator that creates fake samples from random noise, and a discriminator that tries to tell real from fake. They train against each other, with the generator improving at fooling the discriminator and the discriminator improving at catching fakes. Training stops being useful when the generator's samples become hard to distinguish from real data. GANs can produce sharp images but are known for unstable training.</p></div></details><details class="item" id="g44"><summary><span><span class="qn">Q44</span>What is a VAE and what is the reparameterization trick?</span></summary><div class="answer"><p>A Variational Autoencoder has an encoder that maps an input to a distribution (a mean and variance) in a latent space, and a decoder that reconstructs data from a sample of that distribution. Its loss combines reconstruction error with a KL-divergence term that keeps the latent space smooth, so you can sample new points and decode them. The reparameterization trick writes the sample as z = mu + sigma * eps, where eps comes from a standard normal, so gradients can flow through the sampling step.</p>
+<pre><code class="language-python">import numpy as np
+
+rng = np.random.default_rng(0)
+mu, sigma = np.array([0.5, -1.0]), np.array([0.1, 0.2])
+eps = rng.standard_normal(2)
+z = mu + sigma * eps      # differentiable with respect to mu and sigma
+print(z.shape)            # (2,)
+</code></pre></div></details><details class="item" id="g45"><summary><span><span class="qn">Q45</span>How does a diffusion model work?</span></summary><div class="answer"><p>A diffusion model is trained by gradually adding noise to real data over many steps (forward process) and learning a network that predicts and removes that noise (reverse process). At generation time it starts from pure noise and denoises step by step, optionally guided by a text prompt, until an image appears. Stable Diffusion runs this process in a compressed latent space to save compute. The cost is that generation needs many sequential steps, which makes it slower than a single GAN pass.</p></div></details><details class="item" id="g46"><summary><span><span class="qn">Q46</span>GAN vs VAE vs diffusion: how do they compare?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>GAN</th>
+<th>VAE</th>
+<th>Diffusion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Core idea</td>
+<td>Generator vs discriminator</td>
+<td>Encode to latent distribution, decode</td>
+<td>Learn to denoise step by step</td>
+</tr>
+<tr>
+<td>Sample quality</td>
+<td>Sharp, can be very good</td>
+<td>Often blurrier</td>
+<td>State of the art for images</td>
+</tr>
+<tr>
+<td>Training stability</td>
+<td>Unstable</td>
+<td>Stable</td>
+<td>Stable</td>
+</tr>
+<tr>
+<td>Sampling speed</td>
+<td>Fast (one pass)</td>
+<td>Fast</td>
+<td>Slow (many steps)</td>
+</tr>
+<tr>
+<td>Main risk</td>
+<td>Mode collapse</td>
+<td>Blurry outputs</td>
+<td>Compute cost</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="g47"><summary><span><span class="qn">Q47</span>Your GAN keeps generating almost the same image. What is happening and what can you try?</span></summary><div class="answer"><p>This is mode collapse: the generator found a few outputs that fool the discriminator and stops exploring the rest of the data distribution. Options include using a more stable loss such as Wasserstein loss with gradient penalty, balancing generator and discriminator training, adding noise or regularization to the discriminator, and monitoring sample diversity during training. If the task allows, switching to a diffusion model avoids the problem because it is trained with a simple, stable objective, which is one reason diffusion has largely replaced GANs for image generation.</p></div></details></section>
+<section class="sec-block" id="sec-7"><h2 class="sec">Applied GenAI: APIs, agents and deployment</h2><details class="item" id="g48"><summary><span><span class="qn">Q48</span>How are LLM API calls priced and how do you estimate cost?</span></summary><div class="answer"><p>Most providers charge per token, with separate prices for input (prompt) and output (completion) tokens, and output tokens usually cost more. Cost per request = input_tokens / 1,000,000 * input_price + output_tokens / 1,000,000 * output_price. The prices below are made up for illustration, so check your provider's current pricing.</p>
+<pre><code class="language-python">def cost(in_tok, out_tok, in_price_per_m, out_price_per_m):
+    return in_tok / 1e6 * in_price_per_m + out_tok / 1e6 * out_price_per_m
+
+print(round(cost(2000, 500, 3.0, 15.0), 4))   # 0.0135 per request
+</code></pre></div></details><details class="item" id="g49"><summary><span><span class="qn">Q49</span>What is function calling (tool use)?</span></summary><div class="answer"><p>Function calling lets the model return a structured request to call a tool, such as <code>get_weather(city="Salem")</code>, instead of free text. Your code runs the function, sends the result back, and the model uses it to write the final answer. The model never executes anything itself, so your code must validate the arguments.</p>
+<pre><code class="language-python">import json
+
+def get_weather(city):
+    return {&quot;city&quot;: city, &quot;temp_c&quot;: 31}
+
+tools = {&quot;get_weather&quot;: get_weather}
+model_output = '{&quot;name&quot;: &quot;get_weather&quot;, &quot;arguments&quot;: {&quot;city&quot;: &quot;Salem&quot;}}'
+call = json.loads(model_output)
+print(tools[call[&quot;name&quot;]](**call[&quot;arguments&quot;]))   # {'city': 'Salem', 'temp_c': 31}
+</code></pre></div></details><details class="item" id="g50"><summary><span><span class="qn">Q50</span>What is an AI agent, and how is it different from a simple LLM call?</span></summary><div class="answer"><p>An agent is an LLM placed in a loop where it can decide on actions, call tools, observe the results and continue until the task is done. A simple LLM call takes one input and returns one output. A common pattern is ReAct: reason about the next step, act with a tool, observe, and repeat. Agents are more flexible but less predictable and more expensive, so a fixed workflow is often the better choice when the steps are known in advance.</p></div></details><details class="item" id="g51"><summary><span><span class="qn">Q51</span>Why use frameworks like LangChain or LlamaIndex, and what are the downsides?</span></summary><div class="answer"><p>They provide ready-made components for prompt templates, document loaders, retrievers, memory, tool use and chains, which speeds up prototyping. LlamaIndex is especially focused on data ingestion and retrieval. The downsides are extra abstraction that can hide what is happening, frequent API changes, and harder debugging, so some teams use the provider's SDK directly for simple use cases. Understanding the underlying prompt and retrieval flow matters more than knowing one framework.</p></div></details><details class="item" id="g52"><summary><span><span class="qn">Q52</span>A user uploads a 300-page document that exceeds the model's context window. How do you handle it?</span></summary><div class="answer"><p>I would not truncate it blindly. For question answering, I would use RAG: chunk the document, index it, and retrieve only the relevant parts per question. For a full summary, I would use map-reduce summarization, summarizing sections separately and then summarizing the summaries. I would also remember that even within the window, models can miss information buried in the middle of a very long prompt (the "lost in the middle" effect), so shorter, targeted context is often more accurate and cheaper.</p></div></details><details class="item" id="g53"><summary><span><span class="qn">Q53</span>How would you reduce latency and cost of an LLM feature in production?</span></summary><div class="answer"><ul>
+<li>Use the smallest model that meets the quality bar, and route only hard queries to larger models.</li>
+<li>Shorten prompts and cap output length.</li>
+<li>Cache responses for repeated questions, and use provider prompt caching where available.</li>
+<li>Stream tokens so users see output sooner.</li>
+<li>Retrieve fewer, better chunks in RAG instead of stuffing the context.</li>
+<li>Batch offline work and measure cost and latency per request so you can see which change helped.</li>
+</ul></div></details><details class="item" id="g54"><summary><span><span class="qn">Q54</span>How would you design a question-answering assistant over a company's internal documents?</span></summary><div class="answer"><p>I would clarify requirements first: who the users are, how often documents change, access rules and acceptable error rate. Then I would build a RAG system: ingest and chunk documents with metadata, embed them into a vector store, use hybrid retrieval with a reranker, and generate answers with citations from a grounded prompt. Access control must be applied at retrieval time so users only see documents they are allowed to read. For evaluation, I would create a test set of real questions, track retrieval hit rate and answer faithfulness, and log feedback after launch. Guardrails, monitoring of cost and latency, and a fallback of "I could not find this in the documents" complete the design.</p></div></details></section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

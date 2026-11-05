@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Structures and Algorithms Interview Prep</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><h1>Data Structures and Algorithms Interview Prep</h1></div>
+<p class="sub">56 questions</p>
+<div class="roles"><a class="role" href="index.html#role=se">Software Engineer (AI/ML)</a><a class="role alt" href="index.html#role=ds">Data Science</a><a class="role alt" href="index.html#role=aiml">AI/ML</a></div>
+<div class="intro"><blockquote><p>Data structures and algorithms interview questions with Python code: complexity, arrays and hashing, linked lists, stacks, queues and heaps, trees and graphs, sorting and searching, dynamic programming and greedy algorithms, and problem-solving patterns. Every code example has been run and tested.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<nav class="chips"><a href="#sec-0">Complexity and fundamentals <small>7</small></a><a href="#sec-1">Arrays, strings and hashing <small>9</small></a><a href="#sec-2">Linked lists, stacks, queues and heaps <small>8</small></a><a href="#sec-3">Trees and graphs <small>11</small></a><a href="#sec-4">Sorting, searching and recursion <small>7</small></a><a href="#sec-5">Dynamic programming and greedy algorithms <small>7</small></a><a href="#sec-6">Problem-solving approach and Python tools <small>7</small></a></nav>
+<section class="sec-block" id="sec-0"><h2 class="sec">Complexity and fundamentals</h2><details class="item" id="a1"><summary><span><span class="qn">Q1</span>What is Big-O notation, and why does it matter?</span></summary><div class="answer"><p>Big-O notation describes <strong>how the running time (or memory) of an algorithm grows as the input size <code>n</code> grows</strong>, ignoring constants and smaller terms. It lets you compare algorithms independently of hardware and decide whether a solution will still work when the data becomes large.</p>
+<p>For example, <code>3n² + 10n + 5</code> is simply <strong>O(n²)</strong>, because for large <code>n</code> the <code>n²</code> term dominates.</p></div></details><details class="item" id="a2"><summary><span><span class="qn">Q2</span>What are the common time complexities, with examples?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Complexity</th>
+<th>Name</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>O(1)</strong></td>
+<td>Constant</td>
+<td>Access a list element by index, dictionary lookup (average)</td>
+</tr>
+<tr>
+<td><strong>O(log n)</strong></td>
+<td>Logarithmic</td>
+<td>Binary search</td>
+</tr>
+<tr>
+<td><strong>O(n)</strong></td>
+<td>Linear</td>
+<td>Scanning a list once</td>
+</tr>
+<tr>
+<td><strong>O(n log n)</strong></td>
+<td>Linearithmic</td>
+<td>Merge sort, heap sort, Python’s <code>sorted</code></td>
+</tr>
+<tr>
+<td><strong>O(n²)</strong></td>
+<td>Quadratic</td>
+<td>Two nested loops, bubble sort</td>
+</tr>
+<tr>
+<td><strong>O(2ⁿ)</strong></td>
+<td>Exponential</td>
+<td>Naive recursive subsets or Fibonacci</td>
+</tr>
+<tr>
+<td><strong>O(n!)</strong></td>
+<td>Factorial</td>
+<td>Generating all permutations</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="a3"><summary><span><span class="qn">Q3</span>What is the difference between best, average and worst case complexity?</span></summary><div class="answer"><ul>
+<li><strong>Best case:</strong> the most favorable input (for example the target is the first element in a linear search, O(1)).</li>
+<li><strong>Average case:</strong> the expected cost over typical inputs.</li>
+<li><strong>Worst case:</strong> the least favorable input (the target is last or missing, O(n)).</li>
+</ul>
+<p>Interviews usually ask for the <strong>worst case</strong> unless stated otherwise. Big-O is an <strong>upper bound</strong>, Big-Omega a lower bound, and Big-Theta a tight bound.</p></div></details><details class="item" id="a4"><summary><span><span class="qn">Q4</span>What is space complexity?</span></summary><div class="answer"><p>Space complexity is the <strong>extra memory an algorithm uses</strong> as the input grows, not counting the input itself. Creating a new list of size <code>n</code> is O(n), and a few variables is O(1). <strong>Recursion uses stack space:</strong> a recursion that goes <code>n</code> levels deep uses O(n) stack memory.</p>
+<p>An algorithm that uses O(1) extra space is called <strong>in-place</strong>.</p></div></details><details class="item" id="a5"><summary><span><span class="qn">Q5</span>How do you analyze the complexity of loops and recursion?</span></summary><div class="answer"><ul>
+<li>A <strong>single loop</strong> over <code>n</code> items is O(n); <strong>nested loops</strong> over <code>n</code> are O(n²).</li>
+<li>A loop that <strong>halves</strong> the problem each time is O(log n).</li>
+<li><strong>Sequential</strong> blocks add up, and you keep the largest term.</li>
+<li>For <strong>recursion</strong>, count the number of calls and the work per call: <code>T(n) = 2T(n/2) + O(n)</code> (merge sort) gives O(n log n), and <code>T(n) = T(n-1) + T(n-2)</code> (naive Fibonacci) gives O(2ⁿ).</li>
+</ul>
+<pre><code class="language-python">def example(n):
+    total = 0
+    for i in range(n):              # O(n)
+        total += i
+    for i in range(n):              # nested loops: O(n^2)
+        for j in range(n):
+            total += i * j
+    return total                    # overall: O(n^2), the larger term wins
+</code></pre></div></details><details class="item" id="a6"><summary><span><span class="qn">Q6</span>What is amortized time complexity?</span></summary><div class="answer"><p>Amortized complexity is the <strong>average cost per operation over a sequence of operations</strong>, even if a single operation is sometimes expensive. The classic example is appending to a dynamic array (a Python list): most appends are O(1), and occasionally the array has to be resized and copied (O(n)), but the average cost per append over many appends is <strong>O(1) amortized</strong>.</p></div></details><details class="item" id="a7"><summary><span><span class="qn">Q7</span>How can you guess the target complexity from the input constraints?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Input size <code>n</code></th>
+<th>Likely acceptable complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>up to about 10</td>
+<td>O(n!) or O(2ⁿ) (brute force, backtracking)</td>
+</tr>
+<tr>
+<td>up to about 20</td>
+<td>O(2ⁿ)</td>
+</tr>
+<tr>
+<td>up to about 500</td>
+<td>O(n³)</td>
+</tr>
+<tr>
+<td>up to about 5,000</td>
+<td>O(n²)</td>
+</tr>
+<tr>
+<td>up to about 10⁵ to 10⁶</td>
+<td><strong>O(n log n)</strong> or O(n)</td>
+</tr>
+<tr>
+<td>above 10⁷</td>
+<td>O(n), O(log n) or O(1)</td>
+</tr>
+</tbody>
+</table>
+<p>This is a rough guide that depends on the time limit and the language (about 10⁷ to 10⁸ simple operations per second is a common estimate).</p></div></details></section>
+<section class="sec-block" id="sec-1"><h2 class="sec">Arrays, strings and hashing</h2><details class="item" id="a8"><summary><span><span class="qn">Q8</span>What is the difference between an array (list) and a linked list?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Array / Python list</th>
+<th>Linked list</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Memory</td>
+<td>Contiguous block</td>
+<td>Nodes scattered in memory, each with a pointer</td>
+</tr>
+<tr>
+<td>Access by index</td>
+<td><strong>O(1)</strong></td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Insert/delete at the start</td>
+<td>O(n) (shifting)</td>
+<td><strong>O(1)</strong></td>
+</tr>
+<tr>
+<td>Insert/delete in the middle</td>
+<td>O(n)</td>
+<td>O(1) once you have the node, but finding it is O(n)</td>
+</tr>
+<tr>
+<td>Memory overhead</td>
+<td>Low</td>
+<td>Extra space for pointers</td>
+</tr>
+<tr>
+<td>Cache friendliness</td>
+<td>Good</td>
+<td>Poor</td>
+</tr>
+</tbody>
+</table>
+<p>Python’s <code>list</code> is a <strong>dynamic array</strong>, which is why indexing and appending at the end are fast.</p></div></details><details class="item" id="a9"><summary><span><span class="qn">Q9</span>How does a hash table (Python dict) work, and what are its complexities?</span></summary><div class="answer"><p>A hash table stores key-value pairs. A <strong>hash function</strong> converts the key into an integer index in an underlying array, so a value can be found directly.</p>
+<ul>
+<li><strong>Average</strong> lookup, insert and delete: <strong>O(1)</strong>.</li>
+<li><strong>Worst case:</strong> O(n), if many keys collide into the same slot.</li>
+<li><strong>Collisions</strong> are handled by <strong>chaining</strong> (a list per slot) or <strong>open addressing</strong> (probing for another slot). Python’s dict uses open addressing.</li>
+<li>Keys must be <strong>hashable</strong> (immutable), so lists cannot be keys but tuples can.</li>
+<li>When the table gets too full, it is <strong>resized</strong> (rehashed), which is amortized O(1).</li>
+</ul></div></details><details class="item" id="a10"><summary><span><span class="qn">Q10</span>What is the difference between a dict, a set and a list in Python in terms of lookup?</span></summary><div class="answer"><p>Checking <code>x in my_list</code> is <strong>O(n)</strong>, because it scans the list. Checking <code>x in my_set</code> or <code>x in my_dict</code> is <strong>O(1) on average</strong>, because they use hashing. Converting a list to a set before many membership tests is one of the simplest and most common optimizations in interviews.</p></div></details><details class="item" id="a11"><summary><span><span class="qn">Q11</span>Two Sum: given a list and a target, return the indices of two numbers that add up to the target.</span></summary><div class="answer"><p>Brute force checks every pair, O(n²). With a <strong>hash map</strong>, one pass is enough: for each number, check whether <code>target - x</code> has already been seen.</p>
+<pre><code class="language-python">def two_sum(nums, target):
+    seen = {}                               # value -&gt; index
+    for i, x in enumerate(nums):
+        if target - x in seen:
+            return seen[target - x], i
+        seen[x] = i
+    return None
+</code></pre>
+<p><strong>Time O(n), space O(n).</strong></p></div></details><details class="item" id="a12"><summary><span><span class="qn">Q12</span>What is the two-pointer technique?</span></summary><div class="answer"><p>You keep <strong>two indexes</strong> that move through the data (usually from both ends, or one fast and one slow) to avoid a nested loop. It works well on <strong>sorted arrays</strong>, and for palindromes and in-place filtering.</p>
+<pre><code class="language-python">def pair_sum_sorted(nums, target):
+    left, right = 0, len(nums) - 1
+    while left &lt; right:
+        s = nums[left] + nums[right]
+        if s == target:
+            return left, right
+        if s &lt; target:
+            left += 1
+        else:
+            right -= 1
+    return None
+</code></pre>
+<p><strong>Time O(n), space O(1).</strong></p></div></details><details class="item" id="a13"><summary><span><span class="qn">Q13</span>What is the sliding window technique? Find the length of the longest substring without repeating characters.</span></summary><div class="answer"><p>A sliding window keeps a <strong>range <code>[start, i]</code> that expands on the right and shrinks on the left</strong> to maintain a condition, giving O(n) instead of O(n²) for many subarray and substring problems.</p>
+<pre><code class="language-python">def longest_unique_substring(s):
+    last_seen = {}
+    start = best = 0
+    for i, ch in enumerate(s):
+        if ch in last_seen and last_seen[ch] &gt;= start:
+            start = last_seen[ch] + 1       # move the window start past the repeated character
+        last_seen[ch] = i
+        best = max(best, i - start + 1)
+    return best
+</code></pre>
+<p>For <code>"abcabcbb"</code> the answer is 3 (<code>"abc"</code>). <strong>Time O(n).</strong></p></div></details><details class="item" id="a14"><summary><span><span class="qn">Q14</span>What are prefix sums, and when are they useful?</span></summary><div class="answer"><p>A prefix sum array stores <strong>running totals</strong>, so the sum of any range can be computed in O(1) after O(n) preprocessing.</p>
+<pre><code class="language-python">from itertools import accumulate
+
+nums = [2, 4, 1, 3, 5]
+prefix = [0] + list(accumulate(nums))        # prefix[i] = sum of the first i items
+
+def range_sum(l, r):                          # sum of nums[l..r], inclusive
+    return prefix[r + 1] - prefix[l]
+
+print(range_sum(1, 3))                        # 4 + 1 + 3 = 8
+</code></pre>
+<p>They are useful for many range-query and subarray-sum problems.</p></div></details><details class="item" id="a15"><summary><span><span class="qn">Q15</span>What is Kadane’s algorithm? Find the maximum sum of a contiguous subarray.</span></summary><div class="answer"><p>At each element, decide whether to <strong>extend the current subarray or start a new one</strong>:</p>
+<pre><code class="language-python">def max_subarray(nums):
+    best = current = nums[0]
+    for x in nums[1:]:
+        current = max(x, current + x)
+        best = max(best, current)
+    return best
+
+print(max_subarray([-2, 1, -3, 4, -1, 2, 1, -5, 4]))     # 6  (subarray [4, -1, 2, 1])
+</code></pre>
+<p><strong>Time O(n), space O(1).</strong> It is a simple example of dynamic programming.</p></div></details><details class="item" id="a16"><summary><span><span class="qn">Q16</span>How do you group anagrams together?</span></summary><div class="answer"><p>Anagrams share the <strong>same sorted letters</strong>, so use the sorted word as a dictionary key.</p>
+<pre><code class="language-python">from collections import defaultdict
+
+def group_anagrams(words):
+    groups = defaultdict(list)
+    for w in words:
+        groups[&quot;&quot;.join(sorted(w))].append(w)
+    return list(groups.values())
+
+print(group_anagrams([&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;]))
+</code></pre>
+<p><strong>Time O(n · k log k)</strong> for <code>n</code> words of length <code>k</code>.</p></div></details></section>
+<section class="sec-block" id="sec-2"><h2 class="sec">Linked lists, stacks, queues and heaps</h2><details class="item" id="a17"><summary><span><span class="qn">Q17</span>How do you reverse a singly linked list?</span></summary><div class="answer"><p>Walk through the list and <strong>flip each <code>next</code> pointer</strong>, keeping track of the previous node.</p>
+<pre><code class="language-python">class Node:
+    def __init__(self, val, next=None):
+        self.val = val
+        self.next = next
+
+def reverse_list(head):
+    prev = None
+    while head:
+        nxt = head.next        # remember the rest of the list
+        head.next = prev       # reverse the pointer
+        prev = head
+        head = nxt
+    return prev
+</code></pre>
+<p><strong>Time O(n), space O(1).</strong></p></div></details><details class="item" id="a18"><summary><span><span class="qn">Q18</span>How do you detect a cycle in a linked list?</span></summary><div class="answer"><p>Use <strong>Floyd’s tortoise and hare</strong>: a slow pointer moves one step and a fast pointer moves two steps. If there is a cycle, the fast pointer eventually meets the slow one.</p>
+<pre><code class="language-python">def has_cycle(head):
+    slow = fast = head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow is fast:
+            return True
+    return False
+</code></pre>
+<p><strong>Time O(n), space O(1)</strong> (a set of visited nodes would also work, but uses O(n) space).</p></div></details><details class="item" id="a19"><summary><span><span class="qn">Q19</span>What are a stack and a queue, and where are they used?</span></summary><div class="answer"><ul>
+<li><strong>Stack (LIFO, last in first out):</strong> <code>push</code> and <code>pop</code> at the same end. Used for undo, the call stack, expression evaluation, and <strong>depth-first search</strong>. In Python, use a list (<code>append</code> and <code>pop</code>).</li>
+<li><strong>Queue (FIFO, first in first out):</strong> add at the back, remove from the front. Used for scheduling, buffering and <strong>breadth-first search</strong>. In Python, use <code>collections.deque</code> (<code>append</code> and <code>popleft</code>, both O(1)), since <code>list.pop(0)</code> is O(n).</li>
+</ul></div></details><details class="item" id="a20"><summary><span><span class="qn">Q20</span>How do you check for valid parentheses?</span></summary><div class="answer"><p>Push each opening bracket on a <strong>stack</strong>, and when you see a closing bracket check that it matches the top of the stack.</p>
+<pre><code class="language-python">def is_valid(s):
+    pairs = {&quot;)&quot;: &quot;(&quot;, &quot;]&quot;: &quot;[&quot;, &quot;}&quot;: &quot;{&quot;}
+    stack = []
+    for ch in s:
+        if ch in pairs:
+            if not stack or stack.pop() != pairs[ch]:
+                return False
+        else:
+            stack.append(ch)
+    return not stack
+
+print(is_valid(&quot;{[()]}&quot;), is_valid(&quot;(]&quot;))      # True False
+</code></pre>
+<p><strong>Time O(n), space O(n).</strong></p></div></details><details class="item" id="a21"><summary><span><span class="qn">Q21</span>How do you implement a queue using two stacks?</span></summary><div class="answer"><p>Use an <strong>inbox stack</strong> for pushes and an <strong>outbox stack</strong> for pops. When the outbox is empty, move everything from the inbox (which reverses the order).</p>
+<pre><code class="language-python">class MyQueue:
+    def __init__(self):
+        self.inbox, self.outbox = [], []
+
+    def push(self, x):
+        self.inbox.append(x)
+
+    def pop(self):
+        if not self.outbox:
+            while self.inbox:
+                self.outbox.append(self.inbox.pop())
+        return self.outbox.pop()
+</code></pre>
+<p>Each element is moved at most twice, so <code>push</code> and <code>pop</code> are <strong>O(1) amortized</strong>.</p></div></details><details class="item" id="a22"><summary><span><span class="qn">Q22</span>What is a monotonic stack? Find the next greater element for each item.</span></summary><div class="answer"><p>A monotonic stack keeps its elements in <strong>increasing or decreasing order</strong>, which lets you answer “next greater/smaller element” questions in a single pass.</p>
+<pre><code class="language-python">def next_greater(nums):
+    result = [-1] * len(nums)
+    stack = []                                  # indexes whose next greater element is not found yet
+    for i, x in enumerate(nums):
+        while stack and nums[stack[-1]] &lt; x:
+            result[stack.pop()] = x
+        stack.append(i)
+    return result
+
+print(next_greater([2, 1, 2, 4, 3]))            # [4, 2, 4, -1, -1]
+</code></pre>
+<p><strong>Time O(n)</strong>, because each index is pushed and popped once.</p></div></details><details class="item" id="a23"><summary><span><span class="qn">Q23</span>What is a heap (priority queue)? How do you find the k largest elements?</span></summary><div class="answer"><p>A heap is a <strong>binary tree stored in an array</strong> where each parent is smaller (min-heap) or larger (max-heap) than its children. It gives the minimum (or maximum) in <strong>O(1)</strong>, and <code>push</code> and <code>pop</code> in <strong>O(log n)</strong>. Python’s <code>heapq</code> is a <strong>min-heap</strong>.</p>
+<p>To find the k-th largest, keep a <strong>min-heap of size k</strong>:</p>
+<pre><code class="language-python">import heapq
+
+def kth_largest(nums, k):
+    heap = []
+    for x in nums:
+        heapq.heappush(heap, x)
+        if len(heap) &gt; k:
+            heapq.heappop(heap)             # drop the smallest of the k+1 items
+    return heap[0]
+
+print(kth_largest([3, 2, 1, 5, 6, 4], 2))   # 5
+print(heapq.nlargest(2, [3, 2, 1, 5, 6, 4]))   # [6, 5]
+</code></pre>
+<p><strong>Time O(n log k)</strong>, which is better than sorting (O(n log n)) when <code>k</code> is small.</p></div></details><details class="item" id="a24"><summary><span><span class="qn">Q24</span>How would you design an LRU cache?</span></summary><div class="answer"><p>An LRU (Least Recently Used) cache needs <strong>O(1) <code>get</code> and <code>put</code></strong>, and must evict the item that has not been used for the longest time. Combine a <strong>hash map</strong> (fast lookup) with a <strong>doubly linked list</strong> (fast reordering). In Python, <code>OrderedDict</code> does both:</p>
+<pre><code class="language-python">from collections import OrderedDict
+
+class LRUCache:
+    def __init__(self, capacity):
+        self.cap = capacity
+        self.data = OrderedDict()
+
+    def get(self, key):
+        if key not in self.data:
+            return -1
+        self.data.move_to_end(key)          # mark as most recently used
+        return self.data[key]
+
+    def put(self, key, value):
+        self.data[key] = value
+        self.data.move_to_end(key)
+        if len(self.data) &gt; self.cap:
+            self.data.popitem(last=False)   # evict the least recently used
+</code></pre></div></details></section>
+<section class="sec-block" id="sec-3"><h2 class="sec">Trees and graphs</h2><details class="item" id="a25"><summary><span><span class="qn">Q25</span>What is a binary tree, and what is a binary search tree (BST)?</span></summary><div class="answer"><p>A <strong>binary tree</strong> is a tree where each node has at most two children (left and right). A <strong>binary search tree</strong> adds an ordering rule: for every node, <strong>all values in the left subtree are smaller and all values in the right subtree are larger</strong>.</p>
+<p>In a <strong>balanced</strong> BST, search, insert and delete are <strong>O(log n)</strong>. In the worst case (a skewed tree, for example inserting sorted data) they degrade to <strong>O(n)</strong>.</p></div></details><details class="item" id="a26"><summary><span><span class="qn">Q26</span>What are the tree traversals?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Traversal</th>
+<th>Order</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Inorder</strong></td>
+<td>Left, node, right</td>
+<td>Gives a BST’s values in <strong>sorted order</strong></td>
+</tr>
+<tr>
+<td><strong>Preorder</strong></td>
+<td>Node, left, right</td>
+<td>Copying or serializing a tree</td>
+</tr>
+<tr>
+<td><strong>Postorder</strong></td>
+<td>Left, right, node</td>
+<td>Deleting a tree, evaluating expressions</td>
+</tr>
+<tr>
+<td><strong>Level order (BFS)</strong></td>
+<td>Level by level</td>
+<td>Shortest depth, printing by levels</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python">from collections import deque
+
+class TreeNode:
+    def __init__(self, val, left=None, right=None):
+        self.val, self.left, self.right = val, left, right
+
+def inorder(root):
+    return inorder(root.left) + [root.val] + inorder(root.right) if root else []
+
+def level_order(root):
+    result, queue = [], deque([root] if root else [])
+    while queue:
+        level = []
+        for _ in range(len(queue)):
+            node = queue.popleft()
+            level.append(node.val)
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        result.append(level)
+    return result
+</code></pre></div></details><details class="item" id="a27"><summary><span><span class="qn">Q27</span>How do you find the maximum depth (height) of a binary tree?</span></summary><div class="answer"><p>The depth of a tree is <code>1 +</code> the larger depth of its two subtrees:</p>
+<pre><code class="language-python">def max_depth(root):
+    if not root:
+        return 0
+    return 1 + max(max_depth(root.left), max_depth(root.right))
+</code></pre>
+<p><strong>Time O(n)</strong>, and the space is O(h) for the recursion, where <code>h</code> is the height of the tree.</p></div></details><details class="item" id="a28"><summary><span><span class="qn">Q28</span>How do you check whether a binary tree is a valid BST?</span></summary><div class="answer"><p>It is not enough to compare each node with its children. Every node must stay <strong>within a valid range</strong> inherited from its ancestors:</p>
+<pre><code class="language-python">def is_bst(node, low=float(&quot;-inf&quot;), high=float(&quot;inf&quot;)):
+    if not node:
+        return True
+    if not (low &lt; node.val &lt; high):
+        return False
+    return is_bst(node.left, low, node.val) and is_bst(node.right, node.val, high)
+</code></pre>
+<p>An alternative is to do an <strong>inorder traversal</strong> and check that the values are strictly increasing.</p></div></details><details class="item" id="a29"><summary><span><span class="qn">Q29</span>What are balanced trees (AVL, Red-Black), and what is a trie?</span></summary><div class="answer"><ul>
+<li><strong>AVL and Red-Black trees</strong> are <strong>self-balancing BSTs</strong>: they rotate nodes after inserts and deletes so the height stays O(log n), which guarantees O(log n) operations. They are used in ordered maps and sets in many libraries.</li>
+<li>A <strong>trie (prefix tree)</strong> stores strings <strong>character by character</strong>, so words with a common prefix share a path. Lookups take <strong>O(length of the word)</strong>. It is used for autocomplete, spell checking and prefix search.</li>
+</ul></div></details><details class="item" id="a30"><summary><span><span class="qn">Q30</span>How can a graph be represented?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Representation</th>
+<th>Space</th>
+<th>Check if an edge exists</th>
+<th>List the neighbors</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Adjacency list</strong> (dict of lists)</td>
+<td>O(V + E)</td>
+<td>O(degree)</td>
+<td><strong>Fast</strong></td>
+<td><strong>Sparse graphs</strong> (most real cases)</td>
+</tr>
+<tr>
+<td><strong>Adjacency matrix</strong> (2D array)</td>
+<td>O(V²)</td>
+<td><strong>O(1)</strong></td>
+<td>O(V)</td>
+<td>Dense graphs, quick edge lookups</td>
+</tr>
+<tr>
+<td><strong>Edge list</strong></td>
+<td>O(E)</td>
+<td>O(E)</td>
+<td>O(E)</td>
+<td>Simple algorithms such as Kruskal’s</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="a31"><summary><span><span class="qn">Q31</span>What is the difference between BFS and DFS?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>BFS (Breadth-First Search)</th>
+<th>DFS (Depth-First Search)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Explores</td>
+<td>Level by level (nearest first)</td>
+<td>As deep as possible before backtracking</td>
+</tr>
+<tr>
+<td>Data structure</td>
+<td><strong>Queue</strong></td>
+<td><strong>Stack</strong> or recursion</td>
+</tr>
+<tr>
+<td>Finds shortest path (unweighted)</td>
+<td><strong>Yes</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td>Typical use</td>
+<td>Shortest path, level order, “minimum steps” problems</td>
+<td>Cycle detection, topological sort, connected components, backtracking</td>
+</tr>
+<tr>
+<td>Time</td>
+<td>O(V + E)</td>
+<td>O(V + E)</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python">from collections import deque
+
+graph = {&quot;A&quot;: [&quot;B&quot;, &quot;C&quot;], &quot;B&quot;: [&quot;D&quot;], &quot;C&quot;: [&quot;D&quot;], &quot;D&quot;: []}
+
+def bfs(start):
+    seen, order, queue = {start}, [], deque([start])
+    while queue:
+        node = queue.popleft()
+        order.append(node)
+        for nb in graph[node]:
+            if nb not in seen:
+                seen.add(nb)
+                queue.append(nb)
+    return order
+
+def dfs(node, seen=None):
+    seen = seen if seen is not None else set()
+    seen.add(node)
+    for nb in graph[node]:
+        if nb not in seen:
+            dfs(nb, seen)
+    return seen
+
+print(bfs(&quot;A&quot;))        # ['A', 'B', 'C', 'D']
+</code></pre></div></details><details class="item" id="a32"><summary><span><span class="qn">Q32</span>How do you find the shortest path in a weighted graph (Dijkstra’s algorithm)?</span></summary><div class="answer"><p>Dijkstra’s algorithm repeatedly takes the <strong>closest unvisited node</strong> (using a min-heap) and relaxes the distances to its neighbors. It works for graphs with <strong>non-negative</strong> edge weights.</p>
+<pre><code class="language-python">import heapq
+
+def dijkstra(graph, source):
+    # graph: {node: [(neighbor, weight), ...]}
+    dist = {node: float(&quot;inf&quot;) for node in graph}
+    dist[source] = 0
+    heap = [(0, source)]
+    while heap:
+        d, node = heapq.heappop(heap)
+        if d &gt; dist[node]:
+            continue                          # an older, longer entry
+        for nb, w in graph[node]:
+            nd = d + w
+            if nd &lt; dist[nb]:
+                dist[nb] = nd
+                heapq.heappush(heap, (nd, nb))
+    return dist
+</code></pre>
+<p><strong>Time O((V + E) log V).</strong> For <strong>negative weights</strong>, use <strong>Bellman-Ford</strong> (O(V·E)). For an unweighted graph, plain BFS is enough.</p></div></details><details class="item" id="a33"><summary><span><span class="qn">Q33</span>What is topological sorting, and how do you do it?</span></summary><div class="answer"><p>A topological sort orders the nodes of a <strong>directed acyclic graph (DAG)</strong> so that every edge <code>u → v</code> has <code>u</code> before <code>v</code>. It is used for task scheduling, build order and course prerequisites. <strong>Kahn’s algorithm</strong> repeatedly removes nodes with <strong>no incoming edges</strong>:</p>
+<pre><code class="language-python">from collections import deque
+
+def topological_sort(graph):
+    # graph: {node: [neighbors]}; the edge u -&gt; v means u must come before v
+    indegree = {u: 0 for u in graph}
+    for u in graph:
+        for v in graph[u]:
+            indegree[v] += 1
+    queue = deque(u for u in graph if indegree[u] == 0)
+    order = []
+    while queue:
+        u = queue.popleft()
+        order.append(u)
+        for v in graph[u]:
+            indegree[v] -= 1
+            if indegree[v] == 0:
+                queue.append(v)
+    return order if len(order) == len(graph) else None      # None means there is a cycle
+</code></pre></div></details><details class="item" id="a34"><summary><span><span class="qn">Q34</span>What is Union-Find (disjoint set), and when is it used?</span></summary><div class="answer"><p>Union-Find tracks <strong>which elements belong to the same group</strong> and supports <code>find</code> (which group?) and <code>union</code> (merge groups) in nearly constant time with <strong>path compression</strong>. It is used for connected components, detecting cycles in undirected graphs and Kruskal’s minimum spanning tree.</p>
+<pre><code class="language-python">class UnionFind:
+    def __init__(self, n):
+        self.parent = list(range(n))
+
+    def find(self, x):
+        while self.parent[x] != x:
+            self.parent[x] = self.parent[self.parent[x]]     # path compression
+            x = self.parent[x]
+        return x
+
+    def union(self, a, b):
+        ra, rb = self.find(a), self.find(b)
+        if ra == rb:
+            return False                                      # already connected
+        self.parent[rb] = ra
+        return True
+</code></pre></div></details><details class="item" id="a35"><summary><span><span class="qn">Q35</span>What is a minimum spanning tree (MST)? What are Kruskal’s and Prim’s algorithms?</span></summary><div class="answer"><p>A spanning tree connects all nodes of a graph without cycles, and the <strong>MST</strong> is the one with the <strong>smallest total edge weight</strong> (used for network and cable design).</p>
+<ul>
+<li><strong>Kruskal’s:</strong> sort all edges by weight and add each one if it does not create a cycle (checked with Union-Find). Good for sparse graphs.</li>
+<li><strong>Prim’s:</strong> start from one node and repeatedly add the cheapest edge that connects a new node (using a min-heap).</li>
+</ul>
+<p>Both are <strong>greedy</strong> and run in about <strong>O(E log V)</strong>.</p></div></details></section>
+<section class="sec-block" id="sec-4"><h2 class="sec">Sorting, searching and recursion</h2><details class="item" id="a36"><summary><span><span class="qn">Q36</span>Compare the common sorting algorithms.</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Best</th>
+<th>Average</th>
+<th>Worst</th>
+<th>Space</th>
+<th>Stable?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bubble sort</strong></td>
+<td>O(n)</td>
+<td>O(n²)</td>
+<td>O(n²)</td>
+<td>O(1)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Selection sort</strong></td>
+<td>O(n²)</td>
+<td>O(n²)</td>
+<td>O(n²)</td>
+<td>O(1)</td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Insertion sort</strong></td>
+<td>O(n)</td>
+<td>O(n²)</td>
+<td>O(n²)</td>
+<td>O(1)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Merge sort</strong></td>
+<td>O(n log n)</td>
+<td>O(n log n)</td>
+<td>O(n log n)</td>
+<td>O(n)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Quick sort</strong></td>
+<td>O(n log n)</td>
+<td>O(n log n)</td>
+<td>O(n²)</td>
+<td>O(log n)</td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Heap sort</strong></td>
+<td>O(n log n)</td>
+<td>O(n log n)</td>
+<td>O(n log n)</td>
+<td>O(1)</td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Counting sort</strong></td>
+<td>O(n + k)</td>
+<td>O(n + k)</td>
+<td>O(n + k)</td>
+<td>O(k)</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>A <strong>stable</strong> sort keeps equal elements in their original order. Python’s <code>sort</code> and <code>sorted</code> use <strong>Timsort</strong>, which is O(n log n) in the worst case and stable.</p></div></details><details class="item" id="a37"><summary><span><span class="qn">Q37</span>How do merge sort and quick sort work?</span></summary><div class="answer"><ul>
+<li><strong>Merge sort (divide and conquer):</strong> split the list in half, sort each half recursively, then <strong>merge</strong> the two sorted halves. Always O(n log n), but needs O(n) extra space.</li>
+<li><strong>Quick sort:</strong> choose a <strong>pivot</strong>, put smaller items on one side and larger on the other, and sort each side recursively. O(n log n) on average, but <strong>O(n²) in the worst case</strong> (for example a bad pivot on sorted data), so a random or median pivot helps.</li>
+</ul>
+<pre><code class="language-python">def merge_sort(a):
+    if len(a) &lt;= 1:
+        return a
+    mid = len(a) // 2
+    left, right = merge_sort(a[:mid]), merge_sort(a[mid:])
+    merged, i, j = [], 0, 0
+    while i &lt; len(left) and j &lt; len(right):
+        if left[i] &lt;= right[j]:
+            merged.append(left[i]); i += 1
+        else:
+            merged.append(right[j]); j += 1
+    return merged + left[i:] + right[j:]
+
+def quick_sort(a):                               # simple version, not in-place
+    if len(a) &lt;= 1:
+        return a
+    pivot = a[len(a) // 2]
+    return (quick_sort([x for x in a if x &lt; pivot])
+            + [x for x in a if x == pivot]
+            + quick_sort([x for x in a if x &gt; pivot]))
+</code></pre></div></details><details class="item" id="a38"><summary><span><span class="qn">Q38</span>How does binary search work, and when can you use it?</span></summary><div class="answer"><p>Binary search finds a target in a <strong>sorted</strong> list by repeatedly <strong>halving</strong> the search range.</p>
+<pre><code class="language-python">def binary_search(nums, target):
+    lo, hi = 0, len(nums) - 1
+    while lo &lt;= hi:
+        mid = (lo + hi) // 2
+        if nums[mid] == target:
+            return mid
+        if nums[mid] &lt; target:
+            lo = mid + 1
+        else:
+            hi = mid - 1
+    return -1
+</code></pre>
+<p><strong>Time O(log n), space O(1).</strong> Python has <code>bisect</code> for this. Binary search also works on any <strong>monotonic condition</strong>, for example finding the smallest value for which a condition becomes true (“binary search on the answer”).</p></div></details><details class="item" id="a39"><summary><span><span class="qn">Q39</span>What is recursion, and what are its risks?</span></summary><div class="answer"><p>Recursion is when a function <strong>calls itself on a smaller version of the problem</strong>. It needs a <strong>base case</strong> (to stop) and a <strong>recursive step</strong> that moves toward it. Risks: a missing base case causes infinite recursion, deep recursion can <strong>overflow the stack</strong> (Python’s default limit is about 1,000 calls), and naive recursion can repeat work (as in Fibonacci), which <strong>memoization</strong> fixes. Any recursion can be converted to a loop with an explicit stack.</p></div></details><details class="item" id="a40"><summary><span><span class="qn">Q40</span>What is backtracking? Generate all subsets of a list.</span></summary><div class="answer"><p>Backtracking builds a solution step by step, and <strong>undoes (backtracks) a choice</strong> when it leads to a dead end or after exploring it. It is used for subsets, permutations, N-Queens, Sudoku and word search.</p>
+<pre><code class="language-python">def subsets(nums):
+    result = []
+
+    def backtrack(start, path):
+        result.append(path[:])               # record the current subset
+        for i in range(start, len(nums)):
+            path.append(nums[i])             # choose
+            backtrack(i + 1, path)           # explore
+            path.pop()                       # undo the choice
+
+    backtrack(0, [])
+    return result
+
+print(subsets([1, 2, 3]))     # 8 subsets, from [] to [1, 2, 3]
+</code></pre>
+<p><strong>Time O(2ⁿ).</strong> Pruning invalid branches early makes it much faster in practice.</p></div></details><details class="item" id="a41"><summary><span><span class="qn">Q41</span>What is divide and conquer?</span></summary><div class="answer"><p>It splits a problem into <strong>smaller independent subproblems</strong>, solves each (usually recursively), and <strong>combines</strong> the results. Examples: merge sort, quick sort, binary search and fast exponentiation. Compare with dynamic programming, where the subproblems <strong>overlap</strong>.</p></div></details><details class="item" id="a42"><summary><span><span class="qn">Q42</span>Why is searching in a sorted structure faster, and which structures give O(log n) search?</span></summary><div class="answer"><p>Because sorted order lets you <strong>discard half</strong> of the remaining data with every comparison. Structures that give O(log n) search: <strong>sorted arrays</strong> (binary search), <strong>balanced BSTs</strong> (AVL, Red-Black, and sorted containers in some libraries), and heaps for the min or max only. <strong>Hash tables</strong> give O(1) average lookup, but without any ordering.</p></div></details></section>
+<section class="sec-block" id="sec-5"><h2 class="sec">Dynamic programming and greedy algorithms</h2><details class="item" id="a43"><summary><span><span class="qn">Q43</span>What is dynamic programming (DP)?</span></summary><div class="answer"><p>DP solves a problem by <strong>breaking it into overlapping subproblems and storing their results</strong>, so each one is solved only once. A problem is suited to DP when it has:</p>
+<ol>
+<li><strong>Overlapping subproblems:</strong> the same subproblem appears many times.</li>
+<li><strong>Optimal substructure:</strong> the best solution is built from the best solutions of its subproblems.</li>
+</ol>
+<p>A typical process: define the <strong>state</strong>, write the <strong>recurrence</strong> (transition), choose the <strong>base cases</strong>, and decide the <strong>order</strong> of computation.</p></div></details><details class="item" id="a44"><summary><span><span class="qn">Q44</span>What is the difference between memoization and tabulation?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Memoization (top-down)</th>
+<th>Tabulation (bottom-up)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Approach</td>
+<td>Recursion with a cache</td>
+<td>Iterative, fill a table from the smallest subproblems</td>
+</tr>
+<tr>
+<td>Computes</td>
+<td>Only the subproblems that are needed</td>
+<td>All subproblems</td>
+</tr>
+<tr>
+<td>Overhead</td>
+<td>Recursion calls and stack depth</td>
+<td>None, and easier to optimize space</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python">from functools import lru_cache
+
+@lru_cache(maxsize=None)
+def fib(n):                                   # memoization
+    return n if n &lt; 2 else fib(n - 1) + fib(n - 2)
+
+def fib_tab(n):                               # tabulation with O(1) space
+    if n &lt; 2:
+        return n
+    a, b = 0, 1
+    for _ in range(2, n + 1):
+        a, b = b, a + b
+    return b
+</code></pre>
+<p>Naive Fibonacci is O(2ⁿ), and with memoization or tabulation it is <strong>O(n)</strong>.</p></div></details><details class="item" id="a45"><summary><span><span class="qn">Q45</span>Coin change: find the minimum number of coins that make up an amount.</span></summary><div class="answer"><p><code>dp[a]</code> is the minimum number of coins needed for amount <code>a</code>. For each amount, try every coin: <code>dp[a] = min(dp[a], dp[a - coin] + 1)</code>.</p>
+<pre><code class="language-python">def coin_change(coins, amount):
+    dp = [0] + [float(&quot;inf&quot;)] * amount
+    for a in range(1, amount + 1):
+        for c in coins:
+            if c &lt;= a:
+                dp[a] = min(dp[a], dp[a - c] + 1)
+    return dp[amount] if dp[amount] != float(&quot;inf&quot;) else -1
+
+print(coin_change([1, 2, 5], 11))     # 3  (5 + 5 + 1)
+</code></pre>
+<p><strong>Time O(amount × number of coins).</strong> A greedy “largest coin first” approach does not always work for arbitrary coin sets, but DP does.</p></div></details><details class="item" id="a46"><summary><span><span class="qn">Q46</span>0/1 knapsack: choose items to maximize value within a weight limit.</span></summary><div class="answer"><p><code>dp[c]</code> is the best value achievable with capacity <code>c</code>. Process each item, and loop the capacity <strong>backwards</strong>, so that each item is used at most once.</p>
+<pre><code class="language-python">def knapsack(weights, values, capacity):
+    dp = [0] * (capacity + 1)
+    for w, v in zip(weights, values):
+        for c in range(capacity, w - 1, -1):
+            dp[c] = max(dp[c], dp[c - w] + v)
+    return dp[capacity]
+
+print(knapsack([1, 3, 4, 5], [1, 4, 5, 7], 7))     # 9
+</code></pre>
+<p><strong>Time O(n × capacity).</strong></p></div></details><details class="item" id="a47"><summary><span><span class="qn">Q47</span>Longest Common Subsequence (LCS): how do you solve it with DP?</span></summary><div class="answer"><p><code>dp[i][j]</code> is the LCS length of the first <code>i</code> characters of <code>a</code> and the first <code>j</code> characters of <code>b</code>. If the characters match, extend the diagonal; otherwise take the better of dropping a character from either string.</p>
+<pre><code class="language-python">def lcs(a, b):
+    dp = [[0] * (len(b) + 1) for _ in range(len(a) + 1)]
+    for i in range(1, len(a) + 1):
+        for j in range(1, len(b) + 1):
+            if a[i - 1] == b[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+    return dp[-1][-1]
+
+print(lcs(&quot;abcde&quot;, &quot;ace&quot;))      # 3
+</code></pre>
+<p><strong>Time and space O(len(a) × len(b)).</strong> The same idea underlies edit distance and diff tools.</p></div></details><details class="item" id="a48"><summary><span><span class="qn">Q48</span>What is a greedy algorithm, and how is it different from DP?</span></summary><div class="answer"><p>A greedy algorithm makes <strong>the locally best choice at each step</strong>, hoping to reach the global optimum, and never reconsiders. It is <strong>simple and fast</strong>, but is only correct when the problem has the <strong>greedy-choice property</strong> (proven for the problem).</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Greedy</th>
+<th>Dynamic programming</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decisions</td>
+<td>One choice per step, final</td>
+<td>Considers all subproblem results</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>Usually faster</td>
+<td>Usually slower, more memory</td>
+</tr>
+<tr>
+<td>Correctness</td>
+<td>Only for certain problems</td>
+<td>Works whenever there is optimal substructure</td>
+</tr>
+<tr>
+<td>Examples</td>
+<td>Interval scheduling, Huffman coding, Dijkstra, Kruskal</td>
+<td>Knapsack, LCS, coin change (general case)</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="a49"><summary><span><span class="qn">Q49</span>Interval scheduling: select the maximum number of non-overlapping intervals.</span></summary><div class="answer"><p>The greedy rule is to always pick the interval that <strong>finishes earliest</strong>, because it leaves the most room for the others.</p>
+<pre><code class="language-python">def max_non_overlapping(intervals):
+    intervals.sort(key=lambda x: x[1])             # sort by end time
+    count, end = 0, float(&quot;-inf&quot;)
+    for s, e in intervals:
+        if s &gt;= end:
+            count += 1
+            end = e
+    return count
+
+print(max_non_overlapping([(1, 3), (2, 4), (3, 5), (0, 6), (5, 7)]))     # 3
+</code></pre>
+<p><strong>Time O(n log n)</strong>, for the sort.</p></div></details></section>
+<section class="sec-block" id="sec-6"><h2 class="sec">Problem-solving approach and Python tools</h2><details class="item" id="a50"><summary><span><span class="qn">Q50</span>How do you approach a coding interview problem?</span></summary><div class="answer"><ol>
+<li><strong>Clarify</strong> the problem: inputs, outputs, constraints, edge cases, and ask for examples.</li>
+<li><strong>Start with a brute-force idea</strong> and state its complexity.</li>
+<li><strong>Optimize:</strong> look for a pattern (hash map, two pointers, sorting, heap, binary search, DP...) and justify the improvement.</li>
+<li><strong>Confirm the plan</strong> with the interviewer before writing code.</li>
+<li><strong>Write clean code</strong> with meaningful names, and talk through your thinking.</li>
+<li><strong>Test</strong> with a normal case and edge cases (empty input, one element, duplicates, negative numbers, very large input).</li>
+<li><strong>State the final time and space complexity.</strong></li>
+</ol></div></details><details class="item" id="a51"><summary><span><span class="qn">Q51</span>What are the common problem patterns, and when do you use them?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Typical signals</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hash map / set</strong></td>
+<td>Counting, lookups, duplicates, “seen before”</td>
+</tr>
+<tr>
+<td><strong>Two pointers</strong></td>
+<td>Sorted array, pairs, palindromes, in-place changes</td>
+</tr>
+<tr>
+<td><strong>Sliding window</strong></td>
+<td>Longest or shortest subarray or substring with a condition</td>
+</tr>
+<tr>
+<td><strong>Prefix sums</strong></td>
+<td>Many range-sum queries</td>
+</tr>
+<tr>
+<td><strong>Binary search</strong></td>
+<td>Sorted data, or a monotonic condition (“minimum value such that...”)</td>
+</tr>
+<tr>
+<td><strong>Stack / monotonic stack</strong></td>
+<td>Matching brackets, next greater element, undo</td>
+</tr>
+<tr>
+<td><strong>Heap</strong></td>
+<td>Top k, k-th largest, merging sorted lists, scheduling</td>
+</tr>
+<tr>
+<td><strong>BFS</strong></td>
+<td>Shortest path or minimum steps in an unweighted graph or grid</td>
+</tr>
+<tr>
+<td><strong>DFS / backtracking</strong></td>
+<td>All combinations, permutations, paths, connected components</td>
+</tr>
+<tr>
+<td><strong>Dynamic programming</strong></td>
+<td>“Count the ways”, min or max over choices, overlapping subproblems</td>
+</tr>
+<tr>
+<td><strong>Greedy</strong></td>
+<td>Intervals and scheduling, when a local choice is provably optimal</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="a52"><summary><span><span class="qn">Q52</span>What edge cases should you always consider?</span></summary><div class="answer"><ul>
+<li><strong>Empty</strong> input (empty list, empty string, <code>None</code>).</li>
+<li><strong>A single element.</strong></li>
+<li><strong>Duplicates</strong> and <strong>all equal</strong> values.</li>
+<li><strong>Negative numbers and zeros.</strong></li>
+<li><strong>Already sorted</strong> or <strong>reverse-sorted</strong> input.</li>
+<li><strong>Very large input</strong> (performance and overflow, which is not an issue in Python for integers).</li>
+<li><strong>Disconnected graphs, cycles</strong> and self-loops.</li>
+<li><strong>Off-by-one errors</strong> at the boundaries of loops and indexes.</li>
+</ul></div></details><details class="item" id="a53"><summary><span><span class="qn">Q53</span>Which Python built-in tools and modules help in coding interviews?</span></summary><div class="answer"><pre><code class="language-python">from collections import Counter, defaultdict, deque
+import heapq
+import bisect
+
+print(Counter(&quot;banana&quot;))                        # Counter({'a': 3, 'n': 2, 'b': 1})
+groups = defaultdict(list)                      # a dict with a default empty list
+groups[&quot;x&quot;].append(1)
+queue = deque([1, 2, 3])                        # O(1) appends and pops at both ends
+queue.appendleft(0)
+heap = [5, 3, 8]
+heapq.heapify(heap)                             # O(n) to build a min-heap
+print(heapq.heappop(heap))                      # 3
+print(bisect.bisect_left([1, 3, 5, 7], 5))      # 2  (binary search position)
+</code></pre>
+<p>Also useful: <code>sorted(..., key=...)</code>, <code>enumerate</code>, <code>zip</code>, <code>functools.lru_cache</code>, <code>itertools</code> (<code>accumulate</code>, <code>combinations</code>, <code>permutations</code>) and <code>set</code> operations.</p></div></details><details class="item" id="a54"><summary><span><span class="qn">Q54</span>What are the time complexities of common Python operations?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>list[i]</code>, <code>list.append(x)</code>, <code>list.pop()</code></td>
+<td>O(1) (append is amortized)</td>
+</tr>
+<tr>
+<td><code>list.insert(0, x)</code>, <code>list.pop(0)</code>, <code>x in list</code></td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td><code>list.sort()</code>, <code>sorted(list)</code></td>
+<td>O(n log n)</td>
+</tr>
+<tr>
+<td><code>dict[key]</code>, <code>x in dict</code>, <code>x in set</code></td>
+<td>O(1) average</td>
+</tr>
+<tr>
+<td><code>deque.append / popleft</code></td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td><code>heapq.heappush / heappop</code></td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td>String concatenation in a loop (<code>s += ch</code>)</td>
+<td>Can be O(n²), so use <code>"".join(parts)</code></td>
+</tr>
+<tr>
+<td>Slicing <code>a[i:j]</code></td>
+<td>O(j - i), because it copies</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="a55"><summary><span><span class="qn">Q55</span>Where are data structures and algorithms used in data science and machine learning?</span></summary><div class="answer"><ul>
+<li><strong>Hash tables:</strong> dictionaries, pandas indexes, feature hashing, counting and group-bys.</li>
+<li><strong>Arrays and matrices:</strong> NumPy and tensors, with vectorized operations instead of Python loops.</li>
+<li><strong>Heaps:</strong> top-k recommendations, beam search, priority scheduling.</li>
+<li><strong>Trees:</strong> decision trees and random forests, KD-trees and ball trees for nearest-neighbor search, tries for autocomplete.</li>
+<li><strong>Graphs:</strong> knowledge graphs, recommendation and social networks, PageRank, shortest paths.</li>
+<li><strong>Dynamic programming:</strong> sequence alignment, the Viterbi algorithm, edit distance.</li>
+<li><strong>Sorting and searching:</strong> ranking, binary search in sorted data, merge operations in databases.</li>
+</ul>
+<p>Understanding complexity also helps you write code that scales to large datasets.</p></div></details><details class="item" id="a56"><summary><span><span class="qn">Q56</span>How do you prepare for DSA interviews effectively?</span></summary><div class="answer"><ul>
+<li>Learn the <strong>core data structures and the main patterns</strong> (see the table above) before grinding hundreds of problems.</li>
+<li><strong>Practice by topic,</strong> then mix topics, on platforms such as LeetCode, HackerRank or similar.</li>
+<li><strong>Solve, then review:</strong> study the best solutions and note the pattern.</li>
+<li><strong>Code by hand or in a plain editor</strong> at times, and <strong>time yourself</strong>.</li>
+<li><strong>Explain aloud</strong> while solving, because communication is part of the evaluation.</li>
+<li>Revisit problems you failed after a few days (spaced repetition).</li>
+</ul></div></details></section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

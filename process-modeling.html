@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Process Modeling Interview Prep</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/></svg></span><h1>Process Modeling Interview Prep</h1></div>
+<p class="sub">53 questions</p>
+<div class="roles"><a class="role" href="index.html#role=ba">Business Analyst</a></div>
+<div class="intro"><blockquote><p>Process modeling interview questions for Business Analysts: fundamentals, flowcharts and swimlanes, BPMN, UML, data flow diagrams and data modeling, process analysis and improvement, and scenario questions.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<nav class="chips"><a href="#sec-0">Process modeling fundamentals <small>7</small></a><a href="#sec-1">Flowcharts and swimlane diagrams <small>5</small></a><a href="#sec-2">BPMN <small>11</small></a><a href="#sec-3">UML <small>9</small></a><a href="#sec-4">Data modeling and data flow diagrams <small>5</small></a><a href="#sec-5">Process analysis and improvement <small>10</small></a><a href="#sec-6">Scenarios and design questions <small>6</small></a></nav>
+<section class="sec-block" id="sec-0"><h2 class="sec">Process modeling fundamentals</h2><details class="item" id="p1"><summary><span><span class="qn">Q1</span>What is process modeling, and why is it important?</span></summary><div class="answer"><p>Process modeling is the practice of <strong>representing how work is done as a diagram or structured description</strong>: the steps, who performs them, the decisions, the inputs and outputs, and the order of activities.</p>
+<p>It matters because it helps to:</p>
+<ul>
+<li><strong>Understand and document</strong> how a process works today.</li>
+<li><strong>Find problems:</strong> delays, rework, bottlenecks and missing controls.</li>
+<li><strong>Communicate</strong> clearly between business and IT teams.</li>
+<li><strong>Design improvements</strong> and automation.</li>
+<li>Support <strong>training, compliance and audits</strong>.</li>
+</ul></div></details><details class="item" id="p2"><summary><span><span class="qn">Q2</span>What is the difference between a business process, a workflow and a procedure?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Business process</strong></td>
+<td>A set of related activities that produces a <strong>valuable outcome</strong> for a customer or the business</td>
+<td>Order-to-cash</td>
+</tr>
+<tr>
+<td><strong>Workflow</strong></td>
+<td>The <strong>flow of tasks, data and responsibilities</strong> through a process, often automated in a system</td>
+<td>An approval request moving from employee to manager to finance</td>
+</tr>
+<tr>
+<td><strong>Procedure</strong></td>
+<td>A <strong>detailed written instruction</strong> on how to perform a specific task</td>
+<td>How to enter an invoice in the system</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="p3"><summary><span><span class="qn">Q3</span>What is the difference between As-Is and To-Be process models?</span></summary><div class="answer"><ul>
+<li><strong>As-Is:</strong> documents how the process <strong>really works today</strong>, including workarounds and problems.</li>
+<li><strong>To-Be:</strong> describes the <strong>improved, future</strong> process after redesign or automation.</li>
+</ul>
+<p>A typical project models the As-Is process, finds the gaps and pain points (<strong>gap analysis</strong>), designs the To-Be process, and plans the change. Model what really happens, not what people believe happens.</p></div></details><details class="item" id="p4"><summary><span><span class="qn">Q4</span>What are the main process modeling notations?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Notation</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Flowchart</strong></td>
+<td>Simple step-by-step logic, quick documentation</td>
+</tr>
+<tr>
+<td><strong>Swimlane (cross-functional) diagram</strong></td>
+<td>Showing who does what in a process</td>
+</tr>
+<tr>
+<td><strong>BPMN</strong></td>
+<td>Detailed business process models, shared between business and IT, and executable workflows</td>
+</tr>
+<tr>
+<td><strong>UML</strong> (activity, sequence, use case, class)</td>
+<td>Software analysis and design</td>
+</tr>
+<tr>
+<td><strong>Data Flow Diagram (DFD)</strong></td>
+<td>How data moves between processes, stores and external parties</td>
+</tr>
+<tr>
+<td><strong>EPC (Event-driven Process Chain)</strong></td>
+<td>Process modeling in SAP-style environments</td>
+</tr>
+<tr>
+<td><strong>SIPOC</strong></td>
+<td>A high-level overview of a process</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="p5"><summary><span><span class="qn">Q5</span>What are the steps to model a business process?</span></summary><div class="answer"><ol>
+<li><strong>Define the scope:</strong> the start trigger, the end result and the boundaries.</li>
+<li><strong>Identify the participants:</strong> roles, departments, systems and customers.</li>
+<li><strong>Gather information:</strong> interviews, observation, document review, workshops.</li>
+<li><strong>Draw the main flow</strong> (the “happy path”), then add decisions, exceptions and loops.</li>
+<li><strong>Add detail:</strong> inputs, outputs, systems, rules and timing.</li>
+<li><strong>Validate</strong> with the people who perform the process.</li>
+<li><strong>Analyze</strong> for problems and improvement opportunities.</li>
+<li><strong>Document, publish and maintain</strong> the model.</li>
+</ol></div></details><details class="item" id="p6"><summary><span><span class="qn">Q6</span>How do you gather the information needed to model a process?</span></summary><div class="answer"><ul>
+<li><strong>Interviews</strong> with the people who do the work, managers and customers.</li>
+<li><strong>Observation (shadowing):</strong> watching the real process, which shows steps people forget to mention.</li>
+<li><strong>Document review:</strong> policies, procedures, forms, reports and system screens.</li>
+<li><strong>Workshops</strong> with all participants to map and agree the process together.</li>
+<li><strong>Data analysis:</strong> system logs, timestamps and volumes (see process mining).</li>
+<li><strong>Surveys</strong> for large or distributed groups.</li>
+</ul>
+<p>Use several sources, because people often describe the <strong>ideal</strong> process, not the <strong>actual</strong> one.</p></div></details><details class="item" id="p7"><summary><span><span class="qn">Q7</span>What is the Business Process Management (BPM) lifecycle?</span></summary><div class="answer"><p>BPM is the ongoing discipline of managing and improving processes. A typical cycle:</p>
+<ol>
+<li><strong>Design / model:</strong> document and design the process.</li>
+<li><strong>Implement / execute:</strong> put it into practice, often with workflow automation.</li>
+<li><strong>Monitor:</strong> measure performance with KPIs.</li>
+<li><strong>Analyze and optimize:</strong> find and fix problems.</li>
+<li><strong>Repeat,</strong> because processes need continuous improvement.</li>
+</ol></div></details></section>
+<section class="sec-block" id="sec-1"><h2 class="sec">Flowcharts and swimlane diagrams</h2><details class="item" id="p8"><summary><span><span class="qn">Q8</span>What are the basic flowchart symbols?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Shape</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Terminator</strong></td>
+<td>Oval or rounded rectangle</td>
+<td>Start or end of the process</td>
+</tr>
+<tr>
+<td><strong>Process</strong></td>
+<td>Rectangle</td>
+<td>An action or step</td>
+</tr>
+<tr>
+<td><strong>Decision</strong></td>
+<td>Diamond</td>
+<td>A yes/no or multi-way question that splits the flow</td>
+</tr>
+<tr>
+<td><strong>Input / Output</strong></td>
+<td>Parallelogram</td>
+<td>Data entering or leaving the process</td>
+</tr>
+<tr>
+<td><strong>Flow line</strong></td>
+<td>Arrow</td>
+<td>The direction of the flow</td>
+</tr>
+<tr>
+<td><strong>Document</strong></td>
+<td>Wavy-bottom rectangle</td>
+<td>A document or report</td>
+</tr>
+<tr>
+<td><strong>Connector</strong></td>
+<td>Small circle</td>
+<td>A link to another part or page of the diagram</td>
+</tr>
+</tbody>
+</table>
+<pre><code>(Start) -&gt; [Receive order] -&gt; &lt;In stock?&gt; -yes-&gt; [Ship order] -&gt; (End)
+                                    |
+                                    +-no-&gt; [Back-order item] -&gt; [Notify customer] -&gt; (End)
+</code></pre></div></details><details class="item" id="p9"><summary><span><span class="qn">Q9</span>What is a swimlane diagram, and what is its advantage over a simple flowchart?</span></summary><div class="answer"><p>A swimlane (cross-functional) diagram <strong>divides the process into lanes</strong>, one per role, department or system, so you can see <strong>who is responsible for each step</strong> and where the <strong>handoffs</strong> between them happen. Compared with a simple flowchart, it adds <strong>accountability and shows handoffs</strong>, which is where delays and errors often occur.</p></div></details><details class="item" id="p10"><summary><span><span class="qn">Q10</span>What are the best practices for drawing a process diagram?</span></summary><div class="answer"><ul>
+<li>Use a <strong>clear start and end</strong> and a <strong>verb + noun label</strong> for each task (“Approve invoice”).</li>
+<li>Keep the <strong>flow from left to right (or top to bottom).</strong></li>
+<li>Show <strong>one main path first</strong>, then exceptions.</li>
+<li>Every decision must have <strong>labeled exits</strong> (Yes/No).</li>
+<li>Avoid crossing lines, and keep the <strong>level of detail consistent.</strong></li>
+<li>Keep it to <strong>one page</strong>; use sub-processes for details.</li>
+<li>Use <strong>standard symbols</strong> and a legend.</li>
+<li>Name the owner and version of the document.</li>
+</ul></div></details><details class="item" id="p11"><summary><span><span class="qn">Q11</span>What are common mistakes in process models?</span></summary><div class="answer"><ul>
+<li><strong>Mixing levels of detail</strong> (high-level steps next to keystroke-level steps).</li>
+<li><strong>Missing exceptions and error paths.</strong></li>
+<li><strong>Unlabeled decisions</strong> or flows that lead nowhere (dead ends).</li>
+<li>Modeling the <strong>ideal</strong> process instead of the <strong>real</strong> one.</li>
+<li><strong>Overly large diagrams</strong> that nobody reads.</li>
+<li>No <strong>validation</strong> with the process owners.</li>
+<li>Using <strong>inconsistent notation.</strong></li>
+</ul></div></details><details class="item" id="p12"><summary><span><span class="qn">Q12</span>What is the difference between a flowchart and a Data Flow Diagram (DFD)?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Flowchart</th>
+<th>Data Flow Diagram</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Focus</td>
+<td>The <strong>sequence of steps</strong> and decisions (control flow)</td>
+<td>How <strong>data moves</strong> between processes, stores and external parties</td>
+</tr>
+<tr>
+<td>Shows decisions</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Shows sequence and timing</td>
+<td>Yes</td>
+<td>No, only data movement</td>
+</tr>
+<tr>
+<td>Typical use</td>
+<td>Documenting a process or an algorithm</td>
+<td>Analyzing information systems and data requirements</td>
+</tr>
+</tbody>
+</table></div></details></section>
+<section class="sec-block" id="sec-2"><h2 class="sec">BPMN</h2><details class="item" id="p13"><summary><span><span class="qn">Q13</span>What is BPMN, and why is it widely used?</span></summary><div class="answer"><p>BPMN (Business Process Model and Notation) is a <strong>standard graphical notation (maintained by the OMG)</strong> for modeling business processes. It is widely used because it is <strong>understood by both business and technical people</strong>, it is precise enough to describe complex processes (events, exceptions, messages, parallel work), and BPMN 2.0 models can be <strong>executed by a workflow engine</strong> (such as Camunda).</p></div></details><details class="item" id="p14"><summary><span><span class="qn">Q14</span>What are the main elements of BPMN?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Elements</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Flow objects</strong></td>
+<td>Events (circles), Activities (rounded rectangles), Gateways (diamonds)</td>
+<td>The core of the process</td>
+</tr>
+<tr>
+<td><strong>Connecting objects</strong></td>
+<td>Sequence flow, message flow, association</td>
+<td>Link the objects</td>
+</tr>
+<tr>
+<td><strong>Swimlanes</strong></td>
+<td>Pools and lanes</td>
+<td>Show participants and responsibilities</td>
+</tr>
+<tr>
+<td><strong>Artifacts</strong></td>
+<td>Data objects, groups, text annotations</td>
+<td>Add information</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="p15"><summary><span><span class="qn">Q15</span>What are the types of BPMN events?</span></summary><div class="answer"><p>Events show <strong>something that happens</strong> during the process. By <strong>position</strong>:</p>
+<ul>
+<li><strong>Start event</strong> (thin circle): triggers the process.</li>
+<li><strong>Intermediate event</strong> (double circle): happens during the process (waiting for a message or a timer).</li>
+<li><strong>End event</strong> (thick circle): ends the process.</li>
+</ul>
+<p>By <strong>type</strong> (the icon inside): <strong>message, timer, error, signal, conditional, escalation, terminate</strong> and others. An event can <strong>catch</strong> (wait for something) or <strong>throw</strong> (cause something).</p></div></details><details class="item" id="p16"><summary><span><span class="qn">Q16</span>What are the BPMN gateways?</span></summary><div class="answer"><p>Gateways control <strong>how the flow splits and merges</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Gateway</th>
+<th>Symbol</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Exclusive (XOR)</strong></td>
+<td>Diamond with X (or empty)</td>
+<td><strong>One path</strong> only, based on a condition (“approved or rejected”)</td>
+</tr>
+<tr>
+<td><strong>Parallel (AND)</strong></td>
+<td>Diamond with +</td>
+<td><strong>All paths</strong> at the same time; the join waits for all</td>
+</tr>
+<tr>
+<td><strong>Inclusive (OR)</strong></td>
+<td>Diamond with a circle</td>
+<td><strong>One or more paths,</strong> depending on conditions</td>
+</tr>
+<tr>
+<td><strong>Event-based</strong></td>
+<td>Diamond with a pentagon</td>
+<td>The path depends on <strong>which event happens first</strong></td>
+</tr>
+<tr>
+<td><strong>Complex</strong></td>
+<td>Diamond with an asterisk</td>
+<td>Complex custom rules</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="p17"><summary><span><span class="qn">Q17</span>What are the BPMN task types?</span></summary><div class="answer"><ul>
+<li><strong>User task:</strong> done by a person using a system (review a request).</li>
+<li><strong>Manual task:</strong> done by a person without any system (sign a paper).</li>
+<li><strong>Service task:</strong> done automatically by a system or a web service.</li>
+<li><strong>Script task:</strong> executes a script in the process engine.</li>
+<li><strong>Business rule task:</strong> evaluates business rules or a decision table.</li>
+<li><strong>Send / Receive task:</strong> sends or waits for a message.</li>
+</ul></div></details><details class="item" id="p18"><summary><span><span class="qn">Q18</span>What are pools and lanes in BPMN?</span></summary><div class="answer"><ul>
+<li>A <strong>pool</strong> represents a <strong>participant</strong> (an organization or a separate process, for example “Customer”, “Company”, “Bank”).</li>
+<li>A <strong>lane</strong> is a <strong>subdivision of a pool</strong> for roles or departments (“Sales”, “Finance”).</li>
+</ul>
+<p><strong>Sequence flows stay inside a pool.</strong> Communication <strong>between pools</strong> uses <strong>message flows</strong> (dashed lines).</p></div></details><details class="item" id="p19"><summary><span><span class="qn">Q19</span>What is the difference between sequence flow and message flow?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Sequence flow</th>
+<th>Message flow</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Line</td>
+<td>Solid arrow</td>
+<td><strong>Dashed</strong> arrow with an open circle at the start</td>
+</tr>
+<tr>
+<td>Connects</td>
+<td>Elements <strong>within the same pool</strong></td>
+<td>Elements in <strong>different pools</strong></td>
+</tr>
+<tr>
+<td>Meaning</td>
+<td>The <strong>order</strong> in which activities happen</td>
+<td><strong>Communication</strong> between participants</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="p20"><summary><span><span class="qn">Q20</span>What is the difference between a sub-process and a call activity in BPMN?</span></summary><div class="answer"><ul>
+<li>A <strong>sub-process</strong> is a <strong>group of activities embedded inside the parent process</strong>, shown collapsed (with a + sign) or expanded. It is used to <strong>simplify</strong> the diagram and is not reused elsewhere.</li>
+<li>A <strong>call activity</strong> <strong>calls a separate, reusable process</strong> (defined once, used in many places), with a thicker border.</li>
+</ul>
+<p>Use call activities for shared procedures such as “Verify customer identity”.</p></div></details><details class="item" id="p21"><summary><span><span class="qn">Q21</span>How do you model exceptions and timeouts in BPMN?</span></summary><div class="answer"><p>Use <strong>boundary events</strong> attached to the edge of an activity. For example, a <strong>timer boundary event</strong> on “Wait for customer reply” can start an escalation path after 3 days, an <strong>error boundary event</strong> can handle a failed payment, and a <strong>message boundary event</strong> can cancel the task when the customer cancels the order. Boundary events can be <strong>interrupting</strong> (stop the activity) or <strong>non-interrupting</strong> (run in parallel).</p></div></details><details class="item" id="p22"><summary><span><span class="qn">Q22</span>What are the differences between BPMN and a flowchart, and between BPMN and a UML activity diagram?</span></summary><div class="answer"><ul>
+<li><strong>BPMN vs flowchart:</strong> BPMN is <strong>standardized and richer</strong>: events, message flows, pools, boundary events, parallel gateways and executable semantics. A flowchart is simpler and less formal.</li>
+<li><strong>BPMN vs UML activity diagram:</strong> both model flows of activities. <strong>BPMN is aimed at business processes and business users</strong> (with pools, events and messages between organizations). A <strong>UML activity diagram</strong> is mainly used by <strong>software designers</strong> to describe system behavior and algorithms.</li>
+</ul></div></details><details class="item" id="p23"><summary><span><span class="qn">Q23</span>How would you model an online order process in BPMN? (example)</span></summary><div class="answer"><p>A simple description of the main flow:</p>
+<ol>
+<li><strong>Start event (message):</strong> order received from the customer (pool: Customer).</li>
+<li><strong>Service task:</strong> validate the order.</li>
+<li><strong>Exclusive gateway:</strong> items in stock?<ul>
+<li><strong>Yes:</strong> user task “Prepare shipment”, then service task “Send tracking email”.</li>
+<li><strong>No:</strong> user task “Order from supplier”, then intermediate timer event “Wait for stock”, then back to the shipment.</li>
+</ul>
+</li>
+<li><strong>Parallel gateway:</strong> in parallel, ship the order and issue the invoice (finance lane).</li>
+<li><strong>End event:</strong> order completed.</li>
+<li><strong>Boundary events:</strong> a timer on payment (“cancel after 7 days unpaid”) and an error event for payment failure.</li>
+</ol></div></details></section>
+<section class="sec-block" id="sec-3"><h2 class="sec">UML</h2><details class="item" id="p24"><summary><span><span class="qn">Q24</span>What is UML, and what are the types of UML diagrams?</span></summary><div class="answer"><p>UML (Unified Modeling Language) is a <strong>standard visual language for specifying, designing and documenting software systems</strong>. UML 2.x defines <strong>14 diagram types</strong> in two groups:</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Diagrams</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Structural</strong> (the static structure)</td>
+<td>Class, Object, Component, Deployment, Package, Composite structure, Profile</td>
+</tr>
+<tr>
+<td><strong>Behavioral</strong> (the dynamic behavior)</td>
+<td>Use case, Activity, State machine, Sequence, Communication, Interaction overview, Timing</td>
+</tr>
+</tbody>
+</table>
+<p>In practice, the most used are <strong>use case, class, sequence, activity and state machine</strong> diagrams.</p></div></details><details class="item" id="p25"><summary><span><span class="qn">Q25</span>What are the elements of a use case diagram?</span></summary><div class="answer"><ul>
+<li><strong>Actors:</strong> users or external systems that interact with the system (stick figures).</li>
+<li><strong>Use cases:</strong> the goals or functions the system provides (ovals).</li>
+<li><strong>System boundary:</strong> a rectangle around the use cases.</li>
+<li><strong>Relationships:</strong> association (actor to use case), <strong>include</strong>, <strong>extend</strong> and <strong>generalization</strong>.</li>
+</ul>
+<p>It gives a <strong>high-level view of what the system does and for whom</strong>, and is a good tool for discussing scope with stakeholders.</p></div></details><details class="item" id="p26"><summary><span><span class="qn">Q26</span>What is the difference between «include» and «extend» in a use case diagram?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Include</th>
+<th>Extend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Meaning</td>
+<td>The base use case <strong>always</strong> uses the included one</td>
+<td>The extending use case <strong>adds optional behavior</strong> under a condition</td>
+</tr>
+<tr>
+<td>Direction</td>
+<td>Base → included</td>
+<td>Extending → base</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>“Place order” <strong>includes</strong> “Verify payment”</td>
+<td>“Place order” can be <strong>extended</strong> by “Apply discount code”</td>
+</tr>
+</tbody>
+</table>
+<p>Think: include = mandatory and reused, extend = optional and conditional.</p></div></details><details class="item" id="p27"><summary><span><span class="qn">Q27</span>What are the relationships in a class diagram?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Relationship</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Association</strong></td>
+<td>One class uses or knows another</td>
+<td>A Teacher teaches a Student</td>
+</tr>
+<tr>
+<td><strong>Aggregation</strong></td>
+<td>“Has-a”, the part can exist <strong>without</strong> the whole (hollow diamond)</td>
+<td>A Team has Players</td>
+</tr>
+<tr>
+<td><strong>Composition</strong></td>
+<td>Strong “has-a”, the part <strong>cannot exist without</strong> the whole (filled diamond)</td>
+<td>A House has Rooms</td>
+</tr>
+<tr>
+<td><strong>Generalization (inheritance)</strong></td>
+<td>“Is-a” (hollow triangle)</td>
+<td>Car is a Vehicle</td>
+</tr>
+<tr>
+<td><strong>Dependency</strong></td>
+<td>One class temporarily depends on another (dashed arrow)</td>
+<td>A report class uses a utility class</td>
+</tr>
+<tr>
+<td><strong>Realization</strong></td>
+<td>A class implements an interface</td>
+<td>Class implements an interface</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="p28"><summary><span><span class="qn">Q28</span>What are multiplicity and visibility in a class diagram?</span></summary><div class="answer"><ul>
+<li><strong>Multiplicity</strong> shows <strong>how many instances</strong> take part in a relationship: <code>1</code>, <code>0..1</code>, <code>1..*</code>, <code>*</code> (for example one Customer places 0 or more Orders).</li>
+<li><strong>Visibility</strong> of attributes and methods: <code>+</code> public, <code>-</code> private, <code>#</code> protected, <code>~</code> package.</li>
+</ul>
+<p>A class box has three parts: <strong>name, attributes and operations (methods)</strong>.</p></div></details><details class="item" id="p29"><summary><span><span class="qn">Q29</span>What is a sequence diagram, and when do you use it?</span></summary><div class="answer"><p>A sequence diagram shows <strong>how objects or systems interact over time</strong>, in the order of the messages exchanged. Its elements are <strong>lifelines</strong> (vertical dashed lines), <strong>messages</strong> (arrows), <strong>activation bars</strong> and <strong>combined fragments</strong> (<code>alt</code> for alternatives, <code>opt</code> for optional, <code>loop</code> for repetition).</p>
+<p>Use it to design and explain a <strong>specific scenario</strong>, such as a login or a payment, including the interaction between the user, the front end, the API and the database.</p></div></details><details class="item" id="p30"><summary><span><span class="qn">Q30</span>What is an activity diagram, and how does it relate to a flowchart and BPMN?</span></summary><div class="answer"><p>An activity diagram models the <strong>flow of actions</strong> in a process or a use case. Its elements are an initial node, actions, <strong>decision/merge</strong> diamonds, <strong>fork/join</strong> bars for parallel activities, swimlanes (“partitions”) and a final node. It is like an enhanced flowchart that supports <strong>parallelism</strong>, and it is similar to BPMN, but it is more commonly used for <strong>system behavior</strong> than for business processes.</p></div></details><details class="item" id="p31"><summary><span><span class="qn">Q31</span>What is a state machine diagram?</span></summary><div class="answer"><p>It shows the <strong>states</strong> an object can be in during its life, and the <strong>transitions</strong> between states triggered by <strong>events</strong> (optionally with a guard condition). Example: an order moves through <strong>New → Paid → Shipped → Delivered</strong>, and can be <strong>Cancelled</strong> from some states. It is useful for objects with a clear life cycle, such as orders, tickets and accounts.</p></div></details><details class="item" id="p32"><summary><span><span class="qn">Q32</span>Which UML diagram do you use for which purpose?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Diagram</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agree on scope and who uses the system</td>
+<td><strong>Use case</strong></td>
+</tr>
+<tr>
+<td>Describe the static structure and data of the system</td>
+<td><strong>Class</strong></td>
+</tr>
+<tr>
+<td>Show how components talk to each other for a scenario</td>
+<td><strong>Sequence</strong></td>
+</tr>
+<tr>
+<td>Model the flow of a process or a use case</td>
+<td><strong>Activity</strong></td>
+</tr>
+<tr>
+<td>Model the life cycle of an object</td>
+<td><strong>State machine</strong></td>
+</tr>
+<tr>
+<td>Show the software parts and how they are connected</td>
+<td><strong>Component</strong></td>
+</tr>
+<tr>
+<td>Show where software runs on hardware</td>
+<td><strong>Deployment</strong></td>
+</tr>
+</tbody>
+</table></div></details></section>
+<section class="sec-block" id="sec-4"><h2 class="sec">Data modeling and data flow diagrams</h2><details class="item" id="p33"><summary><span><span class="qn">Q33</span>What is a Data Flow Diagram (DFD), and what are its elements?</span></summary><div class="answer"><p>A DFD shows <strong>how data moves through a system</strong>. Elements:</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>External entity</strong></td>
+<td>A source or a destination of data outside the system</td>
+<td>Customer, Bank</td>
+</tr>
+<tr>
+<td><strong>Process</strong></td>
+<td>Transforms incoming data into outgoing data</td>
+<td>Validate order</td>
+</tr>
+<tr>
+<td><strong>Data store</strong></td>
+<td>Where data is kept</td>
+<td>Orders database</td>
+</tr>
+<tr>
+<td><strong>Data flow</strong></td>
+<td>Data moving between the others (labeled arrow)</td>
+<td>Order details</td>
+</tr>
+</tbody>
+</table>
+<p>Common notations are Yourdon-DeMarco and Gane-Sarson.</p></div></details><details class="item" id="p34"><summary><span><span class="qn">Q34</span>What are the levels of a DFD, and what is a context diagram?</span></summary><div class="answer"><ul>
+<li><strong>Context diagram (Level 0):</strong> the whole system as <strong>one process</strong>, with its external entities and the main data flows. It shows the scope.</li>
+<li><strong>Level 1:</strong> breaks the system into its <strong>major processes</strong> and data stores.</li>
+<li><strong>Level 2 and below:</strong> decompose each process further.</li>
+</ul>
+<p>Each lower level must stay <strong>consistent (balanced)</strong> with its parent: the inputs and outputs must match.</p></div></details><details class="item" id="p35"><summary><span><span class="qn">Q35</span>What are the rules for drawing a correct DFD?</span></summary><div class="answer"><ul>
+<li>Every <strong>process needs at least one input and one output.</strong></li>
+<li>Data <strong>cannot flow directly</strong> between two external entities or between two data stores: it must pass through a <strong>process</strong>.</li>
+<li>Data flows are <strong>labeled</strong> with the data they carry (nouns).</li>
+<li>Processes are named with <strong>verb + noun.</strong></li>
+<li>Names must be <strong>unique</strong>, and levels must be <strong>balanced.</strong></li>
+</ul></div></details><details class="item" id="p36"><summary><span><span class="qn">Q36</span>What is an Entity Relationship Diagram (ERD), and what is cardinality?</span></summary><div class="answer"><p>An ERD models <strong>the data</strong> of a system: <strong>entities</strong> (things such as Customer, Order), their <strong>attributes</strong> and the <strong>relationships</strong> between them. <strong>Cardinality</strong> says how many instances can be related:</p>
+<ul>
+<li><strong>One-to-one (1:1):</strong> one person has one passport.</li>
+<li><strong>One-to-many (1:N):</strong> one customer places many orders.</li>
+<li><strong>Many-to-many (M:N):</strong> students enroll in many courses, and courses have many students (implemented with a <strong>junction table</strong>).</li>
+</ul>
+<p>A popular notation is <strong>crow’s foot</strong>. An ERD is later turned into the database tables.</p></div></details><details class="item" id="p37"><summary><span><span class="qn">Q37</span>What is a SIPOC diagram?</span></summary><div class="answer"><p>SIPOC is a <strong>high-level overview of a process</strong> in five columns: <strong>S</strong>uppliers, <strong>I</strong>nputs, <strong>P</strong>rocess (4 to 7 main steps), <strong>O</strong>utputs and <strong>C</strong>ustomers. It is often the first step of a Lean or Six Sigma project, used to agree on the scope and boundaries before detailed mapping.</p></div></details></section>
+<section class="sec-block" id="sec-5"><h2 class="sec">Process analysis and improvement</h2><details class="item" id="p38"><summary><span><span class="qn">Q38</span>How do you find bottlenecks in a process?</span></summary><div class="answer"><ul>
+<li><strong>Look for waiting time and queues:</strong> where work piles up.</li>
+<li><strong>Measure</strong> the time and the capacity of each step; the step with the <strong>lowest capacity or the longest wait</strong> is the bottleneck.</li>
+<li>Check <strong>handoffs, approvals and rework loops.</strong></li>
+<li>Use <strong>data</strong> (timestamps from systems, process mining) and <strong>observation.</strong></li>
+<li>Ask the people who do the work where they get stuck.</li>
+</ul>
+<p>Improve the bottleneck first, because speeding up other steps does not increase the overall output.</p></div></details><details class="item" id="p39"><summary><span><span class="qn">Q39</span>What are the common process performance metrics?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cycle time</strong></td>
+<td>Time to complete a process, from start to finish</td>
+</tr>
+<tr>
+<td><strong>Lead time</strong></td>
+<td>Time from the customer’s request to delivery (includes waiting)</td>
+</tr>
+<tr>
+<td><strong>Processing (touch) time</strong></td>
+<td>Time actually spent working on the item</td>
+</tr>
+<tr>
+<td><strong>Wait time</strong></td>
+<td>Time the item sits idle between steps</td>
+</tr>
+<tr>
+<td><strong>Throughput</strong></td>
+<td>Number of items completed per period</td>
+</tr>
+<tr>
+<td><strong>First-pass yield / error rate</strong></td>
+<td>Share done right the first time, or share with errors and rework</td>
+</tr>
+<tr>
+<td><strong>Cost per transaction</strong></td>
+<td>Total cost / number of transactions</td>
+</tr>
+<tr>
+<td><strong>SLA compliance</strong></td>
+<td>Share completed within the agreed time</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="p40"><summary><span><span class="qn">Q40</span>What is gap analysis in process improvement?</span></summary><div class="answer"><p>Gap analysis <strong>compares the As-Is process with the desired To-Be state</strong> (or with a standard or best practice) to find the differences: missing steps, manual work, delays, risks and unmet requirements. The gaps are then turned into <strong>prioritized improvement actions</strong>.</p></div></details><details class="item" id="p41"><summary><span><span class="qn">Q41</span>What are Lean and the eight wastes?</span></summary><div class="answer"><p>Lean focuses on <strong>maximizing customer value and removing waste</strong>. The eight wastes (often remembered as <strong>TIMWOODS</strong> or DOWNTIME) are:</p>
+<p><strong>T</strong>ransportation, <strong>I</strong>nventory, <strong>M</strong>otion, <strong>W</strong>aiting, <strong>O</strong>verproduction, <strong>O</strong>ver-processing, <strong>D</strong>efects and <strong>S</strong>kills (unused talent).</p>
+<p>In office processes, examples are waiting for approvals, re-entering the same data, unnecessary reports and rework due to errors.</p></div></details><details class="item" id="p42"><summary><span><span class="qn">Q42</span>What is Six Sigma and the DMAIC cycle?</span></summary><div class="answer"><p>Six Sigma is a data-driven method to <strong>reduce defects and variation</strong> in a process. <strong>DMAIC</strong> is its improvement cycle:</p>
+<ol>
+<li><strong>Define:</strong> the problem, goal and scope (a SIPOC can help).</li>
+<li><strong>Measure:</strong> the current performance.</li>
+<li><strong>Analyze:</strong> find the root causes.</li>
+<li><strong>Improve:</strong> design and test solutions.</li>
+<li><strong>Control:</strong> keep the gains with monitoring and standards.</li>
+</ol></div></details><details class="item" id="p43"><summary><span><span class="qn">Q43</span>What is value stream mapping (VSM)?</span></summary><div class="answer"><p>VSM is a Lean technique that maps <strong>every step in the flow of a product or service, from the customer’s request to delivery</strong>, and marks each as <strong>value-adding or not</strong>, with the <strong>processing time and waiting time</strong> of each step. It reveals waste and long waits, and helps design a leaner future state.</p></div></details><details class="item" id="p44"><summary><span><span class="qn">Q44</span>What is a RACI matrix?</span></summary><div class="answer"><p>RACI assigns <strong>responsibility for each activity or decision</strong>:</p>
+<ul>
+<li><strong>R</strong>esponsible: does the work.</li>
+<li><strong>A</strong>ccountable: owns the outcome and approves (<strong>only one</strong> per task).</li>
+<li><strong>C</strong>onsulted: gives input (two-way).</li>
+<li><strong>I</strong>nformed: is told the result (one-way).</li>
+</ul>
+<p>It prevents confusion and gaps in ownership, and complements process maps.</p></div></details><details class="item" id="p45"><summary><span><span class="qn">Q45</span>What is process mining?</span></summary><div class="answer"><p>Process mining uses the <strong>event logs (timestamps, case IDs, activities) from systems such as ERP and CRM to automatically discover and analyze how processes really run</strong>. It shows actual paths, variations, bottlenecks and compliance gaps based on data, instead of interviews alone. Tools include Celonis, UiPath Process Mining and Disco.</p></div></details><details class="item" id="p46"><summary><span><span class="qn">Q46</span>Which processes are good candidates for automation (RPA)?</span></summary><div class="answer"><p>Good candidates are <strong>rule-based, repetitive, high-volume processes</strong> with <strong>structured digital data</strong>, <strong>stable steps</strong> and clear exceptions, such as invoice data entry, report generation or data transfer between systems. Poor candidates are processes that need frequent human judgment, change often or use unstructured inputs. <strong>Fix and simplify the process first;</strong> automating a broken process just makes errors faster.</p></div></details><details class="item" id="p47"><summary><span><span class="qn">Q47</span>What tools are used for process modeling?</span></summary><div class="answer"><ul>
+<li><strong>Diagramming:</strong> Microsoft Visio, Lucidchart, draw.io (diagrams.net), Miro.</li>
+<li><strong>BPMN and BPM suites:</strong> Bizagi, Camunda Modeler, Signavio, ARIS, Lucidchart BPMN.</li>
+<li><strong>UML and architecture:</strong> Enterprise Architect, Visual Paradigm, PlantUML.</li>
+<li><strong>Process mining:</strong> Celonis, UiPath Process Mining.</li>
+</ul></div></details></section>
+<section class="sec-block" id="sec-6"><h2 class="sec">Scenarios and design questions</h2><details class="item" id="p48"><summary><span><span class="qn">Q48</span>Model the loan approval process.</span></summary><div class="answer"><p>A typical flow (with swimlanes: Customer, Loan Officer, Credit Risk, System):</p>
+<ol>
+<li><strong>Customer</strong> submits the loan application (start event).</li>
+<li><strong>System</strong> checks that the data and documents are complete. If not, ask the customer to complete them (loop).</li>
+<li><strong>Loan officer</strong> reviews the application and verifies identity (KYC).</li>
+<li><strong>Credit risk</strong> performs a credit check and risk scoring.</li>
+<li><strong>Exclusive gateway:</strong> score within policy?<ul>
+<li><strong>Yes:</strong> approve, prepare the offer.</li>
+<li><strong>Borderline:</strong> refer to a senior underwriter.</li>
+<li><strong>No:</strong> reject and send the decision.</li>
+</ul>
+</li>
+<li><strong>Customer</strong> accepts the offer (timer: offer expires in 14 days).</li>
+<li><strong>System</strong> disburses funds, and the process ends.</li>
+</ol>
+<p>Mention the <strong>exceptions</strong> (missing documents, timeout), the <strong>SLA</strong> for each step, and the <strong>rules</strong> applied at each decision.</p></div></details><details class="item" id="p49"><summary><span><span class="qn">Q49</span>A purchase approval process takes 10 days. How would you analyze and improve it?</span></summary><div class="answer"><ol>
+<li><strong>Map the As-Is process</strong> (interviews, observation, system timestamps).</li>
+<li><strong>Measure</strong> the processing time and the waiting time of each step, and the number of rework loops.</li>
+<li><strong>Find the bottlenecks:</strong> for example approvals waiting in managers’ inboxes, or incomplete requests sent back.</li>
+<li><strong>Find root causes</strong> (5 Whys, fishbone diagram).</li>
+<li><strong>Design the To-Be:</strong> approval thresholds (low-value orders auto-approved), parallel approvals, a mandatory-field form, automatic reminders and escalation.</li>
+<li><strong>Pilot, measure and compare</strong> (for example cycle time from 10 days to 3), and set up monitoring to keep the gain.</li>
+</ol></div></details><details class="item" id="p50"><summary><span><span class="qn">Q50</span>How do you choose which notation to use for a stakeholder or an audience?</span></summary><div class="answer"><ul>
+<li><strong>Executives:</strong> high-level view, SIPOC or a simple flow of 5 to 7 steps.</li>
+<li><strong>Business users and process owners:</strong> a swimlane diagram or BPMN (descriptive level), with simple language.</li>
+<li><strong>Analysts and IT:</strong> detailed BPMN, UML or DFD, with rules, data and systems.</li>
+<li><strong>Developers:</strong> UML sequence and class diagrams, or executable BPMN.</li>
+</ul>
+<p>Use the <strong>simplest notation that is clear for the audience</strong>, with a legend if they are not familiar with it.</p></div></details><details class="item" id="p51"><summary><span><span class="qn">Q51</span>How do you validate a process model with stakeholders?</span></summary><div class="answer"><ul>
+<li><strong>Walkthrough:</strong> go step by step through the diagram with the people who perform the process, and ask “does this match what happens?”</li>
+<li>Test with <strong>real scenarios and exceptions</strong> (“what happens if the customer cancels?”).</li>
+<li>Check with <strong>data</strong> (volumes, times) when possible.</li>
+<li>Collect feedback, <strong>update the model</strong>, and get a <strong>sign-off</strong> from the process owner.</li>
+<li>Keep the model <strong>version controlled and up to date.</strong></li>
+</ul></div></details><details class="item" id="p52"><summary><span><span class="qn">Q52</span>How do you handle a process where different departments describe the steps differently?</span></summary><div class="answer"><p>Do not choose a side. <strong>Observe the real process and use data</strong> to find what actually happens, hold a <strong>joint workshop</strong> with all parties to walk through the differences, and <strong>document variations</strong> explicitly (different paths for different cases). Then agree on the <strong>standard process</strong> and the exceptions, with the process owner making the final decision.</p></div></details><details class="item" id="p53"><summary><span><span class="qn">Q53</span>Where do business rules belong in process models?</span></summary><div class="answer"><p>Keep the <strong>process diagram simple</strong> and put detailed rules outside it, for example in a <strong>decision table</strong> (a business rule task in BPMN calls it), or in a rules document. This keeps the diagram readable, and lets business owners <strong>change rules without redrawing the process.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Customer type</th>
+<th>Order value</th>
+<th>Approval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regular</td>
+<td>Below 1,000</td>
+<td>Automatic</td>
+</tr>
+<tr>
+<td>Regular</td>
+<td>1,000 or more</td>
+<td>Manager</td>
+</tr>
+<tr>
+<td>New</td>
+<td>Any</td>
+<td>Manager</td>
+</tr>
+</tbody>
+</table></div></details></section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

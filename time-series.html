@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time Series Interview Prep</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span><h1>Time Series Interview Prep</h1></div>
+<p class="sub">40 questions</p>
+<div class="roles"><a class="role" href="index.html#role=ds">Data Science</a><a class="role alt" href="index.html#role=da">Data Analytics</a><a class="role alt" href="index.html#role=aiml">AI/ML</a></div>
+<div class="intro"><blockquote><p>Time series analysis and forecasting interview questions: fundamentals, preprocessing, classical models, machine learning and deep learning approaches, evaluation and real-world scenarios.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<nav class="chips"><a href="#sec-0">Time series fundamentals <small>7</small></a><a href="#sec-1">Exploration and preprocessing <small>6</small></a><a href="#sec-2">Classical forecasting models <small>9</small></a><a href="#sec-3">Machine learning and deep learning for time series <small>4</small></a><a href="#sec-4">Evaluation and validation <small>7</small></a><a href="#sec-5">Practice and scenarios <small>7</small></a></nav>
+<section class="sec-block" id="sec-0"><h2 class="sec">Time series fundamentals</h2><details class="item" id="t1"><summary><span><span class="qn">Q1</span>What is a time series, and how is time series analysis different from regular regression?</span></summary><div class="answer"><p>A time series is a sequence of observations recorded <strong>in time order</strong>, usually at regular intervals (daily sales, hourly temperature, monthly revenue).</p>
+<p>It differs from ordinary tabular modeling because:</p>
+<ul>
+<li><strong>Order matters:</strong> you cannot shuffle the rows.</li>
+<li><strong>Observations are dependent:</strong> today’s value is related to yesterday’s (autocorrelation), which breaks the independence assumption of many models.</li>
+<li><strong>Patterns evolve over time:</strong> trend, seasonality and changing variance.</li>
+<li><strong>Validation must respect time:</strong> you train on the past and test on the future.</li>
+</ul></div></details><details class="item" id="t2"><summary><span><span class="qn">Q2</span>What are the components of a time series?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Trend</strong></td>
+<td>The long-term direction (up, down or flat)</td>
+<td>Growing sales over several years</td>
+</tr>
+<tr>
+<td><strong>Seasonality</strong></td>
+<td>A regular pattern repeating over a fixed period</td>
+<td>Higher sales every December, or every weekend</td>
+</tr>
+<tr>
+<td><strong>Cyclic</strong></td>
+<td>Rises and falls with <strong>no fixed period</strong>, usually tied to the economy or business cycles</td>
+<td>Economic expansions and recessions</td>
+</tr>
+<tr>
+<td><strong>Noise (irregular)</strong></td>
+<td>Random variation left after removing the rest</td>
+<td>One-off events, measurement error</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="t3"><summary><span><span class="qn">Q3</span>What is the difference between additive and multiplicative time series?</span></summary><div class="answer"><ul>
+<li><strong>Additive:</strong> <code>y = Trend + Seasonality + Noise</code>. The seasonal swings stay roughly the <strong>same size</strong> as the level changes.</li>
+<li><strong>Multiplicative:</strong> <code>y = Trend × Seasonality × Noise</code>. The seasonal swings <strong>grow with the level</strong> of the series.</li>
+</ul>
+<p>If the seasonal amplitude increases as the series grows, use a multiplicative model, or take the <strong>log</strong> of the series, which turns a multiplicative pattern into an additive one.</p></div></details><details class="item" id="t4"><summary><span><span class="qn">Q4</span>What is stationarity, and why does it matter?</span></summary><div class="answer"><p>A series is (weakly) <strong>stationary</strong> when its <strong>mean and variance are constant over time</strong> and its autocovariance depends only on the lag between points, not on the time itself. It has no trend and no changing seasonal pattern.</p>
+<p>It matters because many classical models (AR, MA, ARIMA) assume stationarity: relationships learned from one period only apply to another if the statistical behavior is stable. If the series is not stationary, you transform it first (for example by differencing).</p></div></details><details class="item" id="t5"><summary><span><span class="qn">Q5</span>How do you test whether a series is stationary?</span></summary><div class="answer"><ul>
+<li><strong>Visual checks:</strong> plot the series and its rolling mean and variance.</li>
+<li><strong>ADF (Augmented Dickey-Fuller) test:</strong> the null hypothesis is that the series has a <strong>unit root (non-stationary)</strong>. A p-value below 0.05 suggests the series is stationary.</li>
+<li><strong>KPSS test:</strong> the null hypothesis is that the series <strong>is stationary</strong>. A p-value below 0.05 suggests it is non-stationary.</li>
+</ul>
+<p>Using both together gives a more reliable answer, because they have opposite null hypotheses.</p>
+<pre><code class="language-python">from statsmodels.tsa.stattools import adfuller
+
+result = adfuller(series.dropna())
+print(&quot;ADF statistic:&quot;, result[0])
+print(&quot;p-value:&quot;, result[1])        # p &lt; 0.05 -&gt; likely stationary
+</code></pre></div></details><details class="item" id="t6"><summary><span><span class="qn">Q6</span>How do you make a non-stationary series stationary?</span></summary><div class="answer"><ul>
+<li><strong>Differencing:</strong> <code>y_t - y_(t-1)</code> removes a trend. <strong>Seasonal differencing</strong> (<code>y_t - y_(t-s)</code>, where <code>s</code> is the season length) removes seasonality.</li>
+<li><strong>Log or Box-Cox transformation</strong> to stabilize a growing variance.</li>
+<li><strong>Detrending:</strong> subtract a fitted trend line or a moving average.</li>
+<li><strong>Decomposition:</strong> model the trend and seasonality separately and work on the residuals.</li>
+</ul>
+<p>Do not over-difference: apply the smallest amount that makes the series stationary.</p></div></details><details class="item" id="t7"><summary><span><span class="qn">Q7</span>What are white noise and a random walk?</span></summary><div class="answer"><ul>
+<li><strong>White noise:</strong> a series of uncorrelated values with constant mean and variance. It has no pattern to forecast, and good model residuals should look like white noise.</li>
+<li><strong>Random walk:</strong> <code>y_t = y_(t-1) + e_t</code>. Each value is the previous value plus noise. It is <strong>non-stationary</strong>, and the best forecast is simply the last observed value. Differencing a random walk gives white noise.</li>
+</ul></div></details></section>
+<section class="sec-block" id="sec-1"><h2 class="sec">Exploration and preprocessing</h2><details class="item" id="t8"><summary><span><span class="qn">Q8</span>How do you handle missing values and irregular timestamps in a time series?</span></summary><div class="answer"><p>First put the data on a regular frequency, then fill the gaps:</p>
+<pre><code class="language-python">df = df.sort_index()
+df = df.resample(&quot;D&quot;).sum()                     # use .mean() for rates, .sum() for counts
+df[&quot;value&quot;] = df[&quot;value&quot;].interpolate(method=&quot;time&quot;)
+</code></pre>
+<p>Options for filling: forward fill, interpolation (linear or time-based), seasonal averages, or a model-based imputation. Choose carefully, because the wrong method can hide real patterns. Never use future values to fill past gaps when the data will be used to simulate real forecasting.</p></div></details><details class="item" id="t9"><summary><span><span class="qn">Q9</span>What is resampling, and when would you use it?</span></summary><div class="answer"><p>Resampling changes the <strong>frequency</strong> of the series: <strong>downsampling</strong> (hourly to daily) aggregates the data, and <strong>upsampling</strong> (monthly to daily) creates new timestamps that you then fill. You use it to align several series to the same frequency, reduce noise, or forecast at the level the business needs. Pick the right aggregation: sum for totals (sales), mean for rates (temperature, price).</p></div></details><details class="item" id="t10"><summary><span><span class="qn">Q10</span>What is decomposition, and how do you do it?</span></summary><div class="answer"><p>Decomposition splits a series into <strong>trend, seasonal and residual</strong> components, which helps you understand it, find anomalies in the residual, and build models. <strong>STL</strong> (Seasonal-Trend decomposition using LOESS) is flexible and robust to outliers.</p>
+<pre><code class="language-python">from statsmodels.tsa.seasonal import STL
+
+stl = STL(series, period=12).fit()          # period = length of the season, e.g. 12 for monthly data
+trend, seasonal, resid = stl.trend, stl.seasonal, stl.resid
+stl.plot()
+</code></pre></div></details><details class="item" id="t11"><summary><span><span class="qn">Q11</span>What are ACF and PACF, and how do you read them?</span></summary><div class="answer"><ul>
+<li><strong>ACF (autocorrelation function):</strong> the correlation between the series and its lagged copy, at each lag.</li>
+<li><strong>PACF (partial autocorrelation function):</strong> the correlation at a lag <strong>after removing the effect of the shorter lags</strong>.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>ACF</th>
+<th>PACF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AR(p)</strong></td>
+<td>Tails off gradually</td>
+<td><strong>Cuts off</strong> after lag p</td>
+</tr>
+<tr>
+<td><strong>MA(q)</strong></td>
+<td><strong>Cuts off</strong> after lag q</td>
+<td>Tails off gradually</td>
+</tr>
+</tbody>
+</table>
+<p>Spikes at regular intervals in the ACF (for example at lags 12, 24) indicate seasonality.</p>
+<pre><code class="language-python">from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+
+plot_acf(series, lags=40)
+plot_pacf(series, lags=40)
+</code></pre></div></details><details class="item" id="t12"><summary><span><span class="qn">Q12</span>What is a moving average (smoothing), and what is exponential smoothing?</span></summary><div class="answer"><ul>
+<li><strong>Moving average:</strong> the average of the last <code>k</code> observations. It smooths noise, but gives equal weight to all points in the window and lags behind turning points.</li>
+<li><strong>Exponential smoothing:</strong> a weighted average where <strong>recent observations get more weight</strong> and older ones decay exponentially, controlled by a smoothing factor <code>α</code> (between 0 and 1). A higher <code>α</code> reacts faster to changes.</li>
+</ul>
+<p>The <strong>moving average smoother</strong> is different from the <strong>MA model</strong> in ARIMA, which models the dependence on past forecast errors.</p></div></details><details class="item" id="t13"><summary><span><span class="qn">Q13</span>How do you create features from a time series for machine learning?</span></summary><div class="answer"><pre><code class="language-python">df[&quot;lag_1&quot;] = df[&quot;sales&quot;].shift(1)
+df[&quot;lag_7&quot;] = df[&quot;sales&quot;].shift(7)
+df[&quot;roll_mean_7&quot;] = df[&quot;sales&quot;].shift(1).rolling(7).mean()   # shift first, so the window only uses the past
+df[&quot;dayofweek&quot;] = df.index.dayofweek
+df[&quot;month&quot;] = df.index.month
+df[&quot;is_holiday&quot;] = df.index.isin(holiday_dates).astype(int)
+</code></pre>
+<p>Common features are <strong>lags</strong>, <strong>rolling and expanding statistics</strong>, <strong>calendar features</strong> (day of week, month, holidays) and <strong>external variables</strong> (price, promotions, weather). Always make sure every feature uses only information that would be available at forecast time.</p></div></details></section>
+<section class="sec-block" id="sec-2"><h2 class="sec">Classical forecasting models</h2><details class="item" id="t14"><summary><span><span class="qn">Q14</span>What are baseline forecasts, and why start with them?</span></summary><div class="answer"><ul>
+<li><strong>Naive:</strong> the forecast is the last observed value.</li>
+<li><strong>Seasonal naive:</strong> the forecast is the value from the <strong>same season last period</strong> (for example the same weekday last week).</li>
+<li><strong>Mean or drift</strong> methods.</li>
+</ul>
+<p>Baselines are quick to build and hard to beat on some series. Any complex model must beat them to be worth using, so they give you a reference point for evaluation.</p></div></details><details class="item" id="t15"><summary><span><span class="qn">Q15</span>What is exponential smoothing (ETS, Holt-Winters)?</span></summary><div class="answer"><p>A family of models that forecast with smoothed components:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Components</th>
+<th>Handles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Simple exponential smoothing</strong></td>
+<td>Level</td>
+<td>No trend, no seasonality</td>
+</tr>
+<tr>
+<td><strong>Holt’s method</strong></td>
+<td>Level + trend</td>
+<td>Trend</td>
+</tr>
+<tr>
+<td><strong>Holt-Winters</strong></td>
+<td>Level + trend + seasonality</td>
+<td>Trend and seasonality (additive or multiplicative)</td>
+</tr>
+</tbody>
+</table>
+<p>Each component has a smoothing parameter (<code>α</code>, <code>β</code>, <code>γ</code>) that is estimated from the data. ETS models are simple, fast and strong baselines for business forecasting.</p></div></details><details class="item" id="t16"><summary><span><span class="qn">Q16</span>What are AR, MA, ARMA and ARIMA models?</span></summary><div class="answer"><ul>
+<li><strong>AR(p), autoregressive:</strong> the value depends on its own <strong>previous <code>p</code> values</strong>.</li>
+<li><strong>MA(q), moving average:</strong> the value depends on the <strong>previous <code>q</code> forecast errors</strong>.</li>
+<li><strong>ARMA(p, q):</strong> combines both, for <strong>stationary</strong> series.</li>
+<li><strong>ARIMA(p, d, q):</strong> adds <strong><code>d</code> rounds of differencing</strong> (the “I” for integrated), so it can handle a trend.</li>
+</ul>
+<pre><code class="language-python">from statsmodels.tsa.arima.model import ARIMA
+
+train, test = series[:-12], series[-12:]
+model = ARIMA(train, order=(1, 1, 1)).fit()
+forecast = model.forecast(steps=12)
+</code></pre></div></details><details class="item" id="t17"><summary><span><span class="qn">Q17</span>How do you choose the order (p, d, q) of an ARIMA model?</span></summary><div class="answer"><ol>
+<li><strong>d:</strong> difference until the series is stationary (ADF/KPSS tests), usually 0, 1 or 2.</li>
+<li><strong>p and q:</strong> read the <strong>PACF</strong> (for p) and the <strong>ACF</strong> (for q) of the differenced series.</li>
+<li>Compare candidate models with <strong>AIC or BIC</strong> (lower is better), or use an automated search such as <code>auto_arima</code> from the <code>pmdarima</code> library.</li>
+<li><strong>Check the residuals:</strong> they should look like white noise (for example with a Ljung-Box test).</li>
+</ol></div></details><details class="item" id="t18"><summary><span><span class="qn">Q18</span>What are SARIMA and SARIMAX?</span></summary><div class="answer"><ul>
+<li><strong>SARIMA</strong> adds a <strong>seasonal part</strong> <code>(P, D, Q, s)</code> to ARIMA, where <code>s</code> is the season length (12 for monthly data, 7 for daily data with a weekly pattern).</li>
+<li><strong>SARIMAX</strong> also accepts <strong>exogenous variables</strong> (external regressors such as price or holidays).</li>
+</ul>
+<pre><code class="language-python">from statsmodels.tsa.statespace.sarimax import SARIMAX
+
+model = SARIMAX(train, order=(1, 1, 1), seasonal_order=(1, 1, 1, 12)).fit()
+forecast = model.forecast(steps=12)
+</code></pre>
+<p>For forecasting with exogenous variables, you need to know (or forecast) their <strong>future values</strong> too.</p></div></details><details class="item" id="t19"><summary><span><span class="qn">Q19</span>What are the limitations of ARIMA-type models?</span></summary><div class="answer"><ul>
+<li>They assume a <strong>linear</strong> relationship and (after differencing) stationarity.</li>
+<li>They model <strong>one series at a time</strong> (univariate), so they do not share information across many series.</li>
+<li>Only <strong>one seasonal pattern</strong> is handled by SARIMA, so multiple seasonalities are awkward.</li>
+<li>They need <strong>careful tuning</strong>, and can be slow on thousands of series.</li>
+<li>They are weaker for long horizons, sudden structural changes and very noisy data.</li>
+</ul></div></details><details class="item" id="t20"><summary><span><span class="qn">Q20</span>What is Prophet, and when is it useful?</span></summary><div class="answer"><p>Prophet (from Meta) is a forecasting library that fits an <strong>additive model</strong>: a piecewise <strong>trend</strong> (with automatic changepoints), <strong>seasonalities</strong> (yearly, weekly, daily) and <strong>holiday effects</strong>. It is useful for business series with strong seasonality, holidays and missing data or outliers, and it is easy to use and explain. It is less suitable when the series is driven mainly by short-term autocorrelation, and it does not always beat well-tuned alternatives, so compare it with baselines.</p></div></details><details class="item" id="t21"><summary><span><span class="qn">Q21</span>What is a VAR model, and what is Granger causality?</span></summary><div class="answer"><p><strong>VAR (Vector Autoregression)</strong> models <strong>several time series together</strong>: each variable is predicted from the past values of itself and of all the other variables. It suits related series such as sales and advertising spend.</p>
+<p><strong>Granger causality</strong> tests whether the past values of series X <strong>improve the forecast</strong> of series Y. It shows predictive usefulness, <strong>not true cause and effect</strong>.</p></div></details><details class="item" id="t22"><summary><span><span class="qn">Q22</span>What are ARCH and GARCH models used for?</span></summary><div class="answer"><p>They model <strong>time-varying volatility</strong>, meaning that the variance of the errors changes over time, with calm periods and turbulent periods. This is typical in financial returns. GARCH forecasts the variance (risk), not the level of the series, and is used in risk management and option pricing.</p></div></details></section>
+<section class="sec-block" id="sec-3"><h2 class="sec">Machine learning and deep learning for time series</h2><details class="item" id="t23"><summary><span><span class="qn">Q23</span>How do you use machine learning models such as XGBoost or LightGBM for forecasting?</span></summary><div class="answer"><p>Turn the series into a <strong>supervised learning table</strong>: the target is the value at time <code>t</code>, and the features are lags, rolling statistics, calendar features and external variables. Then train the model on the past and validate on a later period.</p>
+<p>Notes:</p>
+<ul>
+<li>Tree-based models <strong>cannot extrapolate a trend</strong> beyond the values seen in training, so detrend or difference the target, or model the trend separately.</li>
+<li>Use <strong>time-based validation</strong>, never random splits.</li>
+<li>Multi-step forecasts need a strategy (recursive, direct or multi-output).</li>
+<li>They work well with <strong>many related series</strong> and many external features.</li>
+</ul></div></details><details class="item" id="t24"><summary><span><span class="qn">Q24</span>When would you use LSTM, GRU or transformer models for time series?</span></summary><div class="answer"><ul>
+<li><strong>LSTM and GRU</strong> are recurrent networks that learn patterns across sequences, and can model non-linear and multivariate relationships.</li>
+<li><strong>Transformer-based models</strong> (for example Temporal Fusion Transformer, PatchTST) handle long-range dependencies and many inputs, and <strong>N-BEATS</strong> is a strong pure deep learning forecaster.</li>
+</ul>
+<p>Deep learning tends to pay off when you have <strong>a lot of data</strong>, many related series, complex patterns or many external features. On a single short series, classical methods are usually as good, faster and easier to explain.</p></div></details><details class="item" id="t25"><summary><span><span class="qn">Q25</span>Classical vs machine learning vs deep learning for forecasting: how do you choose?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Classical (ARIMA, ETS)</th>
+<th>Machine learning (GBMs)</th>
+<th>Deep learning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data needed</td>
+<td>Small</td>
+<td>Medium</td>
+<td>Large</td>
+</tr>
+<tr>
+<td>Many series / many features</td>
+<td>Weak</td>
+<td>Strong</td>
+<td>Strong</td>
+</tr>
+<tr>
+<td>Interpretability</td>
+<td>High</td>
+<td>Medium</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Training effort</td>
+<td>Low</td>
+<td>Medium</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Handles trend extrapolation</td>
+<td>Yes</td>
+<td>Needs care</td>
+<td>Needs care</td>
+</tr>
+</tbody>
+</table>
+<p>Start with baselines and a classical model, then try a gradient-boosting model with good features, and move to deep learning only if the data and the gain justify the complexity.</p></div></details><details class="item" id="t26"><summary><span><span class="qn">Q26</span>What are pretrained time series foundation models?</span></summary><div class="answer"><p>They are large models trained on many different time series, which can produce <strong>zero-shot forecasts</strong> on new series without training, or be fine-tuned. Examples include <strong>Chronos</strong> and <strong>TimesFM</strong>. They are a promising shortcut when you have little history, but you should compare them against simple baselines on your own data before relying on them.</p></div></details></section>
+<section class="sec-block" id="sec-4"><h2 class="sec">Evaluation and validation</h2><details class="item" id="t27"><summary><span><span class="qn">Q27</span>How do you split data for training and testing a time series model?</span></summary><div class="answer"><p>Always split <strong>chronologically</strong>: train on the earlier period and test on the later period (for example the last 3 months or the last full season), so the test imitates real forecasting. <strong>Never use a random split or shuffle</strong>, because it leaks future information into training.</p></div></details><details class="item" id="t28"><summary><span><span class="qn">Q28</span>What is walk-forward (rolling-origin) cross-validation?</span></summary><div class="answer"><p>Instead of a single split, you repeatedly <strong>train on the past and test on the next window</strong>, moving the cutoff forward each time. This gives several performance estimates that respect time order. You can use an <strong>expanding window</strong> (train on all history so far) or a <strong>sliding window</strong> (fixed-length training period).</p>
+<pre><code class="language-python">from sklearn.model_selection import TimeSeriesSplit
+
+tscv = TimeSeriesSplit(n_splits=5)
+for train_idx, test_idx in tscv.split(X):
+    X_train, X_test = X.iloc[train_idx], X.iloc[test_idx]
+    y_train, y_test = y.iloc[train_idx], y.iloc[test_idx]
+    # fit on the train part, evaluate on the test part
+</code></pre></div></details><details class="item" id="t29"><summary><span><span class="qn">Q29</span>What metrics are used to evaluate forecasts?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MAE</strong></td>
+<td>Average absolute error</td>
+<td>Easy to explain, same units as the data</td>
+</tr>
+<tr>
+<td><strong>RMSE</strong></td>
+<td>Square root of the average squared error</td>
+<td>Penalizes large errors more</td>
+</tr>
+<tr>
+<td><strong>MAPE</strong></td>
+<td>Average absolute error as a percentage of the actual value</td>
+<td>Breaks down when actual values are zero or near zero</td>
+</tr>
+<tr>
+<td><strong>sMAPE</strong></td>
+<td>A symmetric version of the percentage error</td>
+<td>Handles small values better than MAPE, but has its own quirks</td>
+</tr>
+<tr>
+<td><strong>MASE</strong></td>
+<td>MAE divided by the MAE of a naive forecast</td>
+<td>Scale-free, below 1 means better than the naive baseline</td>
+</tr>
+</tbody>
+</table>
+<p>Choose the metric that matches the business cost of errors, and report it against a baseline.</p></div></details><details class="item" id="t30"><summary><span><span class="qn">Q30</span>How do you check the residuals of a forecasting model?</span></summary><div class="answer"><p>Good residuals should look like <strong>white noise</strong>: mean near zero, constant variance, no autocorrelation and roughly normal. Check by plotting them, looking at their ACF, and running a <strong>Ljung-Box test</strong> (a p-value above 0.05 means no significant autocorrelation is left).</p>
+<pre><code class="language-python">from statsmodels.stats.diagnostic import acorr_ljungbox
+
+acorr_ljungbox(model.resid, lags=[10], return_df=True)
+</code></pre>
+<p>Remaining patterns in the residuals mean the model has missed some structure.</p></div></details><details class="item" id="t31"><summary><span><span class="qn">Q31</span>What are the strategies for multi-step forecasting?</span></summary><div class="answer"><ul>
+<li><strong>Recursive:</strong> one model predicts one step ahead, and its predictions are fed back as inputs for the next step. Simple, but errors accumulate.</li>
+<li><strong>Direct:</strong> train a separate model for each horizon (t+1, t+2, ...). More accurate per step, but needs many models.</li>
+<li><strong>Multi-output:</strong> one model predicts the whole horizon at once (common with neural networks).</li>
+</ul></div></details><details class="item" id="t32"><summary><span><span class="qn">Q32</span>How do you express uncertainty in a forecast?</span></summary><div class="answer"><p>Provide <strong>prediction intervals</strong> (for example an 80% or 95% range), not only a single number. Classical models give intervals from their error assumptions, and for machine learning models you can use quantile regression, bootstrapping or <strong>conformal prediction</strong>. Intervals help decision makers plan for the best and worst cases, for example how much stock to hold.</p></div></details><details class="item" id="t33"><summary><span><span class="qn">Q33</span>What is data leakage in time series, and how do you avoid it?</span></summary><div class="answer"><p>Leakage means the model sees <strong>information from the future</strong> during training. Typical causes:</p>
+<ul>
+<li>random train/test splits or shuffled cross-validation,</li>
+<li>rolling features that include the current or future values (use <code>shift</code> first),</li>
+<li>fitting scalers or imputers on the whole dataset instead of on the training period only,</li>
+<li>features that would not be known at forecast time (for example the actual weather, when only a forecast would be available).</li>
+</ul>
+<p>Always simulate the real forecasting situation: what do you know at the moment of prediction?</p></div></details></section>
+<section class="sec-block" id="sec-5"><h2 class="sec">Practice and scenarios</h2><details class="item" id="t34"><summary><span><span class="qn">Q34</span>How do you detect anomalies in a time series?</span></summary><div class="answer"><ul>
+<li><strong>Statistical:</strong> flag points whose z-score or IQR distance is large, usually after removing trend and seasonality.</li>
+<li><strong>Decomposition-based:</strong> run STL and look for large <strong>residuals</strong>.</li>
+<li><strong>Forecast-based:</strong> predict the expected value with an interval, and flag actual values <strong>outside the interval</strong>.</li>
+<li><strong>Machine learning:</strong> Isolation Forest, one-class models, or autoencoders (for example LSTM autoencoders) on windows of data.</li>
+</ul>
+<p>Decide whether you need real-time detection, and how to handle false alarms and level shifts.</p></div></details><details class="item" id="t35"><summary><span><span class="qn">Q35</span>How do you handle multiple seasonalities (for example daily, weekly and yearly patterns)?</span></summary><div class="answer"><p>SARIMA handles only one seasonal period, so use methods designed for several:</p>
+<ul>
+<li><strong>Prophet,</strong> which supports multiple seasonalities.</li>
+<li><strong>TBATS</strong> and similar models.</li>
+<li><strong>Fourier terms</strong> as regressors for the seasonal patterns.</li>
+<li><strong>Machine learning with calendar features</strong> (hour, day of week, month, holiday flags).</li>
+</ul></div></details><details class="item" id="t36"><summary><span><span class="qn">Q36</span>How do you handle holidays, promotions and special events?</span></summary><div class="answer"><p>Add them as <strong>external regressors</strong> (binary flags, days before and after an event) in SARIMAX, Prophet or a machine learning model. If they are one-off events, mark them as outliers or model them separately so they do not distort the normal pattern. For future events, you must know the dates in advance.</p></div></details><details class="item" id="t37"><summary><span><span class="qn">Q37</span>How do you forecast intermittent demand (many zeros), such as spare parts?</span></summary><div class="answer"><p>Standard methods and percentage metrics work poorly when many periods have zero demand. Use methods built for intermittent series such as <strong>Croston’s method</strong> (and its variants SBA and TSB), which model the <strong>size of the demand</strong> and the <strong>interval between demands</strong> separately. Evaluate with scale-free metrics such as MASE rather than MAPE.</p></div></details><details class="item" id="t38"><summary><span><span class="qn">Q38</span>How do you forecast a new product with no history (cold start)?</span></summary><div class="answer"><p>Borrow information from similar products: use <strong>analogous products</strong> and their launch curves, <strong>hierarchical or grouped models</strong> trained on related series, product attributes (category, price) as features, and judgmental inputs from the business. Update the forecast quickly as the first real sales arrive.</p></div></details><details class="item" id="t39"><summary><span><span class="qn">Q39</span>How do you keep a forecasting model accurate over time?</span></summary><div class="answer"><ul>
+<li><strong>Monitor</strong> forecast error against actuals continuously, and compare it with the baseline.</li>
+<li><strong>Retrain regularly</strong> on new data, or when the error rises above a threshold.</li>
+<li>Watch for <strong>structural changes</strong> (a new competitor, a policy or price change, a pandemic) that make old patterns invalid.</li>
+<li>Keep a <strong>champion-challenger</strong> setup: test new models against the current one before replacing it.</li>
+</ul></div></details><details class="item" id="t40"><summary><span><span class="qn">Q40</span>Design question: how would you build a demand forecasting system for a retail chain?</span></summary><div class="answer"><ol>
+<li><strong>Define the need:</strong> what to forecast (SKU by store by day), the horizon, how the forecast will be used (replenishment) and the cost of over- and under-stocking.</li>
+<li><strong>Data:</strong> sales history, prices, promotions, holidays, weather, stock-outs (censored demand), and product and store attributes. Clean and aggregate it at the right level.</li>
+<li><strong>Baselines:</strong> seasonal naive and ETS.</li>
+<li><strong>Models:</strong> a gradient-boosting model with lag, rolling and calendar features across all series, and possibly a hierarchical approach so store, region and total forecasts agree. Use a deep model only if the data justifies it.</li>
+<li><strong>Validation:</strong> walk-forward cross-validation, MASE and weighted error metrics, and checks by product group.</li>
+<li><strong>Uncertainty:</strong> prediction intervals or quantile forecasts to set safety stock.</li>
+<li><strong>Cold start and intermittent items:</strong> analog products and Croston-type methods.</li>
+<li><strong>Deployment and monitoring:</strong> a scheduled pipeline, forecast accuracy tracking, drift alerts and regular retraining, with planners able to override forecasts.</li>
+</ol></div></details></section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

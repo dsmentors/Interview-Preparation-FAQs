@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python Interview Prep</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span><h1>Python Interview Prep</h1></div>
+<p class="sub">82 questions</p>
+<div class="roles"><a class="role" href="index.html#role=da">Data Analytics</a><a class="role" href="index.html#role=ds">Data Science</a><a class="role" href="index.html#role=aiml">AI/ML</a><a class="role" href="index.html#role=se">Software Engineer (AI/ML)</a><a class="role alt" href="index.html#role=ba">Business Analyst</a></div>
+<div class="intro"><blockquote><p>Frequently asked Python interview questions covering core concepts, functions, exception handling, iterators and generators, file handling, concurrency, advanced Python features and object-oriented programming. Use it to prepare clear, well-structured answers that show your skills and experience.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<nav class="chips"><a href="#sec-0">Core Python <small>33</small></a><a href="#sec-1">Advanced Python <small>26</small></a><a href="#sec-2">Object-oriented programming <small>23</small></a></nav>
+<section class="sec-block" id="sec-0"><h2 class="sec">Core Python</h2>
+<details class="item" id="a1"><summary><span>What is the difference between lists and tuples?</span></summary><div class="answer"><p><strong>Lists</strong> are mutable, ordered collections of items, written in square brackets <code>[]</code>.</p><p><strong>Tuples</strong> are immutable, ordered collections, written in parentheses <code>()</code>.</p></div></details>
+<details class="item" id="a2"><summary><span>What is the difference between mutable and immutable data types?</span></summary><div class="answer"><p><strong>Mutable</strong> data types can be changed after creation (e.g. lists, dictionaries, sets).</p><p><strong>Immutable</strong> data types cannot be changed after creation (e.g. strings, tuples, numbers).</p></div></details>
+<details class="item" id="a3"><summary><span>What is a decorator?</span></summary><div class="answer"><p>A decorator is a function that modifies the behavior of another function. It wraps the original function to extend its behavior without permanently modifying it.</p><pre><code class="language-python">def log_call(func):
+    def wrapper(*args, **kwargs):
+        print(f&quot;Calling {func.__name__}&quot;)
+        return func(*args, **kwargs)
+    return wrapper
+
+@log_call
+def greet(name):
+    return f&quot;Hello, {name}!&quot;
+
+print(greet(&quot;Alice&quot;))
+# Calling greet
+# Hello, Alice!
+</code></pre></div></details>
+<details class="item" id="a4"><summary><span>List a few built-in data types in Python.</span></summary><div class="answer"><p>A few of Python's built-in data types:</p><table><thead><tr><th>Category</th><th>Types</th></tr></thead><tbody><tr><td>Numeric</td><td><code>int</code>, <code>float</code>, <code>complex</code></td></tr><tr><td>Sequence</td><td><code>list</code>, <code>tuple</code>, <code>range</code></td></tr><tr><td>Text</td><td><code>str</code></td></tr><tr><td>Set</td><td><code>set</code>, <code>frozenset</code></td></tr><tr><td>Mapping</td><td><code>dict</code></td></tr><tr><td>Boolean</td><td><code>bool</code></td></tr><tr><td>None</td><td><code>NoneType</code></td></tr></tbody></table></div></details>
+<details class="item" id="a5"><summary><span>What are operators in Python?</span></summary><div class="answer"><p>Operators are special symbols used to perform operations on values and variables. Common types include arithmetic, comparison, logical, assignment and membership operators.</p></div></details>
+<details class="item" id="a6"><summary><span>What is an exception in Python? How do you handle exceptions?</span></summary><div class="answer"><p>An exception is an error that occurs during program execution. The <code>try</code>, <code>except</code> and <code>finally</code> blocks are used to handle exceptions.</p><ul><li><strong>try:</strong> contains the code that might raise an exception.</li><li><strong>except:</strong> runs only if an exception occurs in the <code>try</code> block.</li><li><strong>else</strong> (optional)<strong>:</strong> runs only if no exception occurs.</li><li><strong>finally:</strong> always runs, whether or not an exception occurred.</li></ul><pre><code class="language-python">try:
+    result = 10 / 0
+except ZeroDivisionError:
+    print(&quot;Cannot divide by zero&quot;)
+else:
+    print(result)
+finally:
+    print(&quot;Done&quot;)
+# Cannot divide by zero
+# Done
+</code></pre></div></details>
+<details class="item" id="a7"><summary><span>What is raise in Python?</span></summary><div class="answer"><p>The <code>raise</code> statement is used to manually trigger an exception. It is useful when you want to signal that an error or exceptional condition has occurred in your program.</p><p>By raising an exception, you transfer control to exception handling code, which can manage or respond to the error appropriately.</p><p><strong>Syntax:</strong></p><pre><code class="language-python">raise ExceptionType(&quot;message&quot;)
+</code></pre><p><strong>Example:</strong></p><pre><code class="language-python">def divide(a, b):
+    if b == 0:
+        raise ZeroDivisionError(&quot;Division by zero is not allowed.&quot;)
+    return a / b
+
+try:
+    result = divide(10, 0)
+except ZeroDivisionError as e:
+    print(e)  # Output: Division by zero is not allowed.
+</code></pre></div></details>
+<details class="item" id="a8"><summary><span>What is a custom exception?</span></summary><div class="answer"><p>A custom exception is an exception you create yourself by defining a new class that inherits from Python's built-in <code>Exception</code> class (or one of its subclasses). Custom exceptions let you define specific error conditions in your code and raise them when needed.</p><p><strong>Example:</strong></p><pre><code class="language-python"># Define a custom exception
+class CustomError(Exception):
+    pass
+
+# Function that raises the custom exception
+def check_value(value):
+    if value &lt; 0:
+        raise CustomError(&quot;Value cannot be negative.&quot;)
+    return value
+
+try:
+    check_value(-1)
+except CustomError as e:
+    print(&quot;Caught a custom exception:&quot;, e)
+# Output: Caught a custom exception: Value cannot be negative.
+</code></pre></div></details>
+<details class="item" id="a9"><summary><span>What are arguments? What is the difference between positional and keyword arguments?</span></summary><div class="answer"><p>Arguments are values passed to a function when it is called. They provide input data for the function to process. There are two main types:</p><p><strong>I. Positional arguments</strong></p><ul><li><strong>Order matters:</strong> the position of the argument decides which parameter it is assigned to.</li><li><strong>No keyword:</strong> you don't specify the parameter name when passing the argument.</li></ul><p><strong>II. Keyword arguments</strong></p><ul><li><strong>Order doesn't matter:</strong> you specify the parameter name and its value explicitly.</li><li><strong>Keyword:</strong> you use the parameter name followed by an equals sign (<code>=</code>) when passing the argument.</li></ul><p><strong>Key difference</strong></p><table><thead><tr><th>Feature</th><th>Positional arguments</th><th>Keyword arguments</th></tr></thead><tbody><tr><td><strong>Order</strong></td><td>Important</td><td>Not important</td></tr><tr><td><strong>Syntax</strong></td><td><code>func(val1, val2)</code></td><td><code>func(para2=val2, para1=val1)</code></td></tr><tr><td><strong>Flexibility</strong></td><td>Less flexible</td><td>More flexible</td></tr></tbody></table><pre><code class="language-python">def introduce(name, age):
+    print(f&quot;{name} is {age} years old&quot;)
+
+introduce(&quot;Alice&quot;, 30)           # positional
+introduce(age=30, name=&quot;Alice&quot;)  # keyword
+</code></pre></div></details>
+<details class="item" id="a10"><summary><span>What is list comprehension? Give an example.</span></summary><div class="answer"><p>List comprehension is a concise syntax for creating a list from an existing iterable.</p><pre><code class="language-python">list1 = [2, 7, 9, 10]
+new_list = [i ** 2 for i in list1]
+print(new_list)  # [4, 49, 81, 100]
+</code></pre></div></details>
+<details class="item" id="a11"><summary><span>What is a lambda function?</span></summary><div class="answer"><p>A lambda function is a small, anonymous function, meaning a function without a name. It is defined using the <code>lambda</code> keyword.</p><p><strong>Syntax:</strong></p><pre><code class="language-python">lambda arguments: expression
+</code></pre><ul><li><code>lambda</code>: keyword used to define a lambda function.</li><li><code>arguments</code>: optional arguments to the function.</li><li><code>expression</code>: the expression that is evaluated and returned.</li></ul><p><strong>Example:</strong></p><pre><code class="language-python">square = lambda x: x ** 2
+result = square(5)
+print(result)  # 25
+</code></pre></div></details>
+<details class="item" id="a12"><summary><span>What is the purpose of break, continue and pass in Python?</span></summary><div class="answer"><p><strong>break</strong></p><ul><li><strong>Terminates the loop:</strong> when encountered, the loop is exited immediately and the program continues with the next statement after the loop.</li><li>Often used when a specific condition is met and you want to stop the loop early.</li></ul><p><strong>continue</strong></p><ul><li><strong>Skips the current iteration:</strong> the rest of the current iteration is skipped and the loop moves on to the next one.</li><li>Useful for skipping certain elements or conditions inside the loop.</li></ul><p><strong>pass</strong></p><ul><li><strong>Does nothing:</strong> it is a null operation, used as a placeholder when a statement is syntactically required but no action is needed.</li><li>Common in incomplete code blocks or as a temporary placeholder.</li></ul></div></details>
+<details class="item" id="a13"><summary><span>What is meant by front end and back end in web development?</span></summary><div class="answer"><p><strong>Front end</strong></p><p>The front end is the part of a web application that interacts directly with the user. It includes everything users see and interact with in their web browser. Front-end development focuses on user experience (UX) and user interface (UI) design.</p><p><strong>Back end</strong></p><p>The back end is the part of a web application that runs on the server and is responsible for the application's logic, database interactions and server configuration. Back-end development focuses on data management, application logic and server-side operations.</p></div></details>
+<details class="item" id="a14"><summary><span>What is an API?</span></summary><div class="answer"><p>An API (Application Programming Interface) is a set of rules and protocols that allows different software applications to communicate with each other. APIs define the methods and data structures developers can use to interact with external software components, operating systems, libraries or other services.</p></div></details>
+<details class="item" id="a15"><summary><span>What is the Global Interpreter Lock (GIL) in Python?</span></summary><div class="answer"><p>The Global Interpreter Lock (GIL) is a mutex (mutual exclusion lock) that protects access to Python objects, preventing multiple threads from executing Python bytecode at the same time in a multi-threaded program. The lock is needed because CPython's memory management is not thread-safe.</p><p>The GIL ensures that only one thread executes in the Python interpreter at any one time. This simplifies memory management and garbage collection, but it also limits the concurrency of CPU-bound Python programs.</p></div></details>
+<details class="item" id="a16"><summary><span>What is a recursive function in Python? Give an example.</span></summary><div class="answer"><p>A recursive function is a function that calls itself. It needs a base case to stop the recursion. Here is a recursive function that calculates the factorial of a number:</p><pre><code class="language-python">def factorial(n):
+    if n == 0:        # base case
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+print(factorial(5))  # Output: 120
+</code></pre></div></details>
+<details class="item" id="a17"><summary><span>What is file handling?</span></summary><div class="answer"><p>File handling in Python means performing operations such as creating, opening, reading, writing and closing files. Python provides built-in functions and methods to work with files easily.</p><p><code>open()</code> is the function used to open a file, and it returns a file object. It takes two main arguments:</p><ul><li>File name</li><li>Mode (see the question on file modes below)</li></ul><pre><code class="language-python">open(file_name, mode)
+</code></pre></div></details>
+<details class="item" id="a18"><summary><span>What is the difference between methods and functions?</span></summary><div class="answer"><p><strong>Functions</strong></p><p>A function is a block of reusable code that performs a specific task, defined using the <code>def</code> keyword. Functions can be defined at global scope, inside modules, or inside other functions (nested functions).</p><ul><li>They are not inherently associated with any object or class.</li><li>They are called by name followed by parentheses, optionally passing arguments.</li></ul><p><strong>Example:</strong></p><pre><code class="language-python">def greet(name):
+    return f&quot;Hello, {name}!&quot;
+
+print(greet(&quot;Alice&quot;))  # Output: Hello, Alice!
+</code></pre><p><strong>Methods</strong></p><p>A method is a function that is associated with an object and defined inside a class. Methods operate on the data contained in the objects of that class. They are called on an object using dot notation, and the object instance is passed implicitly as the first argument, conventionally named <code>self</code>.</p><p><strong>Example:</strong></p><pre><code class="language-python">class Greeter:
+    def __init__(self, name):
+        self.name = name
+
+    def greet(self):
+        return f&quot;Hello, {self.name}!&quot;
+
+greeter = Greeter(&quot;Alice&quot;)
+print(greeter.greet())  # Output: Hello, Alice!
+</code></pre></div></details>
+<details class="item" id="a19"><summary><span>What is slicing in Python?</span></summary><div class="answer"><p>Slicing is a technique used to extract a portion of a sequence such as a list, tuple or string. It uses the colon <code>:</code> operator inside square brackets: <code>sequence[start:stop:step]</code>.</p><ul><li><strong>start:</strong> the starting index of the slice (inclusive). Defaults to <code>0</code>.</li><li><strong>stop:</strong> the ending index of the slice (exclusive), so the slice includes elements up to, but not including, this index. Defaults to the length of the sequence.</li><li><strong>step:</strong> the step size, i.e. how many elements to skip. Defaults to <code>1</code>.</li></ul><p><strong>Example:</strong></p><pre><code class="language-python">my_list = [0, 1, 2, 3, 4, 5]
+print(my_list[:3])   # Output: [0, 1, 2]
+print(my_list[3:])   # Output: [3, 4, 5]
+print(my_list[::2])  # Output: [0, 2, 4]
+</code></pre></div></details>
+<details class="item" id="a20"><summary><span>Explain the *args and **kwargs syntax in Python.</span></summary><div class="answer"><p><code>*args</code> passes a variable number of non-keyword arguments to a function. They are collected into a <strong>tuple</strong> inside the function.</p><p><code>**kwargs</code> passes a variable number of keyword arguments to a function. They are collected into a <strong>dictionary</strong> inside the function.</p><p><strong>Example: *args</strong></p><pre><code class="language-python">def my_function(*args):
+    for arg in args:
+        print(arg)
+
+my_function(1, 2, 3, &quot;hello&quot;)  # Output: 1 2 3 hello (one per line)
+</code></pre><p><strong>Example: **kwargs</strong></p><pre><code class="language-python">def my_function(**kwargs):
+    for key, value in kwargs.items():
+        print(f&quot;{key}: {value}&quot;)
+
+my_function(name=&quot;Alice&quot;, age=30, city=&quot;New York&quot;)
+# name: Alice
+# age: 30
+# city: New York
+</code></pre></div></details>
+<details class="item" id="a21"><summary><span>What is the difference between the is and == operators in Python?</span></summary><div class="answer"><ul><li><code>is</code> checks whether two variables refer to the same object in memory (identity).</li><li><code>==</code> checks whether two objects have the same value (equality).</li></ul><pre><code class="language-python">a = [1, 2, 3]
+b = a         # b refers to the same object as a
+c = a.copy()  # c is a new object with the same values
+
+print(a is b)   # True
+print(a is c)   # False
+print(a == c)   # True
+</code></pre></div></details>
+<details class="item" id="a22"><summary><span>What is the difference between map, filter and reduce in Python?</span></summary><div class="answer"><ul><li><code>map</code> applies a given function to each item of an iterable and returns an iterator.</li><li><code>filter</code> keeps the items of an iterable for which a given function returns true, and returns an iterator.</li><li><code>reduce</code> applies a function cumulatively to the items of an iterable and reduces it to a single value. It must be imported from <code>functools</code>.</li></ul><pre><code class="language-python">from functools import reduce
+
+nums = [1, 2, 3, 4]
+print(list(map(lambda x: x * 2, nums)))         # [2, 4, 6, 8]
+print(list(filter(lambda x: x % 2 == 0, nums)))  # [2, 4]
+print(reduce(lambda a, b: a + b, nums))          # 10
+</code></pre></div></details>
+<details class="item" id="a23"><summary><span>Explain method overriding and provide an example.</span></summary><div class="answer"><p>Method overriding occurs when a subclass provides its own implementation of a method that is already defined in its parent class.</p><p><strong>Key points:</strong></p><ul><li>Overriding allows customization of inherited behavior.</li><li>The version of the method that runs depends on the type of the object.</li><li>The overriding method should keep the same name and parameters as the parent method.</li></ul><p><strong>Example:</strong></p><pre><code class="language-python">class Animal:
+    def make_sound(self):
+        print(&quot;Generic animal sound&quot;)
+
+class Dog(Animal):
+    def make_sound(self):
+        print(&quot;Woof!&quot;)
+
+class Cat(Animal):
+    def make_sound(self):
+        print(&quot;Meow!&quot;)
+
+# Create objects
+animal = Animal()
+dog = Dog()
+cat = Cat()
+
+# Call make_sound on different objects
+animal.make_sound()  # Output: Generic animal sound
+dog.make_sound()     # Output: Woof!
+cat.make_sound()     # Output: Meow!
+</code></pre><ul><li>The <code>Animal</code> class defines a general <code>make_sound</code> method.</li><li>The <code>Dog</code> and <code>Cat</code> classes override <code>make_sound</code> to provide their own sounds.</li><li>When we call <code>make_sound</code> on each object, the overridden version for that object's type is executed.</li></ul></div></details>
+<details class="item" id="a24"><summary><span>What is PEP 8 and why is it important?</span></summary><div class="answer"><p>PEP 8 is the style guide for Python code.</p><ul><li><strong>Readability:</strong> code that follows PEP 8 is easier to understand and maintain.</li><li><strong>Consistency:</strong> when multiple developers follow the same style guide, collaboration improves and confusion is reduced.</li><li><strong>Professionalism:</strong> following PEP 8 shows attention to detail.</li><li><strong>Community standard:</strong> most Python projects and organizations adopt PEP 8, making it the de-facto standard.</li></ul><p><strong>A few PEP 8 guidelines:</strong></p><ul><li>Consistent indentation (4 spaces)</li><li>Maximum line length of 79 characters</li><li>Meaningful naming conventions (e.g. <code>snake_case</code> for variables and functions)</li><li>Proper use of whitespace</li><li>Docstring conventions</li></ul></div></details>
+<details class="item" id="a25"><summary><span>What is the difference between a for loop and a while loop in Python?</span></summary><div class="answer"><p><strong>for loop</strong></p><ul><li><strong>Iterates over a sequence:</strong> used when you know beforehand how many times to run a block of code.</li><li>The sequence can be a list, tuple, string, dictionary, set or any iterable object.</li></ul><pre><code class="language-python">for item in sequence:
+    # block of code
+</code></pre><p><strong>while loop</strong></p><ul><li><strong>Repeats as long as a condition is true:</strong> used when you don't know beforehand how many times the code should run.</li><li>The condition is checked at the beginning of each iteration.</li></ul><pre><code class="language-python">while condition:
+    # block of code
+</code></pre></div></details>
+<details class="item" id="a26"><summary><span>What is an iterator?</span></summary><div class="answer"><p>An iterator is an object that implements the iterator protocol, which consists of two methods:</p><ul><li><code>__iter__()</code>: returns the iterator object itself.</li><li><code>__next__()</code>: returns the next item in the sequence, and raises <code>StopIteration</code> when there are no more items.</li></ul><p>Iterators are used to traverse iterable objects such as lists, tuples and strings. They are created using the <code>iter()</code> function.</p><pre><code class="language-python">my_list = [1, 2, 3]
+my_iter = iter(my_list)
+print(next(my_iter))  # Output: 1
+print(next(my_iter))  # Output: 2
+</code></pre></div></details>
+<details class="item" id="a27"><summary><span>What is a generator?</span></summary><div class="answer"><p>A generator is a special type of iterator created using a function with the <code>yield</code> keyword. Calling a generator function returns a generator object without running the function body immediately.</p><p>Execution pauses at each <code>yield</code> statement, saving its state and returning the yielded value. The next time <code>next()</code> is called, the function resumes from where it left off.</p><pre><code class="language-python">def my_generator():
+    for i in range(5):
+        yield i
+
+my_gen = my_generator()
+print(next(my_gen))  # Output: 0
+print(next(my_gen))  # Output: 1
+</code></pre></div></details>
+<details class="item" id="a28"><summary><span>What are the modes in file handling?</span></summary><div class="answer"><p>A file mode defines how a file is opened. The common modes are:</p><ul><li><code>&quot;r&quot;</code>: read mode (default). Opens a file for reading.</li><li><code>&quot;w&quot;</code>: write mode. Opens a file for writing (creates a new file or truncates an existing one).</li><li><code>&quot;a&quot;</code>: append mode. Opens a file for appending (writes data at the end of the file).</li><li><code>&quot;b&quot;</code>: binary mode. Used together with other modes to open a file in binary format (e.g. <code>&quot;rb&quot;</code>, <code>&quot;wb&quot;</code>).</li><li><code>&quot;x&quot;</code>: exclusive creation mode. Creates a new file and raises an error if the file already exists.</li></ul><pre><code class="language-python">with open(&quot;example.txt&quot;, &quot;r&quot;) as file:
+    content = file.read()  # reads the entire file
+    print(content)
+</code></pre></div></details>
+<details class="item" id="a29"><summary><span>Can you explain the zip concept in Python?</span></summary><div class="answer"><p>The built-in <code>zip</code> function combines two or more iterables (e.g. lists, tuples) into a single iterator of tuples. Each tuple contains the elements from each iterable at the same index, so it "zips" the iterables together element by element.</p><p><strong>Key points:</strong></p><ul><li><code>zip</code> takes multiple iterables and combines them element-wise into tuples.</li><li>The result is as long as the shortest input iterable. If the iterables have different lengths, it stops at the end of the shortest one.</li><li>It returns an iterator of tuples. To get a list of tuples, pass the result to <code>list()</code>.</li></ul><pre><code class="language-python">list1 = [1, 2, 3, 4]
+list2 = [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]
+zipped = zip(list1, list2)
+print(list(zipped))  # Output: [(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]
+</code></pre></div></details>
+<details class="item" id="a30"><summary><span>Can you explain the concept of concurrency in Python?</span></summary><div class="answer"><p>Concurrency is the ability of a program to handle multiple tasks at the same time, or at least give the appearance of doing so. Python supports it in three main ways, each with its own use cases, advantages and limitations:</p><ul><li><strong>Threading:</strong> multiple threads run inside a single process and share memory (<code>threading</code> module). Best for I/O-bound tasks such as network calls or file reads. Because of the GIL, threads do not run Python code in parallel, so it does not speed up CPU-bound work.</li><li><strong>Multiprocessing:</strong> multiple processes run independently, each with its own memory and its own interpreter (<code>multiprocessing</code> module). Gives true parallelism across CPU cores, so it suits CPU-bound tasks.</li><li><strong>Asynchronous programming:</strong> a single thread runs an event loop that switches between tasks while they wait, using <code>async</code>/<code>await</code> (<code>asyncio</code> module). Best for handling many I/O-bound tasks efficiently, such as thousands of network requests.</li></ul></div></details>
+<details class="item" id="a31"><summary><span>What is the difference between multiprocessing and multithreading?</span></summary><div class="answer"><p><strong>Multiprocessing</strong> uses multiple processes to perform tasks concurrently. Each process runs independently and has its own memory space. Tasks can run in parallel on multiple CPU cores, which suits CPU-bound tasks.</p><p><strong>Key points:</strong></p><ul><li>Independent processes</li><li>True parallelism</li><li>No GIL limitation</li><li>Inter-process communication (IPC) needed to share data</li></ul><p><strong>Multithreading</strong> uses multiple threads within a single process. Threads share the memory space and resources of the process, which makes communication between them easier and more efficient.</p><p><strong>Key points:</strong></p><ul><li>Shared memory space</li><li>Concurrency but limited parallelism</li><li>Simpler communication</li><li>Lightweight</li></ul><table><thead><tr><th>Type</th><th>Multiprocessing</th><th>Multithreading</th></tr></thead><tbody><tr><td>Pros</td><td>&bull; True parallelism (uses multiple CPU cores)<br>&bull; Suitable for CPU-bound tasks</td><td>&bull; Lower memory usage (threads share the same memory space)<br>&bull; Easier and more efficient communication between threads<br>&bull; Suitable for I/O-bound tasks<br>&bull; Lower overhead in thread creation and management</td></tr><tr><td>Cons</td><td>&bull; Higher memory usage (each process has its own memory space)<br>&bull; More complex communication between processes<br>&bull; Higher overhead in process creation and management</td><td>&bull; Limited by the GIL in Python (not suitable for CPU-bound tasks that need true parallelism)</td></tr></tbody></table></div></details>
+<details class="item" id="a32"><summary><span>Can you describe object-oriented programming and its concepts?</span></summary><div class="answer"><p>Object-oriented programming (OOP) is a programming paradigm built around objects, which are instances of classes. The key concepts are:</p><ul><li><strong>Class:</strong> a blueprint or template for creating objects. It defines the properties (attributes) and behaviors (methods) that objects of the class have.</li><li><strong>Object:</strong> an instance of a class. Objects are created from the structure defined by the class and can interact with each other to perform tasks.</li><li><strong>Encapsulation:</strong> bundling data (attributes) and the methods that operate on it into a single unit (the class). It hides the internal state and requires interaction to go through the object's methods.</li><li><strong>Inheritance:</strong> the mechanism by which one class inherits properties and behaviors from another. The class being inherited from is the base class or superclass, and the class inheriting is the derived class or subclass. Inheritance promotes code reuse and allows hierarchical relationships between classes.</li><li><strong>Polymorphism:</strong> the ability of different objects to respond in their own way to the same method call. Methods can be written to handle objects of a certain class and also work with its subclasses, which can override or extend the superclass behavior.</li><li><strong>Abstraction:</strong> hiding complex implementation details and showing only the essential features of an object. It reduces complexity and improves understandability.</li></ul></div></details>
+<details class="item" id="a33"><summary><span>What is the difference between multiple inheritance and multilevel inheritance?</span></summary><div class="answer"><p>Both are ways to build relationships between classes, but they differ in structure and in how classes inherit from each other.</p><p><strong>Multiple inheritance</strong></p><ul><li><strong>Definition:</strong> a class inherits attributes and methods from more than one parent class.</li><li><strong>Example:</strong> given classes A and B, a third class C can inherit from both A and B at the same time.</li><li><strong>Usage:</strong> useful when a class needs behaviors and attributes from several sources. It can lead to complexity and ambiguity known as the diamond problem, when two parent classes share a common ancestor. Python resolves this using the method resolution order (MRO).</li></ul><pre><code class="language-python">class A:
+    pass
+
+class B:
+    pass
+
+class C(A, B):  # multiple inheritance
+    pass
+</code></pre><p><strong>Multilevel inheritance</strong></p><ul><li><strong>Definition:</strong> a chain of inheritance where a derived class serves as the base class for another class, forming a hierarchy.</li><li><strong>Example:</strong> class A is inherited by class B, and class B is inherited by class C.</li><li><strong>Usage:</strong> sets up a parent-child relationship where each subclass inherits attributes and methods from its immediate superclass.</li></ul><pre><code class="language-python">class A:
+    pass
+
+class B(A):
+    pass
+
+class C(B):  # multilevel inheritance
+    pass
+</code></pre><p><strong>Key differences</strong></p><ul><li><strong>Structure:</strong> multiple inheritance inherits from several classes at the same level, whereas multilevel inheritance is a chain in which each subclass inherits from its immediate superclass.</li><li><strong>Complexity:</strong> multiple inheritance can lead to the diamond problem. Multilevel inheritance is a linear hierarchy, so it is simpler to structure and manage.</li><li><strong>Usage:</strong> multiple inheritance is used when a class needs several sources at once, while multilevel inheritance builds a hierarchy where each subclass adds more specific behavior.</li></ul><p><img src="https://www.edubridgeindia.com/blog/wp-content/uploads/2022/03/Java-inheritance.jpg" alt="Types of inheritance diagram" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></p></div></details>
+</section>
+<section class="sec-block" id="sec-1"><h2 class="sec">Advanced Python</h2><details class="item" id="a34"><summary><span>How does Python manage memory, and what is garbage collection?</span></summary><div class="answer"><p>Python manages memory automatically in a private heap:</p>
+<ul>
+<li><strong>Reference counting:</strong> every object keeps a count of how many names or containers refer to it. When the count drops to <strong>zero</strong>, the memory is freed immediately.</li>
+<li><strong>Cyclic garbage collector:</strong> reference counting cannot free objects that refer to each other in a <strong>cycle</strong> (<code>a</code> refers to <code>b</code> and <code>b</code> refers to <code>a</code>). The <code>gc</code> module detects and removes such unreachable cycles periodically.</li>
+<li><strong>Weak references</strong> (<code>weakref</code>) refer to an object without increasing its reference count.</li>
+</ul>
+<pre><code class="language-python">import sys
+import gc
+
+a = []
+b = a
+print(sys.getrefcount(a))     # 3: a, b and the temporary argument of getrefcount
+del b
+print(sys.getrefcount(a))     # 2
+print(gc.collect())           # runs the cyclic collector, returns the number of objects found
+</code></pre></div></details><details class="item" id="a35"><summary><span>What is the difference between a shallow copy and a deep copy?</span></summary><div class="answer"><ul>
+<li>A <strong>shallow copy</strong> (<code>copy.copy</code>, <code>list.copy()</code>, slicing) creates a new outer object, but the <strong>inner objects are shared</strong> with the original.</li>
+<li>A <strong>deep copy</strong> (<code>copy.deepcopy</code>) recursively copies <strong>everything</strong>, so the copy is fully independent.</li>
+</ul>
+<pre><code class="language-python">import copy
+
+original = [[1, 2], [3, 4]]
+shallow = copy.copy(original)
+deep = copy.deepcopy(original)
+
+original[0].append(99)
+print(shallow[0])      # [1, 2, 99]  the inner list is shared
+print(deep[0])         # [1, 2]      independent copy
+</code></pre>
+<p>A plain assignment (<code>b = a</code>) does not copy anything: both names point to the <strong>same object</strong>.</p></div></details><details class="item" id="a36"><summary><span>How are arguments passed in Python? What is the mutable default argument pitfall?</span></summary><div class="answer"><p>Python passes <strong>references to objects</strong> (“pass by object reference”). If a function changes a <strong>mutable</strong> object it received (a list or dict), the caller sees the change. Reassigning the parameter name does not affect the caller.</p>
+<p><strong>Pitfall:</strong> default values are created <strong>once, when the function is defined</strong>, so a mutable default is shared between calls.</p>
+<pre><code class="language-python">def add_item(item, items=[]):          # bug: one shared list
+    items.append(item)
+    return items
+
+print(add_item(1))                      # [1]
+print(add_item(2))                      # [1, 2]  surprising
+
+def add_item_safe(item, items=None):    # correct pattern
+    if items is None:
+        items = []
+    items.append(item)
+    return items
+
+print(add_item_safe(1), add_item_safe(2))   # [1] [2]
+</code></pre></div></details><details class="item" id="a37"><summary><span>What are variable scopes in Python (LEGB), and what do <code>global</code> and <code>nonlocal</code> do?</span></summary><div class="answer"><p>Python looks up a name in this order, called <strong>LEGB</strong>: <strong>L</strong>ocal (inside the function), <strong>E</strong>nclosing (outer functions), <strong>G</strong>lobal (the module), <strong>B</strong>uilt-in.</p>
+<ul>
+<li><code>global x</code> lets a function <strong>assign</strong> to the module-level variable <code>x</code>.</li>
+<li><code>nonlocal x</code> lets an inner function assign to the variable of the <strong>enclosing function</strong>.</li>
+</ul>
+<pre><code class="language-python">x = &quot;global&quot;
+
+def outer():
+    x = &quot;enclosing&quot;
+
+    def inner():
+        nonlocal x
+        x = &quot;changed by inner&quot;
+
+    inner()
+    return x
+
+print(outer())      # changed by inner
+print(x)            # global
+</code></pre>
+<p>Reading a variable from an outer scope works without any keyword. The keywords are only needed to <strong>assign</strong>.</p></div></details><details class="item" id="a38"><summary><span>What is a closure, and what is the late-binding gotcha?</span></summary><div class="answer"><p>A <strong>closure</strong> is an inner function that <strong>remembers the variables of the function that created it</strong>, even after that function has finished.</p>
+<pre><code class="language-python">def make_multiplier(n):
+    def multiply(x):
+        return x * n                 # n is remembered
+    return multiply
+
+double = make_multiplier(2)
+print(double(5))                     # 10
+</code></pre>
+<p><strong>Late binding:</strong> closures look up the variable when they are <strong>called</strong>, not when they are defined.</p>
+<pre><code class="language-python">funcs = [lambda: i for i in range(3)]
+print([f() for f in funcs])          # [2, 2, 2]
+
+funcs = [lambda i=i: i for i in range(3)]       # bind the current value with a default argument
+print([f() for f in funcs])          # [0, 1, 2]
+</code></pre></div></details><details class="item" id="a39"><summary><span>How do you write a decorator that takes arguments and keeps the function’s metadata?</span></summary><div class="answer"><p>A decorator with arguments is a <strong>function that returns a decorator</strong>. Use <code>functools.wraps</code> so the wrapped function keeps its <code>__name__</code> and docstring.</p>
+<pre><code class="language-python">import functools
+
+def retry(times):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            for attempt in range(times):
+                try:
+                    return func(*args, **kwargs)
+                except Exception:
+                    if attempt == times - 1:
+                        raise            # give up after the last attempt
+        return wrapper
+    return decorator
+
+calls = {&quot;n&quot;: 0}
+
+@retry(times=3)
+def flaky():
+    &quot;&quot;&quot;Fails twice, then works.&quot;&quot;&quot;
+    calls[&quot;n&quot;] += 1
+    if calls[&quot;n&quot;] &lt; 3:
+        raise ValueError(&quot;not yet&quot;)
+    return &quot;ok&quot;
+
+print(flaky(), calls[&quot;n&quot;], flaky.__name__)      # ok 3 flaky
+</code></pre></div></details><details class="item" id="a40"><summary><span>What is a context manager, and how do you create one?</span></summary><div class="answer"><p>A context manager sets something up and <strong>always cleans it up</strong> (even if an error occurs), and is used with the <code>with</code> statement: files, locks, database connections.</p>
+<p><strong>Class-based</strong> (<code>__enter__</code> and <code>__exit__</code>):</p>
+<pre><code class="language-python">import time
+
+class Timer:
+    def __enter__(self):
+        self.start = time.perf_counter()
+        return self
+
+    def __exit__(self, exc_type, exc, tb):
+        self.elapsed = time.perf_counter() - self.start
+        return False                    # False means: do not suppress exceptions
+
+with Timer() as t:
+    sum(range(100000))
+print(t.elapsed &gt; 0)                    # True
+</code></pre>
+<p><strong>Generator-based</strong> with <code>contextlib</code>:</p>
+<pre><code class="language-python">from contextlib import contextmanager
+
+@contextmanager
+def opened(path, mode=&quot;r&quot;):
+    f = open(path, mode)
+    try:
+        yield f                         # the body of the with block runs here
+    finally:
+        f.close()
+</code></pre></div></details><details class="item" id="a41"><summary><span>What are <code>yield from</code> and generator expressions? How do they save memory?</span></summary><div class="answer"><ul>
+<li><strong><code>yield from</code></strong> hands over to another iterable and yields all its items, which makes it easy to chain generators.</li>
+<li>A <strong>generator expression</strong> <code>(x for x in ...)</code> is a <strong>lazy</strong> version of a list comprehension: it produces one value at a time instead of building the whole list in memory.</li>
+</ul>
+<pre><code class="language-python">def chain(*iterables):
+    for it in iterables:
+        yield from it
+
+print(list(chain([1, 2], (3, 4), &quot;ab&quot;)))      # [1, 2, 3, 4, 'a', 'b']
+
+squares = (x * x for x in range(1_000_000))   # nothing is computed yet
+print(sum(squares))                            # processes one value at a time, O(1) memory
+</code></pre>
+<p>A generator can be consumed only <strong>once</strong>.</p></div></details><details class="item" id="a42"><summary><span>What are dictionary, set and nested comprehensions?</span></summary><div class="answer"><pre><code class="language-python">words = [&quot;apple&quot;, &quot;bob&quot;, &quot;cat&quot;, &quot;apple&quot;]
+
+lengths = {w: len(w) for w in words}                   # dict comprehension
+unique = {w for w in words}                            # set comprehension
+evens = [x for x in range(10) if x % 2 == 0]          # with a condition
+flat = [n for row in [[1, 2], [3, 4]] for n in row]   # nested loops, flattened
+labels = [&quot;even&quot; if x % 2 == 0 else &quot;odd&quot; for x in range(4)]
+
+print(lengths)       # {'apple': 5, 'bob': 3, 'cat': 3}
+print(flat)          # [1, 2, 3, 4]
+print(labels)        # ['even', 'odd', 'even', 'odd']
+</code></pre>
+<p>Keep comprehensions readable. If one gets long or complicated, use a normal loop.</p></div></details><details class="item" id="a43"><summary><span>How does sorting work in Python (<code>sorted</code>, <code>list.sort</code>, <code>key</code>, stability)?</span></summary><div class="answer"><ul>
+<li><code>sorted(iterable)</code> returns a <strong>new sorted list</strong>, and <code>list.sort()</code> sorts <strong>in place</strong> and returns <code>None</code>.</li>
+<li>Use <code>key=</code> to sort by a computed value, and <code>reverse=True</code> for descending order.</li>
+<li>Python’s sort (<strong>Timsort</strong>) is <strong>stable</strong>: items with equal keys keep their original order, which allows multi-level sorting.</li>
+</ul>
+<pre><code class="language-python">people = [(&quot;Asha&quot;, 30), (&quot;Ben&quot;, 25), (&quot;Cara&quot;, 30)]
+
+print(sorted(people, key=lambda p: (-p[1], p[0])))
+# [('Asha', 30), ('Cara', 30), ('Ben', 25)]   age descending, then name
+</code></pre></div></details><details class="item" id="a44"><summary><span>What useful data structures does the <code>collections</code> module provide?</span></summary><div class="answer"><pre><code class="language-python">from collections import Counter, defaultdict, deque, namedtuple
+
+print(Counter(&quot;banana&quot;).most_common(2))        # [('a', 3), ('n', 2)]
+
+groups = defaultdict(list)                     # missing keys get an empty list
+groups[&quot;fruit&quot;].append(&quot;apple&quot;)
+
+queue = deque([1, 2, 3])                       # O(1) at both ends
+queue.appendleft(0)
+queue.pop()
+
+Point = namedtuple(&quot;Point&quot;, [&quot;x&quot;, &quot;y&quot;])        # tuple with named fields
+p = Point(1, 2)
+print(p.x, p.y)                                # 1 2
+</code></pre>
+<p>Other useful ones: <code>OrderedDict</code>, <code>ChainMap</code> and <code>heapq</code> (in a separate module).</p></div></details><details class="item" id="a45"><summary><span>What are the most useful tools in <code>functools</code> and <code>itertools</code>?</span></summary><div class="answer"><pre><code class="language-python">from functools import lru_cache, partial
+from itertools import combinations, permutations, groupby, accumulate
+
+@lru_cache(maxsize=None)                      # memoization
+def fib(n):
+    return n if n &lt; 2 else fib(n - 1) + fib(n - 2)
+
+power_of_two = partial(pow, 2)                # fix the first argument
+print(power_of_two(10))                       # 1024
+print(fib(50))                                # 12586269025
+
+print(list(combinations([1, 2, 3], 2)))       # [(1, 2), (1, 3), (2, 3)]
+print(len(list(permutations([1, 2, 3]))))     # 6
+print(list(accumulate([1, 2, 3, 4])))         # [1, 3, 6, 10]
+</code></pre>
+<p><code>groupby</code> groups consecutive items with the same key (sort first if needed), and <code>functools.wraps</code> and <code>cached_property</code> are also commonly used.</p></div></details><details class="item" id="a46"><summary><span>What are type hints, and does Python enforce them?</span></summary><div class="answer"><p>Type hints <strong>document the expected types</strong> of arguments and return values. Python does <strong>not</strong> enforce them at run time, but tools such as <strong>mypy</strong> and your IDE use them to catch bugs, and they make the code easier to read.</p>
+<pre><code class="language-python">from typing import Optional
+
+def greet(name: str, times: int = 1) -&gt; str:
+    return (&quot;Hello &quot; + name + &quot;! &quot;) * times
+
+def find(items: list[int], target: int) -&gt; Optional[int]:    # list[int] needs Python 3.9+
+    for i, x in enumerate(items):
+        if x == target:
+            return i
+    return None
+</code></pre>
+<p>Common helpers: <code>Optional</code>, <code>Union</code> (or <code>int | None</code> in Python 3.10+), <code>list[str]</code>, <code>dict[str, int]</code>, <code>Callable</code> and <code>TypedDict</code>.</p></div></details><details class="item" id="a47"><summary><span>What does <code>if __name__ == "__main__":</code> do? What are modules and packages?</span></summary><div class="answer"><ul>
+<li>A <strong>module</strong> is a single <code>.py</code> file. A <strong>package</strong> is a folder of modules (traditionally with an <code>__init__.py</code> file).</li>
+<li>Every module has a <code>__name__</code>. It is <code>"__main__"</code> when the file is <strong>run directly</strong>, and the module’s name when it is <strong>imported</strong>. The check lets a file act as both a reusable module and a script.</li>
+</ul>
+<pre><code class="language-python"># utils.py
+def helper():
+    return &quot;helping&quot;
+
+if __name__ == &quot;__main__&quot;:
+    print(&quot;running as a script&quot;)      # does not run when the file is imported
+</code></pre></div></details><details class="item" id="a48"><summary><span>What are virtual environments, and how do you manage dependencies?</span></summary><div class="answer"><p>A virtual environment is an <strong>isolated Python installation per project</strong>, so each project can have its own package versions without conflicts.</p>
+<pre><code class="language-bash">python -m venv .venv                 # create
+source .venv/bin/activate            # activate (Windows: .venv\Scripts\activate)
+pip install requests pandas          # install packages
+pip freeze &gt; requirements.txt        # save exact versions
+pip install -r requirements.txt      # recreate the environment elsewhere
+</code></pre>
+<p>Other tools: <strong>conda</strong>, <strong>poetry</strong> and <strong>uv</strong>, which also help with locking dependency versions.</p></div></details><details class="item" id="a49"><summary><span>What is the difference between <code>else</code> and <code>finally</code> in a try block? What are EAFP and LBYL?</span></summary><div class="answer"><ul>
+<li><code>else</code> runs only if <strong>no exception</strong> occurred in the <code>try</code> block.</li>
+<li><code>finally</code> <strong>always runs</strong> (cleanup), whether or not an exception happened.</li>
+</ul>
+<pre><code class="language-python">def read_number(text):
+    try:
+        value = int(text)
+    except ValueError:
+        print(&quot;not a number&quot;)
+        return None
+    else:
+        print(&quot;parsed fine&quot;)
+        return value
+    finally:
+        print(&quot;done&quot;)             # always printed
+</code></pre>
+<ul>
+<li><strong>EAFP</strong> (“Easier to Ask Forgiveness than Permission”): try the operation and handle the exception. This is the <strong>Pythonic</strong> style.</li>
+<li><strong>LBYL</strong> (“Look Before You Leap”): check conditions first (<code>if key in d:</code>).</li>
+</ul>
+<p>Use <code>raise NewError(...) from original</code> to keep the original error as the cause.</p></div></details><details class="item" id="a50"><summary><span>What is <code>asyncio</code>, and how is <code>async</code>/<code>await</code> different from threads?</span></summary><div class="answer"><p><code>asyncio</code> runs <strong>many I/O-bound tasks concurrently in a single thread</strong>, using an <strong>event loop</strong>. A coroutine (<code>async def</code>) gives control back to the loop at each <code>await</code>, so while one task waits (network, disk), others can run.</p>
+<pre><code class="language-python">import asyncio
+
+async def fetch(name, delay):
+    await asyncio.sleep(delay)              # stands in for a network call
+    return f&quot;{name} done&quot;
+
+async def main():
+    results = await asyncio.gather(fetch(&quot;a&quot;, 0.2), fetch(&quot;b&quot;, 0.1))
+    print(results)                          # ['a done', 'b done'], after about 0.2 s in total
+
+asyncio.run(main())
+</code></pre>
+<p>Use <strong>asyncio</strong> for many network-bound tasks, <strong>threads</strong> for blocking I/O libraries, and <strong>multiprocessing</strong> for CPU-bound work. A blocking call inside a coroutine freezes the whole event loop.</p></div></details><details class="item" id="a51"><summary><span>What are some modern Python features worth knowing (f-strings, unpacking, walrus, match)?</span></summary><div class="answer"><pre><code class="language-python">name, price = &quot;pen&quot;, 12.5
+print(f&quot;{name:&gt;6} costs {price:.2f}&quot;)        # '   pen costs 12.50'  (f-string with formatting)
+
+first, *rest = [1, 2, 3, 4]                  # extended unpacking
+print(first, rest)                           # 1 [2, 3, 4]
+
+if (n := len(rest)) &gt; 2:                     # walrus operator, assignment inside an expression (3.8+)
+    print(n)
+
+status = 404
+match status:                                # structural pattern matching (3.10+)
+    case 200:
+        print(&quot;OK&quot;)
+    case 404:
+        print(&quot;Not found&quot;)
+    case _:
+        print(&quot;Other&quot;)
+</code></pre></div></details><details class="item" id="a52"><summary><span>How do you make Python code faster?</span></summary><div class="answer"><p>First <strong>measure</strong>, then optimize the real bottleneck (<code>timeit</code>, <code>cProfile</code>, line profilers).</p>
+<ul>
+<li>Choose better <strong>algorithms and data structures</strong> (a <code>set</code> or <code>dict</code> for lookups instead of scanning a list).</li>
+<li>Use <strong>built-ins and the standard library</strong> (<code>sum</code>, <code>sorted</code>, <code>str.join</code>), which are implemented in C.</li>
+<li>Use <strong>NumPy and pandas vectorization</strong> instead of Python loops.</li>
+<li>Use <strong>generators</strong> to avoid building large lists.</li>
+<li>Cache repeated results with <code>functools.lru_cache</code>.</li>
+<li>Build strings with <code>"".join(parts)</code> instead of <code>+=</code> in a loop.</li>
+<li>For heavy CPU work: <strong>multiprocessing</strong>, Cython, Numba, or a faster language for the hot path.</li>
+</ul>
+<pre><code class="language-python">import timeit
+
+print(timeit.timeit(&quot;sum(range(1000))&quot;, number=1000))     # time in seconds
+</code></pre></div></details><details class="item" id="a53"><summary><span>How do you test Python code (unittest, pytest, mocking)?</span></summary><div class="answer"><ul>
+<li><strong><code>unittest</code></strong> is the built-in framework (classes and <code>assert*</code> methods), and <strong><code>pytest</code></strong> is the popular alternative with plain <code>assert</code> statements, fixtures and parametrization.</li>
+<li><strong>Mocking</strong> (<code>unittest.mock</code>) replaces slow or external parts (APIs, databases) with fakes in tests.</li>
+</ul>
+<pre><code class="language-python"># test_math.py   (run with: pytest)
+def add(a, b):
+    return a + b
+
+def test_add():
+    assert add(2, 3) == 5
+</code></pre>
+<p>Good tests are small, independent and fast, cover edge cases, and run automatically in CI.</p></div></details><details class="item" id="a54"><summary><span>Why use the <code>logging</code> module instead of <code>print</code>?</span></summary><div class="answer"><p><code>logging</code> gives <strong>levels</strong> (DEBUG, INFO, WARNING, ERROR, CRITICAL), timestamps, module names, output to files or other destinations, and can be configured without changing the code. That makes it suitable for production code.</p>
+<pre><code class="language-python">import logging
+
+logging.basicConfig(level=logging.INFO, format=&quot;%(asctime)s %(levelname)s %(message)s&quot;)
+logger = logging.getLogger(__name__)
+
+logger.info(&quot;Started&quot;)
+logger.warning(&quot;Disk almost full&quot;)
+</code></pre></div></details><details class="item" id="a55"><summary><span>What is the difference between <code>json</code> and <code>pickle</code> for saving objects?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th><code>json</code></th>
+<th><code>pickle</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Format</td>
+<td>Text, readable</td>
+<td>Binary, Python-only</td>
+</tr>
+<tr>
+<td>Data types</td>
+<td>Basic types: dict, list, str, numbers, bool, None</td>
+<td>Almost any Python object</td>
+</tr>
+<tr>
+<td>Portable to other languages</td>
+<td><strong>Yes</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td>Safety</td>
+<td>Safe to load</td>
+<td><strong>Never load pickle data from an untrusted source</strong>, it can run arbitrary code</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python">import json
+
+data = {&quot;name&quot;: &quot;Asha&quot;, &quot;scores&quot;: [90, 85]}
+text = json.dumps(data)
+print(json.loads(text) == data)        # True
+</code></pre></div></details><details class="item" id="a56"><summary><span>How do regular expressions work in Python?</span></summary><div class="answer"><p>The <code>re</code> module searches and manipulates text with patterns.</p>
+<pre><code class="language-python">import re
+
+text = &quot;Order 123 shipped on 2024-05-17&quot;
+print(re.findall(r&quot;\d+&quot;, text))                   # ['123', '2024', '05', '17']
+
+m = re.search(r&quot;(\d{4})-(\d{2})-(\d{2})&quot;, text)
+print(m.groups())                                 # ('2024', '05', '17')
+print(re.sub(r&quot;\d&quot;, &quot;#&quot;, &quot;a1b22&quot;))                # a#b##
+</code></pre>
+<p>Common pieces: <code>\d</code> digit, <code>\w</code> word character, <code>\s</code> whitespace, <code>.</code> any character, <code>*</code> <code>+</code> <code>?</code> repetition, <code>()</code> groups, <code>^</code> and <code>$</code> anchors. Use <strong>raw strings</strong> (<code>r"..."</code>) for patterns.</p></div></details><details class="item" id="a57"><summary><span>How do Python dictionaries work internally?</span></summary><div class="answer"><p>A dict is a <strong>hash table</strong>: the key’s hash decides where the entry is stored, which gives <strong>O(1) average</strong> lookup, insert and delete.</p>
+<ul>
+<li>Keys must be <strong>hashable</strong> (immutable): strings, numbers and tuples (of hashable items) are fine, lists and dicts are not.</li>
+<li>Since <strong>Python 3.7</strong>, a dict <strong>remembers insertion order</strong>.</li>
+<li>Useful methods: <code>get(key, default)</code>, <code>setdefault</code>, <code>items()</code>, <code>pop</code>, and the merge operator <code>d1 | d2</code> (3.9+).</li>
+</ul>
+<pre><code class="language-python">d = {&quot;a&quot;: 1}
+d.setdefault(&quot;b&quot;, 2)
+merged = d | {&quot;c&quot;: 3}
+print(merged)                       # {'a': 1, 'b': 2, 'c': 3}
+print(d.get(&quot;z&quot;, &quot;missing&quot;))        # missing
+</code></pre></div></details><details class="item" id="a58"><summary><span>How does Python run your code (CPython, bytecode, dynamic typing)?</span></summary><div class="answer"><p>Python source is <strong>compiled to bytecode</strong> (stored in <code>.pyc</code> files) and then executed by the <strong>Python virtual machine</strong> inside the interpreter. The standard implementation is <strong>CPython</strong> (written in C). Python is <strong>dynamically typed</strong> (types belong to values, and names can be rebound to any type) and <strong>strongly typed</strong> (it does not silently convert unrelated types, so <code>"1" + 1</code> raises an error).</p></div></details><details class="item" id="a59"><summary><span>What are truthy and falsy values, and how do <code>any()</code> and <code>all()</code> work?</span></summary><div class="answer"><p><strong>Falsy</strong> values are <code>False</code>, <code>None</code>, <code>0</code>, <code>0.0</code>, empty collections (<code>""</code>, <code>[]</code>, <code>{}</code>, <code>()</code>, <code>set()</code>) and objects whose <code>__bool__</code> returns <code>False</code>. Everything else is <strong>truthy</strong>.</p>
+<ul>
+<li><code>any(iterable)</code> is <code>True</code> if <strong>at least one</strong> item is truthy.</li>
+<li><code>all(iterable)</code> is <code>True</code> if <strong>every</strong> item is truthy (and <code>True</code> for an empty iterable).</li>
+</ul>
+<pre><code class="language-python">print(bool([]), bool([0]))                    # False True
+print(any(x &gt; 3 for x in [1, 2, 5]))          # True
+print(all(x &gt; 0 for x in [1, 2, 5]))          # True
+</code></pre></div></details></section>
+<section class="sec-block" id="sec-2"><h2 class="sec">Object-oriented programming in Python</h2><details class="item" id="a60"><summary><span>What is a class, and what is an object?</span></summary><div class="answer"><p>A <strong>class</strong> is a blueprint that defines the data (attributes) and behavior (methods) of something. An <strong>object (instance)</strong> is a concrete thing created from that class.</p>
+<pre><code class="language-python">class Dog:
+    species = &quot;Canis familiaris&quot;            # class attribute, shared
+
+    def __init__(self, name, age):
+        self.name = name                    # instance attributes
+        self.age = age
+
+    def bark(self):
+        return f&quot;{self.name} says woof&quot;
+
+rex = Dog(&quot;Rex&quot;, 3)                         # an object
+print(rex.bark())                           # Rex says woof
+</code></pre></div></details><details class="item" id="a61"><summary><span>What are <code>__init__</code> and <code>self</code>?</span></summary><div class="answer"><ul>
+<li><strong><code>__init__</code></strong> is the <strong>initializer</strong>: Python calls it automatically right after an object is created, to set up its attributes.</li>
+<li><strong><code>self</code></strong> is the <strong>instance the method is working on</strong>. It is the first parameter of every instance method, and Python passes it automatically (<code>rex.bark()</code> is the same as <code>Dog.bark(rex)</code>). The name <code>self</code> is a convention, not a keyword.</li>
+</ul></div></details><details class="item" id="a62"><summary><span>What is the difference between instance attributes and class attributes?</span></summary><div class="answer"><ul>
+<li><strong>Instance attributes</strong> (set with <code>self.x = ...</code>) belong to <strong>one object</strong>.</li>
+<li><strong>Class attributes</strong> (defined in the class body) are <strong>shared by all instances</strong>.</li>
+</ul>
+<pre><code class="language-python">class Counter:
+    count = 0                       # class attribute
+
+    def __init__(self):
+        Counter.count += 1          # change the shared value through the class
+
+a, b = Counter(), Counter()
+print(Counter.count, a.count)       # 2 2
+</code></pre>
+<p><strong>Pitfall:</strong> a <strong>mutable</strong> class attribute (such as a list) is shared by every instance, so changing it in one object changes it in all.</p></div></details><details class="item" id="a63"><summary><span>What are instance methods, class methods and static methods?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>First parameter</th>
+<th>Can access</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Instance method</strong></td>
+<td><code>self</code></td>
+<td>The instance and the class</td>
+<td>Normal behavior</td>
+</tr>
+<tr>
+<td><strong>Class method</strong> (<code>@classmethod</code>)</td>
+<td><code>cls</code></td>
+<td>The class, not a specific instance</td>
+<td><strong>Alternative constructors</strong>, class-level state</td>
+</tr>
+<tr>
+<td><strong>Static method</strong> (<code>@staticmethod</code>)</td>
+<td>none</td>
+<td>Neither</td>
+<td>A utility function that belongs with the class</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python">class Date:
+    def __init__(self, y, m, d):
+        self.y, self.m, self.d = y, m, d
+
+    @classmethod
+    def from_string(cls, s):                 # alternative constructor
+        y, m, d = map(int, s.split(&quot;-&quot;))
+        return cls(y, m, d)
+
+    @staticmethod
+    def is_leap(year):
+        return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
+
+d = Date.from_string(&quot;2024-05-17&quot;)
+print(d.y, Date.is_leap(2024))              # 2024 True
+</code></pre></div></details><details class="item" id="a64"><summary><span>How is encapsulation implemented in Python? (public, protected, private)</span></summary><div class="answer"><p>Encapsulation means <strong>bundling data with the methods that use it and controlling access to it</strong>. Python relies on <strong>naming conventions</strong>, not strict access control:</p>
+<ul>
+<li><code>name</code> is <strong>public</strong>.</li>
+<li><code>_name</code> is <strong>protected by convention</strong> (“internal use, please do not touch”).</li>
+<li><code>__name</code> triggers <strong>name mangling</strong>: Python renames it to <code>_ClassName__name</code>, which avoids accidental overrides in subclasses (it is not real security).</li>
+</ul>
+<pre><code class="language-python">class Account:
+    def __init__(self, balance):
+        self.__balance = balance            # becomes _Account__balance
+
+    def deposit(self, amount):
+        self.__balance += amount
+
+acc = Account(100)
+acc.deposit(50)
+print(acc._Account__balance)                # 150  still reachable, but discouraged
+</code></pre></div></details><details class="item" id="a65"><summary><span>What is the <code>@property</code> decorator, and why use it?</span></summary><div class="answer"><p><code>@property</code> lets you <strong>access a method like an attribute</strong>, so you can add validation or computed values <strong>without changing how the class is used</strong>.</p>
+<pre><code class="language-python">class Temperature:
+    def __init__(self, celsius):
+        self.celsius = celsius               # goes through the setter below
+
+    @property
+    def celsius(self):
+        return self._celsius
+
+    @celsius.setter
+    def celsius(self, value):
+        if value &lt; -273.15:
+            raise ValueError(&quot;below absolute zero&quot;)
+        self._celsius = value
+
+    @property
+    def fahrenheit(self):                    # read-only computed attribute
+        return self._celsius * 9 / 5 + 32
+
+t = Temperature(25)
+print(t.fahrenheit)                          # 77.0
+</code></pre></div></details><details class="item" id="a66"><summary><span>How does inheritance work, and what does <code>super()</code> do?</span></summary><div class="answer"><p>A subclass <strong>inherits</strong> the attributes and methods of its parent, can <strong>add</strong> new ones and <strong>override</strong> existing ones. <code>super()</code> gives access to the <strong>parent class</strong>, typically to run its <code>__init__</code> or to extend a method.</p>
+<pre><code class="language-python">class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return &quot;...&quot;
+
+class Dog(Animal):
+    def __init__(self, name, breed):
+        super().__init__(name)               # initialize the parent part
+        self.breed = breed
+
+    def speak(self):
+        return &quot;Woof&quot;
+
+d = Dog(&quot;Rex&quot;, &quot;Labrador&quot;)
+print(d.name, d.speak(), isinstance(d, Animal))      # Rex Woof True
+</code></pre></div></details><details class="item" id="a67"><summary><span>What is the MRO (Method Resolution Order), and what is the diamond problem?</span></summary><div class="answer"><p>With multiple inheritance, Python must decide <strong>which parent’s method to use</strong>. The <strong>MRO</strong> is the order in which classes are searched, computed with the <strong>C3 linearization</strong>, and you can see it with <code>ClassName.__mro__</code> or <code>help()</code>.</p>
+<p>The <strong>diamond problem</strong> is when a class inherits from two classes that share a common base. Python handles it by ensuring each class appears <strong>once</strong>, after all its subclasses.</p>
+<pre><code class="language-python">class A:
+    def who(self): return &quot;A&quot;
+
+class B(A):
+    def who(self): return &quot;B&quot;
+
+class C(A):
+    def who(self): return &quot;C&quot;
+
+class D(B, C):
+    pass
+
+print([cls.__name__ for cls in D.__mro__])     # ['D', 'B', 'C', 'A', 'object']
+print(D().who())                               # B
+</code></pre>
+<p>Using <code>super()</code> consistently in every class lets the cooperative calls follow the MRO.</p></div></details><details class="item" id="a68"><summary><span>What is polymorphism and duck typing?</span></summary><div class="answer"><p><strong>Polymorphism</strong> means the <strong>same interface can work with different types</strong>. In Python this is often achieved through <strong>duck typing</strong>: “if it walks like a duck and quacks like a duck, it is a duck”. The code cares about <strong>what an object can do</strong>, not about its class.</p>
+<pre><code class="language-python">class Duck:
+    def speak(self): return &quot;Quack&quot;
+
+class Robot:
+    def speak(self): return &quot;Beep&quot;
+
+def make_it_speak(thing):
+    return thing.speak()                 # works for any object that has speak()
+
+print(make_it_speak(Duck()), make_it_speak(Robot()))     # Quack Beep
+</code></pre></div></details><details class="item" id="a69"><summary><span>How do you implement abstraction with abstract base classes (ABC)?</span></summary><div class="answer"><p>Abstraction means exposing <strong>what</strong> something does and hiding <strong>how</strong>. The <code>abc</code> module lets you define a class with <strong>abstract methods</strong> that every subclass <strong>must</strong> implement, and you cannot create an object from the abstract class itself.</p>
+<pre><code class="language-python">from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        ...
+
+class Circle(Shape):
+    def __init__(self, r):
+        self.r = r
+
+    def area(self):
+        return 3.14159 * self.r ** 2
+
+print(round(Circle(2).area(), 2))        # 12.57
+# Shape()  -&gt;  TypeError: Can't instantiate abstract class
+</code></pre></div></details><details class="item" id="a70"><summary><span>What are dunder (magic) methods? What is the difference between <code>__str__</code> and <code>__repr__</code>?</span></summary><div class="answer"><p>Dunder methods (double underscore) let your objects <strong>work with Python’s built-in syntax and functions</strong>: <code>__init__</code>, <code>__len__</code>, <code>__getitem__</code>, <code>__iter__</code>, <code>__call__</code>, <code>__eq__</code>, <code>__add__</code>, <code>__enter__</code>/<code>__exit__</code> and more.</p>
+<ul>
+<li><strong><code>__str__</code></strong> gives a <strong>readable</strong> string for users (<code>print(obj)</code>, <code>str(obj)</code>).</li>
+<li><strong><code>__repr__</code></strong> gives an <strong>unambiguous</strong> string for developers (debugging, the REPL), ideally one that could recreate the object.</li>
+</ul>
+<pre><code class="language-python">class Book:
+    def __init__(self, title):
+        self.title = title
+
+    def __repr__(self):
+        return f&quot;Book(title={self.title!r})&quot;
+
+    def __str__(self):
+        return self.title
+
+    def __len__(self):
+        return len(self.title)
+
+b = Book(&quot;Dune&quot;)
+print(str(b), repr(b), len(b))          # Dune Book(title='Dune') 4
+</code></pre>
+<p>If only one is defined, define <code>__repr__</code>.</p></div></details><details class="item" id="a71"><summary><span>What is operator overloading? Show an example.</span></summary><div class="answer"><p>Operator overloading means defining how operators (<code>+</code>, <code>==</code>, <code>&lt;</code>, <code>[]</code>) behave for <strong>your own classes</strong>, by implementing the matching dunder methods.</p>
+<pre><code class="language-python">class Vector:
+    def __init__(self, x, y):
+        self.x, self.y = x, y
+
+    def __add__(self, other):
+        return Vector(self.x + other.x, self.y + other.y)
+
+    def __eq__(self, other):
+        return (self.x, self.y) == (other.x, other.y)
+
+    def __repr__(self):
+        return f&quot;Vector({self.x}, {self.y})&quot;
+
+print(Vector(1, 2) + Vector(3, 4))               # Vector(4, 6)
+print(Vector(1, 2) == Vector(1, 2))              # True
+</code></pre></div></details><details class="item" id="a72"><summary><span>What is the relationship between <code>__eq__</code> and <code>__hash__</code>?</span></summary><div class="answer"><p>Objects used in <strong>sets or as dict keys</strong> need a hash. The rule: <strong>objects that compare equal must have the same hash</strong>. If you define <code>__eq__</code> in a class, Python <strong>removes the default <code>__hash__</code></strong> (the object becomes unhashable), so you must define <code>__hash__</code> too if you want to use it in sets or as a key. Hash only <strong>immutable</strong> fields, because a changing hash would break the set or dict.</p>
+<pre><code class="language-python">class Point:
+    def __init__(self, x, y):
+        self.x, self.y = x, y
+
+    def __eq__(self, other):
+        return (self.x, self.y) == (other.x, other.y)
+
+    def __hash__(self):
+        return hash((self.x, self.y))
+
+print(len({Point(1, 2), Point(1, 2)}))        # 1
+</code></pre></div></details><details class="item" id="a73"><summary><span>Composition vs inheritance: when do you use each?</span></summary><div class="answer"><ul>
+<li><strong>Inheritance</strong> models an <strong>“is-a”</strong> relationship (a Dog is an Animal).</li>
+<li><strong>Composition</strong> models a <strong>“has-a”</strong> relationship (a Car has an Engine): one object holds another and <strong>delegates</strong> work to it.</li>
+</ul>
+<p>A common guideline is <strong>“favor composition over inheritance”</strong>. Deep inheritance trees are rigid and tightly coupled, while composed objects are easier to change, test and reuse.</p>
+<pre><code class="language-python">class Engine:
+    def start(self):
+        return &quot;engine started&quot;
+
+class Car:
+    def __init__(self):
+        self.engine = Engine()            # composition
+
+    def start(self):
+        return self.engine.start()
+
+print(Car().start())                      # engine started
+</code></pre></div></details><details class="item" id="a74"><summary><span>What is the difference between <code>__new__</code> and <code>__init__</code>? How do you build a singleton?</span></summary><div class="answer"><ul>
+<li><strong><code>__new__</code></strong> <strong>creates</strong> the object (it returns the new instance). It is rarely overridden.</li>
+<li><strong><code>__init__</code></strong> <strong>initializes</strong> the object after it has been created.</li>
+</ul>
+<p>Overriding <code>__new__</code> is one way to implement a <strong>singleton</strong> (a class with only one instance):</p>
+<pre><code class="language-python">class Singleton:
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+print(Singleton() is Singleton())          # True
+</code></pre>
+<p>In Python, a <strong>module-level object</strong> is often a simpler singleton.</p></div></details><details class="item" id="a75"><summary><span>What is a metaclass?</span></summary><div class="answer"><p>In Python, <strong>classes are objects too</strong>, and a <strong>metaclass is the “class of a class”</strong>: it controls how classes are created. The default metaclass is <code>type</code>, so <code>type(MyClass)</code> is <code>type</code>.</p>
+<pre><code class="language-python">class Meta(type):
+    def __new__(mcs, name, bases, attrs):
+        attrs[&quot;created_by&quot;] = &quot;Meta&quot;             # add something to every class using this metaclass
+        return super().__new__(mcs, name, bases, attrs)
+
+class Thing(metaclass=Meta):
+    pass
+
+print(Thing.created_by)                          # Meta
+print(type(Thing).__name__)                      # Meta
+</code></pre>
+<p>Metaclasses are used by frameworks (ORMs, abstract base classes) and are rarely needed in everyday code. If you only need to customize a class, a <strong>class decorator</strong> or <code>__init_subclass__</code> is usually simpler.</p></div></details><details class="item" id="a76"><summary><span>What are dataclasses, and why use them?</span></summary><div class="answer"><p><code>@dataclass</code> <strong>generates boilerplate</strong> (<code>__init__</code>, <code>__repr__</code>, <code>__eq__</code>, and optionally ordering and hashing) from annotated fields, which makes classes that mainly hold data short and clear.</p>
+<pre><code class="language-python">from dataclasses import dataclass, field
+
+@dataclass
+class Point:
+    x: float
+    y: float = 0.0
+    tags: list = field(default_factory=list)      # mutable defaults need default_factory
+
+p = Point(1.5)
+print(p)                          # Point(x=1.5, y=0.0, tags=[])
+print(p == Point(1.5))            # True
+
+@dataclass(frozen=True)           # immutable and hashable
+class Coordinate:
+    lat: float
+    lon: float
+</code></pre></div></details><details class="item" id="a77"><summary><span>What is the difference between <code>isinstance()</code> and <code>type()</code>?</span></summary><div class="answer"><ul>
+<li><code>type(obj) == Cls</code> checks for the <strong>exact class</strong>.</li>
+<li><code>isinstance(obj, Cls)</code> is <code>True</code> for the class <strong>and its subclasses</strong>, so it respects inheritance and is usually what you want.</li>
+<li><code>issubclass(A, B)</code> checks a relation between <strong>classes</strong>.</li>
+</ul>
+<pre><code class="language-python">class Animal: ...
+class Dog(Animal): ...
+
+d = Dog()
+print(type(d) == Animal, isinstance(d, Animal), issubclass(Dog, Animal))    # False True True
+</code></pre></div></details><details class="item" id="a78"><summary><span>What is <code>__slots__</code>?</span></summary><div class="answer"><p>By default, each object stores its attributes in a <strong>dictionary</strong> (<code>__dict__</code>). Declaring <code>__slots__</code> tells Python to use a <strong>fixed set of attributes</strong> instead, which <strong>reduces memory use</strong> and slightly speeds up attribute access, but you cannot add other attributes.</p>
+<pre><code class="language-python">class Point:
+    __slots__ = (&quot;x&quot;, &quot;y&quot;)
+
+    def __init__(self, x, y):
+        self.x, self.y = x, y
+
+p = Point(1, 2)
+# p.z = 3   -&gt;  AttributeError
+</code></pre>
+<p>It is useful when you create <strong>millions of small objects</strong>.</p></div></details><details class="item" id="a79"><summary><span>What are mixins?</span></summary><div class="answer"><p>A <strong>mixin</strong> is a small class that provides <strong>extra behavior</strong> for other classes to inherit, and is <strong>not meant to be used on its own</strong>. It is a way to reuse functionality across unrelated classes without a deep hierarchy.</p>
+<pre><code class="language-python">import json
+
+class JsonMixin:
+    def to_json(self):
+        return json.dumps(self.__dict__)
+
+class User(JsonMixin):
+    def __init__(self, name):
+        self.name = name
+
+print(User(&quot;Asha&quot;).to_json())            # {&quot;name&quot;: &quot;Asha&quot;}
+</code></pre></div></details><details class="item" id="a80"><summary><span>What are the SOLID principles, and how do they apply in Python?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Meaning</th>
+<th>In practice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S</strong>ingle Responsibility</td>
+<td>A class has <strong>one reason to change</strong></td>
+<td>Separate parsing, business logic and storage</td>
+</tr>
+<tr>
+<td><strong>O</strong>pen/Closed</td>
+<td>Open for extension, closed for modification</td>
+<td>Add new behavior with new subclasses or functions, not by editing old code</td>
+</tr>
+<tr>
+<td><strong>L</strong>iskov Substitution</td>
+<td>A subclass can replace its parent without breaking the code</td>
+<td>Do not make subclasses violate the parent’s contract</td>
+</tr>
+<tr>
+<td><strong>I</strong>nterface Segregation</td>
+<td>Prefer small, specific interfaces</td>
+<td>Small ABCs or <code>Protocol</code>s instead of one huge one</td>
+</tr>
+<tr>
+<td><strong>D</strong>ependency Inversion</td>
+<td>Depend on <strong>abstractions</strong>, not concrete classes</td>
+<td>Pass dependencies in (dependency injection)</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="a81"><summary><span>What are some common design patterns in Python? (factory, strategy)</span></summary><div class="answer"><p>Many patterns are simpler in Python because <strong>functions and classes are first-class objects</strong>.</p>
+<pre><code class="language-python"># Factory: create objects without exposing the class choice
+class Dog:
+    def speak(self): return &quot;Woof&quot;
+
+class Cat:
+    def speak(self): return &quot;Meow&quot;
+
+def animal_factory(kind):
+    return {&quot;dog&quot;: Dog, &quot;cat&quot;: Cat}[kind]()
+
+# Strategy: swap the algorithm by passing a function
+def total_price(prices, discount_rule):
+    return sum(discount_rule(p) for p in prices)
+
+print(animal_factory(&quot;cat&quot;).speak())                          # Meow
+print(total_price([100, 200], lambda p: p * 0.9))             # 270.0
+</code></pre>
+<p>Other common ones: <strong>singleton</strong>, <strong>observer</strong> (callbacks and events), <strong>decorator</strong> (built into the language) and <strong>adapter</strong>.</p></div></details><details class="item" id="a82"><summary><span>Coding question: design a <code>BankAccount</code> class with encapsulation and validation.</span></summary><div class="answer"><pre><code class="language-python">class InsufficientFunds(Exception):
+    pass
+
+class BankAccount:
+    def __init__(self, owner, balance=0):
+        self.owner = owner
+        self._balance = balance                 # protected by convention
+
+    @property
+    def balance(self):                          # read-only access
+        return self._balance
+
+    def deposit(self, amount):
+        if amount &lt;= 0:
+            raise ValueError(&quot;Deposit must be positive&quot;)
+        self._balance += amount
+
+    def withdraw(self, amount):
+        if amount &gt; self._balance:
+            raise InsufficientFunds(&quot;Not enough balance&quot;)
+        self._balance -= amount
+
+    def __repr__(self):
+        return f&quot;BankAccount({self.owner!r}, balance={self._balance})&quot;
+
+acc = BankAccount(&quot;Asha&quot;, 100)
+acc.deposit(50)
+acc.withdraw(30)
+print(acc)                                       # BankAccount('Asha', balance=120)
+</code></pre>
+<p>It shows <strong>encapsulation</strong> (a private-by-convention balance and a read-only property), <strong>validation</strong>, a <strong>custom exception</strong> and <code>__repr__</code>. Interviewers often follow up by asking you to add an interest rate (inheritance), a transaction history (composition) or unit tests.</p></div></details></section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

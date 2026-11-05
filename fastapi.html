@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FastAPI Interview Prep</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="8" rx="2"/><rect x="2" y="13" width="20" height="8" rx="2"/><line x1="6" y1="7" x2="6.01" y2="7"/><line x1="6" y1="17" x2="6.01" y2="17"/></svg></span><h1>FastAPI Interview Prep</h1></div>
+<p class="sub">37 questions</p>
+<div class="roles"><a class="role" href="index.html#role=se">Software Engineer (AI/ML)</a><a class="role alt" href="index.html#role=ds">Data Science</a><a class="role alt" href="index.html#role=aiml">AI/ML</a></div>
+<div class="intro"><blockquote><p>FastAPI interview questions for beginners and practitioners: fundamentals, requests and responses, Pydantic, dependency injection, async programming, security, databases, testing, deployment and serving machine learning models.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<nav class="chips"><a href="#sec-0">FastAPI fundamentals <small>6</small></a><a href="#sec-1">Requests and responses <small>8</small></a><a href="#sec-2">Pydantic and data models <small>4</small></a><a href="#sec-3">Dependency injection and app structure <small>6</small></a><a href="#sec-4">Async, performance and background work <small>5</small></a><a href="#sec-5">Security, database, testing and deployment <small>8</small></a></nav>
+<section class="sec-block" id="sec-0"><h2 class="sec">FastAPI fundamentals</h2><details class="item" id="f1"><summary><span><span class="qn">Q1</span>What is FastAPI, and why is it popular?</span></summary><div class="answer"><p>FastAPI is a modern Python web framework for building APIs. It is built on <strong>Starlette</strong> (the web and async parts) and <strong>Pydantic</strong> (data validation), and it uses standard <strong>Python type hints</strong> to define what each endpoint accepts and returns.</p>
+<p>Why developers like it:</p>
+<ul>
+<li><strong>Fast to write:</strong> type hints give you validation, serialization and editor autocompletion with little code.</li>
+<li><strong>Automatic interactive documentation</strong> (Swagger UI and ReDoc).</li>
+<li><strong>Async support</strong> and very good performance for a Python framework.</li>
+<li><strong>Dependency injection</strong> built in.</li>
+<li><strong>Standards-based:</strong> it generates OpenAPI and JSON Schema.</li>
+</ul></div></details><details class="item" id="f2"><summary><span><span class="qn">Q2</span>FastAPI vs Flask vs Django: what are the differences?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>FastAPI</th>
+<th>Flask</th>
+<th>Django</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Style</td>
+<td>API-focused, type-hint driven</td>
+<td>Minimal micro-framework</td>
+<td>Full-stack, batteries included</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>Automatic with Pydantic</td>
+<td>Manual or through extensions</td>
+<td>Forms and serializers (Django REST Framework for APIs)</td>
+</tr>
+<tr>
+<td>API docs</td>
+<td>Generated automatically</td>
+<td>Needs extensions</td>
+<td>Needs extensions (for example DRF schemas)</td>
+</tr>
+<tr>
+<td>Async</td>
+<td>Native (ASGI)</td>
+<td>Mostly synchronous (WSGI), some async support</td>
+<td>Async support is growing</td>
+</tr>
+<tr>
+<td>Built-ins</td>
+<td>Routing, validation, dependency injection</td>
+<td>Routing, templates</td>
+<td>ORM, admin, authentication, templates</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>APIs and ML model serving</td>
+<td>Small apps and prototypes</td>
+<td>Large web applications with a database and admin</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="f3"><summary><span><span class="qn">Q3</span>What are Starlette, Pydantic, Uvicorn and ASGI?</span></summary><div class="answer"><ul>
+<li><strong>Starlette:</strong> a lightweight ASGI toolkit that FastAPI builds on for routing, requests, responses, middleware and WebSockets.</li>
+<li><strong>Pydantic:</strong> the library that validates and parses data using Python type hints.</li>
+<li><strong>ASGI (Asynchronous Server Gateway Interface):</strong> the async successor to WSGI. It supports async code, WebSockets and long-lived connections.</li>
+<li><strong>Uvicorn:</strong> an ASGI server that actually runs your FastAPI app and handles the network connections.</li>
+</ul></div></details><details class="item" id="f4"><summary><span><span class="qn">Q4</span>How do you create and run a simple FastAPI app?</span></summary><div class="answer"><pre><code class="language-python"># main.py
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get(&quot;/&quot;)
+def read_root():
+    return {&quot;message&quot;: &quot;Hello, World&quot;}
+</code></pre>
+<p>Run it with Uvicorn (with auto-reload for development):</p>
+<pre><code class="language-bash">uvicorn main:app --reload
+</code></pre>
+<p>Here <code>main</code> is the file name and <code>app</code> is the FastAPI object. Newer versions also provide a CLI: <code>fastapi dev main.py</code>.</p></div></details><details class="item" id="f5"><summary><span><span class="qn">Q5</span>How does FastAPI generate API documentation automatically?</span></summary><div class="answer"><p>FastAPI reads your route definitions, type hints and Pydantic models and builds an <strong>OpenAPI schema</strong>, available at <code>/openapi.json</code>. From it, two interactive documentation pages are served automatically:</p>
+<ul>
+<li><strong>Swagger UI</strong> at <code>/docs</code>, where you can try requests directly in the browser.</li>
+<li><strong>ReDoc</strong> at <code>/redoc</code>, a clean read-only reference.</li>
+</ul>
+<p>You can improve the docs with <code>summary</code>, <code>description</code>, <code>tags</code> and examples on your endpoints and models.</p></div></details><details class="item" id="f6"><summary><span><span class="qn">Q6</span>What is OpenAPI?</span></summary><div class="answer"><p>OpenAPI is a standard, language-independent format (JSON or YAML) for describing REST APIs: their paths, parameters, request and response schemas and authentication. Because the description is machine-readable, tools can generate documentation, client libraries and tests from it.</p></div></details></section>
+<section class="sec-block" id="sec-1"><h2 class="sec">Requests and responses</h2><details class="item" id="f7"><summary><span><span class="qn">Q7</span>What are path parameters and query parameters?</span></summary><div class="answer"><ul>
+<li><strong>Path parameters</strong> are part of the URL path and identify a resource, for example <code>/items/42</code>.</li>
+<li><strong>Query parameters</strong> come after <code>?</code> and are usually optional filters or options, for example <code>/items?skip=0&amp;limit=10</code>.</li>
+</ul>
+<pre><code class="language-python">@app.get(&quot;/items/{item_id}&quot;)
+def read_item(item_id: int, q: str | None = None):
+    return {&quot;item_id&quot;: item_id, &quot;q&quot;: q}
+</code></pre>
+<p><code>item_id</code> is a path parameter (converted and validated as an <code>int</code>), and <code>q</code> is an optional query parameter.</p></div></details><details class="item" id="f8"><summary><span><span class="qn">Q8</span>How do you add validation to query and path parameters?</span></summary><div class="answer"><p>Use <code>Query</code>, <code>Path</code> and <code>Annotated</code> to add constraints:</p>
+<pre><code class="language-python">from typing import Annotated
+from fastapi import FastAPI, Query, Path
+
+app = FastAPI()
+
+@app.get(&quot;/search/{category_id}&quot;)
+def search(
+    category_id: Annotated[int, Path(ge=1)],
+    q: Annotated[str, Query(min_length=3, max_length=50)],
+    limit: Annotated[int, Query(ge=1, le=100)] = 10,
+):
+    return {&quot;category&quot;: category_id, &quot;q&quot;: q, &quot;limit&quot;: limit}
+</code></pre>
+<p>A parameter without a default value is required. Invalid values return a <code>422</code> error with a description of what is wrong.</p></div></details><details class="item" id="f9"><summary><span><span class="qn">Q9</span>How do you receive a JSON request body?</span></summary><div class="answer"><p>Declare a parameter whose type is a Pydantic model. FastAPI reads the JSON body, validates it against the model and gives you a Python object.</p>
+<pre><code class="language-python">from pydantic import BaseModel
+
+class Item(BaseModel):
+    name: str
+    price: float
+    in_stock: bool = True
+
+@app.post(&quot;/items&quot;)
+def create_item(item: Item):
+    return item
+</code></pre></div></details><details class="item" id="f10"><summary><span><span class="qn">Q10</span>Can you show a simple CRUD API with FastAPI?</span></summary><div class="answer"><pre><code class="language-python">from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class Item(BaseModel):
+    name: str
+    price: float
+
+items: dict[int, Item] = {}          # in-memory store, for demonstration only
+
+@app.post(&quot;/items/{item_id}&quot;, status_code=201)
+def create_item(item_id: int, item: Item):
+    if item_id in items:
+        raise HTTPException(status_code=409, detail=&quot;Item already exists&quot;)
+    items[item_id] = item
+    return item
+
+@app.get(&quot;/items/{item_id}&quot;, response_model=Item)
+def read_item(item_id: int):
+    if item_id not in items:
+        raise HTTPException(status_code=404, detail=&quot;Item not found&quot;)
+    return items[item_id]
+
+@app.put(&quot;/items/{item_id}&quot;, response_model=Item)
+def update_item(item_id: int, item: Item):
+    if item_id not in items:
+        raise HTTPException(status_code=404, detail=&quot;Item not found&quot;)
+    items[item_id] = item
+    return item
+
+@app.delete(&quot;/items/{item_id}&quot;, status_code=204)
+def delete_item(item_id: int):
+    items.pop(item_id, None)
+</code></pre></div></details><details class="item" id="f11"><summary><span><span class="qn">Q11</span>What is response_model, and why use it?</span></summary><div class="answer"><p><code>response_model</code> tells FastAPI the shape of the response. FastAPI then <strong>validates, filters and documents</strong> the output. Its most important use is to <strong>keep private fields out of responses</strong>, for example never returning a password:</p>
+<pre><code class="language-python">class UserCreate(BaseModel):
+    email: str
+    password: str
+
+class UserOut(BaseModel):
+    id: int
+    email: str
+
+@app.post(&quot;/users&quot;, response_model=UserOut, status_code=201)
+def create_user(user: UserCreate):
+    return save_user(user)       # extra fields such as the password are filtered out
+</code></pre></div></details><details class="item" id="f12"><summary><span><span class="qn">Q12</span>How do you set HTTP status codes and handle errors?</span></summary><div class="answer"><p>Set the success code in the decorator (<code>status_code=201</code>) and raise <code>HTTPException</code> for errors:</p>
+<pre><code class="language-python">from fastapi import HTTPException
+
+raise HTTPException(status_code=404, detail=&quot;Item not found&quot;)
+</code></pre>
+<p>For custom error handling across the whole app, register an exception handler with <code>@app.exception_handler(MyError)</code> and return a <code>JSONResponse</code>.</p></div></details><details class="item" id="f13"><summary><span><span class="qn">Q13</span>Why does FastAPI return a 422 error?</span></summary><div class="answer"><p><code>422 Unprocessable Content</code> (previously “Unprocessable Entity”) is returned when the request is well-formed HTTP but <strong>fails validation</strong>: a missing required field, a wrong type, or a value that breaks a constraint. The response body lists each error with its location (<code>loc</code>), message (<code>msg</code>) and type, so the client can see exactly what to fix.</p></div></details><details class="item" id="f14"><summary><span><span class="qn">Q14</span>How do you handle form data and file uploads?</span></summary><div class="answer"><p>Install <code>python-multipart</code>, then use <code>Form</code>, <code>File</code> and <code>UploadFile</code>:</p>
+<pre><code class="language-python">from fastapi import FastAPI, File, Form, UploadFile
+
+app = FastAPI()
+
+@app.post(&quot;/upload&quot;)
+async def upload(title: str = Form(), file: UploadFile = File()):
+    content = await file.read()
+    return {&quot;title&quot;: title, &quot;filename&quot;: file.filename, &quot;size&quot;: len(content)}
+</code></pre>
+<p><code>UploadFile</code> streams large files to a temporary file on disk instead of loading everything into memory.</p></div></details></section>
+<section class="sec-block" id="sec-2"><h2 class="sec">Pydantic and data models</h2><details class="item" id="f15"><summary><span><span class="qn">Q15</span>What is Pydantic, and how does FastAPI use it?</span></summary><div class="answer"><p>Pydantic validates and converts data according to type hints. FastAPI uses Pydantic models to <strong>parse request bodies, validate input, serialize responses and generate the JSON Schema</strong> used in the docs. If the data does not match the model, a clear validation error is returned automatically.</p></div></details><details class="item" id="f16"><summary><span><span class="qn">Q16</span>How do you add custom validation to a Pydantic model?</span></summary><div class="answer"><pre><code class="language-python">from pydantic import BaseModel, Field, field_validator
+
+class User(BaseModel):
+    name: str = Field(min_length=2)
+    age: int
+
+    @field_validator(&quot;age&quot;)
+    @classmethod
+    def age_must_be_positive(cls, v):
+        if v &lt;= 0:
+            raise ValueError(&quot;age must be positive&quot;)
+        return v
+</code></pre>
+<p><code>Field</code> adds simple constraints, and a <code>field_validator</code> handles custom rules.</p></div></details><details class="item" id="f17"><summary><span><span class="qn">Q17</span>What is the difference between Pydantic v1 and v2?</span></summary><div class="answer"><p>Pydantic v2 was rewritten with a core in Rust, so it is much faster, and it renamed several methods:</p>
+<table>
+<thead>
+<tr>
+<th>Pydantic v1</th>
+<th>Pydantic v2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.dict()</code></td>
+<td><code>.model_dump()</code></td>
+</tr>
+<tr>
+<td><code>.parse_obj()</code></td>
+<td><code>.model_validate()</code></td>
+</tr>
+<tr>
+<td><code>@validator</code></td>
+<td><code>@field_validator</code></td>
+</tr>
+<tr>
+<td><code>class Config:</code></td>
+<td><code>model_config = ConfigDict(...)</code></td>
+</tr>
+</tbody>
+</table>
+<p>Current FastAPI versions work with Pydantic v2.</p></div></details><details class="item" id="f18"><summary><span><span class="qn">Q18</span>Why should request and response models be separate?</span></summary><div class="answer"><p>The data a client sends is not the same as the data you return or store. For example, a <strong>create</strong> model has a password, while the <strong>output</strong> model has an id and no password, and an <strong>update</strong> model makes every field optional. Separate models keep secrets out of responses, make each endpoint’s contract clear and prevent clients from setting fields they should not control (such as <code>id</code> or <code>is_admin</code>).</p></div></details></section>
+<section class="sec-block" id="sec-3"><h2 class="sec">Dependency injection and app structure</h2><details class="item" id="f19"><summary><span><span class="qn">Q19</span>What is dependency injection in FastAPI, and how does Depends work?</span></summary><div class="answer"><p>A dependency is a function that FastAPI runs <strong>before your endpoint</strong> and whose result it passes in as an argument. You declare it with <code>Depends</code>. It is used for database sessions, authentication, pagination parameters, settings and any shared logic.</p>
+<pre><code class="language-python">from fastapi import Depends
+
+def pagination(skip: int = 0, limit: int = 10):
+    return {&quot;skip&quot;: skip, &quot;limit&quot;: limit}
+
+@app.get(&quot;/items&quot;)
+def list_items(page: dict = Depends(pagination)):
+    return page
+</code></pre>
+<p>Dependencies can depend on other dependencies, are cached per request, and make endpoints easy to test because you can replace them with <code>app.dependency_overrides</code>.</p></div></details><details class="item" id="f20"><summary><span><span class="qn">Q20</span>How do you manage a database session with dependencies?</span></summary><div class="answer"><p>Use a dependency with <code>yield</code>, so the session is created for each request and always closed afterwards:</p>
+<pre><code class="language-python">def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+@app.get(&quot;/users/{user_id}&quot;)
+def get_user(user_id: int, db: Session = Depends(get_db)):
+    return db.get(User, user_id)
+</code></pre></div></details><details class="item" id="f21"><summary><span><span class="qn">Q21</span>How do you organize a larger FastAPI project?</span></summary><div class="answer"><p>Split the app into modules with <code>APIRouter</code>, and include them in the main app:</p>
+<pre><code class="language-python"># routers/users.py
+from fastapi import APIRouter
+
+router = APIRouter(prefix=&quot;/users&quot;, tags=[&quot;users&quot;])
+
+@router.get(&quot;/&quot;)
+def list_users():
+    return []
+
+# main.py
+from fastapi import FastAPI
+from routers import users
+
+app = FastAPI()
+app.include_router(users.router)
+</code></pre>
+<p>A common layout separates <code>routers/</code>, <code>schemas/</code> (Pydantic models), <code>models/</code> (database models), <code>services/</code> (business logic), <code>dependencies/</code> and <code>core/</code> (settings).</p></div></details><details class="item" id="f22"><summary><span><span class="qn">Q22</span>How do you manage configuration and secrets?</span></summary><div class="answer"><p>Keep configuration in <strong>environment variables</strong> and read it with <code>pydantic-settings</code>, which validates the values and gives you a typed settings object:</p>
+<pre><code class="language-python">from pydantic_settings import BaseSettings
+
+class Settings(BaseSettings):
+    database_url: str
+    secret_key: str
+
+settings = Settings()          # reads environment variables (and a .env file if configured)
+</code></pre>
+<p>Never commit secrets to the repository.</p></div></details><details class="item" id="f23"><summary><span><span class="qn">Q23</span>What are lifespan events, and what are they used for?</span></summary><div class="answer"><p>A <strong>lifespan</strong> function runs code once when the app starts and once when it shuts down. It is used to open database connection pools, load a machine learning model, or create shared HTTP clients, and then close them cleanly.</p>
+<pre><code class="language-python">from contextlib import asynccontextmanager
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    app.state.db_pool = await create_pool()      # startup
+    yield
+    await app.state.db_pool.close()              # shutdown
+
+app = FastAPI(lifespan=lifespan)
+</code></pre>
+<p>Lifespan replaces the older <code>@app.on_event("startup")</code> and <code>@app.on_event("shutdown")</code> handlers.</p></div></details><details class="item" id="f24"><summary><span><span class="qn">Q24</span>What is middleware in FastAPI?</span></summary><div class="answer"><p>Middleware is code that runs <strong>for every request before it reaches your endpoint, and for every response before it is sent</strong>. Typical uses are logging, timing, adding headers, compression and CORS. You can add built-in middleware with <code>app.add_middleware(...)</code> or write your own with <code>@app.middleware("http")</code>.</p></div></details></section>
+<section class="sec-block" id="sec-4"><h2 class="sec">Async, performance and background work</h2><details class="item" id="f25"><summary><span><span class="qn">Q25</span>What is the difference between <code>def</code> and <code>async def</code> endpoints?</span></summary><div class="answer"><ul>
+<li><strong><code>async def</code></strong> endpoints run directly on the event loop. Use them when you <code>await</code> async libraries (an async database driver, <code>httpx.AsyncClient</code>).</li>
+<li><strong><code>def</code></strong> endpoints are run by FastAPI in a <strong>separate thread pool</strong>, so a blocking call does not freeze the server.</li>
+</ul>
+<p>If you are not sure, a normal <code>def</code> is safe. The mistake to avoid is using blocking code, such as <code>time.sleep()</code>, the <code>requests</code> library or heavy CPU work, inside an <code>async def</code> endpoint, because it <strong>blocks the whole event loop</strong> and every other request waits.</p></div></details><details class="item" id="f26"><summary><span><span class="qn">Q26</span>How does FastAPI achieve high performance?</span></summary><div class="answer"><p>It runs on an <strong>ASGI server</strong> (Uvicorn), uses <strong>Starlette</strong> for the web layer, and uses Pydantic’s fast validation (Rust-based in v2). Async endpoints allow one process to handle many concurrent I/O-bound requests (database or API calls) without waiting for each to finish. In practice, your database and external calls usually matter more than the framework itself, and CPU-heavy work needs separate processes or workers.</p></div></details><details class="item" id="f27"><summary><span><span class="qn">Q27</span>What are BackgroundTasks, and when would you use Celery instead?</span></summary><div class="answer"><p><code>BackgroundTasks</code> runs a small function <strong>after the response has been sent</strong>, for example sending an email or writing a log:</p>
+<pre><code class="language-python">from fastapi import BackgroundTasks
+
+def write_log(message: str):
+    with open(&quot;log.txt&quot;, &quot;a&quot;) as f:
+        f.write(message + &quot;\n&quot;)
+
+@app.post(&quot;/send&quot;)
+def send(background_tasks: BackgroundTasks):
+    background_tasks.add_task(write_log, &quot;email sent&quot;)
+    return {&quot;status&quot;: &quot;queued&quot;}
+</code></pre>
+<p>It runs inside the same process, so use a task queue such as <strong>Celery</strong> (or RQ, Arq) with a message broker for heavy, long-running or critical jobs that need retries, scheduling and to survive a restart.</p></div></details><details class="item" id="f28"><summary><span><span class="qn">Q28</span>How do you enable CORS?</span></summary><div class="answer"><p>CORS controls which browser origins may call your API. Add the built-in middleware and list the allowed origins:</p>
+<pre><code class="language-python">from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[&quot;https://example.com&quot;],
+    allow_methods=[&quot;*&quot;],
+    allow_headers=[&quot;*&quot;],
+)
+</code></pre>
+<p>Avoid <code>allow_origins=["*"]</code> in production, especially when you allow credentials.</p></div></details><details class="item" id="f29"><summary><span><span class="qn">Q29</span>Does FastAPI support WebSockets and streaming?</span></summary><div class="answer"><p>Yes.</p>
+<ul>
+<li><strong>WebSockets:</strong> use <code>@app.websocket("/ws")</code> for two-way, real-time communication such as chat or live updates.</li>
+<li><strong>Streaming responses:</strong> return a <code>StreamingResponse</code> to send data in chunks. This is commonly used to stream text from an LLM token by token (often with Server-Sent Events) or to send large files.</li>
+</ul></div></details></section>
+<section class="sec-block" id="sec-5"><h2 class="sec">Security, database, testing and deployment</h2><details class="item" id="f30"><summary><span><span class="qn">Q30</span>How do you implement authentication in FastAPI?</span></summary><div class="answer"><p>FastAPI includes security helpers. A common approach is <strong>OAuth2 with a bearer token (JWT)</strong>: the client logs in, receives a token, and sends it in the <code>Authorization: Bearer ...</code> header. A dependency verifies the token and returns the current user.</p>
+<pre><code class="language-python">from typing import Annotated
+from fastapi import Depends
+from fastapi.security import OAuth2PasswordBearer
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl=&quot;token&quot;)
+
+def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
+    payload = decode_jwt(token)          # verify the signature and expiry, raise 401 if invalid
+    return get_user(payload[&quot;sub&quot;])
+
+@app.get(&quot;/me&quot;)
+def read_me(user: Annotated[User, Depends(get_current_user)]):
+    return user
+</code></pre>
+<p>Here <code>decode_jwt</code> and <code>get_user</code> are your own functions. Other options are API keys in headers and external identity providers.</p></div></details><details class="item" id="f31"><summary><span><span class="qn">Q31</span>How should you store passwords?</span></summary><div class="answer"><p>Never store plain text passwords. Store a <strong>salted hash</strong> created with a slow, purpose-built algorithm such as <strong>Argon2</strong> or <strong>bcrypt</strong>, and verify logins by hashing the submitted password and comparing it with the stored hash.</p></div></details><details class="item" id="f32"><summary><span><span class="qn">Q32</span>How do you connect FastAPI to a database?</span></summary><div class="answer"><p>Common choices are <strong>SQLAlchemy</strong> (sync or async) or <strong>SQLModel</strong> (which combines SQLAlchemy and Pydantic). The pattern is:</p>
+<ol>
+<li>Create the engine and a session factory.</li>
+<li>Provide a session through a dependency with <code>yield</code> (one session per request).</li>
+<li>Use separate <strong>Pydantic schemas</strong> for the API and <strong>ORM models</strong> for the tables.</li>
+<li>Use a migration tool such as <strong>Alembic</strong> to change the schema safely.</li>
+</ol>
+<p>For high-concurrency apps, use an async driver (for example <code>asyncpg</code>) with SQLAlchemy’s async engine, and use <code>async def</code> endpoints.</p></div></details><details class="item" id="f33"><summary><span><span class="qn">Q33</span>How do you test a FastAPI application?</span></summary><div class="answer"><p>Use <code>TestClient</code> with <code>pytest</code>. It calls your app directly without starting a server.</p>
+<pre><code class="language-python">from fastapi.testclient import TestClient
+from main import app
+
+client = TestClient(app)
+
+def test_read_item_not_found():
+    response = client.get(&quot;/items/999&quot;)
+    assert response.status_code == 404
+    assert response.json()[&quot;detail&quot;] == &quot;Item not found&quot;
+</code></pre>
+<p>Use <code>app.dependency_overrides</code> to replace the real database or authentication with test versions.</p></div></details><details class="item" id="f34"><summary><span><span class="qn">Q34</span>How do you deploy a FastAPI app?</span></summary><div class="answer"><ul>
+<li>Run it with an ASGI server: <code>uvicorn main:app --host 0.0.0.0 --port 8000</code>.</li>
+<li>For several processes, use multiple Uvicorn workers (<code>--workers 4</code>) or run it under <strong>Gunicorn with Uvicorn workers</strong>.</li>
+<li>Package it in a <strong>Docker</strong> image and run it on a platform of your choice (a VM, Kubernetes or a managed service).</li>
+<li>Put it behind a <strong>reverse proxy</strong> such as Nginx or a cloud load balancer that handles HTTPS.</li>
+<li>Configure it with environment variables, and add health checks, logging and monitoring.</li>
+</ul></div></details><details class="item" id="f35"><summary><span><span class="qn">Q35</span>How would you serve a machine learning model with FastAPI?</span></summary><div class="answer"><p>Load the model <strong>once at startup</strong> (not on every request), define the input with a Pydantic model, and expose a prediction endpoint.</p>
+<pre><code class="language-python">from contextlib import asynccontextmanager
+from fastapi import FastAPI
+from pydantic import BaseModel
+import joblib
+
+models = {}
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    models[&quot;clf&quot;] = joblib.load(&quot;model.joblib&quot;)     # load once at startup
+    yield
+    models.clear()
+
+app = FastAPI(lifespan=lifespan)
+
+class Features(BaseModel):
+    age: float
+    income: float
+
+@app.post(&quot;/predict&quot;)
+def predict(features: Features):
+    prediction = models[&quot;clf&quot;].predict([[features.age, features.income]])[0]
+    return {&quot;prediction&quot;: int(prediction)}
+</code></pre>
+<p>For production, also add input validation limits, logging, a health endpoint, model versioning and, for heavy models, batching or a separate inference service.</p></div></details><details class="item" id="f36"><summary><span><span class="qn">Q36</span>How do you version an API and add rate limiting?</span></summary><div class="answer"><ul>
+<li><strong>Versioning:</strong> put the version in the path (<code>/api/v1/...</code>) and use a separate <code>APIRouter</code> for each version, so old clients keep working.</li>
+<li><strong>Rate limiting:</strong> FastAPI has no built-in rate limiter. Use a library such as <code>slowapi</code>, or do it at the API gateway or reverse proxy, often backed by Redis.</li>
+</ul></div></details><details class="item" id="f37"><summary><span><span class="qn">Q37</span>What are some best practices for building FastAPI applications?</span></summary><div class="answer"><ul>
+<li>Use <strong>type hints and Pydantic models</strong> everywhere, with separate request and response schemas.</li>
+<li>Keep endpoints thin and put business logic in a <strong>service layer</strong>.</li>
+<li>Use <strong>dependency injection</strong> for database sessions, settings and authentication.</li>
+<li>Never block the event loop in <code>async def</code> endpoints.</li>
+<li>Handle errors consistently with clear messages and the right status codes.</li>
+<li>Keep secrets in environment variables and use HTTPS.</li>
+<li>Write tests, and add logging and monitoring.</li>
+</ul></div></details></section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

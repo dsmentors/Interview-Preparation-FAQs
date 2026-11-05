@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentic AI Interview Prep</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></span><h1>Agentic AI Interview Prep</h1></div>
+<p class="sub">39 questions</p>
+<div class="roles"><a class="role" href="index.html#role=aiml">AI/ML</a><a class="role" href="index.html#role=se">Software Engineer (AI/ML)</a></div>
+<div class="intro"><blockquote><p>Agentic AI interview questions: core concepts, workflow and design patterns, multi-agent systems, orchestration, governance and security, and evaluation and production. Single-agent basics such as tools, memory and the agent loop are covered on the AI Agents page.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<nav class="chips"><a href="#sec-0">Agentic AI concepts <small>7</small></a><a href="#sec-1">Workflow and design patterns <small>6</small></a><a href="#sec-2">Multi-agent systems <small>7</small></a><a href="#sec-3">Orchestration and frameworks <small>4</small></a><a href="#sec-4">Governance, safety and security <small>7</small></a><a href="#sec-5">Evaluation, production and use cases <small>8</small></a></nav>
+<section class="sec-block" id="sec-0"><h2 class="sec">Agentic AI concepts</h2><details class="item" id="x1"><summary><span><span class="qn">Q1</span>What is agentic AI?</span></summary><div class="answer"><p>Agentic AI refers to AI systems that <strong>pursue goals with a degree of autonomy</strong>: they plan, choose actions, use tools, observe the results and adapt, with limited step-by-step human direction. The focus is on the whole system that completes a task end to end, not on a single model answering a prompt.</p>
+<p>Typical traits are goal orientation, planning, tool use, memory, adaptation to feedback and, in many designs, collaboration between several agents.</p></div></details><details class="item" id="x2"><summary><span><span class="qn">Q2</span>What is the difference between generative AI and agentic AI?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Generative AI</th>
+<th>Agentic AI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What it does</td>
+<td>Produces content (text, code, images) in response to a prompt</td>
+<td>Works toward a goal by planning and taking actions</td>
+</tr>
+<tr>
+<td>Interaction</td>
+<td>One prompt, one response</td>
+<td>Many steps, with decisions in between</td>
+</tr>
+<tr>
+<td>Tools and memory</td>
+<td>Optional</td>
+<td>Central</td>
+</tr>
+<tr>
+<td>Human role</td>
+<td>Writes each prompt</td>
+<td>Sets the goal, then supervises or approves</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>“Write an email reply”</td>
+<td>“Handle this support ticket: check the order, issue a refund within policy and reply to the customer”</td>
+</tr>
+</tbody>
+</table>
+<p>Agentic systems are usually built on top of generative models.</p></div></details><details class="item" id="x3"><summary><span><span class="qn">Q3</span>What is the difference between an AI agent and agentic AI?</span></summary><div class="answer"><p>An <strong>AI agent</strong> is a single component: an LLM with tools, memory and a loop. <strong>Agentic AI</strong> is the broader approach or system in which one or more agents, workflows, tools, memory and guardrails work together autonomously toward goals. A single agent can be agentic, but agentic AI often means <strong>multiple coordinated agents</strong> plus the infrastructure around them.</p>
+<p>The terms are used loosely in industry, so in an interview define how you are using them.</p></div></details><details class="item" id="x4"><summary><span><span class="qn">Q4</span>What are the key characteristics of an agentic system?</span></summary><div class="answer"><ul>
+<li><strong>Autonomy:</strong> it decides the next steps without being told each one.</li>
+<li><strong>Goal-directed behavior:</strong> it works toward an outcome, not just a reply.</li>
+<li><strong>Planning and reasoning:</strong> it breaks problems down and adjusts the plan.</li>
+<li><strong>Tool use:</strong> it acts on external systems through APIs and tools.</li>
+<li><strong>Memory and context:</strong> it remembers what happened and what it learned.</li>
+<li><strong>Adaptation:</strong> it reacts to feedback and failures.</li>
+<li><strong>Collaboration:</strong> it can work with other agents and with people.</li>
+</ul></div></details><details class="item" id="x5"><summary><span><span class="qn">Q5</span>What are the levels of autonomy in agentic systems?</span></summary><div class="answer"><p>One common way to describe it, from least to most autonomous:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0. No autonomy</td>
+<td>The model only answers; humans do everything else</td>
+<td>A plain chatbot</td>
+</tr>
+<tr>
+<td>1. Assistive</td>
+<td>The model suggests actions, a human performs them</td>
+<td>Code suggestions</td>
+</tr>
+<tr>
+<td>2. Supervised</td>
+<td>The agent acts, a human approves each important step</td>
+<td>Draft email sent only after approval</td>
+</tr>
+<tr>
+<td>3. Conditional</td>
+<td>The agent acts on its own within limits and escalates exceptions</td>
+<td>Refunds up to a set amount</td>
+</tr>
+<tr>
+<td>4. High autonomy</td>
+<td>The agent runs end to end with oversight by monitoring and audit</td>
+<td>Automated incident handling</td>
+</tr>
+</tbody>
+</table>
+<p>Choose the level based on the risk of the task, not the capability of the model.</p></div></details><details class="item" id="x6"><summary><span><span class="qn">Q6</span>Why has agentic AI become practical now?</span></summary><div class="answer"><ul>
+<li><strong>Stronger reasoning models</strong> that can plan and follow multi-step instructions.</li>
+<li><strong>Reliable tool (function) calling</strong> and structured outputs.</li>
+<li><strong>Longer context windows</strong> that hold more state and tool results.</li>
+<li><strong>Standard protocols</strong> such as MCP that make tool integration easier.</li>
+<li><strong>Frameworks and tracing tools</strong> for building and monitoring agents.</li>
+<li><strong>Lower cost</strong> per token, which makes multi-step runs affordable.</li>
+</ul></div></details><details class="item" id="x7"><summary><span><span class="qn">Q7</span>When should you use a workflow instead of an autonomous agent?</span></summary><div class="answer"><p>Prefer the <strong>simplest design that works</strong>:</p>
+<ul>
+<li>Use a <strong>workflow</strong> (predefined steps with LLM calls and code) when the task is well understood. It is cheaper, faster, easier to test and more predictable.</li>
+<li>Use an <strong>autonomous agent</strong> when the number and order of steps cannot be known in advance and the model must decide as it goes.</li>
+</ul>
+<p>Many production systems are a <strong>hybrid</strong>: a fixed workflow skeleton with agentic steps only where flexibility is needed.</p></div></details></section>
+<section class="sec-block" id="sec-1"><h2 class="sec">Workflow and design patterns</h2><details class="item" id="x8"><summary><span><span class="qn">Q8</span>What are the common agentic workflow patterns?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Idea</th>
+<th>Use when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Prompt chaining</strong></td>
+<td>Break a task into a fixed sequence of LLM calls, each using the previous output</td>
+<td>The task splits cleanly into steps</td>
+</tr>
+<tr>
+<td><strong>Routing</strong></td>
+<td>Classify the input and send it to a specialized path or model</td>
+<td>Different input types need different handling</td>
+</tr>
+<tr>
+<td><strong>Parallelization</strong></td>
+<td>Run subtasks at the same time (sectioning), or run the same task several times and compare (voting)</td>
+<td>Speed, or higher confidence</td>
+</tr>
+<tr>
+<td><strong>Orchestrator-workers</strong></td>
+<td>A central LLM splits the task dynamically and delegates to worker LLMs</td>
+<td>The subtasks cannot be predicted in advance</td>
+</tr>
+<tr>
+<td><strong>Evaluator-optimizer</strong></td>
+<td>One LLM produces, another critiques, and the loop repeats</td>
+<td>Clear quality criteria and room for improvement</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="x9"><summary><span><span class="qn">Q9</span>What are the four agentic design patterns?</span></summary><div class="answer"><p>A popular summary of the core patterns is:</p>
+<ol>
+<li><strong>Reflection:</strong> the agent critiques and improves its own output.</li>
+<li><strong>Tool use:</strong> the agent calls external tools and APIs.</li>
+<li><strong>Planning:</strong> the agent breaks the goal into steps and orders them.</li>
+<li><strong>Multi-agent collaboration:</strong> several specialized agents work together.</li>
+</ol></div></details><details class="item" id="x10"><summary><span><span class="qn">Q10</span>Explain the orchestrator-workers pattern.</span></summary><div class="answer"><p>A central <strong>orchestrator</strong> LLM analyzes the task, decides which subtasks are needed (not fixed in advance), assigns them to <strong>worker</strong> LLMs or agents, and then combines their results. It suits tasks such as changing code across many files or researching a broad topic from several sources.</p>
+<pre><code class="language-python">import json
+
+def orchestrator(goal):
+    plan = llm(&quot;Split this goal into independent subtasks. Return a JSON list.\nGoal: &quot; + goal)
+    results = [worker(task) for task in json.loads(plan)]   # workers can run in parallel
+    return llm(&quot;Combine these results into one final answer:\n&quot; + &quot;\n&quot;.join(results))
+
+def worker(task):
+    return agent_loop(task, tools=tools_for(task))
+</code></pre>
+<p>Here <code>llm</code> and <code>agent_loop</code> are placeholders for your model client and agent loop.</p></div></details><details class="item" id="x11"><summary><span><span class="qn">Q11</span>Explain the evaluator-optimizer (generator-critic) pattern.</span></summary><div class="answer"><p>One model <strong>generates</strong> a result and another model (or the same one with a different prompt) <strong>evaluates</strong> it against clear criteria and gives feedback. The generator revises, and the loop repeats until the result passes or a round limit is reached. It works well when quality can be judged clearly, for example code that must pass tests or a translation checked against a rubric.</p></div></details><details class="item" id="x12"><summary><span><span class="qn">Q12</span>How does routing work, and why is it useful?</span></summary><div class="answer"><p>A router (a small LLM or a classifier) looks at the input and sends it to the best handler, for example <strong>billing vs technical support</strong>, or <strong>a cheap model for simple questions and a stronger model for hard ones</strong>. It improves quality through specialization and reduces cost by not using the most expensive path every time.</p></div></details><details class="item" id="x13"><summary><span><span class="qn">Q13</span>When is parallelization useful, and what are sectioning and voting?</span></summary><div class="answer"><ul>
+<li><strong>Sectioning:</strong> split a task into independent parts and run them at the same time, for example analyzing different sections of a long document.</li>
+<li><strong>Voting:</strong> run the same task several times (possibly with different prompts or models) and combine the answers, which gives higher confidence for important decisions.</li>
+</ul>
+<p>Both reduce latency or improve reliability, at the price of more LLM calls.</p></div></details></section>
+<section class="sec-block" id="sec-2"><h2 class="sec">Multi-agent systems</h2><details class="item" id="x14"><summary><span><span class="qn">Q14</span>Why use multiple agents instead of one?</span></summary><div class="answer"><ul>
+<li><strong>Specialization:</strong> each agent has a focused role, prompt and toolset, which usually improves quality.</li>
+<li><strong>Smaller contexts:</strong> each agent sees only what it needs.</li>
+<li><strong>Parallel work:</strong> independent agents can run at the same time.</li>
+<li><strong>Separation of concerns:</strong> easier to test, replace and secure each part.</li>
+</ul>
+<p>The trade-off is more cost, more coordination overhead and harder debugging, so start with one agent and split only when you have a clear reason.</p></div></details><details class="item" id="x15"><summary><span><span class="qn">Q15</span>What are the common multi-agent architectures?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Architecture</th>
+<th>How it works</th>
+<th>Strength</th>
+<th>Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sequential pipeline</strong></td>
+<td>Agents run in a fixed order, each passing output on</td>
+<td>Simple, predictable</td>
+<td>Rigid, errors carry forward</td>
+</tr>
+<tr>
+<td><strong>Supervisor (hierarchical)</strong></td>
+<td>A supervisor agent delegates to specialist agents and collects results</td>
+<td>Clear control</td>
+<td>The supervisor is a bottleneck</td>
+</tr>
+<tr>
+<td><strong>Network (peer-to-peer)</strong></td>
+<td>Agents can talk to any other agent</td>
+<td>Flexible</td>
+<td>Hard to control and debug</td>
+</tr>
+<tr>
+<td><strong>Handoff / swarm</strong></td>
+<td>An agent passes the conversation to a more suitable agent</td>
+<td>Natural for routing users</td>
+<td>Can bounce between agents</td>
+</tr>
+<tr>
+<td><strong>Debate / critic</strong></td>
+<td>Agents argue or review each other’s work</td>
+<td>Better quality on hard problems</td>
+<td>Costly</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="x16"><summary><span><span class="qn">Q16</span>What is an agent handoff?</span></summary><div class="answer"><p>A handoff is when one agent <strong>transfers control of the task (and the relevant context) to another agent</strong> that is better suited to continue, for example a general support agent handing over to a billing agent. A good handoff passes a clear summary and the necessary state, so the next agent does not start from zero or ask the user again.</p></div></details><details class="item" id="x17"><summary><span><span class="qn">Q17</span>How do agents communicate and share state?</span></summary><div class="answer"><ul>
+<li><strong>Message passing:</strong> agents send structured messages to each other, directly or through a supervisor.</li>
+<li><strong>Shared state or memory:</strong> a common store (sometimes called a blackboard) that agents read from and write to.</li>
+<li><strong>Artifacts:</strong> agents pass files, code or documents as outputs for others to use.</li>
+</ul>
+<p>Use <strong>structured formats</strong> (JSON schemas) instead of free text for messages, so receivers can validate them, and share only the context each agent needs.</p></div></details><details class="item" id="x18"><summary><span><span class="qn">Q18</span>What are MCP and A2A, and how do they differ?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>MCP (Model Context Protocol)</th>
+<th>A2A (Agent2Agent protocol)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connects</td>
+<td>An agent or app to <strong>tools and data</strong></td>
+<td>An agent to <strong>another agent</strong></td>
+</tr>
+<tr>
+<td>Purpose</td>
+<td>Standard way to expose tools, resources and prompts</td>
+<td>Standard way for agents, possibly from different vendors, to discover each other and collaborate on tasks</td>
+</tr>
+<tr>
+<td>Analogy</td>
+<td>A USB port for tools</td>
+<td>A common language between agents</td>
+</tr>
+</tbody>
+</table>
+<p>They are complementary: an agent can use MCP to call its tools, and A2A to delegate work to other agents.</p></div></details><details class="item" id="x19"><summary><span><span class="qn">Q19</span>What challenges come with multi-agent systems?</span></summary><div class="answer"><ul>
+<li><strong>Cost and latency:</strong> more LLM calls per task.</li>
+<li><strong>Coordination overhead:</strong> misunderstandings, duplicated work and endless back-and-forth between agents.</li>
+<li><strong>Error propagation:</strong> one agent’s mistake becomes another agent’s input.</li>
+<li><strong>Debugging:</strong> behavior emerges from interactions, so you need traces of every message.</li>
+<li><strong>Security:</strong> a compromised agent or message can affect the others.</li>
+<li><strong>Testing:</strong> more non-determinism than a single agent.</li>
+</ul></div></details><details class="item" id="x20"><summary><span><span class="qn">Q20</span>How do you resolve conflicts or disagreements between agents?</span></summary><div class="answer"><ul>
+<li>Define clear <strong>roles and ownership</strong> so only one agent decides each thing.</li>
+<li>Use a <strong>supervisor</strong> or arbiter agent for final decisions.</li>
+<li>Use <strong>voting</strong> across several agents for important choices.</li>
+<li>Set <strong>limits</strong> on the number of rounds and escalate to a human when agents cannot agree.</li>
+</ul></div></details></section>
+<section class="sec-block" id="sec-3"><h2 class="sec">Orchestration and frameworks</h2><details class="item" id="x21"><summary><span><span class="qn">Q21</span>How do the popular frameworks approach multi-agent orchestration?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Approach</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LangGraph</strong></td>
+<td>Agents as nodes in a graph with shared state; supports supervisor and hierarchical designs, checkpoints and human-in-the-loop</td>
+</tr>
+<tr>
+<td><strong>CrewAI</strong></td>
+<td>Role-based “crews”: you define agents with roles and goals, assign them tasks and choose how they collaborate</td>
+</tr>
+<tr>
+<td><strong>AutoGen</strong></td>
+<td>Agents that collaborate through conversations, including group chats</td>
+</tr>
+<tr>
+<td><strong>OpenAI Agents SDK</strong></td>
+<td>Agents with explicit handoffs, guardrails and built-in tracing</td>
+</tr>
+</tbody>
+</table>
+<p>Framework features change quickly, so check the current documentation before choosing one.</p></div></details><details class="item" id="x22"><summary><span><span class="qn">Q22</span>What is a supervisor agent, and how would you design one?</span></summary><div class="answer"><p>A supervisor is an agent whose job is <strong>routing and coordination</strong>: it reads the request, decides which specialist agent should work on it, passes the context, checks the result and decides whether to continue, retry or finish.</p>
+<p>Design tips: give it a short list of clear specialist descriptions, a structured way to choose the next agent (or “finish”), a step limit, and a way to ask a human when it is unsure.</p></div></details><details class="item" id="x23"><summary><span><span class="qn">Q23</span>What is a shared state graph, and why is it useful?</span></summary><div class="answer"><p>In graph-based orchestration, every step (node) reads and updates a <strong>shared state object</strong>, and edges decide which node runs next, including conditional branches and loops. This makes the flow explicit, lets you checkpoint and resume, and makes it easier to see and test exactly how the system moved from input to output.</p></div></details><details class="item" id="x24"><summary><span><span class="qn">Q24</span>Event-driven vs sequential orchestration: what is the difference?</span></summary><div class="answer"><ul>
+<li><strong>Sequential or request-driven:</strong> one run follows one path from a user request to a result.</li>
+<li><strong>Event-driven:</strong> agents react to events (a new ticket, an alert, a file upload) and run asynchronously, often in the background, using queues or message brokers.</li>
+</ul>
+<p>Event-driven designs suit long-running, automated work and scale well, but need stronger monitoring and idempotent actions.</p></div></details></section>
+<section class="sec-block" id="sec-4"><h2 class="sec">Governance, safety and security</h2><details class="item" id="x25"><summary><span><span class="qn">Q25</span>What is “excessive agency”, and how do you prevent it?</span></summary><div class="answer"><p>Excessive agency is when an agent has <strong>more permissions, tools or autonomy than its task needs</strong>, so a mistake or an attack can cause serious damage (it is listed as a key risk in the OWASP guidance for LLM applications).</p>
+<p>Prevent it with:</p>
+<ul>
+<li><strong>least-privilege</strong> tools and credentials,</li>
+<li>narrow, specific tools instead of general ones,</li>
+<li><strong>approvals</strong> for high-impact actions,</li>
+<li>limits on spending, rate and scope,</li>
+<li>logging and the ability to roll back.</li>
+</ul></div></details><details class="item" id="x26"><summary><span><span class="qn">Q26</span>What is the difference between human-in-the-loop and human-on-the-loop?</span></summary><div class="answer"><ul>
+<li><strong>Human-in-the-loop:</strong> a person must <strong>approve or provide input</strong> at specific steps before the agent continues.</li>
+<li><strong>Human-on-the-loop:</strong> the agent acts on its own while a person <strong>monitors</strong> and can step in, pause or stop it.</li>
+</ul>
+<p>Use in-the-loop for risky, irreversible actions, and on-the-loop for lower-risk, high-volume work with good monitoring.</p></div></details><details class="item" id="x27"><summary><span><span class="qn">Q27</span>How should agents be given identity and permissions?</span></summary><div class="answer"><p>Treat each agent like a service account: give it its <strong>own identity</strong>, issue <strong>scoped, short-lived credentials</strong>, and apply <strong>role-based access</strong> so it can only reach the data and tools it needs. When an agent acts for a user, make sure it can never exceed that user’s own permissions, and log which agent did what on whose behalf.</p></div></details><details class="item" id="x28"><summary><span><span class="qn">Q28</span>What are the main security threats to agentic systems?</span></summary><div class="answer"><ul>
+<li><strong>Direct and indirect prompt injection:</strong> malicious instructions in user input or in content the agent reads.</li>
+<li><strong>Tool poisoning:</strong> a malicious or compromised tool or MCP server with misleading descriptions or harmful behavior.</li>
+<li><strong>Data leakage:</strong> an agent exposing sensitive data through its outputs or tool calls.</li>
+<li><strong>Privilege escalation</strong> through over-permissioned tools.</li>
+<li><strong>Agent-to-agent attacks:</strong> a compromised agent passing harmful instructions to others.</li>
+<li><strong>Supply-chain risk</strong> from third-party tools, models and plugins.</li>
+</ul></div></details><details class="item" id="x29"><summary><span><span class="qn">Q29</span>How do you make agent actions auditable?</span></summary><div class="answer"><p>Log every run with a <strong>trace ID</strong>, the goal, each model call, each tool call with arguments and results, approvals and the final outcome. Store logs securely and keep them for the required period. This supports debugging, incident investigation, compliance reviews and accountability (who or what decided and acted).</p></div></details><details class="item" id="x30"><summary><span><span class="qn">Q30</span>What is a kill switch or circuit breaker for agents?</span></summary><div class="answer"><p>It is a control that can <strong>stop or limit an agent quickly</strong> when something goes wrong: a manual stop, automatic limits on spending or number of actions, or a breaker that disables a tool after repeated failures or unusual behavior. Build it before you need it.</p></div></details><details class="item" id="x31"><summary><span><span class="qn">Q31</span>What governance practices should an organization put in place for agentic AI?</span></summary><div class="answer"><ul>
+<li>A clear <strong>owner and accountability</strong> for each agent.</li>
+<li><strong>Risk-based autonomy levels</strong> with approval rules.</li>
+<li>Review and testing before deployment, and <strong>continuous monitoring</strong> after.</li>
+<li><strong>Access control</strong> and data protection rules.</li>
+<li><strong>Audit logs</strong> and an incident-response plan.</li>
+<li>Compliance with relevant regulations and internal policies.</li>
+</ul></div></details></section>
+<section class="sec-block" id="sec-5"><h2 class="sec">Evaluation, production and use cases</h2><details class="item" id="x32"><summary><span><span class="qn">Q32</span>How do you evaluate an agentic system?</span></summary><div class="answer"><ul>
+<li><strong>Outcome:</strong> task success rate on a representative test set.</li>
+<li><strong>Process:</strong> correct tool use, sensible plans, number of steps and unnecessary loops.</li>
+<li><strong>Multi-agent behavior:</strong> quality of handoffs, duplicated work and coordination cost.</li>
+<li><strong>Safety:</strong> policy violations, unauthorized actions and prompt-injection resistance.</li>
+<li><strong>Cost and latency</strong> per task.</li>
+<li><strong>Human feedback</strong> and review of failed runs.</li>
+</ul>
+<p>Run each test several times, because outputs vary.</p></div></details><details class="item" id="x33"><summary><span><span class="qn">Q33</span>How do you make agentic systems reliable in production?</span></summary><div class="answer"><ul>
+<li><strong>Limits:</strong> step, time and cost budgets.</li>
+<li><strong>Retries with backoff</strong> and <strong>fallbacks</strong> (another tool, a simpler path, or a human).</li>
+<li><strong>Idempotent actions</strong> so retries do not repeat side effects.</li>
+<li><strong>Validation</strong> of inputs, outputs and tool arguments.</li>
+<li><strong>Checkpointing</strong> so long runs can resume.</li>
+<li><strong>Monitoring and alerting</strong> on success rate, cost and latency.</li>
+<li><strong>Gradual rollout</strong> with a human reviewing at first.</li>
+</ul></div></details><details class="item" id="x34"><summary><span><span class="qn">Q34</span>What is agentic RAG?</span></summary><div class="answer"><p>In agentic RAG, retrieval is something an agent <strong>decides and controls</strong>: it chooses whether to search, which source to use, rewrites the query, checks whether the results are good enough and searches again if not, and can combine several sources. It handles complex and multi-step questions better than a fixed one-shot retrieval pipeline, at the cost of more steps and latency.</p></div></details><details class="item" id="x35"><summary><span><span class="qn">Q35</span>What are computer-use and coding agents?</span></summary><div class="answer"><ul>
+<li><strong>Computer-use (browser) agents</strong> operate software the way a person does: they look at the screen, click, type and navigate to complete tasks in applications that have no API.</li>
+<li><strong>Coding agents</strong> read a codebase, plan changes, edit files, run tests and fix failures.</li>
+</ul>
+<p>Both are powerful but risky, so they need sandboxes, narrow permissions and review before changes are merged or actions are finalized.</p></div></details><details class="item" id="x36"><summary><span><span class="qn">Q36</span>What are some enterprise use cases of agentic AI?</span></summary><div class="answer"><ul>
+<li><strong>Customer support:</strong> resolving tickets, looking up orders, processing refunds within policy.</li>
+<li><strong>IT operations:</strong> triaging alerts and running routine fixes.</li>
+<li><strong>Software engineering:</strong> code generation, review and test fixing.</li>
+<li><strong>Finance and operations:</strong> invoice processing, reconciliation and report preparation.</li>
+<li><strong>Research and analysis:</strong> gathering, comparing and summarizing information.</li>
+<li><strong>Sales and marketing:</strong> lead research and personalized outreach drafts.</li>
+</ul></div></details><details class="item" id="x37"><summary><span><span class="qn">Q37</span>How do you measure the business value (ROI) of an agentic AI project?</span></summary><div class="answer"><p>Compare against the process <strong>before</strong> the agent: time saved per task, tasks completed per person, cost per task, error and rework rate, response time and customer or employee satisfaction. Subtract the full cost of running it (model usage, infrastructure, monitoring, human review and maintenance). Start with a pilot on a well-defined process and measure with a control group.</p></div></details><details class="item" id="x38"><summary><span><span class="qn">Q38</span>Design question: how would you build an agentic customer-support system?</span></summary><div class="answer"><ol>
+<li><strong>Scope and risk:</strong> decide which request types the system may handle (order status, returns) and which always go to a human (legal, large refunds).</li>
+<li><strong>Architecture:</strong> a <strong>router</strong> classifies the request, then <strong>specialist agents</strong> (orders, billing, knowledge base) handle it, coordinated by a supervisor.</li>
+<li><strong>Tools:</strong> read access to orders and a knowledge base through RAG, and write actions (refund, update address) only with scoped permissions and limits.</li>
+<li><strong>Guardrails:</strong> policy checks, spending limits, approval for sensitive actions and protection against prompt injection from customer messages.</li>
+<li><strong>Human handoff:</strong> escalate with a summary when confidence is low or the customer asks for a person.</li>
+<li><strong>Evaluation:</strong> a test set of real tickets, success rate, escalation rate, safety checks and customer satisfaction.</li>
+<li><strong>Operations:</strong> tracing, audit logs, cost and latency monitoring, and a gradual rollout.</li>
+</ol></div></details><details class="item" id="x39"><summary><span><span class="qn">Q39</span>What are the current limitations and open challenges of agentic AI?</span></summary><div class="answer"><ul>
+<li><strong>Reliability on long tasks</strong>, because small errors compound over many steps.</li>
+<li><strong>Cost and latency</strong> of multi-step runs.</li>
+<li><strong>Evaluation</strong> is harder than for single responses.</li>
+<li><strong>Security</strong> risks such as prompt injection and over-permissioned tools.</li>
+<li><strong>Trust and accountability</strong> when agents act autonomously.</li>
+<li><strong>Integration</strong> with legacy systems and messy real-world data.</li>
+</ul></div></details></section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

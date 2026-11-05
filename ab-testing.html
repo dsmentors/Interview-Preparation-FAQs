@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A/B Testing Interview Prep</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg></span><h1>A/B Testing Interview Prep</h1></div>
+<p class="sub">41 questions</p>
+<div class="roles"><a class="role" href="index.html#role=da">Data Analytics</a><a class="role" href="index.html#role=ds">Data Science</a><a class="role alt" href="index.html#role=aiml">AI/ML</a><a class="role alt" href="index.html#role=ba">Business Analyst</a></div>
+<div class="intro"><blockquote><p>A/B testing interview questions: experiment fundamentals, statistical foundations, design and execution, analysis and interpretation, advanced topics (Bayesian tests, bandits, CUPED) and scenario questions.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<nav class="chips"><a href="#sec-0">A/B testing fundamentals <small>8</small></a><a href="#sec-1">Statistical foundations <small>8</small></a><a href="#sec-2">Design and execution <small>8</small></a><a href="#sec-3">Analysis and interpretation <small>6</small></a><a href="#sec-4">Advanced topics <small>5</small></a><a href="#sec-5">Scenarios and design questions <small>6</small></a></nav>
+<section class="sec-block" id="sec-0"><h2 class="sec">A/B testing fundamentals</h2><details class="item" id="b1"><summary><span><span class="qn">Q1</span>What is A/B testing, and when do you use it?</span></summary><div class="answer"><p>A/B testing is a <strong>controlled experiment</strong> in which users are randomly split into two (or more) groups: the <strong>control (A)</strong> sees the current version and the <strong>treatment (B)</strong> sees a change. You then compare a chosen metric between the groups to decide whether the change <strong>causes</strong> an improvement.</p>
+<p>Use it to decide whether to launch changes such as a new button, a page layout, a pricing page, an email subject line, a recommendation algorithm or an onboarding flow. Because of random assignment, differences in the metric can be attributed to the change rather than to other factors.</p></div></details><details class="item" id="b2"><summary><span><span class="qn">Q2</span>What are the key terms in an A/B test?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Control</strong></td>
+<td>The existing version (the baseline)</td>
+</tr>
+<tr>
+<td><strong>Treatment / variant</strong></td>
+<td>The new version being tested</td>
+</tr>
+<tr>
+<td><strong>Hypothesis</strong></td>
+<td>A testable statement of what you expect to happen and why</td>
+</tr>
+<tr>
+<td><strong>Primary metric</strong></td>
+<td>The main measure of success (for example conversion rate)</td>
+</tr>
+<tr>
+<td><strong>Guardrail metrics</strong></td>
+<td>Metrics that must not get worse (for example page load time, refunds)</td>
+</tr>
+<tr>
+<td><strong>Randomization unit</strong></td>
+<td>What is randomly assigned: user, session, device, account or store</td>
+</tr>
+<tr>
+<td><strong>Significance level (α)</strong></td>
+<td>The false positive rate you accept, usually 5%</td>
+</tr>
+<tr>
+<td><strong>Power (1 − β)</strong></td>
+<td>The chance of detecting a real effect, usually 80%</td>
+</tr>
+<tr>
+<td><strong>MDE</strong></td>
+<td>The Minimum Detectable Effect: the smallest change you care to detect</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="b3"><summary><span><span class="qn">Q3</span>What are the steps in running an A/B test?</span></summary><div class="answer"><ol>
+<li><strong>Define the goal and the hypothesis</strong> (for example “a shorter checkout form will increase completed purchases”).</li>
+<li><strong>Choose metrics:</strong> one primary, a few secondary and guardrail metrics.</li>
+<li><strong>Decide the randomization unit</strong> and the population to include.</li>
+<li><strong>Calculate the sample size</strong> and the duration (using baseline, MDE, α and power).</li>
+<li><strong>Run the A/A checks</strong> and the setup validation (tracking works, groups are balanced).</li>
+<li><strong>Launch and monitor</strong> for technical problems, without making decisions early.</li>
+<li><strong>Analyze</strong> after the planned sample is reached: check validity, then the statistics.</li>
+<li><strong>Decide and document:</strong> launch, iterate or stop, and record what you learned.</li>
+</ol></div></details><details class="item" id="b4"><summary><span><span class="qn">Q4</span>How do you write the null and alternative hypotheses for an A/B test?</span></summary><div class="answer"><ul>
+<li><strong>Null hypothesis (H0):</strong> there is <strong>no difference</strong> between control and treatment (for example conversion rates are equal).</li>
+<li><strong>Alternative hypothesis (H1):</strong> there <strong>is a difference</strong> (two-sided), or the treatment is better (one-sided).</li>
+</ul>
+<pre><code>H0: conversion_B = conversion_A
+H1: conversion_B != conversion_A
+</code></pre>
+<p>You never “prove” H1. You decide whether the data is <strong>surprising enough under H0</strong> (small p-value) to reject it.</p></div></details><details class="item" id="b5"><summary><span><span class="qn">Q5</span>What are primary, secondary and guardrail metrics, and how do you choose them?</span></summary><div class="answer"><ul>
+<li><strong>Primary metric:</strong> the one metric that decides the test. It should reflect the goal of the change, be sensitive enough to move, and be measurable within the test period (for example checkout conversion rate).</li>
+<li><strong>Secondary metrics:</strong> help explain <strong>why</strong> the primary moved (add-to-cart rate, average order value).</li>
+<li><strong>Guardrail metrics:</strong> protect against harm (page load time, error rate, unsubscribe rate, refunds, customer support contacts).</li>
+</ul>
+<p>Pick them <strong>before</strong> the test starts, to avoid searching for a metric that “wins” afterwards.</p></div></details><details class="item" id="b6"><summary><span><span class="qn">Q6</span>What is the randomization unit, and why does it matter?</span></summary><div class="answer"><p>It is the entity that is <strong>randomly assigned</strong> to a group: user, session, device, account, store or region. Choose it to match how the change is experienced:</p>
+<ul>
+<li>Use the <strong>user</strong> for most product changes, so one person always sees the same version.</li>
+<li>Avoid assigning by <strong>session</strong> when users return often (a person could see both versions).</li>
+<li>Use a <strong>cluster</strong> (for example a city or store) when users influence each other.</li>
+</ul>
+<p>Analyze at the <strong>same level you randomized</strong>. If you randomize by user but analyze by page view, the observations are not independent, and the p-values will be too optimistic.</p></div></details><details class="item" id="b7"><summary><span><span class="qn">Q7</span>What is the difference between an A/B test, an A/A test and a multivariate test?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Test</th>
+<th>What it does</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A/B test</strong></td>
+<td>Compares one control with one (or a few) treatment versions</td>
+<td>Deciding whether a change works</td>
+</tr>
+<tr>
+<td><strong>A/A test</strong></td>
+<td>Compares <strong>identical</strong> versions</td>
+<td>Validating the experiment setup: the false positive rate should be about α, and the groups should be balanced</td>
+</tr>
+<tr>
+<td><strong>Multivariate test (MVT)</strong></td>
+<td>Tests <strong>combinations of several elements</strong> at once (headline × image × button)</td>
+<td>Finding the best combination, and interactions, but needs much more traffic</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="b8"><summary><span><span class="qn">Q8</span>When should you not run an A/B test?</span></summary><div class="answer"><ul>
+<li><strong>Not enough traffic or events</strong> to reach the required sample size in a reasonable time.</li>
+<li><strong>The effect takes too long to show</strong> (for example long-term retention for annual contracts).</li>
+<li><strong>Ethical or legal reasons</strong> (harming users, price discrimination, health matters).</li>
+<li><strong>The change is obviously required</strong> (bug fixes, legal compliance).</li>
+<li><strong>Strong network effects</strong> that make a simple split invalid.</li>
+<li><strong>No clear metric or hypothesis.</strong></li>
+</ul>
+<p>In these cases consider qualitative research, quasi-experiments or observational analysis.</p></div></details></section>
+<section class="sec-block" id="sec-1"><h2 class="sec">Statistical foundations</h2><details class="item" id="b9"><summary><span><span class="qn">Q9</span>What is a p-value?</span></summary><div class="answer"><p>The p-value is the <strong>probability of seeing a result at least as extreme as the one observed, if the null hypothesis were true</strong> (there is really no difference).</p>
+<p>A small p-value (below α, usually 0.05) means the data would be unlikely without a real effect, so you reject H0. It is <strong>not</strong> the probability that H0 is true, and <strong>not</strong> the probability that the result is a fluke. It also says nothing about the <strong>size</strong> or the importance of the effect.</p></div></details><details class="item" id="b10"><summary><span><span class="qn">Q10</span>What are the significance level (alpha), Type I error, Type II error and power?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Meaning</th>
+<th>Typical value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>α (significance level)</strong></td>
+<td>Probability of a <strong>Type I error</strong>: declaring an effect when there is none (false positive)</td>
+<td>5%</td>
+</tr>
+<tr>
+<td><strong>β</strong></td>
+<td>Probability of a <strong>Type II error</strong>: missing a real effect (false negative)</td>
+<td>20%</td>
+</tr>
+<tr>
+<td><strong>Power (1 − β)</strong></td>
+<td>Probability of detecting a real effect of the planned size</td>
+<td>80%</td>
+</tr>
+</tbody>
+</table>
+<p>You cannot reduce both errors without increasing the sample size, so the sample size is how you balance them.</p></div></details><details class="item" id="b11"><summary><span><span class="qn">Q11</span>What is the Minimum Detectable Effect (MDE), and how does it affect the sample size?</span></summary><div class="answer"><p>The MDE is the <strong>smallest effect that you want your test to reliably detect</strong>, based on what would matter to the business (for example +1 percentage point in conversion). The <strong>smaller the MDE, the larger the sample size</strong> needed. Cutting the MDE in half roughly <strong>quadruples</strong> the required sample.</p>
+<p>Choose it from business value and cost, not from what you hope to see.</p></div></details><details class="item" id="b12"><summary><span><span class="qn">Q12</span>What is a confidence interval, and how do you interpret it in an A/B test?</span></summary><div class="answer"><p>A 95% confidence interval for the difference between B and A gives a <strong>range of plausible values for the true effect</strong>. If you repeated the experiment many times, about 95% of intervals built this way would contain the true difference.</p>
+<p><strong>Example:</strong> a lift of +1.0 percentage points with a 95% interval of +0.15 to +1.85 means the true lift is plausibly between those values. If the interval <strong>excludes zero</strong>, the result is statistically significant at 5%. It also shows the <strong>uncertainty</strong> in the size of the effect, which a p-value does not.</p></div></details><details class="item" id="b13"><summary><span><span class="qn">Q13</span>Which statistical test should you use for which type of metric?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Metric type</th>
+<th>Example</th>
+<th>Typical test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Proportion / conversion</strong></td>
+<td>Conversion rate, click rate</td>
+<td>Two-proportion <strong>z-test</strong> or chi-square test</td>
+</tr>
+<tr>
+<td><strong>Mean of a continuous metric</strong></td>
+<td>Revenue per user, time on site</td>
+<td><strong>Welch’s t-test</strong></td>
+</tr>
+<tr>
+<td><strong>Skewed or non-normal metric</strong></td>
+<td>Revenue (heavy tail), session length</td>
+<td>Mann-Whitney U test, <strong>bootstrap</strong>, or a transformation</td>
+</tr>
+<tr>
+<td><strong>Ratio metrics</strong></td>
+<td>Click-through rate computed as clicks per impression</td>
+<td><strong>Delta method</strong> or bootstrap</td>
+</tr>
+<tr>
+<td><strong>Time to event</strong></td>
+<td>Time to churn</td>
+<td>Survival analysis</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="b14"><summary><span><span class="qn">Q14</span>What is the difference between statistical significance and practical significance?</span></summary><div class="answer"><ul>
+<li><strong>Statistical significance:</strong> the observed difference is unlikely to be random noise.</li>
+<li><strong>Practical significance:</strong> the difference is <strong>large enough to matter</strong> to the business, considering cost, risk and effort.</li>
+</ul>
+<p>With a huge sample, even a tiny, useless difference can be statistically significant. Always look at the <strong>effect size and the confidence interval</strong>, and compare it with a predefined practical threshold.</p></div></details><details class="item" id="b15"><summary><span><span class="qn">Q15</span>What is the multiple comparisons problem, and how do you deal with it?</span></summary><div class="answer"><p>If you test many metrics, segments or variants, the chance of at least one <strong>false positive</strong> grows quickly: with 20 independent tests at α = 5%, you expect about one false “win” by chance.</p>
+<p>Ways to handle it:</p>
+<ul>
+<li>Decide <strong>one primary metric</strong> in advance.</li>
+<li><strong>Bonferroni correction:</strong> use α / m for m tests (simple but conservative).</li>
+<li><strong>Benjamini-Hochberg:</strong> controls the <strong>false discovery rate</strong>, less strict.</li>
+<li>Treat unplanned segment findings as <strong>hypotheses to test again</strong>, not as results.</li>
+</ul></div></details><details class="item" id="b16"><summary><span><span class="qn">Q16</span>How do you calculate the sample size for an A/B test?</span></summary><div class="answer"><p>You need the <strong>baseline rate, the MDE, α and power</strong>. For two proportions, the sample size per group is approximately:</p>
+<pre><code>n = (z_alpha/2 + z_beta)^2 x [p1(1 - p1) + p2(1 - p2)] / (p2 - p1)^2
+</code></pre>
+<p><strong>Example:</strong> baseline conversion 10%, you want to detect an increase to 11%, α = 5% (two-sided) and power = 80%. This gives about <strong>14,700 users per group</strong> (about 29,500 in total).</p>
+<pre><code class="language-python">from statsmodels.stats.proportion import proportion_effectsize
+from statsmodels.stats.power import NormalIndPower
+
+effect = proportion_effectsize(0.11, 0.10)
+n = NormalIndPower().solve_power(effect_size=effect, alpha=0.05, power=0.8,
+                                 ratio=1, alternative=&quot;two-sided&quot;)
+print(round(n))        # about 14,700 per group
+</code></pre></div></details></section>
+<section class="sec-block" id="sec-2"><h2 class="sec">Design and execution</h2><details class="item" id="b17"><summary><span><span class="qn">Q17</span>How long should an A/B test run?</span></summary><div class="answer"><p>Run it until it reaches the <strong>planned sample size</strong>, and for <strong>at least one or two full weekly cycles</strong>, so that weekday and weekend behavior are both included. Estimate the duration as:</p>
+<pre><code>days = required total sample size / eligible users per day
+</code></pre>
+<p>Do not stop early just because the result looks significant, and do not extend a test indefinitely hoping for significance. Avoid unusual periods (holidays, big campaigns) unless they are part of the question.</p></div></details><details class="item" id="b18"><summary><span><span class="qn">Q18</span>What is the peeking problem, and how do you avoid it?</span></summary><div class="answer"><p>Peeking means <strong>checking the p-value repeatedly during the test and stopping as soon as it looks significant</strong>. A fixed-sample test assumes one look at the end, so repeated looks greatly <strong>increase the false positive rate</strong> (even to 20% or more).</p>
+<p>Solutions:</p>
+<ul>
+<li>Decide the <strong>sample size and the end date in advance</strong> and analyze only then.</li>
+<li>Use <strong>sequential testing</strong> methods (for example alpha-spending or SPRT), designed for continuous monitoring.</li>
+<li>Use a <strong>Bayesian</strong> approach with a clear decision rule, and stay disciplined about it.</li>
+</ul></div></details><details class="item" id="b19"><summary><span><span class="qn">Q19</span>What is Sample Ratio Mismatch (SRM), and how do you detect it?</span></summary><div class="answer"><p>SRM happens when the <strong>actual split of users differs from the planned split</strong> (for example 50/50 planned, but 50.9k vs 49.1k observed). It is a sign of a <strong>bug</strong> in assignment, logging, redirects or filtering, which makes the results untrustworthy.</p>
+<p>Check it with a <strong>chi-square goodness-of-fit test</strong>:</p>
+<pre><code class="language-python">from scipy.stats import chisquare
+
+observed = [50900, 49100]
+expected = [50000, 50000]
+print(chisquare(observed, f_exp=expected).pvalue)   # a very small p-value (for example &lt; 0.001) signals SRM
+</code></pre>
+<p>If SRM is present, <strong>find and fix the cause</strong> before interpreting any metric.</p></div></details><details class="item" id="b20"><summary><span><span class="qn">Q20</span>What are the novelty effect and the primacy effect?</span></summary><div class="answer"><ul>
+<li><strong>Novelty effect:</strong> users react to something new, so the treatment looks better at first, then the effect fades.</li>
+<li><strong>Primacy effect:</strong> users are used to the old experience and need time to adapt, so the treatment looks worse at first, then improves.</li>
+</ul>
+<p>Run the test long enough for behavior to settle, look at the effect <strong>over time</strong> (day by day, new vs returning users), and consider a long-term holdout for important changes.</p></div></details><details class="item" id="b21"><summary><span><span class="qn">Q21</span>What are network effects or interference, and how do you handle them?</span></summary><div class="answer"><p>A standard A/B test assumes that one user’s assignment <strong>does not affect other users</strong> (no interference). This fails in <strong>social networks, marketplaces, ride-sharing and messaging</strong>, where users interact: if treated drivers take rides from control drivers, the groups influence each other and the measured effect is biased.</p>
+<p>Alternatives:</p>
+<ul>
+<li><strong>Cluster randomization:</strong> assign whole groups (friend clusters, cities, stores).</li>
+<li><strong>Geo experiments:</strong> test in some regions and compare them with others.</li>
+<li><strong>Switchback tests:</strong> switch the whole system between A and B over alternating time periods.</li>
+</ul></div></details><details class="item" id="b22"><summary><span><span class="qn">Q22</span>What is CUPED, and why is it used?</span></summary><div class="answer"><p>CUPED (Controlled-experiment Using Pre-Experiment Data) is a <strong>variance reduction</strong> technique. It adjusts each user’s metric using a <strong>related pre-experiment value</strong> (for example last month’s spend):</p>
+<pre><code>Y_adjusted = Y - theta x (X - mean(X)),   theta = cov(X, Y) / var(X)
+</code></pre>
+<p>Because the pre-experiment value explains part of the user-to-user variation, the adjusted metric is less noisy. You get <strong>smaller confidence intervals, or the same power with a smaller sample</strong>, without bias, because X is measured before the treatment.</p></div></details><details class="item" id="b23"><summary><span><span class="qn">Q23</span>How should traffic be allocated, and how do you roll out safely?</span></summary><div class="answer"><p>A <strong>50/50 split</strong> gives the most statistical power for two groups. For risky changes, <strong>ramp up gradually</strong> (for example 1% → 5% → 20% → 50%), monitoring technical and guardrail metrics at each step before collecting the final test data. Use <strong>feature flags</strong> to switch the change on and off instantly, and keep a small <strong>holdout</strong> group to measure long-term effects after the launch.</p></div></details><details class="item" id="b24"><summary><span><span class="qn">Q24</span>How do you analyze segments and heterogeneous effects?</span></summary><div class="answer"><p>The overall effect can hide big differences between groups (new vs returning users, mobile vs desktop, countries). Plan a <strong>small number of segments in advance</strong> and check them, but remember that each additional segment raises the risk of false positives (multiple comparisons) and has a smaller sample. Treat unexpected segment results as <strong>ideas for follow-up tests</strong>, and check for <strong>Simpson’s paradox</strong> when group sizes differ between A and B.</p></div></details></section>
+<section class="sec-block" id="sec-3"><h2 class="sec">Analysis and interpretation</h2><details class="item" id="b25"><summary><span><span class="qn">Q25</span>How do you analyze the result of a conversion-rate A/B test?</span></summary><div class="answer"><p>Suppose A converted 1,000 of 10,000 users (10%) and B converted 1,100 of 10,000 (11%):</p>
+<pre><code class="language-python">from statsmodels.stats.proportion import proportions_ztest
+
+z, p = proportions_ztest(count=[1100, 1000], nobs=[10000, 10000])
+print(z, p)            # z about 2.31, p about 0.021
+</code></pre>
+<ul>
+<li><strong>Absolute lift:</strong> +1.0 percentage points. <strong>Relative lift:</strong> +10%.</li>
+<li><strong>p-value 0.021 &lt; 0.05:</strong> statistically significant.</li>
+<li><strong>95% confidence interval for the difference:</strong> about +0.15 to +1.85 percentage points.</li>
+</ul>
+<p>Before concluding, check that the test was valid (no SRM, planned sample reached), that the guardrail metrics are healthy, and that the lift is large enough to matter.</p></div></details><details class="item" id="b26"><summary><span><span class="qn">Q26</span>What does it mean if the test result is not significant?</span></summary><div class="answer"><p>It means you <strong>could not rule out “no difference”</strong>, which is <strong>not the same as proving there is no effect</strong>. Check the <strong>confidence interval</strong>:</p>
+<ul>
+<li>A <strong>narrow interval around zero</strong> suggests that any effect is small, so the change probably does not matter.</li>
+<li>A <strong>wide interval</strong> suggests the test was <strong>underpowered</strong> (too small a sample or too little time), and the result is inconclusive.</li>
+</ul>
+<p>Then decide: ship if the change has other benefits (simpler, cheaper), iterate on the idea, or run a larger test.</p></div></details><details class="item" id="b27"><summary><span><span class="qn">Q27</span>The primary metric improved but a guardrail metric got worse. What do you do?</span></summary><div class="answer"><p>Do not just ship. First check that both results are <strong>real</strong> (valid test, no SRM, significant). Then <strong>quantify the trade-off</strong>: for example conversion up 2% but page load time up 300 ms, or revenue up while customer complaints rise. Discuss with stakeholders using the business impact on both sides, look for a <strong>variant that keeps the benefit without the harm</strong>, and document the decision.</p></div></details><details class="item" id="b28"><summary><span><span class="qn">Q28</span>A test shows a significant lift after only two days. Should you ship?</span></summary><div class="answer"><p>No, not on that evidence alone. A fast “win” may come from <strong>peeking, a novelty effect, an incomplete weekly cycle, or small samples</strong>. Continue until the <strong>planned sample size and duration</strong> are reached, check the effect over time, and confirm the test is valid. If the result still holds at the planned end, then decide.</p></div></details><details class="item" id="b29"><summary><span><span class="qn">Q29</span>What are the most common mistakes in A/B testing?</span></summary><div class="answer"><ul>
+<li><strong>Peeking</strong> and stopping early.</li>
+<li><strong>Underpowered tests</strong> (too small a sample or too short a duration).</li>
+<li><strong>Too many metrics or segments</strong>, and cherry-picking the one that “won”.</li>
+<li><strong>Ignoring SRM</strong> and other validity checks.</li>
+<li><strong>Changing the test midway</strong> (new traffic rules, new variants).</li>
+<li><strong>Wrong unit of analysis</strong> (randomize by user, analyze by page view).</li>
+<li><strong>Ignoring seasonality and weekly cycles.</strong></li>
+<li><strong>Confusing statistical and practical significance.</strong></li>
+<li><strong>Not documenting</strong> the results and the learning.</li>
+</ul></div></details><details class="item" id="b30"><summary><span><span class="qn">Q30</span>How do you measure long-term effects after an A/B test?</span></summary><div class="answer"><p>Short tests may not show effects such as retention, lifetime value or changing user habits. Options: keep a <strong>long-term holdout group</strong> that never receives the change, extend key metrics on the original groups for weeks or months, use <strong>surrogate (leading) metrics</strong> that predict long-term outcomes, and run <strong>follow-up experiments</strong>.</p></div></details></section>
+<section class="sec-block" id="sec-4"><h2 class="sec">Advanced topics</h2><details class="item" id="b31"><summary><span><span class="qn">Q31</span>What is Bayesian A/B testing, and how does it differ from the frequentist approach?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Frequentist</th>
+<th>Bayesian</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Question answered</td>
+<td>“If there were no real difference, how surprising is this data?” (p-value)</td>
+<td>“Given the data, <strong>how likely is B better than A?</strong>”</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>p-value, confidence interval</td>
+<td><strong>Posterior probability</strong> and a credible interval</td>
+</tr>
+<tr>
+<td>Decision rule</td>
+<td>Reject H0 if p &lt; α</td>
+<td>For example ship if P(B &gt; A) &gt; 95%, or if the expected loss is small</td>
+</tr>
+<tr>
+<td>Stopping</td>
+<td>Fixed sample size (or sequential corrections)</td>
+<td>More natural, but still needs a clear rule</td>
+</tr>
+<tr>
+<td>Prior knowledge</td>
+<td>Not used</td>
+<td>Included as a prior distribution</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python">import numpy as np
+
+rng = np.random.default_rng(0)
+a = rng.beta(1 + 1000, 1 + 9000, 100_000)     # posterior for A (Beta(1,1) prior)
+b = rng.beta(1 + 1100, 1 + 8900, 100_000)     # posterior for B
+print(&quot;P(B &gt; A) =&quot;, (b &gt; a).mean())            # about 0.99
+</code></pre>
+<p>Bayesian results are easier to explain to business teams, but they depend on the chosen prior.</p></div></details><details class="item" id="b32"><summary><span><span class="qn">Q32</span>What is a multi-armed bandit, and how is it different from an A/B test?</span></summary><div class="answer"><p>A bandit algorithm <strong>adjusts the traffic split as data arrives</strong>, sending more users to the variants that perform better, which balances <strong>exploration</strong> (learning) and <strong>exploitation</strong> (earning). A common method is <strong>Thompson sampling</strong>.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>A/B test</th>
+<th>Multi-armed bandit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Traffic split</td>
+<td>Fixed</td>
+<td>Adaptive</td>
+</tr>
+<tr>
+<td>Goal</td>
+<td>Learn the effect precisely and reliably</td>
+<td>Maximize reward during the experiment</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Product decisions needing clear evidence</td>
+<td>Short-lived options (headlines, promotions), many variants</td>
+</tr>
+<tr>
+<td>Weakness</td>
+<td>Some users get the worse variant for the whole test</td>
+<td>Harder to get unbiased effect estimates and confidence intervals</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="b33"><summary><span><span class="qn">Q33</span>What is sequential testing?</span></summary><div class="answer"><p>Sequential testing methods (SPRT, group sequential designs, alpha-spending functions, always-valid p-values) allow you to <strong>look at the results repeatedly during a test and stop early</strong> while keeping the false positive rate under control. They are useful when decisions must be made quickly or when a harmful variant should be stopped early, at the cost of a somewhat larger sample if the test runs to the end.</p></div></details><details class="item" id="b34"><summary><span><span class="qn">Q34</span>What can you do if you cannot randomize (quasi-experiments)?</span></summary><div class="answer"><p>When random assignment is impossible (a policy change, a regional launch, a past event), use methods that estimate causal effects from observational data:</p>
+<ul>
+<li><strong>Difference-in-differences:</strong> compare the change over time in the affected group with the change in a similar unaffected group.</li>
+<li><strong>Matching or propensity scores:</strong> compare similar users who did and did not receive the change.</li>
+<li><strong>Synthetic control:</strong> build a weighted combination of control units that imitates the treated unit before the change.</li>
+<li><strong>Regression discontinuity and instrumental variables</strong> for particular situations.</li>
+</ul>
+<p>These rely on stronger assumptions than a randomized test, so the conclusions need more caution.</p></div></details><details class="item" id="b35"><summary><span><span class="qn">Q35</span>What are feature flags and an experimentation platform?</span></summary><div class="answer"><ul>
+<li><strong>Feature flags</strong> let you turn a feature on or off for specific users <strong>without deploying new code</strong>, which makes gradual rollouts and quick rollbacks easy.</li>
+<li>An <strong>experimentation platform</strong> (built in-house, or tools such as Optimizely, Statsig, Eppo or LaunchDarkly) handles <strong>assignment, logging, metric calculation, statistical analysis and reporting</strong> consistently for all teams.</li>
+</ul>
+<p>A good platform prevents common mistakes by making validity checks (SRM, power, guardrails) automatic.</p></div></details></section>
+<section class="sec-block" id="sec-5"><h2 class="sec">Scenarios and design questions</h2><details class="item" id="b36"><summary><span><span class="qn">Q36</span>Design an A/B test for a new checkout button color or design.</span></summary><div class="answer"><ol>
+<li><strong>Hypothesis:</strong> a more visible button will increase the checkout completion rate.</li>
+<li><strong>Primary metric:</strong> checkout completion rate (users who complete a purchase / users who reach checkout). <strong>Secondary:</strong> click-through on the button, average order value. <strong>Guardrails:</strong> page load time, error rate, refund rate.</li>
+<li><strong>Unit:</strong> the user (so one person always sees the same version). <strong>Population:</strong> users who reach the checkout page.</li>
+<li><strong>Sample size:</strong> baseline rate, MDE (for example +1 point), α = 5%, power = 80%, which gives the required users per group, and a duration of at least 1 to 2 full weeks.</li>
+<li><strong>Run checks:</strong> an A/A or setup check, and an SRM check.</li>
+<li><strong>Analyze</strong> at the end: z-test and confidence interval, guardrails, segments planned in advance.</li>
+<li><strong>Decide</strong> with the business impact in mind and document the result.</li>
+</ol></div></details><details class="item" id="b37"><summary><span><span class="qn">Q37</span>How would you test a new recommendation algorithm?</span></summary><div class="answer"><p>Randomize <strong>users</strong> into the old and new algorithms. Use a primary metric tied to value (click-through rate, conversion or revenue per user), with guardrails (diversity, latency, complaints). Because it may change <strong>long-term behavior</strong>, run it long enough, check novelty effects, and keep a holdout. Do offline evaluation first to screen candidates, but rely on the online test for the final decision, since offline metrics often do not match real user behavior.</p></div></details><details class="item" id="b38"><summary><span><span class="qn">Q38</span>How would you test a price change?</span></summary><div class="answer"><p>Pricing tests need care: randomizing prices for <strong>the same customers</strong> can seem unfair and can cause trust or legal problems. Options are to randomize <strong>by region or new customers</strong>, or to test with <strong>time-based or cohort designs</strong>. Track <strong>revenue and profit per visitor</strong> (not only conversion), plus long-term effects like churn and customer satisfaction, because a higher price often reduces conversion but raises margin.</p></div></details><details class="item" id="b39"><summary><span><span class="qn">Q39</span>Conversion in B is 11% versus 10% in A, but with only 500 users per group. What do you conclude?</span></summary><div class="answer"><p>With 500 users per group, the standard error is large (about 1.9 percentage points), so a 1-point difference is <strong>well within random noise</strong> (the p-value is about 0.6). The test is <strong>underpowered</strong>, since detecting a 1-point lift needs about 14,700 users per group. The right conclusion is “<strong>inconclusive</strong>”, not “B is better” or “no effect”: continue to the required sample size or run a larger test.</p></div></details><details class="item" id="b40"><summary><span><span class="qn">Q40</span>An A/B test shows a 2% lift for the overall population, but the lift is negative for new users. What would you do?</span></summary><div class="answer"><p>First check that the segment finding is <strong>real</strong> (sample size, planned segment, multiple comparisons, SRM). If it holds, understand <strong>why</strong> new users react differently (for example the change confuses people who have not seen the old design). Options: <strong>launch only for the segments that benefit</strong>, improve the design for new users and test again, or monitor the long-term effect. Make the decision using the <strong>size of each segment</strong> and its <strong>business value</strong>.</p></div></details><details class="item" id="b41"><summary><span><span class="qn">Q41</span>How do you explain A/B test results to a non-technical stakeholder?</span></summary><div class="answer"><p>Lead with the <strong>decision and the business impact</strong>, in plain language:</p>
+<blockquote>
+<p>“Version B increased purchases by about 10% (from 10.0% to 11.0%). We are 95% confident the real improvement is between 1.5% and 18.5% in relative terms, so it is very likely positive. Page speed and refunds were not affected. We recommend launching to everyone and keeping a small holdout to confirm the long-term effect.”</p>
+</blockquote>
+<p>Use a simple chart, avoid jargon (explain p-values as “the chance this was just luck”), and state any limits or risks honestly.</p></div></details></section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

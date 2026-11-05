@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MLOps Interview Prep</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></span><h1>MLOps Interview Prep</h1></div>
+<p class="sub">40 questions</p>
+<div class="roles"><a class="role" href="index.html#role=aiml">AI/ML</a><a class="role" href="index.html#role=se">Software Engineer (AI/ML)</a><a class="role alt" href="index.html#role=ds">Data Science</a></div>
+<div class="intro"><blockquote><p>MLOps interview questions: fundamentals, data and experiment management, pipelines and CI/CD, deployment and serving, monitoring and drift, and governance, with a full end-to-end design question.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<nav class="chips"><a href="#sec-0">MLOps fundamentals <small>6</small></a><a href="#sec-1">Data and experiment management <small>7</small></a><a href="#sec-2">Pipelines, testing and CI/CD <small>6</small></a><a href="#sec-3">Deployment and serving <small>8</small></a><a href="#sec-4">Monitoring and maintenance <small>7</small></a><a href="#sec-5">Governance, scale and design <small>6</small></a></nav>
+<section class="sec-block" id="sec-0"><h2 class="sec">MLOps fundamentals</h2><details class="item" id="m1"><summary><span><span class="qn">Q1</span>What is MLOps, and why is it needed?</span></summary><div class="answer"><p>MLOps (Machine Learning Operations) is the set of practices, tools and culture for <strong>taking machine learning models from experiments to reliable production systems and keeping them working</strong>. It combines machine learning, software engineering (DevOps) and data engineering.</p>
+<p>It is needed because a model that works in a notebook is only a small part of a real ML system. In production you must also handle data pipelines, reproducibility, deployment, monitoring, retraining, security and collaboration between data scientists, engineers and operations teams.</p></div></details><details class="item" id="m2"><summary><span><span class="qn">Q2</span>What is the difference between DevOps and MLOps?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>DevOps</th>
+<th>MLOps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What is versioned and tested</td>
+<td>Code</td>
+<td>Code, <strong>data and models</strong></td>
+</tr>
+<tr>
+<td>Why things break</td>
+<td>Code changes</td>
+<td>Code changes, <strong>data changes and model decay</strong></td>
+</tr>
+<tr>
+<td>Testing</td>
+<td>Unit and integration tests</td>
+<td>The same, plus data validation and model evaluation</td>
+</tr>
+<tr>
+<td>Pipeline</td>
+<td>CI/CD</td>
+<td>CI/CD plus <strong>continuous training (CT)</strong></td>
+</tr>
+<tr>
+<td>Monitoring</td>
+<td>Latency, errors, uptime</td>
+<td>The same, plus <strong>data drift, prediction quality and fairness</strong></td>
+</tr>
+<tr>
+<td>Reproducibility</td>
+<td>Same code gives same build</td>
+<td>Needs the same code, data, parameters and environment</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="m3"><summary><span><span class="qn">Q3</span>What are the stages of the machine learning lifecycle?</span></summary><div class="answer"><ol>
+<li><strong>Problem definition:</strong> the business goal and the success metric.</li>
+<li><strong>Data collection and preparation:</strong> ingestion, cleaning, labeling, validation.</li>
+<li><strong>Feature engineering.</strong></li>
+<li><strong>Model training and experimentation:</strong> tracking runs, tuning.</li>
+<li><strong>Evaluation and validation:</strong> offline metrics, fairness and robustness checks.</li>
+<li><strong>Deployment:</strong> packaging and releasing the model as a service or batch job.</li>
+<li><strong>Monitoring:</strong> system health, data quality, model performance.</li>
+<li><strong>Retraining and improvement,</strong> which feeds back into the earlier stages.</li>
+</ol></div></details><details class="item" id="m4"><summary><span><span class="qn">Q4</span>Why do many ML projects fail to reach production?</span></summary><div class="answer"><ul>
+<li><strong>Unclear business goal</strong> or success metric.</li>
+<li><strong>Poor data quality or availability</strong> in production compared with the experiment.</li>
+<li><strong>Notebook code</strong> that is not reproducible, tested or deployable.</li>
+<li><strong>Training-serving skew:</strong> features computed differently offline and online.</li>
+<li><strong>No monitoring,</strong> so model decay goes unnoticed.</li>
+<li><strong>Lack of ownership</strong> between data science, engineering and operations.</li>
+<li><strong>Cost, latency or compliance</strong> requirements discovered too late.</li>
+</ul></div></details><details class="item" id="m5"><summary><span><span class="qn">Q5</span>What are CI, CD and CT in MLOps?</span></summary><div class="answer"><ul>
+<li><strong>Continuous Integration (CI):</strong> automatically test and validate every change to the code, <strong>and also the data and model</strong> (for example schema checks and minimum accuracy).</li>
+<li><strong>Continuous Delivery/Deployment (CD):</strong> automatically package and release the pipeline or the model service to the target environment.</li>
+<li><strong>Continuous Training (CT):</strong> automatically retrain the model on new data, on a schedule or when monitoring shows a problem, then validate and register the new version.</li>
+</ul></div></details><details class="item" id="m6"><summary><span><span class="qn">Q6</span>What are the MLOps maturity levels?</span></summary><div class="answer"><p>A commonly used model (popularized by Google) describes three levels:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Level 0: manual</strong></td>
+<td>Data scientists train in notebooks and hand over a model manually. Releases are rare, and there is no monitoring or automation.</td>
+</tr>
+<tr>
+<td><strong>Level 1: pipeline automation</strong></td>
+<td>Training is an automated pipeline with data validation, so the model can be retrained continuously (CT).</td>
+</tr>
+<tr>
+<td><strong>Level 2: CI/CD pipeline automation</strong></td>
+<td>The pipeline code itself is tested, built and deployed automatically, so teams can experiment and release quickly and safely.</td>
+</tr>
+</tbody>
+</table></div></details></section>
+<section class="sec-block" id="sec-1"><h2 class="sec">Data and experiment management</h2><details class="item" id="m7"><summary><span><span class="qn">Q7</span>Why do you need data versioning, and which tools are used?</span></summary><div class="answer"><p>A model is the result of <strong>code + data + parameters</strong>. If the data changes and you cannot recover the old version, you cannot reproduce or debug a model. Data versioning stores snapshots (or hashes) of datasets, linked to the code version that used them.</p>
+<p>Common tools: <strong>DVC</strong> (works with Git and remote storage), <strong>lakeFS</strong> (Git-like branches for data lakes), and table formats with time travel such as <strong>Delta Lake</strong> or <strong>Apache Iceberg</strong>.</p></div></details><details class="item" id="m8"><summary><span><span class="qn">Q8</span>What is experiment tracking, and how do you do it with MLflow?</span></summary><div class="answer"><p>Experiment tracking records, for every training run, the <strong>parameters, metrics, code version, data version and artifacts</strong> (such as the model file), so runs can be compared and reproduced. Popular tools are <strong>MLflow</strong>, <strong>Weights &amp; Biases</strong> and <strong>Neptune</strong>.</p>
+<pre><code class="language-python">import mlflow
+import mlflow.sklearn
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+mlflow.set_experiment(&quot;churn-model&quot;)
+
+with mlflow.start_run():
+    model = RandomForestClassifier(n_estimators=200, max_depth=8, random_state=42)
+    model.fit(X_train, y_train)
+
+    mlflow.log_params({&quot;n_estimators&quot;: 200, &quot;max_depth&quot;: 8})
+    mlflow.log_metric(&quot;accuracy&quot;, accuracy_score(y_test, model.predict(X_test)))
+    mlflow.sklearn.log_model(model, &quot;model&quot;)
+</code></pre></div></details><details class="item" id="m9"><summary><span><span class="qn">Q9</span>How do you make an ML experiment reproducible?</span></summary><div class="answer"><ul>
+<li><strong>Version everything:</strong> code (Git), data (DVC or similar), configuration and parameters.</li>
+<li><strong>Fix random seeds</strong> where possible.</li>
+<li><strong>Pin the environment:</strong> exact package versions, a lock file or a Docker image.</li>
+<li><strong>Track runs</strong> automatically with an experiment tracker.</li>
+<li>Keep <strong>training pipelines as code</strong> instead of manual notebook steps.</li>
+<li>Record the hardware when results are sensitive to it (for example GPU non-determinism).</li>
+</ul></div></details><details class="item" id="m10"><summary><span><span class="qn">Q10</span>What is a model registry?</span></summary><div class="answer"><p>A model registry is a central place that stores <strong>versioned models together with their metadata</strong> (metrics, training data version, owner) and their <strong>lifecycle stage</strong>, for example <em>staging</em>, <em>production</em> and <em>archived</em>. It gives a controlled path to production: a model is registered, validated, approved and then promoted, and you can roll back to an earlier version. MLflow Model Registry and the registries in SageMaker, Vertex AI and Azure ML are examples.</p></div></details><details class="item" id="m11"><summary><span><span class="qn">Q11</span>What is a feature store, and what problem does it solve?</span></summary><div class="answer"><p>A feature store is a system for <strong>defining, storing and serving features</strong> consistently for both training and prediction.</p>
+<ul>
+<li>The <strong>offline store</strong> holds historical feature values for training (point-in-time correct, to avoid leakage).</li>
+<li>The <strong>online store</strong> serves the latest values with low latency for real-time prediction.</li>
+</ul>
+<p>It solves <strong>training-serving skew</strong>, avoids duplicate feature work across teams and makes features reusable. Examples: Feast, Tecton, and the feature stores built into cloud ML platforms.</p></div></details><details class="item" id="m12"><summary><span><span class="qn">Q12</span>What is data validation in an ML pipeline?</span></summary><div class="answer"><p>Data validation automatically checks incoming data <strong>before</strong> training or prediction: expected schema and types, missing values, value ranges, allowed categories, duplicates, and distribution changes compared with the training data. A failed check should stop the pipeline or raise an alert, so bad data does not silently produce a bad model. Tools include Great Expectations, TensorFlow Data Validation and Pandera.</p></div></details><details class="item" id="m13"><summary><span><span class="qn">Q13</span>What is training-serving skew, and how do you prevent it?</span></summary><div class="answer"><p>Training-serving skew is a difference between how features are computed or what data looks like <strong>during training versus in production</strong>, so the model performs worse live than in testing. Causes include different code paths for features, different data sources and different preprocessing.</p>
+<p>Prevent it by <strong>using the same feature code or a feature store for both</strong>, packaging preprocessing together with the model, logging the features used at prediction time, and comparing training and serving distributions.</p></div></details></section>
+<section class="sec-block" id="sec-2"><h2 class="sec">Pipelines, testing and CI/CD</h2><details class="item" id="m14"><summary><span><span class="qn">Q14</span>What is an ML pipeline, and which tools orchestrate it?</span></summary><div class="answer"><p>An ML pipeline is an automated, repeatable sequence of steps such as <strong>data ingestion → validation → feature engineering → training → evaluation → registration → deployment</strong>. Each step has defined inputs and outputs, so it can be rerun, scheduled and monitored.</p>
+<p>Orchestration tools include <strong>Apache Airflow</strong>, <strong>Kubeflow Pipelines</strong>, <strong>Prefect</strong>, <strong>Dagster</strong>, and managed services such as <strong>SageMaker Pipelines</strong> and <strong>Vertex AI Pipelines</strong>.</p></div></details><details class="item" id="m15"><summary><span><span class="qn">Q15</span>How do you test machine learning systems?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Test type</th>
+<th>What it checks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Unit tests</strong></td>
+<td>Preprocessing and feature functions</td>
+</tr>
+<tr>
+<td><strong>Data tests</strong></td>
+<td>Schema, ranges and quality of the data</td>
+</tr>
+<tr>
+<td><strong>Model tests</strong></td>
+<td>Minimum metrics, performance on important slices of data, comparison with the current production model</td>
+</tr>
+<tr>
+<td><strong>Behavioral tests</strong></td>
+<td>Invariance and sanity checks (for example changing an irrelevant word should not change a prediction)</td>
+</tr>
+<tr>
+<td><strong>Integration tests</strong></td>
+<td>The full pipeline and the serving API end to end</td>
+</tr>
+<tr>
+<td><strong>Load tests</strong></td>
+<td>Latency and throughput under expected traffic</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="m16"><summary><span><span class="qn">Q16</span>What does a CI pipeline for an ML project look like?</span></summary><div class="answer"><p>On every pull request the pipeline should lint and unit test the code, validate the data, and run a short training and evaluation to check that the model meets a minimum quality bar.</p>
+<pre><code class="language-yaml">name: ml-ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: &quot;3.11&quot;
+      - run: pip install -r requirements.txt
+      - run: pytest tests/
+      - run: python scripts/validate_data.py
+      - run: python scripts/evaluate_model.py --min-accuracy 0.85
+</code></pre></div></details><details class="item" id="m17"><summary><span><span class="qn">Q17</span>When and how should a model be retrained?</span></summary><div class="answer"><p>Common retraining triggers:</p>
+<ul>
+<li><strong>Schedule:</strong> daily, weekly or monthly, depending on how quickly data changes.</li>
+<li><strong>Performance drop</strong> detected by monitoring.</li>
+<li><strong>Data drift</strong> above a threshold.</li>
+<li><strong>New labeled data</strong> becomes available.</li>
+<li><strong>Business or product changes.</strong></li>
+</ul>
+<p>An automated retraining run should validate the data, train, evaluate against the <strong>current production model</strong>, and only promote the new model if it is better and passes all checks.</p></div></details><details class="item" id="m18"><summary><span><span class="qn">Q18</span>How do you package a model for deployment?</span></summary><div class="answer"><ul>
+<li><strong>Serialization formats:</strong> <code>joblib</code> or <code>pickle</code> (Python only), <strong>ONNX</strong> (portable across frameworks and runtimes), SavedModel or TorchScript, or the MLflow model format.</li>
+<li><strong>Include preprocessing</strong> with the model (for example a scikit-learn <code>Pipeline</code>) so serving matches training.</li>
+<li><strong>Containerize</strong> the model and its dependencies with Docker.</li>
+<li><strong>Security note:</strong> never load a pickle file from an untrusted source, because it can run arbitrary code.</li>
+</ul></div></details><details class="item" id="m19"><summary><span><span class="qn">Q19</span>How would you containerize an ML model service with Docker?</span></summary><div class="answer"><pre><code class="language-dockerfile">FROM python:3.11-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+CMD [&quot;uvicorn&quot;, &quot;main:app&quot;, &quot;--host&quot;, &quot;0.0.0.0&quot;, &quot;--port&quot;, &quot;8000&quot;]
+</code></pre>
+<p>Good practices: pin dependency versions, use a small base image, copy the requirements file first so Docker can cache the install layer, run as a non-root user, and keep model files versioned (for example loaded from a registry or object storage at startup).</p></div></details></section>
+<section class="sec-block" id="sec-3"><h2 class="sec">Deployment and serving</h2><details class="item" id="m20"><summary><span><span class="qn">Q20</span>What are the different ways to deploy a model?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>How it works</th>
+<th>Typical use</th>
+<th>Latency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Batch</strong></td>
+<td>Runs on a schedule and writes predictions to a table or file</td>
+<td>Recommendations, churn scores, reports</td>
+<td>Minutes to hours</td>
+</tr>
+<tr>
+<td><strong>Online (real-time)</strong></td>
+<td>A REST or gRPC service answers each request</td>
+<td>Fraud checks, search ranking</td>
+<td>Milliseconds</td>
+</tr>
+<tr>
+<td><strong>Streaming</strong></td>
+<td>Scores events as they flow through a stream</td>
+<td>Anomaly detection, live personalization</td>
+<td>Seconds or less</td>
+</tr>
+<tr>
+<td><strong>Edge / on-device</strong></td>
+<td>The model runs on the user’s device</td>
+<td>Mobile apps, IoT, privacy-sensitive cases</td>
+<td>Very low, works offline</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="m21"><summary><span><span class="qn">Q21</span>What options exist for serving models?</span></summary><div class="answer"><ul>
+<li><strong>A custom API</strong> (for example FastAPI or Flask) around the model: simple and flexible.</li>
+<li><strong>Model servers:</strong> BentoML, TorchServe, TensorFlow Serving, NVIDIA Triton, KServe or Seldon, which add batching, versioning and optimized inference.</li>
+<li><strong>Managed endpoints:</strong> SageMaker, Vertex AI and Azure ML, which handle scaling and monitoring for you.</li>
+<li><strong>Serverless functions</strong> for light, spiky workloads.</li>
+</ul>
+<p>Choose based on latency needs, traffic, model size, team skills and cost.</p></div></details><details class="item" id="m22"><summary><span><span class="qn">Q22</span>What are the common release strategies for new models?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>How it works</th>
+<th>Benefit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Shadow deployment</strong></td>
+<td>The new model receives real traffic and predicts, but its output is not used</td>
+<td>Safe comparison on real data</td>
+</tr>
+<tr>
+<td><strong>Canary release</strong></td>
+<td>A small share of traffic goes to the new model, increased gradually</td>
+<td>Limits the impact of problems</td>
+</tr>
+<tr>
+<td><strong>A/B test</strong></td>
+<td>Traffic is split between models and a business metric is compared</td>
+<td>Proves real business impact</td>
+</tr>
+<tr>
+<td><strong>Blue-green</strong></td>
+<td>Two identical environments, switch traffic from old to new</td>
+<td>Instant rollback</td>
+</tr>
+</tbody>
+</table>
+<p>Always keep the previous version ready so you can <strong>roll back</strong> quickly.</p></div></details><details class="item" id="m23"><summary><span><span class="qn">Q23</span>How do you scale inference and reduce latency?</span></summary><div class="answer"><ul>
+<li><strong>Autoscaling</strong> replicas based on traffic, for example in Kubernetes.</li>
+<li><strong>Dynamic batching</strong> of requests, especially on GPUs.</li>
+<li><strong>Caching</strong> frequent predictions or features.</li>
+<li><strong>Model optimization:</strong> quantization, pruning, distillation or a faster runtime such as ONNX Runtime.</li>
+<li>Use the <strong>right hardware</strong> (CPU for small models, GPU for large ones).</li>
+<li>Precompute predictions in a batch when real-time scoring is not required.</li>
+</ul></div></details><details class="item" id="m24"><summary><span><span class="qn">Q24</span>What role do Docker and Kubernetes play in MLOps?</span></summary><div class="answer"><ul>
+<li><strong>Docker</strong> packages the model, code and dependencies into an image that runs the same everywhere.</li>
+<li><strong>Kubernetes</strong> runs and manages many containers: scaling, rolling updates, self-healing, resource limits and GPU scheduling.</li>
+</ul>
+<p>Together they give reproducible, scalable deployments. Many ML platforms, such as Kubeflow and KServe, are built on Kubernetes.</p></div></details><details class="item" id="m25"><summary><span><span class="qn">Q25</span>What are the main cloud ML platforms?</span></summary><div class="answer"><ul>
+<li><strong>AWS SageMaker</strong></li>
+<li><strong>Google Vertex AI</strong></li>
+<li><strong>Azure Machine Learning</strong></li>
+<li><strong>Databricks</strong> (with MLflow)</li>
+</ul>
+<p>They offer managed training, pipelines, registries, deployment endpoints and monitoring. The trade-off is convenience and speed versus cost and vendor lock-in, so teams sometimes combine them with open-source tools.</p></div></details><details class="item" id="m26"><summary><span><span class="qn">Q26</span>How do you version and roll back models in production?</span></summary><div class="answer"><p>Give every model a <strong>unique version</strong> in the registry, linked to its code, data and metrics. Deploy by version and keep the previous production version available. To roll back, redeploy or point the traffic back to the earlier version, with an automatic trigger for clear failures (error rate or latency above a threshold). Keep prediction logs tagged with the model version so you can analyze each one.</p></div></details><details class="item" id="m27"><summary><span><span class="qn">Q27</span>What are the main considerations when deploying an LLM application (LLMOps)?</span></summary><div class="answer"><p>LLMOps extends MLOps with concerns specific to large language models:</p>
+<ul>
+<li><strong>Prompt and configuration versioning,</strong> as well as model versions.</li>
+<li><strong>Evaluation</strong> with test sets and LLM-as-judge, since outputs are open-ended.</li>
+<li><strong>Monitoring</strong> quality, hallucinations, safety, latency and <strong>token cost</strong>.</li>
+<li><strong>Guardrails</strong> and protection against prompt injection.</li>
+<li><strong>RAG data pipelines</strong> and vector index updates.</li>
+<li><strong>Serving costs and latency:</strong> caching, streaming and model routing.</li>
+</ul></div></details></section>
+<section class="sec-block" id="sec-4"><h2 class="sec">Monitoring and maintenance</h2><details class="item" id="m28"><summary><span><span class="qn">Q28</span>What should you monitor in a production ML system?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>System</strong></td>
+<td>Latency, throughput, error rate, CPU/GPU and memory use, cost</td>
+</tr>
+<tr>
+<td><strong>Data</strong></td>
+<td>Missing values, schema changes, out-of-range values, <strong>drift</strong> in inputs</td>
+</tr>
+<tr>
+<td><strong>Model</strong></td>
+<td>Accuracy or other quality metrics (when labels arrive), prediction distribution, drift in outputs</td>
+</tr>
+<tr>
+<td><strong>Business</strong></td>
+<td>Conversion, revenue, user feedback, fairness across groups</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="m29"><summary><span><span class="qn">Q29</span>What is the difference between data drift, concept drift and prediction drift?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>What changes</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Data (covariate) drift</strong></td>
+<td>The distribution of the <strong>input features</strong></td>
+<td>Customers become younger on average</td>
+</tr>
+<tr>
+<td><strong>Concept drift</strong></td>
+<td>The <strong>relationship</strong> between inputs and the target</td>
+<td>Fraudsters change their behavior, so the same inputs now mean something different</td>
+</tr>
+<tr>
+<td><strong>Prediction (label) drift</strong></td>
+<td>The distribution of the <strong>model’s outputs</strong> (or of the true labels)</td>
+<td>The share of “high risk” predictions suddenly doubles</td>
+</tr>
+</tbody>
+</table>
+<p>Data drift does not always hurt accuracy, but concept drift usually does.</p></div></details><details class="item" id="m30"><summary><span><span class="qn">Q30</span>How do you detect data drift?</span></summary><div class="answer"><p>Compare the current data with a reference (usually the training data) for each feature:</p>
+<ul>
+<li><strong>Kolmogorov-Smirnov (KS) test</strong> for numeric features.</li>
+<li><strong>Chi-square test</strong> for categorical features.</li>
+<li><strong>Population Stability Index (PSI):</strong> a common rule of thumb is below 0.1 stable, 0.1 to 0.25 moderate change, above 0.25 major change.</li>
+<li>Statistical distances such as Jensen-Shannon or Wasserstein.</li>
+</ul>
+<pre><code class="language-python">from scipy.stats import ks_2samp
+
+stat, p_value = ks_2samp(train_df[&quot;age&quot;], live_df[&quot;age&quot;])
+if p_value &lt; 0.01:
+    print(&quot;Possible drift in 'age'&quot;)
+</code></pre>
+<p>Tools such as Evidently automate these reports and dashboards.</p></div></details><details class="item" id="m31"><summary><span><span class="qn">Q31</span>How do you monitor model quality when true labels arrive late or never?</span></summary><div class="answer"><p>In many systems, labels come weeks later (for example fraud chargebacks) or never. Use <strong>proxy signals</strong> in the meantime:</p>
+<ul>
+<li>input data drift and prediction distribution changes,</li>
+<li>model confidence scores,</li>
+<li>business metrics and user behavior (clicks, overrides, complaints),</li>
+<li>agreement with a reference or shadow model,</li>
+<li>sampling a small set of predictions for <strong>manual review</strong> or labeling.</li>
+</ul>
+<p>Compute the real metrics and compare when labels become available.</p></div></details><details class="item" id="m32"><summary><span><span class="qn">Q32</span>How do alerting and automated responses work in ML monitoring?</span></summary><div class="answer"><p>Define thresholds for each metric (for example PSI above 0.25, accuracy below a minimum, latency above a limit), send <strong>alerts</strong> to the responsible team, and decide the action: investigate, roll back to the previous model, or trigger a retraining pipeline. Avoid too many alerts by tuning thresholds, otherwise the team will start ignoring them.</p></div></details><details class="item" id="m33"><summary><span><span class="qn">Q33</span>Why do models degrade over time, and how do you handle it?</span></summary><div class="answer"><p>Models degrade because the real world changes: user behavior, seasonality, new products, data pipeline changes and upstream bugs. Handle it with monitoring, regular retraining on fresh data, a feedback loop that collects new labels, and a process that compares each new model with the current one before promoting it.</p></div></details><details class="item" id="m34"><summary><span><span class="qn">Q34</span>What is a feedback loop in ML systems, and what risks does it have?</span></summary><div class="answer"><p>A feedback loop collects what happened after a prediction (clicks, outcomes, corrections) and uses it as new training data. The risk is that the model <strong>influences the data it learns from</strong>: a recommender only sees clicks on what it showed, so it can reinforce its own bias, or a fraud model only gets labels for transactions it flagged. Reduce this with exploration (randomly showing alternatives), unbiased samples for evaluation and regular review of data sources.</p></div></details></section>
+<section class="sec-block" id="sec-5"><h2 class="sec">Governance, scale and design</h2><details class="item" id="m35"><summary><span><span class="qn">Q35</span>What is model governance, and what should be documented?</span></summary><div class="answer"><p>Governance makes sure models are accountable, auditable and compliant. Document:</p>
+<ul>
+<li>the <strong>purpose, owner and intended use</strong> of the model,</li>
+<li><strong>data sources and lineage,</strong></li>
+<li>training approach, metrics and <strong>limitations</strong> (a model card),</li>
+<li>fairness and bias checks,</li>
+<li>approvals and <strong>version history,</strong></li>
+<li>monitoring results and incidents.</li>
+</ul>
+<p>It is especially important in regulated areas such as finance and healthcare.</p></div></details><details class="item" id="m36"><summary><span><span class="qn">Q36</span>What security and privacy points matter in MLOps?</span></summary><div class="answer"><ul>
+<li><strong>Access control</strong> for data, models and pipelines (least privilege).</li>
+<li><strong>Secrets management:</strong> never put credentials in code or notebooks.</li>
+<li><strong>Privacy:</strong> minimize and anonymize personal data, and follow regulations.</li>
+<li><strong>Supply chain:</strong> scan dependencies and base images, and do not load untrusted pickle files.</li>
+<li><strong>Model protection:</strong> guard against model theft, adversarial inputs and leakage of training data.</li>
+<li><strong>Audit logging</strong> of who changed or deployed what.</li>
+</ul></div></details><details class="item" id="m37"><summary><span><span class="qn">Q37</span>What is technical debt in ML systems?</span></summary><div class="answer"><p>ML systems have the usual software debt plus ML-specific debt: tangled pipelines (changing one thing changes everything), undeclared dependencies on other models or data, unstable data sources, glue code around libraries, feedback loops, and configuration that is not versioned. The remedies are modular pipelines, clear interfaces and data contracts, tests, monitoring and regular clean-up.</p></div></details><details class="item" id="m38"><summary><span><span class="qn">Q38</span>How do you control the cost of ML systems?</span></summary><div class="answer"><ul>
+<li>Use <strong>spot or preemptible instances</strong> for training that can restart.</li>
+<li><strong>Right-size</strong> hardware and shut down idle resources.</li>
+<li>Cache results and use batch prediction where real-time is not needed.</li>
+<li>Optimize models (quantization, smaller models) for serving.</li>
+<li>Avoid retraining more often than needed.</li>
+<li>Track cost <strong>per prediction</strong> and per project.</li>
+</ul></div></details><details class="item" id="m39"><summary><span><span class="qn">Q39</span>How do you choose MLOps tools?</span></summary><div class="answer"><p>Consider the team’s skills, the existing cloud and tech stack, scale and latency needs, open-source vs managed trade-offs, integration with the other tools, security and compliance requirements, and the total cost. Start with a small, simple toolchain (for example Git, DVC, MLflow, Docker and a CI system) and add components only when a clear problem justifies them.</p></div></details><details class="item" id="m40"><summary><span><span class="qn">Q40</span>Design question: how would you build an end-to-end MLOps pipeline for a fraud detection model?</span></summary><div class="answer"><ol>
+<li><strong>Requirements:</strong> decision latency (for example under 100 ms), acceptable false positives, regulation and explainability needs.</li>
+<li><strong>Data and features:</strong> transaction streams plus history, with a <strong>feature store</strong> so training and real-time scoring use the same features. Validate the data.</li>
+<li><strong>Training pipeline:</strong> orchestrated and scheduled (for example weekly), handling the <strong>class imbalance</strong>, with every run tracked in MLflow.</li>
+<li><strong>Evaluation:</strong> precision-recall and cost-based metrics, checks on important slices of data, and comparison with the current production model.</li>
+<li><strong>Registry and CI/CD:</strong> register the model, run tests, and deploy through a container to an <strong>online service</strong>.</li>
+<li><strong>Release:</strong> shadow mode first, then a canary release, with an easy rollback.</li>
+<li><strong>Monitoring:</strong> latency and errors, data and prediction drift, and quality metrics when <strong>delayed labels</strong> (chargebacks) arrive.</li>
+<li><strong>Retraining and feedback:</strong> triggers from drift or new labels, plus human review of uncertain cases.</li>
+<li><strong>Governance:</strong> audit logs, model documentation, access control and privacy protection.</li>
+</ol></div></details></section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

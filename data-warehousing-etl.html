@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Warehousing and ETL Interview Prep</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg></span><h1>Data Warehousing and ETL Interview Prep</h1></div>
+<p class="sub">49 questions</p>
+<div class="roles"><a class="role" href="index.html#role=da">Data Analytics</a><a class="role alt" href="index.html#role=ds">Data Science</a><a class="role alt" href="index.html#role=ba">Business Analyst</a><a class="role alt" href="index.html#role=se">Software Engineer (AI/ML)</a></div>
+<div class="intro"><blockquote><p>Data warehousing and ETL interview questions: warehouse fundamentals, dimensional modeling (star schema, SCD), ETL and ELT, modern cloud data platforms, performance, data quality and governance, and design scenarios.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<nav class="chips"><a href="#sec-0">Data warehousing fundamentals <small>8</small></a><a href="#sec-1">Dimensional modeling <small>12</small></a><a href="#sec-2">ETL and ELT <small>10</small></a><a href="#sec-3">Modern data platforms and cloud warehouses <small>6</small></a><a href="#sec-4">Performance, quality and governance <small>7</small></a><a href="#sec-5">Scenarios and design questions <small>6</small></a></nav>
+<section class="sec-block" id="sec-0"><h2 class="sec">Data warehousing fundamentals</h2><details class="item" id="d1"><summary><span><span class="qn">Q1</span>What is a data warehouse, and why do organizations need one?</span></summary><div class="answer"><p>A data warehouse is a <strong>central repository that collects, cleans and stores data from many source systems</strong> (applications, databases, files) in a form designed for <strong>reporting and analysis</strong>, rather than for day-to-day transactions.</p>
+<p>Organizations need it to get a <strong>single, consistent view</strong> of the business, to keep <strong>history</strong> for trend analysis, to run heavy analytical queries without slowing down operational systems, and to give BI tools one trusted place to read from.</p></div></details><details class="item" id="d2"><summary><span><span class="qn">Q2</span>What are the characteristics of a data warehouse (Inmon’s definition)?</span></summary><div class="answer"><ul>
+<li><strong>Subject-oriented:</strong> organized around business subjects such as sales, customers and products, not around applications.</li>
+<li><strong>Integrated:</strong> data from different sources is cleaned and made consistent (naming, formats, units, codes).</li>
+<li><strong>Time-variant:</strong> it keeps <strong>historical</strong> data, so you can analyze change over time.</li>
+<li><strong>Non-volatile:</strong> data is loaded and read, but <strong>not updated or deleted</strong> in the normal way, so history is preserved.</li>
+</ul></div></details><details class="item" id="d3"><summary><span><span class="qn">Q3</span>What is the difference between OLTP and OLAP?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>OLTP (operational systems)</th>
+<th>OLAP (data warehouse)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Purpose</td>
+<td>Run daily transactions (orders, payments)</td>
+<td>Analyze data and support decisions</td>
+</tr>
+<tr>
+<td>Operations</td>
+<td>Many small reads and writes</td>
+<td>Fewer, large, complex read queries</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>Current, detailed</td>
+<td>Historical, often summarized</td>
+</tr>
+<tr>
+<td>Design</td>
+<td>Highly <strong>normalized</strong></td>
+<td><strong>Denormalized</strong> (star or snowflake)</td>
+</tr>
+<tr>
+<td>Users</td>
+<td>Applications, clerks, customers</td>
+<td>Analysts, managers, BI tools</td>
+</tr>
+<tr>
+<td>Optimized for</td>
+<td>Fast inserts and updates, data integrity</td>
+<td>Fast aggregations and scans</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="d4"><summary><span><span class="qn">Q4</span>What is the difference between a database, a data warehouse, a data mart, a data lake and a lakehouse?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>What it is</th>
+<th>Data</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Operational database</strong></td>
+<td>Supports applications</td>
+<td>Current, structured</td>
+<td>Transactions</td>
+</tr>
+<tr>
+<td><strong>Data warehouse</strong></td>
+<td>Central, curated store for the whole organization</td>
+<td>Structured, modeled, historical</td>
+<td>Reporting, BI</td>
+</tr>
+<tr>
+<td><strong>Data mart</strong></td>
+<td>A <strong>subset</strong> of the warehouse for one department or subject</td>
+<td>Structured</td>
+<td>Sales or finance reporting</td>
+</tr>
+<tr>
+<td><strong>Data lake</strong></td>
+<td>Cheap storage for <strong>raw data in any format</strong></td>
+<td>Structured, semi-structured and unstructured</td>
+<td>Data science, raw archive</td>
+</tr>
+<tr>
+<td><strong>Lakehouse</strong></td>
+<td>A data lake with warehouse-style features (tables, transactions, SQL)</td>
+<td>All types</td>
+<td>Both BI and data science on one platform</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="d5"><summary><span><span class="qn">Q5</span>What are the layers of a typical data warehouse architecture?</span></summary><div class="answer"><ol>
+<li><strong>Source systems:</strong> ERP, CRM, applications, files, APIs.</li>
+<li><strong>Staging area:</strong> a temporary landing zone where raw extracted data is stored before it is transformed.</li>
+<li><strong>Data warehouse (core) layer:</strong> the cleaned, integrated and modeled data.</li>
+<li><strong>Data marts:</strong> subject-specific subsets built for particular teams.</li>
+<li><strong>Presentation / BI layer:</strong> dashboards, reports and ad hoc analysis tools (Power BI, Tableau).</li>
+</ol>
+<p>Metadata, data quality, security and orchestration run across all layers.</p></div></details><details class="item" id="d6"><summary><span><span class="qn">Q6</span>What are the Inmon and Kimball approaches?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Inmon (top-down)</th>
+<th>Kimball (bottom-up)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Idea</td>
+<td>Build a normalized (3NF) <strong>enterprise data warehouse</strong> first, then create data marts from it</td>
+<td>Build <strong>dimensional data marts</strong> (star schemas) first and combine them using <strong>conformed dimensions</strong></td>
+</tr>
+<tr>
+<td>Modeling</td>
+<td>Normalized core, dimensional marts</td>
+<td>Dimensional models throughout</td>
+</tr>
+<tr>
+<td>Delivery</td>
+<td>Slower to start, strong consistency</td>
+<td>Faster to deliver business value</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Large enterprises needing one integrated source of truth</td>
+<td>Teams that need quick, business-focused analytics</td>
+</tr>
+</tbody>
+</table>
+<p>Many real projects use a mix of both.</p></div></details><details class="item" id="d7"><summary><span><span class="qn">Q7</span>What is a data mart?</span></summary><div class="answer"><p>A data mart is a <strong>smaller, focused part of a data warehouse</strong> built for a specific team or subject (sales, finance, HR). It is easier to understand, faster to query and can have its own access rules. A <strong>dependent</strong> data mart is loaded from the central warehouse, while an <strong>independent</strong> one is built straight from source systems, which risks inconsistent numbers.</p></div></details><details class="item" id="d8"><summary><span><span class="qn">Q8</span>What is an Operational Data Store (ODS)?</span></summary><div class="answer"><p>An ODS is an <strong>intermediate store with current, lightly integrated operational data</strong>, refreshed frequently (minutes or hours). It supports <strong>operational reporting</strong> and is often used as a source or staging layer for the warehouse. Unlike the warehouse, it holds little history and its data may be updated.</p></div></details></section>
+<section class="sec-block" id="sec-1"><h2 class="sec">Dimensional modeling</h2><details class="item" id="d9"><summary><span><span class="qn">Q9</span>What is a star schema?</span></summary><div class="answer"><p>A star schema has a central <strong>fact table</strong> (the measurable business events) surrounded by <strong>dimension tables</strong> (the descriptive context: who, what, where, when). The fact table holds foreign keys to the dimensions plus numeric measures, and the diagram looks like a star.</p>
+<pre><code class="language-sql">SELECT d.year, p.category, SUM(f.sales_amount) AS total_sales
+FROM fact_sales f
+JOIN dim_date d    ON f.date_key = d.date_key
+JOIN dim_product p ON f.product_key = p.product_key
+GROUP BY d.year, p.category
+ORDER BY d.year, total_sales DESC;
+</code></pre>
+<p>It is simple, easy to understand and fast for aggregations.</p></div></details><details class="item" id="d10"><summary><span><span class="qn">Q10</span>What is a snowflake schema, and how does it differ from a star schema?</span></summary><div class="answer"><p>In a <strong>snowflake schema</strong> the dimension tables are <strong>normalized</strong> into several related tables (for example product → subcategory → category).</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Star schema</th>
+<th>Snowflake schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dimensions</td>
+<td>Denormalized (one table per dimension)</td>
+<td>Normalized (split into sub-tables)</td>
+</tr>
+<tr>
+<td>Joins</td>
+<td>Fewer, simpler queries</td>
+<td>More joins, more complex</td>
+</tr>
+<tr>
+<td>Query speed</td>
+<td>Usually faster</td>
+<td>Usually slower</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Some redundancy</td>
+<td>Less redundancy</td>
+</tr>
+<tr>
+<td>Maintenance</td>
+<td>Easier to understand</td>
+<td>Easier to update shared attributes</td>
+</tr>
+</tbody>
+</table>
+<p>Star schemas are generally preferred for BI because of simplicity and performance.</p></div></details><details class="item" id="d11"><summary><span><span class="qn">Q11</span>What is the difference between a fact table and a dimension table?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Fact table</th>
+<th>Dimension table</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contains</td>
+<td><strong>Measures</strong> (numbers) and foreign keys</td>
+<td><strong>Descriptive attributes</strong> (text, categories)</td>
+</tr>
+<tr>
+<td>Examples</td>
+<td>Sales amount, quantity, cost</td>
+<td>Customer name, product category, city, date</td>
+</tr>
+<tr>
+<td>Size</td>
+<td>Very large (millions or billions of rows)</td>
+<td>Relatively small</td>
+</tr>
+<tr>
+<td>Growth</td>
+<td>Grows quickly with every event</td>
+<td>Grows slowly</td>
+</tr>
+<tr>
+<td>Role in a query</td>
+<td>What you <strong>aggregate</strong></td>
+<td>What you <strong>group and filter</strong> by</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="d12"><summary><span><span class="qn">Q12</span>What is the grain of a fact table, and why is it important?</span></summary><div class="answer"><p>The grain is <strong>what one row in the fact table represents</strong>, for example “one line item on an order” or “one account per day”. It is the first and most important design decision, because it decides which dimensions apply and how the data can be analyzed. Always declare the grain before choosing dimensions and measures, and never mix different grains in one fact table.</p></div></details><details class="item" id="d13"><summary><span><span class="qn">Q13</span>What are the types of fact tables?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>One row represents</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Transaction</strong></td>
+<td>One event at the moment it happens</td>
+<td>A sales order line</td>
+</tr>
+<tr>
+<td><strong>Periodic snapshot</strong></td>
+<td>The state at the end of a regular period</td>
+<td>Account balance at month end</td>
+</tr>
+<tr>
+<td><strong>Accumulating snapshot</strong></td>
+<td>The life of a process, updated as it moves through stages</td>
+<td>An order from placed → shipped → delivered</td>
+</tr>
+<tr>
+<td><strong>Factless fact</strong></td>
+<td>An event or relationship with <strong>no numeric measure</strong></td>
+<td>Student attendance, product promotions</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="d14"><summary><span><span class="qn">Q14</span>What are additive, semi-additive and non-additive measures?</span></summary><div class="answer"><ul>
+<li><strong>Additive:</strong> can be summed across <strong>all</strong> dimensions, for example sales amount or quantity.</li>
+<li><strong>Semi-additive:</strong> can be summed across <strong>some</strong> dimensions but not time, for example an account balance (you can add balances across accounts, but not across days).</li>
+<li><strong>Non-additive:</strong> cannot be summed at all, for example ratios, percentages and unit prices. Store the numerator and denominator instead, and calculate the ratio after aggregating.</li>
+</ul></div></details><details class="item" id="d15"><summary><span><span class="qn">Q15</span>What is a surrogate key, and why use it instead of the natural key?</span></summary><div class="answer"><p>A surrogate key is a <strong>system-generated, meaningless integer</strong> that uniquely identifies a dimension row. It is preferred because it:</p>
+<ul>
+<li>allows <strong>history tracking</strong> (several rows for the same customer, as in SCD Type 2),</li>
+<li>is <strong>independent of source system keys</strong>, which can change, be reused or conflict between systems,</li>
+<li>is <strong>small and fast</strong> to join,</li>
+<li>and lets you handle <strong>unknown or missing members</strong> with special keys.</li>
+</ul>
+<p>The natural (business) key is still stored as an attribute.</p></div></details><details class="item" id="d16"><summary><span><span class="qn">Q16</span>What are Slowly Changing Dimensions (SCD), and what are the main types?</span></summary><div class="answer"><p>SCDs describe how a warehouse handles <strong>dimension attributes that change over time</strong> (a customer moves city, a product changes category).</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>How it works</th>
+<th>History kept?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type 0</strong></td>
+<td>Never changes; keep the original value</td>
+<td>Original only</td>
+</tr>
+<tr>
+<td><strong>Type 1</strong></td>
+<td><strong>Overwrite</strong> the old value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Type 2</strong></td>
+<td><strong>Add a new row</strong> with effective dates and a current flag</td>
+<td>Full history</td>
+</tr>
+<tr>
+<td><strong>Type 3</strong></td>
+<td>Add a <strong>column</strong> for the previous value</td>
+<td>Limited (one previous value)</td>
+</tr>
+<tr>
+<td><strong>Type 6</strong></td>
+<td>A hybrid of types 1, 2 and 3</td>
+<td>Full history plus current value</td>
+</tr>
+</tbody>
+</table>
+<p>Type 2 is the most common when history matters.</p></div></details><details class="item" id="d17"><summary><span><span class="qn">Q17</span>How do you implement SCD Type 2 in SQL?</span></summary><div class="answer"><p>Add <code>effective_from</code>, <code>effective_to</code> and <code>is_current</code> columns to the dimension. Then close the old row and insert a new current row for changed or new customers:</p>
+<pre><code class="language-sql">-- 1) close the current row of customers whose city changed
+UPDATE dim_customer
+SET effective_to = CURRENT_DATE, is_current = 0
+WHERE is_current = 1
+  AND customer_id IN (SELECT s.customer_id
+                      FROM stg_customer s
+                      JOIN dim_customer d ON d.customer_id = s.customer_id AND d.is_current = 1
+                      WHERE d.city &lt;&gt; s.city);
+
+-- 2) insert a new current row for new and changed customers
+INSERT INTO dim_customer (customer_id, name, city, effective_from, effective_to, is_current)
+SELECT s.customer_id, s.name, s.city, CURRENT_DATE, NULL, 1
+FROM stg_customer s
+LEFT JOIN dim_customer d ON d.customer_id = s.customer_id AND d.is_current = 1
+WHERE d.customer_id IS NULL OR d.city &lt;&gt; s.city;
+</code></pre>
+<p>The surrogate key is generated automatically for each new row.</p></div></details><details class="item" id="d18"><summary><span><span class="qn">Q18</span>What are conformed dimensions?</span></summary><div class="answer"><p>A conformed dimension is a dimension (such as Date, Customer or Product) that has <strong>the same structure, keys and meaning in every fact table and data mart that uses it</strong>. Conformed dimensions are what allow you to <strong>combine and compare</strong> data from different business processes (for example sales and returns by the same customer and product) and are the backbone of Kimball’s bus architecture.</p></div></details><details class="item" id="d19"><summary><span><span class="qn">Q19</span>What are junk, degenerate and role-playing dimensions?</span></summary><div class="answer"><ul>
+<li><strong>Junk dimension:</strong> combines several <strong>low-cardinality flags and indicators</strong> (for example payment type, gift-wrap yes/no) into one small dimension, instead of cluttering the fact table.</li>
+<li><strong>Degenerate dimension:</strong> a dimension key stored <strong>directly in the fact table with no dimension table</strong>, such as an invoice or order number.</li>
+<li><strong>Role-playing dimension:</strong> <strong>one physical dimension used several times</strong> in a fact table for different roles, such as the Date dimension used as order date, ship date and delivery date.</li>
+</ul></div></details><details class="item" id="d20"><summary><span><span class="qn">Q20</span>Why does a data warehouse usually need a date dimension?</span></summary><div class="answer"><p>A date dimension has <strong>one row per day</strong> with many ready-made attributes: day of week, week, month, quarter, year, fiscal period, holiday and weekend flags. It lets analysts group, filter and compare by time without calculating these values in every query, and it supports business calendars that normal date functions do not know.</p></div></details></section>
+<section class="sec-block" id="sec-2"><h2 class="sec">ETL and ELT</h2><details class="item" id="d21"><summary><span><span class="qn">Q21</span>What is ETL, and what are its steps?</span></summary><div class="answer"><p>ETL stands for <strong>Extract, Transform, Load</strong>:</p>
+<ol>
+<li><strong>Extract:</strong> read data from the source systems (databases, files, APIs).</li>
+<li><strong>Transform:</strong> clean and reshape it: fix errors, remove duplicates, standardize formats, apply business rules, join and aggregate.</li>
+<li><strong>Load:</strong> write the result into the target data warehouse tables.</li>
+</ol>
+<p>Transformation traditionally happens in a separate ETL server or tool, before loading.</p></div></details><details class="item" id="d22"><summary><span><span class="qn">Q22</span>What is the difference between ETL and ELT?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>ETL</th>
+<th>ELT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Order</td>
+<td>Extract → <strong>Transform</strong> → Load</td>
+<td>Extract → Load → <strong>Transform</strong></td>
+</tr>
+<tr>
+<td>Where transformation runs</td>
+<td>In the ETL tool or a separate engine</td>
+<td><strong>Inside the target warehouse or lakehouse</strong></td>
+</tr>
+<tr>
+<td>Raw data</td>
+<td>Often not kept</td>
+<td>Kept in the warehouse, so it can be reprocessed</td>
+</tr>
+<tr>
+<td>Fits best with</td>
+<td>On-premises warehouses, strict cleansing before loading</td>
+<td>Cloud warehouses with scalable compute (Snowflake, BigQuery)</td>
+</tr>
+<tr>
+<td>Flexibility</td>
+<td>Lower, a change needs re-running the pipeline</td>
+<td>Higher, transformations are SQL on data already loaded</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="d23"><summary><span><span class="qn">Q23</span>What is a staging area, and why use it?</span></summary><div class="answer"><p>A staging area is an <strong>intermediate area where extracted data is landed first</strong>, usually as an unchanged copy of the source. It reduces the load on source systems (data is extracted once), lets you validate and reprocess without going back to the source, and separates extraction from transformation. Staging tables are usually truncated and reloaded for every run.</p></div></details><details class="item" id="d24"><summary><span><span class="qn">Q24</span>What is the difference between full load and incremental load?</span></summary><div class="answer"><ul>
+<li><strong>Full load:</strong> the whole dataset is extracted and the target is reloaded every time. Simple, but slow and costly for large tables.</li>
+<li><strong>Incremental (delta) load:</strong> only <strong>new or changed</strong> records since the last run are extracted and applied. It is faster and cheaper, but needs a way to detect changes and more careful logic.</li>
+</ul>
+<p>Initial loads are usually full, and later runs are incremental.</p></div></details><details class="item" id="d25"><summary><span><span class="qn">Q25</span>What is Change Data Capture (CDC), and what are the ways to do it?</span></summary><div class="answer"><p>CDC identifies and captures <strong>changes</strong> (inserts, updates, deletes) in the source so that only they are loaded. Common methods:</p>
+<ul>
+<li><strong>Log-based:</strong> reads the database transaction log. It has little impact on the source and captures deletes (tools such as Debezium).</li>
+<li><strong>Timestamp or version column:</strong> select rows where <code>last_modified</code> is later than the last run. Simple, but it misses hard deletes.</li>
+<li><strong>Triggers:</strong> database triggers record changes in a separate table. They add load to the source.</li>
+<li><strong>Snapshot comparison:</strong> compare today’s extract with the previous one. Heavy for big tables.</li>
+</ul></div></details><details class="item" id="d26"><summary><span><span class="qn">Q26</span>What kinds of transformations are performed in ETL?</span></summary><div class="answer"><ul>
+<li><strong>Cleansing:</strong> fix or remove invalid, missing and inconsistent values.</li>
+<li><strong>Deduplication.</strong></li>
+<li><strong>Standardization:</strong> consistent formats, units, codes and date formats.</li>
+<li><strong>Type conversion</strong> and <strong>parsing.</strong></li>
+<li><strong>Joins and lookups</strong> to enrich data (for example mapping a product code to a category).</li>
+<li><strong>Aggregation</strong> and <strong>derived columns</strong> (for example profit = revenue − cost).</li>
+<li><strong>Applying business rules</strong> and <strong>surrogate key assignment.</strong></li>
+<li><strong>Splitting or merging</strong> fields and rows.</li>
+</ul></div></details><details class="item" id="d27"><summary><span><span class="qn">Q27</span>How do you load data into the warehouse using MERGE (upsert)?</span></summary><div class="answer"><p>An <strong>upsert</strong> updates rows that already exist and inserts the ones that do not, in one statement:</p>
+<pre><code class="language-sql">MERGE INTO dim_customer AS t
+USING stg_customer AS s
+  ON t.customer_id = s.customer_id
+WHEN MATCHED AND (t.email &lt;&gt; s.email OR t.city &lt;&gt; s.city) THEN
+  UPDATE SET t.email = s.email, t.city = s.city
+WHEN NOT MATCHED THEN
+  INSERT (customer_id, name, email, city)
+  VALUES (s.customer_id, s.name, s.email, s.city);
+</code></pre>
+<p>This is an SCD Type 1 style load (it overwrites). The <code>MERGE</code> syntax is supported by SQL Server, Oracle, Snowflake and BigQuery, with small differences between them.</p></div></details><details class="item" id="d28"><summary><span><span class="qn">Q28</span>What is the difference between batch and real-time (streaming) data integration?</span></summary><div class="answer"><ul>
+<li><strong>Batch:</strong> data is processed in <strong>scheduled groups</strong> (hourly, nightly). It is simpler, cheaper and fine when reports can be slightly out of date.</li>
+<li><strong>Real-time / streaming:</strong> data is processed <strong>continuously, as events arrive</strong>, using tools such as Kafka, Spark Structured Streaming or Flink. It is needed for fraud detection, live dashboards and alerts, but is more complex and costly to build and run.</li>
+</ul>
+<p>A common choice is <strong>micro-batching</strong> (every few minutes) as a middle ground.</p></div></details><details class="item" id="d29"><summary><span><span class="qn">Q29</span>How do you design ETL jobs to be restartable and idempotent?</span></summary><div class="answer"><p>An <strong>idempotent</strong> job gives the <strong>same result if it is run more than once</strong>, so a rerun after a failure does not create duplicates.</p>
+<ul>
+<li>Use <strong>MERGE/upsert</strong> or delete-then-insert for the target slice instead of blind inserts.</li>
+<li>Load by <strong>batch or partition</strong> (for example one day), so a failed batch can be re-run on its own.</li>
+<li>Keep <strong>audit and control tables</strong> with run IDs, start and end times, row counts and status, and checkpoints of the last successful load.</li>
+<li>Make each step <strong>atomic</strong> (a transaction, or a staging table swapped in at the end).</li>
+</ul></div></details><details class="item" id="d30"><summary><span><span class="qn">Q30</span>What are some popular ETL and ELT tools?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Traditional ETL tools</td>
+<td>Informatica PowerCenter, IBM DataStage, SQL Server Integration Services (SSIS), Talend</td>
+</tr>
+<tr>
+<td>Cloud data integration</td>
+<td>Azure Data Factory, AWS Glue, Google Cloud Dataflow</td>
+</tr>
+<tr>
+<td>Managed ELT connectors</td>
+<td>Fivetran, Airbyte</td>
+</tr>
+<tr>
+<td>In-warehouse transformation</td>
+<td><strong>dbt</strong> (SQL-based transformations with testing and documentation)</td>
+</tr>
+<tr>
+<td>Orchestration</td>
+<td>Apache Airflow, Prefect, Dagster</td>
+</tr>
+<tr>
+<td>Large-scale processing</td>
+<td>Apache Spark, Databricks</td>
+</tr>
+</tbody>
+</table></div></details></section>
+<section class="sec-block" id="sec-3"><h2 class="sec">Modern data platforms and cloud warehouses</h2><details class="item" id="d31"><summary><span><span class="qn">Q31</span>What are the features of a modern cloud data warehouse (Snowflake, BigQuery, Redshift, Synapse)?</span></summary><div class="answer"><ul>
+<li><strong>Separation of storage and compute</strong> (in most), so each scales independently.</li>
+<li><strong>Elastic, pay-for-use</strong> scaling.</li>
+<li><strong>Columnar storage</strong> and <strong>massively parallel processing (MPP)</strong> for fast analytics.</li>
+<li>Support for <strong>semi-structured data</strong> (JSON, Parquet).</li>
+<li>Little infrastructure management (some are fully serverless, such as BigQuery).</li>
+<li>Built-in <strong>security, sharing and governance</strong> features.</li>
+</ul></div></details><details class="item" id="d32"><summary><span><span class="qn">Q32</span>What is columnar storage, and why is it good for analytics?</span></summary><div class="answer"><p>A columnar database stores <strong>each column’s values together</strong> instead of storing complete rows. Analytical queries usually read <strong>a few columns from many rows</strong>, so the database reads only the columns it needs, and similar values stored together <strong>compress very well</strong>. This makes aggregations much faster than in a row-based store, which is better for transactional work.</p></div></details><details class="item" id="d33"><summary><span><span class="qn">Q33</span>What is the medallion architecture (bronze, silver, gold)?</span></summary><div class="answer"><p>A layered design for a lakehouse that improves data quality step by step:</p>
+<ul>
+<li><strong>Bronze:</strong> raw data as ingested from the sources, kept unchanged.</li>
+<li><strong>Silver:</strong> cleaned, validated, deduplicated and conformed data.</li>
+<li><strong>Gold:</strong> business-level, aggregated and modeled data (for example star schemas) ready for BI and machine learning.</li>
+</ul></div></details><details class="item" id="d34"><summary><span><span class="qn">Q34</span>What is a lakehouse, and what are Delta Lake and Apache Iceberg?</span></summary><div class="answer"><p>A lakehouse adds <strong>warehouse features (ACID transactions, schema enforcement, time travel, SQL)</strong> on top of low-cost data lake storage, so BI and data science can use the same data. <strong>Delta Lake, Apache Iceberg and Apache Hudi</strong> are open table formats that provide these features on files in object storage.</p></div></details><details class="item" id="d35"><summary><span><span class="qn">Q35</span>What does dbt do?</span></summary><div class="answer"><p>dbt (data build tool) handles the <strong>transformation (T) in ELT</strong>. Analysts write transformations as <strong>SQL <code>SELECT</code> statements</strong>, and dbt builds them as tables or views <strong>inside the warehouse</strong>, in the right dependency order. It adds <strong>version control, automated tests, documentation and lineage</strong> to analytics code.</p></div></details><details class="item" id="d36"><summary><span><span class="qn">Q36</span>What is a data pipeline orchestrator, and what is a DAG?</span></summary><div class="answer"><p>An orchestrator (Apache Airflow, Prefect, Dagster) <strong>schedules, runs and monitors</strong> the steps of a pipeline, handles dependencies and retries, and raises alerts. Pipelines are defined as a <strong>DAG (Directed Acyclic Graph)</strong>: tasks are nodes, arrows show which task must finish before another starts, and there are no cycles.</p></div></details></section>
+<section class="sec-block" id="sec-4"><h2 class="sec">Performance, quality and governance</h2><details class="item" id="d37"><summary><span><span class="qn">Q37</span>How do you improve query performance in a data warehouse?</span></summary><div class="answer"><ul>
+<li><strong>Design:</strong> use a star schema, an appropriate grain and sensible data types.</li>
+<li><strong>Partitioning</strong> large tables (for example by date) so queries scan only the needed partitions (partition pruning).</li>
+<li><strong>Clustering or sort keys</strong> and <strong>distribution keys</strong> (in MPP systems) so related data sits together.</li>
+<li><strong>Pre-aggregated tables or materialized views</strong> for common summaries.</li>
+<li><strong>Indexes</strong> where the platform uses them (mainly on traditional databases).</li>
+<li>Select <strong>only needed columns</strong> and filter early, and avoid unnecessary joins.</li>
+<li><strong>Columnar formats</strong> and compression.</li>
+</ul></div></details><details class="item" id="d38"><summary><span><span class="qn">Q38</span>What are the dimensions of data quality?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Question it answers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Accuracy</strong></td>
+<td>Does the data reflect reality?</td>
+</tr>
+<tr>
+<td><strong>Completeness</strong></td>
+<td>Is all the required data present?</td>
+</tr>
+<tr>
+<td><strong>Consistency</strong></td>
+<td>Is it the same across systems and tables?</td>
+</tr>
+<tr>
+<td><strong>Timeliness</strong></td>
+<td>Is it available and up to date when needed?</td>
+</tr>
+<tr>
+<td><strong>Uniqueness</strong></td>
+<td>Are there duplicate records?</td>
+</tr>
+<tr>
+<td><strong>Validity</strong></td>
+<td>Does it follow the required format, type and rules?</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="d39"><summary><span><span class="qn">Q39</span>How do you check data quality and validate ETL results?</span></summary><div class="answer"><ul>
+<li><strong>Row-count reconciliation</strong> between source, staging and target.</li>
+<li><strong>Control totals</strong> (sum of amounts) and checksums compared with the source.</li>
+<li><strong>Null, duplicate and range checks</strong> on key columns.</li>
+<li><strong>Referential integrity</strong> (every fact key has a matching dimension row).</li>
+<li><strong>Business-rule tests</strong> and comparison with trusted reports.</li>
+<li>Automated tests and monitoring in the pipeline (for example with dbt tests or Great Expectations), with alerts and a place to store rejected records.</li>
+</ul></div></details><details class="item" id="d40"><summary><span><span class="qn">Q40</span>What is metadata, and why does it matter?</span></summary><div class="answer"><p>Metadata is <strong>data about data</strong>.</p>
+<ul>
+<li><strong>Technical metadata:</strong> table and column names, data types, sources, load times, lineage.</li>
+<li><strong>Business metadata:</strong> definitions, owners, rules and KPI formulas.</li>
+<li><strong>Operational metadata:</strong> run history, row counts, durations and errors.</li>
+</ul>
+<p>It helps people find and trust data, and supports impact analysis and audits. A <strong>data catalog</strong> (for example Alation, Collibra or built-in cloud catalogs) manages it.</p></div></details><details class="item" id="d41"><summary><span><span class="qn">Q41</span>What is data lineage?</span></summary><div class="answer"><p>Data lineage shows <strong>where data came from, how it was transformed and where it is used</strong>, from source systems to reports. It helps to trace errors back to the source, assess the impact of a change (“what breaks if I change this column?”), and meet audit and compliance needs.</p></div></details><details class="item" id="d42"><summary><span><span class="qn">Q42</span>What is Master Data Management (MDM)?</span></summary><div class="answer"><p>MDM creates and maintains <strong>one trusted, consistent version of key business entities</strong> (customer, product, supplier) across all systems. It matches and merges duplicate records (for example the same customer in CRM and billing) and creates a “golden record” that the warehouse and applications can use.</p></div></details><details class="item" id="d43"><summary><span><span class="qn">Q43</span>How do you secure a data warehouse?</span></summary><div class="answer"><ul>
+<li><strong>Role-based access control</strong> with least privilege.</li>
+<li><strong>Row-level and column-level security</strong> for sensitive data.</li>
+<li><strong>Data masking</strong> and <strong>encryption</strong> at rest and in transit.</li>
+<li><strong>Audit logs</strong> of access and changes.</li>
+<li>Separate <strong>environments</strong> (development, test, production).</li>
+<li>Compliance with privacy regulations (for example GDPR), including retention and deletion rules.</li>
+</ul></div></details></section>
+<section class="sec-block" id="sec-5"><h2 class="sec">Scenarios and design questions</h2><details class="item" id="d44"><summary><span><span class="qn">Q44</span>Design question: how would you design a data warehouse for an e-commerce company?</span></summary><div class="answer"><ol>
+<li><strong>Business questions:</strong> sales by product, category, region and channel; customer retention; marketing performance.</li>
+<li><strong>Choose the process and the grain:</strong> for sales, “one row per order line”.</li>
+<li><strong>Dimensions:</strong> Date, Product, Customer, Store or Channel, Promotion, Geography.</li>
+<li><strong>Fact table:</strong> <code>fact_sales</code> with date, product, customer and channel keys, an order number (degenerate dimension), quantity, sales amount and discount.</li>
+<li><strong>Other facts:</strong> returns, inventory snapshots and web events, sharing <strong>conformed dimensions</strong>.</li>
+<li><strong>History:</strong> SCD Type 2 for customer and product attributes that change.</li>
+<li><strong>Pipeline:</strong> extract from the order system, CRM and web analytics with <strong>CDC</strong> into staging, transform and load with ELT, orchestrated with Airflow.</li>
+<li><strong>Quality and governance:</strong> reconciliation checks, lineage, access control.</li>
+<li><strong>Serving:</strong> a BI layer (Power BI or Tableau) on the star schema, with aggregates for heavy dashboards.</li>
+</ol></div></details><details class="item" id="d45"><summary><span><span class="qn">Q45</span>An ETL job failed halfway through the night. What do you do?</span></summary><div class="answer"><ol>
+<li><strong>Check the job logs and the audit table</strong> to find the failed step, the error and how many rows were processed.</li>
+<li><strong>Fix the cause</strong> (data issue, connection, a changed source schema, resources).</li>
+<li>Make sure the target is <strong>not left half-loaded:</strong> roll back, or clean up the partial batch.</li>
+<li><strong>Re-run</strong> from the failed step or batch, which is safe if the job is idempotent.</li>
+<li><strong>Reconcile</strong> row counts and totals, and tell downstream users if reports were delayed.</li>
+<li>Add the missing check or alert, and document the incident to prevent a repeat.</li>
+</ol></div></details><details class="item" id="d46"><summary><span><span class="qn">Q46</span>How do you handle late-arriving data and late-arriving dimensions?</span></summary><div class="answer"><ul>
+<li><strong>Late-arriving facts</strong> (a sale recorded days later): load them with the correct business date, and make sure aggregates and snapshots can be <strong>reprocessed</strong> for the affected period.</li>
+<li><strong>Late-arriving dimensions</strong> (a fact arrives before its customer record): insert an <strong>“inferred” placeholder dimension row</strong> with the business key, load the fact against it, and update the row with the real attributes when the dimension data arrives (and create a new SCD2 version if needed).</li>
+</ul></div></details><details class="item" id="d47"><summary><span><span class="qn">Q47</span>How do you handle deleted records in the source system?</span></summary><div class="answer"><p>Deletes are easy to miss in incremental loads. Options: use <strong>log-based CDC</strong>, which captures deletes, ask the source to use <strong>soft deletes</strong> (an <code>is_deleted</code> flag), compare the <strong>keys in the source with the keys in the warehouse</strong> to find the missing ones, or run a periodic full reconciliation. In the warehouse, mark records as deleted or inactive instead of removing them, to preserve history.</p></div></details><details class="item" id="d48"><summary><span><span class="qn">Q48</span>How do you test an ETL pipeline?</span></summary><div class="answer"><ul>
+<li><strong>Unit tests</strong> of individual transformation rules with sample data.</li>
+<li><strong>Source-to-target reconciliation</strong> (counts, sums, samples).</li>
+<li><strong>Data quality tests</strong> (nulls, duplicates, referential integrity, valid values).</li>
+<li><strong>Incremental load tests:</strong> inserts, updates and deletes are all applied correctly.</li>
+<li><strong>Re-run (idempotency) tests:</strong> running twice does not create duplicates.</li>
+<li><strong>Performance and volume tests</strong> with realistic data sizes.</li>
+<li><strong>Regression tests</strong> after each change, ideally in a CI pipeline.</li>
+</ul></div></details><details class="item" id="d49"><summary><span><span class="qn">Q49</span>How would you migrate data from a legacy system to a new data warehouse?</span></summary><div class="answer"><ol>
+<li><strong>Profile and understand</strong> the source data, rules and quality issues.</li>
+<li><strong>Map</strong> source fields to the target model and agree on transformations with the business.</li>
+<li><strong>Build and test</strong> the extraction, cleansing and loading in a test environment.</li>
+<li>Do an <strong>initial full load</strong>, then <strong>incremental loads</strong> to keep up with changes.</li>
+<li><strong>Reconcile</strong> with the legacy reports, with the business validating the numbers.</li>
+<li><strong>Run both systems in parallel</strong> for a period, then cut over with a rollback plan.</li>
+<li>Document the lineage and retire the legacy system.</li>
+</ol></div></details></section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SDLC and Agile Interview Prep</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></span><h1>SDLC and Agile Interview Prep</h1></div>
+<p class="sub">48 questions</p>
+<div class="roles"><a class="role" href="index.html#role=ba">Business Analyst</a><a class="role" href="index.html#role=se">Software Engineer (AI/ML)</a><a class="role alt" href="index.html#role=aiml">AI/ML</a></div>
+<div class="intro"><blockquote><p>SDLC interview questions for Business Analysts and project teams: the life cycle phases, SDLC models, Agile and Scrum, requirements and documentation, testing, deployment and maintenance, and project management scenarios.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<nav class="chips"><a href="#sec-0">SDLC fundamentals <small>7</small></a><a href="#sec-1">SDLC models <small>8</small></a><a href="#sec-2">Agile and Scrum <small>12</small></a><a href="#sec-3">Requirements, design and documentation <small>5</small></a><a href="#sec-4">Testing, deployment and maintenance <small>8</small></a><a href="#sec-5">Management, risk and scenarios <small>8</small></a></nav>
+<section class="sec-block" id="sec-0"><h2 class="sec">SDLC fundamentals</h2><details class="item" id="s1"><summary><span><span class="qn">Q1</span>What is the Software Development Life Cycle (SDLC)?</span></summary><div class="answer"><p>The SDLC is a structured process that describes <strong>how software is planned, built, tested, delivered and maintained</strong>. It breaks the work into phases, each with defined activities and outputs, so teams can deliver software of good quality, on time and within budget.</p></div></details><details class="item" id="s2"><summary><span><span class="qn">Q2</span>What are the phases of the SDLC?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>What happens</th>
+<th>Typical output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Planning</strong></td>
+<td>Define the goal, scope, feasibility, budget, timeline and risks</td>
+<td>Project plan, feasibility study</td>
+</tr>
+<tr>
+<td><strong>2. Requirement analysis</strong></td>
+<td>Gather and document what the business and users need</td>
+<td>BRD, SRS, user stories</td>
+</tr>
+<tr>
+<td><strong>3. Design</strong></td>
+<td>Plan the architecture, database, interfaces and screens</td>
+<td>High-level and low-level design, wireframes</td>
+</tr>
+<tr>
+<td><strong>4. Development (implementation)</strong></td>
+<td>Developers write the code</td>
+<td>Working software modules</td>
+</tr>
+<tr>
+<td><strong>5. Testing</strong></td>
+<td>Verify that the software meets the requirements and find defects</td>
+<td>Test cases, test reports, defect logs</td>
+</tr>
+<tr>
+<td><strong>6. Deployment</strong></td>
+<td>Release the software to users</td>
+<td>Production release, release notes</td>
+</tr>
+<tr>
+<td><strong>7. Maintenance</strong></td>
+<td>Fix issues, adapt and improve the software after release</td>
+<td>Patches, updates, new versions</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="s3"><summary><span><span class="qn">Q3</span>Why is the SDLC important?</span></summary><div class="answer"><ul>
+<li>Gives the team a <strong>clear, shared process</strong> and responsibilities.</li>
+<li>Helps manage <strong>scope, time and cost</strong>.</li>
+<li>Improves <strong>quality</strong> by building review and testing into every phase.</li>
+<li>Makes <strong>risks visible early,</strong> when they are cheapest to fix.</li>
+<li>Provides <strong>documentation and traceability</strong> for audits and future maintenance.</li>
+<li>Improves communication between the business and the technical team.</li>
+</ul></div></details><details class="item" id="s4"><summary><span><span class="qn">Q4</span>What is the role of a Business Analyst in each phase of the SDLC?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>What the BA does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Planning</strong></td>
+<td>Helps define the business case, scope and objectives; identifies stakeholders</td>
+</tr>
+<tr>
+<td><strong>Requirement analysis</strong></td>
+<td>Elicits, analyzes, documents and validates requirements (BRD, user stories)</td>
+</tr>
+<tr>
+<td><strong>Design</strong></td>
+<td>Clarifies requirements for architects and designers; reviews wireframes and prototypes with stakeholders</td>
+</tr>
+<tr>
+<td><strong>Development</strong></td>
+<td>Answers questions, clarifies requirements and manages requirement changes</td>
+</tr>
+<tr>
+<td><strong>Testing</strong></td>
+<td>Reviews test cases against requirements, supports and coordinates <strong>UAT</strong>, and helps triage defects</td>
+</tr>
+<tr>
+<td><strong>Deployment</strong></td>
+<td>Prepares user documentation and training, supports the go-live</td>
+</tr>
+<tr>
+<td><strong>Maintenance</strong></td>
+<td>Analyzes change requests, enhancements and the impact of issues</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="s5"><summary><span><span class="qn">Q5</span>What are the key roles in a software project?</span></summary><div class="answer"><ul>
+<li><strong>Business Analyst:</strong> bridges the business and the technical team by defining requirements.</li>
+<li><strong>Product Owner / Product Manager:</strong> owns the product vision and the backlog priorities.</li>
+<li><strong>Project Manager (or Scrum Master in Scrum):</strong> plans, tracks and removes obstacles.</li>
+<li><strong>Solution / Software Architect:</strong> designs the technical structure.</li>
+<li><strong>Developers:</strong> build the software.</li>
+<li><strong>QA / Test engineers:</strong> test and ensure quality.</li>
+<li><strong>UX/UI designer:</strong> designs the user experience and interface.</li>
+<li><strong>DevOps engineer:</strong> automates builds, deployment and infrastructure.</li>
+<li><strong>Stakeholders and end users:</strong> the people who sponsor, use or are affected by the product.</li>
+</ul></div></details><details class="item" id="s6"><summary><span><span class="qn">Q6</span>What are the main deliverables (documents) created during the SDLC?</span></summary><div class="answer"><ul>
+<li><strong>BRD</strong> (Business Requirements Document) and <strong>SRS/FRS</strong> (software or functional requirements specification).</li>
+<li><strong>Requirement Traceability Matrix (RTM).</strong></li>
+<li><strong>Design documents</strong> (HLD, LLD), wireframes and prototypes.</li>
+<li><strong>Test plan, test cases and test reports.</strong></li>
+<li><strong>UAT sign-off.</strong></li>
+<li><strong>Release notes, user manuals</strong> and training material.</li>
+</ul></div></details><details class="item" id="s7"><summary><span><span class="qn">Q7</span>What is the difference between SDLC and STLC?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>SDLC</th>
+<th>STLC (Software Testing Life Cycle)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scope</td>
+<td>The <strong>whole</strong> process of building software</td>
+<td>Only the <strong>testing</strong> process</td>
+</tr>
+<tr>
+<td>Goal</td>
+<td>Deliver working software</td>
+<td>Make sure the software meets quality and requirements</td>
+</tr>
+<tr>
+<td>Phases</td>
+<td>Planning, analysis, design, development, testing, deployment, maintenance</td>
+<td>Requirement review, test planning, test case design, environment setup, test execution, test closure</td>
+</tr>
+<tr>
+<td>Relation</td>
+<td>STLC is <strong>part of</strong> the SDLC</td>
+<td></td>
+</tr>
+</tbody>
+</table></div></details></section>
+<section class="sec-block" id="sec-1"><h2 class="sec">SDLC models</h2><details class="item" id="s8"><summary><span><span class="qn">Q8</span>What is the Waterfall model, and what are its pros and cons?</span></summary><div class="answer"><p>Waterfall is a <strong>sequential</strong> model: each phase (requirements, design, development, testing, deployment, maintenance) is completed before the next begins, with little going back.</p>
+<table>
+<thead>
+<tr>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple and easy to manage</td>
+<td>Inflexible: changes are costly and hard</td>
+</tr>
+<tr>
+<td>Clear phases, milestones and documentation</td>
+<td>Working software appears <strong>late</strong></td>
+</tr>
+<tr>
+<td>Works well when requirements are stable and well understood</td>
+<td>Testing and user feedback come at the end, so problems are found late</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="s9"><summary><span><span class="qn">Q9</span>What is the V-model?</span></summary><div class="answer"><p>The V-model is an extension of Waterfall where <strong>every development phase is paired with a testing phase</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Development phase</th>
+<th>Matching test level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Business requirements</td>
+<td>Acceptance testing (UAT)</td>
+</tr>
+<tr>
+<td>System requirements</td>
+<td>System testing</td>
+</tr>
+<tr>
+<td>High-level design</td>
+<td>Integration testing</td>
+</tr>
+<tr>
+<td>Low-level design</td>
+<td>Unit testing</td>
+</tr>
+</tbody>
+</table>
+<p>Test planning starts early, together with the corresponding development phase, which improves quality. It still shares Waterfall’s rigidity.</p></div></details><details class="item" id="s10"><summary><span><span class="qn">Q10</span>What are the iterative and incremental models?</span></summary><div class="answer"><ul>
+<li><strong>Iterative:</strong> build a rough version of the whole product, then <strong>improve it repeatedly</strong> based on feedback.</li>
+<li><strong>Incremental:</strong> build the product <strong>in pieces (increments)</strong>, each delivering a working part of the functionality.</li>
+</ul>
+<p>Most modern approaches, including Agile, combine both: small working increments delivered in repeated cycles. They give early feedback and handle change better than Waterfall.</p></div></details><details class="item" id="s11"><summary><span><span class="qn">Q11</span>What is the Spiral model?</span></summary><div class="answer"><p>The Spiral model is <strong>risk-driven</strong>. The project goes through repeated loops (spirals), and each loop has four steps: <strong>planning, risk analysis, engineering (development and testing), and evaluation</strong> by the customer. It suits large, complex and high-risk projects, but it is expensive and needs strong risk-analysis skills.</p></div></details><details class="item" id="s12"><summary><span><span class="qn">Q12</span>What is the Prototype model?</span></summary><div class="answer"><p>A <strong>prototype</strong> (a quick, simplified working model or mock-up) is built early and shown to users to collect feedback. It is refined until the requirements are clear, and then the real system is built. It is useful when requirements are unclear or the user interface is critical. The risk is that users mistake the prototype for the finished product, or that the throwaway prototype gets stretched into production.</p></div></details><details class="item" id="s13"><summary><span><span class="qn">Q13</span>What is the Agile model?</span></summary><div class="answer"><p>Agile is an <strong>iterative and incremental approach</strong> that delivers working software in short cycles (often 1 to 4 weeks), values collaboration with customers and welcomes changing requirements. Planning, development and testing happen together in each cycle. Common Agile frameworks are <strong>Scrum, Kanban, XP (Extreme Programming) and SAFe</strong> for large organizations.</p></div></details><details class="item" id="s14"><summary><span><span class="qn">Q14</span>Compare the common SDLC models. How do you choose one?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Flexibility to change</th>
+<th>Customer involvement</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Waterfall</strong></td>
+<td>Low</td>
+<td>Low (at start and end)</td>
+<td>Stable, well-defined requirements, regulated projects</td>
+</tr>
+<tr>
+<td><strong>V-model</strong></td>
+<td>Low</td>
+<td>Low</td>
+<td>Projects where testing rigor is critical (for example medical, safety)</td>
+</tr>
+<tr>
+<td><strong>Iterative / Incremental</strong></td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Large projects delivered in parts</td>
+</tr>
+<tr>
+<td><strong>Spiral</strong></td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Large, high-risk, complex projects</td>
+</tr>
+<tr>
+<td><strong>Agile (Scrum, Kanban)</strong></td>
+<td>High</td>
+<td>High, continuous</td>
+<td>Changing requirements, products that need fast feedback</td>
+</tr>
+</tbody>
+</table>
+<p>Choose by looking at <strong>how stable the requirements are, the risk, project size, regulatory needs, customer availability, team experience and the need for speed</strong>.</p></div></details><details class="item" id="s15"><summary><span><span class="qn">Q15</span>What is a hybrid approach (Water-Scrum-Fall)?</span></summary><div class="answer"><p>Many organizations mix approaches: for example, <strong>upfront planning, budgeting and requirement scoping done in a Waterfall way, development done in Agile sprints, and a formal release process at the end</strong>. It fits companies with fixed budgets, compliance requirements or traditional governance that still want the benefits of iterative development.</p></div></details></section>
+<section class="sec-block" id="sec-2"><h2 class="sec">Agile and Scrum</h2><details class="item" id="s16"><summary><span><span class="qn">Q16</span>What are the four values and the principles of the Agile Manifesto?</span></summary><div class="answer"><p>The Manifesto values:</p>
+<ol>
+<li><strong>Individuals and interactions</strong> over processes and tools.</li>
+<li><strong>Working software</strong> over comprehensive documentation.</li>
+<li><strong>Customer collaboration</strong> over contract negotiation.</li>
+<li><strong>Responding to change</strong> over following a plan.</li>
+</ol>
+<p>The items on the right still matter, but the items on the left are valued more. The manifesto also has <strong>12 principles</strong>, such as satisfying the customer through early and continuous delivery, welcoming changing requirements, delivering working software frequently, sustainable pace and regular reflection to improve.</p></div></details><details class="item" id="s17"><summary><span><span class="qn">Q17</span>What is Scrum? Explain its roles, events and artifacts.</span></summary><div class="answer"><p>Scrum is a lightweight Agile framework in which a small team delivers work in fixed-length iterations called <strong>sprints</strong> (one month or less).</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Items</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Roles</strong></td>
+<td><strong>Product Owner</strong> (maximizes product value, owns the backlog), <strong>Scrum Master</strong> (helps the team follow Scrum and removes obstacles), <strong>Developers</strong> (build the increment)</td>
+</tr>
+<tr>
+<td><strong>Events</strong></td>
+<td><strong>Sprint</strong>, <strong>Sprint Planning</strong>, <strong>Daily Scrum</strong> (15 minutes), <strong>Sprint Review</strong>, <strong>Sprint Retrospective</strong></td>
+</tr>
+<tr>
+<td><strong>Artifacts</strong></td>
+<td><strong>Product Backlog</strong>, <strong>Sprint Backlog</strong>, <strong>Increment</strong></td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="s18"><summary><span><span class="qn">Q18</span>Explain the Scrum events.</span></summary><div class="answer"><ul>
+<li><strong>Sprint:</strong> the time-boxed iteration (one month or less) in which a usable increment is built.</li>
+<li><strong>Sprint Planning:</strong> the team decides what to deliver in the sprint and how, and defines the sprint goal.</li>
+<li><strong>Daily Scrum:</strong> a 15-minute meeting for developers to inspect progress toward the sprint goal and adjust the plan.</li>
+<li><strong>Sprint Review:</strong> the team shows the increment to stakeholders and collects feedback.</li>
+<li><strong>Sprint Retrospective:</strong> the team reflects on how it worked and decides on improvements for the next sprint.</li>
+</ul></div></details><details class="item" id="s19"><summary><span><span class="qn">Q19</span>What is the difference between the Product Backlog and the Sprint Backlog?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Product Backlog</th>
+<th>Sprint Backlog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What it is</td>
+<td>The ordered list of <strong>everything</strong> that might be needed in the product</td>
+<td>The items <strong>selected for the current sprint</strong>, plus the plan to deliver them</td>
+</tr>
+<tr>
+<td>Owner</td>
+<td>Product Owner</td>
+<td>Developers</td>
+</tr>
+<tr>
+<td>Changes</td>
+<td>Continuously refined and reprioritized</td>
+<td>Changes only within the sprint, by the team</td>
+</tr>
+<tr>
+<td>Lifetime</td>
+<td>Lives as long as the product</td>
+<td>Lasts for one sprint</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="s20"><summary><span><span class="qn">Q20</span>What is a user story, and what makes a good one (INVEST)?</span></summary><div class="answer"><p>A user story is a short description of a feature from the <strong>user’s point of view</strong>:</p>
+<pre><code>As a [type of user], I want [goal], so that [benefit].
+</code></pre>
+<p>A good story follows <strong>INVEST</strong>: <strong>I</strong>ndependent, <strong>N</strong>egotiable, <strong>V</strong>aluable, <strong>E</strong>stimable, <strong>S</strong>mall and <strong>T</strong>estable.</p></div></details><details class="item" id="s21"><summary><span><span class="qn">Q21</span>What are acceptance criteria, and how are they written?</span></summary><div class="answer"><p>Acceptance criteria are the <strong>conditions that a story must meet to be accepted</strong> by the Product Owner. They make the story testable and avoid misunderstandings. A popular format is <strong>Given / When / Then</strong>:</p>
+<pre><code>Given a registered user is on the login page
+When they enter a valid email and password
+Then they are taken to the dashboard
+</code></pre></div></details><details class="item" id="s22"><summary><span><span class="qn">Q22</span>What is the difference between the Definition of Ready and the Definition of Done?</span></summary><div class="answer"><ul>
+<li><strong>Definition of Ready (DoR):</strong> the checklist a backlog item must meet <strong>before</strong> it can enter a sprint (clear description, acceptance criteria, estimated, dependencies known).</li>
+<li><strong>Definition of Done (DoD):</strong> the shared checklist that an item must meet to be <strong>considered complete</strong> (coded, reviewed, tested, documented, accepted).</li>
+</ul>
+<p>The DoD is a part of Scrum itself, while the DoR is a common practice that teams add.</p></div></details><details class="item" id="s23"><summary><span><span class="qn">Q23</span>What are story points, and how does the team estimate?</span></summary><div class="answer"><p>Story points are a <strong>relative measure of size</strong> (effort, complexity and uncertainty) of a backlog item, not hours. Teams compare an item with others they know. A common technique is <strong>planning poker</strong>: each member picks a number from a scale such as the Fibonacci sequence (1, 2, 3, 5, 8, 13) and the team discusses differences until they agree.</p>
+<p><strong>Velocity</strong> is the number of points a team completes per sprint, and it is used to forecast how much work the team can do in the future.</p></div></details><details class="item" id="s24"><summary><span><span class="qn">Q24</span>What is the difference between Scrum and Kanban?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Scrum</th>
+<th>Kanban</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cadence</td>
+<td>Fixed-length <strong>sprints</strong></td>
+<td><strong>Continuous flow</strong>, no fixed iterations</td>
+</tr>
+<tr>
+<td>Roles</td>
+<td>Product Owner, Scrum Master, Developers</td>
+<td>No required roles</td>
+</tr>
+<tr>
+<td>Work limits</td>
+<td>Sprint capacity</td>
+<td><strong>WIP (work-in-progress) limits</strong> per column</td>
+</tr>
+<tr>
+<td>Changes during the cycle</td>
+<td>Avoided inside a sprint</td>
+<td>Can be added any time if the WIP limit allows</td>
+</tr>
+<tr>
+<td>Metrics</td>
+<td>Velocity, burndown</td>
+<td>Cycle time, lead time, throughput</td>
+</tr>
+<tr>
+<td>Good for</td>
+<td>Product development with planned increments</td>
+<td>Support, maintenance and continuous work</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="s25"><summary><span><span class="qn">Q25</span>What is backlog refinement (grooming)?</span></summary><div class="answer"><p>It is the ongoing activity of <strong>reviewing, clarifying, splitting, estimating and ordering</strong> backlog items so that the top of the backlog is ready for upcoming sprints. The Product Owner and the team work on it together, with the BA often helping to detail the requirements and acceptance criteria.</p></div></details><details class="item" id="s26"><summary><span><span class="qn">Q26</span>What is a burndown chart and what does velocity tell you?</span></summary><div class="answer"><ul>
+<li>A <strong>burndown chart</strong> shows the <strong>remaining work</strong> (in story points or hours) against time during a sprint or release. A line that falls steadily towards zero means the team is on track.</li>
+<li><strong>Velocity</strong> shows how much the team completes per sprint, which helps with planning and spotting changes in the team’s capacity.</li>
+</ul>
+<p>Use both as tools for conversation and improvement, not to judge or compare teams.</p></div></details><details class="item" id="s27"><summary><span><span class="qn">Q27</span>What is the role of a Business Analyst in a Scrum team?</span></summary><div class="answer"><p>Scrum has no official “BA” role, but the work still needs to be done. In practice a BA often supports the <strong>Product Owner</strong> by <strong>analyzing needs, writing and refining user stories with acceptance criteria, prioritizing with stakeholders, preparing for sprint planning, clarifying questions during the sprint, supporting testing and UAT, and communicating with stakeholders</strong>.</p></div></details></section>
+<section class="sec-block" id="sec-3"><h2 class="sec">Requirements, design and documentation</h2><details class="item" id="s28"><summary><span><span class="qn">Q28</span>What is the difference between BRD, FRS and SRS?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Focus</th>
+<th>Written by / for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BRD</strong> (Business Requirements Document)</td>
+<td><strong>Why</strong> the project exists: business goals, scope, high-level business needs</td>
+<td>BA, for business stakeholders</td>
+</tr>
+<tr>
+<td><strong>FRS</strong> (Functional Requirements Specification)</td>
+<td><strong>What</strong> the system should do, in functional terms</td>
+<td>BA, for the project team</td>
+</tr>
+<tr>
+<td><strong>SRS</strong> (Software Requirements Specification)</td>
+<td>Detailed functional <strong>and non-functional</strong> requirements, system behavior and constraints</td>
+<td>BA or system analysts, for developers and testers</td>
+</tr>
+</tbody>
+</table>
+<p>The exact naming varies between companies.</p></div></details><details class="item" id="s29"><summary><span><span class="qn">Q29</span>What is a Requirement Traceability Matrix (RTM)?</span></summary><div class="answer"><p>An RTM is a table that <strong>links each requirement to its design, development and test items</strong>. It shows that every requirement is implemented and tested, helps assess the impact of a change, and prevents scope gaps and unneeded features.</p>
+<table>
+<thead>
+<tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Design item</th>
+<th>Test case</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R-101</td>
+<td>User can reset password</td>
+<td>DES-12</td>
+<td>TC-45</td>
+<td>Passed</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="s30"><summary><span><span class="qn">Q30</span>What is the difference between a use case and a user story?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Use case</th>
+<th>User story</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Detail</td>
+<td>More detailed: actors, preconditions, main flow, alternative flows</td>
+<td>A short sentence plus acceptance criteria</td>
+</tr>
+<tr>
+<td>Style</td>
+<td>Formal, often used in traditional projects</td>
+<td>Light, used in Agile projects</td>
+</tr>
+<tr>
+<td>Purpose</td>
+<td>Describes the full interaction with the system</td>
+<td>A conversation starter, to be refined with the team</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="s31"><summary><span><span class="qn">Q31</span>What are wireframes and prototypes, and why use them?</span></summary><div class="answer"><ul>
+<li>A <strong>wireframe</strong> is a simple, low-detail layout of a screen that shows structure and content.</li>
+<li>A <strong>prototype</strong> is an interactive mock-up that simulates how the product will work.</li>
+</ul>
+<p>They let stakeholders <strong>see and react</strong> before development starts, which reveals missing or wrong requirements early, when changes are cheap. Tools include Figma, Balsamiq and Axure.</p></div></details><details class="item" id="s32"><summary><span><span class="qn">Q32</span>What is the difference between high-level design (HLD) and low-level design (LLD)?</span></summary><div class="answer"><ul>
+<li><strong>HLD:</strong> the <strong>overall architecture</strong>: main components, how they interact, technology choices, data flow and databases.</li>
+<li><strong>LLD:</strong> the <strong>detailed design of each component</strong>: classes, methods, database tables and columns, algorithms and interfaces.</li>
+</ul>
+<p>Architects usually create the HLD, and developers or designers create the LLD from it.</p></div></details></section>
+<section class="sec-block" id="sec-4"><h2 class="sec">Testing, deployment and maintenance</h2><details class="item" id="s33"><summary><span><span class="qn">Q33</span>What are the levels of software testing?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Level</th>
+<th>What it checks</th>
+<th>Done by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Unit testing</strong></td>
+<td>Individual functions or components</td>
+<td>Developers</td>
+</tr>
+<tr>
+<td><strong>Integration testing</strong></td>
+<td>That modules work together</td>
+<td>Developers and testers</td>
+</tr>
+<tr>
+<td><strong>System testing</strong></td>
+<td>The whole system against the requirements</td>
+<td>QA team</td>
+</tr>
+<tr>
+<td><strong>User Acceptance Testing (UAT)</strong></td>
+<td>That the system meets the business needs and is ready for use</td>
+<td>Business users and the client, supported by the BA</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="s34"><summary><span><span class="qn">Q34</span>What is UAT, and what is the BA’s role in it?</span></summary><div class="answer"><p><strong>User Acceptance Testing</strong> is the final validation, done by business users in a production-like environment, to confirm that the software meets the business requirements and can go live.</p>
+<p>The BA typically <strong>prepares UAT scenarios and test cases from the requirements, coordinates the users and the schedule, supports the testers, helps log and triage defects, and gets the formal sign-off</strong>.</p></div></details><details class="item" id="s35"><summary><span><span class="qn">Q35</span>What is the difference between verification and validation?</span></summary><div class="answer"><ul>
+<li><strong>Verification:</strong> “Are we building the product <strong>right</strong>?” It checks that the software meets its specification, through reviews, inspections and testing.</li>
+<li><strong>Validation:</strong> “Are we building the <strong>right</strong> product?” It checks that the software meets the user’s real needs, for example through UAT.</li>
+</ul></div></details><details class="item" id="s36"><summary><span><span class="qn">Q36</span>What is regression testing?</span></summary><div class="answer"><p>Regression testing <strong>re-runs existing tests after a change</strong> (a new feature, a bug fix or a configuration change) to make sure that previously working functionality has not broken. It is usually automated, because it has to be repeated often.</p></div></details><details class="item" id="s37"><summary><span><span class="qn">Q37</span>What is the defect life cycle, and how do severity and priority differ?</span></summary><div class="answer"><p>A typical defect life cycle: <strong>New → Assigned → Open (in progress) → Fixed → Retest → Verified → Closed</strong>, with <strong>Reopened</strong> if the fix fails, and states such as Rejected or Deferred.</p>
+<ul>
+<li><strong>Severity:</strong> how <strong>badly the defect affects the system</strong> (a crash is high severity). Usually set by testers.</li>
+<li><strong>Priority:</strong> how <strong>urgently it should be fixed</strong>. Set by the business or product owner.</li>
+</ul>
+<p>A typo on the company logo can be low severity but high priority.</p></div></details><details class="item" id="s38"><summary><span><span class="qn">Q38</span>What are the types of software maintenance?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Corrective</strong></td>
+<td>Fix defects found after release</td>
+<td>Fix a calculation bug</td>
+</tr>
+<tr>
+<td><strong>Adaptive</strong></td>
+<td>Adjust to a changed environment</td>
+<td>Support a new operating system or regulation</td>
+</tr>
+<tr>
+<td><strong>Perfective</strong></td>
+<td>Improve performance or add features</td>
+<td>Speed up a slow report</td>
+</tr>
+<tr>
+<td><strong>Preventive</strong></td>
+<td>Prevent future problems</td>
+<td>Refactor code to reduce risk</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="s39"><summary><span><span class="qn">Q39</span>What are the typical environments in a software project?</span></summary><div class="answer"><p>Code moves through separate environments: <strong>Development</strong> (developers build and test), <strong>Test or QA</strong> (testers verify), <strong>Staging or UAT</strong> (a production-like copy for final checks and acceptance) and <strong>Production</strong> (live users). Keeping them separate protects real users from unfinished or faulty changes.</p></div></details><details class="item" id="s40"><summary><span><span class="qn">Q40</span>What are DevOps and CI/CD, and how do they relate to the SDLC?</span></summary><div class="answer"><p><strong>DevOps</strong> brings development and operations together to deliver software faster and more reliably, with automation and shared responsibility.</p>
+<ul>
+<li><strong>Continuous Integration (CI):</strong> developers merge changes often, and each change is automatically built and tested.</li>
+<li><strong>Continuous Delivery/Deployment (CD):</strong> tested changes are automatically prepared for release (delivery) or released to production (deployment).</li>
+</ul>
+<p>They shorten the SDLC feedback loop and make releases frequent, small and low-risk.</p></div></details></section>
+<section class="sec-block" id="sec-5"><h2 class="sec">Management, risk and scenarios</h2><details class="item" id="s41"><summary><span><span class="qn">Q41</span>What is scope creep, and how do you prevent it?</span></summary><div class="answer"><p>Scope creep is the <strong>uncontrolled growth of project scope</strong> after it has been agreed, without matching changes in time, budget or resources. Prevent it with:</p>
+<ul>
+<li>a clearly <strong>documented and signed-off scope</strong>,</li>
+<li>a formal <strong>change control process</strong> (assess impact, approve, document),</li>
+<li>clear prioritization of requests (for example MoSCoW),</li>
+<li>regular communication with stakeholders, and</li>
+<li>in Agile, adding new items to the backlog and trading them against existing work.</li>
+</ul></div></details><details class="item" id="s42"><summary><span><span class="qn">Q42</span>How do you handle changing requirements in Waterfall vs Agile?</span></summary><div class="answer"><ul>
+<li><strong>Waterfall:</strong> changes go through a formal <strong>change request</strong>: impact analysis on cost, time and scope, approval by a change board, then updates to all documents and plans.</li>
+<li><strong>Agile:</strong> change is expected. New or changed items are added to the <strong>product backlog</strong>, prioritized by the Product Owner, and picked up in a later sprint, with the current sprint protected.</li>
+</ul></div></details><details class="item" id="s43"><summary><span><span class="qn">Q43</span>How do you identify and manage risks in a project?</span></summary><div class="answer"><ol>
+<li><strong>Identify</strong> risks (technical, schedule, budget, people, external) with the team and stakeholders.</li>
+<li><strong>Assess</strong> each one for <strong>probability and impact</strong>.</li>
+<li><strong>Plan a response:</strong> avoid, reduce (mitigate), transfer or accept it.</li>
+<li><strong>Record</strong> them in a risk register with an owner.</li>
+<li><strong>Monitor</strong> and review regularly.</li>
+</ol></div></details><details class="item" id="s44"><summary><span><span class="qn">Q44</span>Why do software projects fail, and how can a BA help prevent it?</span></summary><div class="answer"><p>Common causes: <strong>unclear or changing requirements, poor communication, unrealistic estimates or deadlines, weak stakeholder involvement, scope creep, poor testing, and no clear ownership</strong>.</p>
+<p>A BA helps by clarifying and validating requirements early, keeping documentation and traceability, involving stakeholders continuously, managing changes, spotting risks and gaps, and making sure the delivered solution solves the real business problem.</p></div></details><details class="item" id="s45"><summary><span><span class="qn">Q45</span>How do you measure the success of a software project?</span></summary><div class="answer"><ul>
+<li><strong>Delivery:</strong> delivered on time, within budget and scope.</li>
+<li><strong>Quality:</strong> number and severity of defects, and test coverage.</li>
+<li><strong>Business value:</strong> the business goals and KPIs achieved (cost saved, revenue, efficiency).</li>
+<li><strong>User adoption and satisfaction.</strong></li>
+<li><strong>Stakeholder satisfaction.</strong></li>
+<li>In Agile: velocity trends, lead time and customer feedback.</li>
+</ul></div></details><details class="item" id="s46"><summary><span><span class="qn">Q46</span>How does the lifecycle differ for a data science or machine learning project?</span></summary><div class="answer"><p>Data projects are more <strong>experimental and data-driven</strong>, so a common process is <strong>CRISP-DM</strong>: business understanding, data understanding, data preparation, modeling, evaluation and deployment, repeated in cycles. Compared with the usual SDLC, they also need data quality work, model monitoring and <strong>retraining</strong> after deployment, because the model’s performance can change as the data changes (see MLOps).</p></div></details><details class="item" id="s47"><summary><span><span class="qn">Q47</span>Scenario: which SDLC model would you choose for a startup building an MVP, and which for a banking compliance system?</span></summary><div class="answer"><ul>
+<li><strong>Startup MVP: Agile (Scrum or Kanban).</strong> Requirements are uncertain and speed and feedback matter most, so build small increments, release early and adapt to what users do.</li>
+<li><strong>Banking compliance system: Waterfall, V-model or a hybrid.</strong> Requirements are fixed by regulation, traceability and documentation are mandatory, and the cost of errors is high. Use a hybrid with Agile development inside a controlled, documented process where possible.</li>
+</ul>
+<p>The point is to justify the choice from requirement stability, risk, regulation and customer involvement.</p></div></details><details class="item" id="s48"><summary><span><span class="qn">Q48</span>Behavioral: tell me about a project where requirements changed late. How did you handle it?</span></summary><div class="answer"><p>A strong answer follows <strong>STAR</strong> (Situation, Task, Action, Result):</p>
+<ol>
+<li><strong>Situation:</strong> the project and the late change (for example a new regulation or a stakeholder request).</li>
+<li><strong>Task:</strong> your responsibility as the BA.</li>
+<li><strong>Action:</strong> you assessed the <strong>impact on scope, time and cost</strong>, discussed options with stakeholders, documented and got approval for the change, updated the requirements and the traceability, and communicated it to the team.</li>
+<li><strong>Result:</strong> delivered with an agreed trade-off, with measurable results and what you learned.</li>
+</ol>
+<p>Prepare one or two real examples in advance.</p></div></details></section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

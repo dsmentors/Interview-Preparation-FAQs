@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RAG Interview Prep</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h5"/><polyline points="14 3 14 8 19 8"/><circle cx="17" cy="17" r="3"/><line x1="21" y1="21" x2="19.2" y2="19.2"/></svg></span><h1>RAG Interview Prep</h1></div>
+<p class="sub">41 questions</p>
+<div class="roles"><a class="role" href="index.html#role=aiml">AI/ML</a><a class="role" href="index.html#role=se">Software Engineer (AI/ML)</a><a class="role alt" href="index.html#role=ds">Data Science</a></div>
+<div class="intro"><blockquote><p>Retrieval-Augmented Generation (RAG) interview questions, from the basics to production design. Questions are ordered from basic to advanced within each section.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<nav class="chips"><a href="#sec-0">RAG fundamentals <small>6</small></a><a href="#sec-1">Ingestion, chunking and embeddings <small>7</small></a><a href="#sec-2">Retrieval and vector databases <small>9</small></a><a href="#sec-3">Advanced RAG techniques <small>8</small></a><a href="#sec-4">Generation and prompting <small>4</small></a><a href="#sec-5">Evaluation and production <small>7</small></a></nav>
+<section class="sec-block" id="sec-0"><h2 class="sec">RAG fundamentals</h2><details class="item" id="r1"><summary><span><span class="qn">Q1</span>What is Retrieval-Augmented Generation (RAG), and what problem does it solve?</span></summary><div class="answer"><p>RAG is a pattern where the system first <strong>retrieves</strong> relevant information from an external knowledge source and then passes it to an LLM as context, so the model <strong>generates</strong> its answer from that information instead of relying only on what it memorized during training.</p>
+<p>It solves three problems of a plain LLM:</p>
+<ul>
+<li><strong>Stale knowledge:</strong> the model does not know about events or documents after its training cutoff.</li>
+<li><strong>Private data:</strong> the model has never seen your company documents.</li>
+<li><strong>Hallucination:</strong> with the right facts in the prompt, the model is less likely to invent an answer, and you can show the sources.</li>
+</ul></div></details><details class="item" id="r2"><summary><span><span class="qn">Q2</span>What are the main components of a RAG system?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Role</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document loader / parser</td>
+<td>Reads raw files and extracts clean text</td>
+<td>PDF, HTML, Word, database exports</td>
+</tr>
+<tr>
+<td>Chunker</td>
+<td>Splits documents into retrievable pieces</td>
+<td>Recursive or semantic splitters</td>
+</tr>
+<tr>
+<td>Embedding model</td>
+<td>Turns text into vectors</td>
+<td>OpenAI embeddings, BGE, E5, MiniLM</td>
+</tr>
+<tr>
+<td>Vector store / index</td>
+<td>Stores vectors and finds the nearest ones</td>
+<td>FAISS, Chroma, Pinecone, Qdrant, pgvector</td>
+</tr>
+<tr>
+<td>Retriever (and reranker)</td>
+<td>Finds and orders the best chunks for a query</td>
+<td>Dense, hybrid search, cross-encoder</td>
+</tr>
+<tr>
+<td>Prompt builder</td>
+<td>Combines the question and retrieved chunks</td>
+<td>A prompt template</td>
+</tr>
+<tr>
+<td>LLM</td>
+<td>Writes the grounded answer</td>
+<td>Any chat model</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="r3"><summary><span><span class="qn">Q3</span>Walk through the end-to-end flow of a RAG system.</span></summary><div class="answer"><p>RAG has two phases.</p>
+<p><strong>Indexing (offline, done once and then updated):</strong></p>
+<ol>
+<li>Load and clean the documents.</li>
+<li>Split them into chunks and attach metadata (source, page, date).</li>
+<li>Convert each chunk into an embedding and store it in a vector database.</li>
+</ol>
+<p><strong>Query time (online, for every question):</strong></p>
+<ol>
+<li>Embed the user question with the same embedding model.</li>
+<li>Retrieve the top-k most similar chunks (optionally rerank them).</li>
+<li>Put the chunks and the question into a prompt.</li>
+<li>The LLM generates an answer grounded in those chunks, ideally with citations.</li>
+</ol></div></details><details class="item" id="r4"><summary><span><span class="qn">Q4</span>RAG vs fine-tuning vs long context: when do you choose which?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>RAG</th>
+<th>Fine-tuning</th>
+<th>Long context (paste everything)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Best for</td>
+<td>Changing or private knowledge, answers with sources</td>
+<td>Changing style, format or behavior, learning a task</td>
+<td>Small document sets, one-off questions</td>
+</tr>
+<tr>
+<td>Updating knowledge</td>
+<td>Easy: re-index the changed documents</td>
+<td>Hard: requires retraining</td>
+<td>Easy, but you pay for the tokens on every call</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>Low per query, plus retrieval</td>
+<td>Training cost up front</td>
+<td>High per query for large inputs</td>
+</tr>
+<tr>
+<td>Hallucination control</td>
+<td>Good, can cite sources</td>
+<td>Does not add reliable facts</td>
+<td>Good, but accuracy can drop on very long inputs</td>
+</tr>
+</tbody>
+</table>
+<p>They are not exclusive: a common setup is a fine-tuned model that follows your output format, combined with RAG for the facts.</p></div></details><details class="item" id="r5"><summary><span><span class="qn">Q5</span>What are the limitations of RAG?</span></summary><div class="answer"><ul>
+<li><strong>Retrieval quality is the ceiling:</strong> if the right chunk is not retrieved, the LLM cannot answer correctly.</li>
+<li><strong>Chunking trade-offs:</strong> small chunks lose context, large chunks add noise.</li>
+<li><strong>Weak on global questions:</strong> "summarize the whole corpus" or questions that need many documents combined are hard for top-k retrieval.</li>
+<li><strong>Extra latency and cost:</strong> embedding, searching and a longer prompt on every request.</li>
+<li><strong>Operational work:</strong> keeping the index fresh, handling permissions and evaluating quality.</li>
+<li><strong>Not a guarantee against hallucination:</strong> the model can still ignore or misread the context.</li>
+</ul></div></details><details class="item" id="r6"><summary><span><span class="qn">Q6</span>What is the difference between naive RAG, advanced RAG and modular RAG?</span></summary><div class="answer"><ul>
+<li><strong>Naive RAG:</strong> index, retrieve top-k, generate. Simple, but sensitive to chunking and query wording.</li>
+<li><strong>Advanced RAG:</strong> adds steps around the same flow, such as query rewriting, hybrid search, reranking, metadata filtering and context compression.</li>
+<li><strong>Modular RAG:</strong> treats each step as a swappable module and can route, loop or branch, for example choosing between a vector search, a SQL query or a web search per question.</li>
+</ul></div></details></section>
+<section class="sec-block" id="sec-1"><h2 class="sec">Ingestion, chunking and embeddings</h2><details class="item" id="r7"><summary><span><span class="qn">Q7</span>Why does chunking matter, and how do you choose chunk size and overlap?</span></summary><div class="answer"><p>Chunks are the unit of retrieval, so their size directly affects quality. Chunks that are too small lose the surrounding context, and chunks that are too large mix several topics, dilute the embedding and waste prompt space.</p>
+<p>A common starting point is <strong>200 to 800 tokens with 10 to 20% overlap</strong>, then tune it using a small evaluation set. Overlap prevents a sentence or idea from being cut in half at a boundary. The right size depends on the content (FAQs and legal clauses differ) and on the embedding model's input limit.</p></div></details><details class="item" id="r8"><summary><span><span class="qn">Q8</span>What are the common chunking strategies?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>How it works</th>
+<th>Good for</th>
+<th>Watch out</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fixed-size</td>
+<td>Cuts every N tokens or characters</td>
+<td>Quick baseline</td>
+<td>Can cut sentences in half</td>
+</tr>
+<tr>
+<td>Recursive</td>
+<td>Splits on paragraphs, then sentences, then words, until it fits</td>
+<td>General text, a good default</td>
+<td>Ignores meaning</td>
+</tr>
+<tr>
+<td>Semantic</td>
+<td>Starts a new chunk when the meaning changes (embedding similarity drops)</td>
+<td>Long, mixed-topic text</td>
+<td>Slower, needs tuning</td>
+</tr>
+<tr>
+<td>Structure-aware</td>
+<td>Splits by headings, sections, tables or code functions</td>
+<td>Manuals, markdown, code</td>
+<td>Needs clean structure</td>
+</tr>
+<tr>
+<td>Parent-child (small-to-big)</td>
+<td>Searches small chunks, returns the larger parent chunk</td>
+<td>When precision and context are both needed</td>
+<td>More storage and logic</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="r9"><summary><span><span class="qn">Q9</span>How do you handle PDFs, tables, scanned pages and images in a RAG pipeline?</span></summary><div class="answer"><p>Parsing quality often matters more than the model choice.</p>
+<ul>
+<li><strong>Text PDFs:</strong> use a layout-aware parser so headers, footers, columns and page numbers do not pollute the chunks.</li>
+<li><strong>Scanned documents:</strong> run OCR first, and check its output.</li>
+<li><strong>Tables:</strong> keep each table together (for example as Markdown or with a short text summary) instead of splitting it by rows.</li>
+<li><strong>Images and charts:</strong> caption them with a vision model, or use a multimodal embedding model.</li>
+<li><strong>Always keep metadata:</strong> file name, page number and section title, so answers can cite where the information came from.</li>
+</ul></div></details><details class="item" id="r10"><summary><span><span class="qn">Q10</span>Why attach metadata to chunks?</span></summary><div class="answer"><p>Metadata (source, author, date, department, language, access level, document type) lets you:</p>
+<ul>
+<li><strong>filter</strong> results (for example only documents from 2024 or only the HR department),</li>
+<li><strong>enforce permissions</strong> so users only see what they are allowed to see,</li>
+<li><strong>show citations</strong> with file and page,</li>
+<li><strong>debug</strong> which documents a wrong answer came from.</li>
+</ul></div></details><details class="item" id="r11"><summary><span><span class="qn">Q11</span>What are embeddings, and how do you choose an embedding model?</span></summary><div class="answer"><p>An embedding is a vector (a list of numbers) that represents the meaning of a text, so that similar texts end up close together in vector space.</p>
+<p>Things to compare when choosing a model:</p>
+<ul>
+<li><strong>Quality on your domain and language:</strong> check a benchmark such as MTEB, then test on your own data.</li>
+<li><strong>Dimension size:</strong> larger vectors can be more accurate but cost more storage and search time.</li>
+<li><strong>Maximum input length:</strong> it limits your chunk size.</li>
+<li><strong>Cost, latency and hosting:</strong> an API or a self-hosted open-source model (for example BGE or E5).</li>
+<li><strong>Multilingual or multimodal needs.</strong></li>
+</ul></div></details><details class="item" id="r12"><summary><span><span class="qn">Q12</span>Cosine similarity vs dot product vs Euclidean distance: which should you use?</span></summary><div class="answer"><ul>
+<li><strong>Cosine similarity</strong> measures the angle between vectors and ignores their length. It is the most common choice for text embeddings.</li>
+<li><strong>Dot product</strong> also considers length. For normalized vectors it gives exactly the same ranking as cosine.</li>
+<li><strong>Euclidean (L2) distance</strong> measures straight-line distance. For normalized vectors it also gives the same ranking.</li>
+</ul>
+<p>Use the metric the embedding model was trained for, and be consistent between indexing and querying.</p></div></details><details class="item" id="r13"><summary><span><span class="qn">Q13</span>Why must the query and the documents use the same embedding model, and what happens if you change the model?</span></summary><div class="answer"><p>Each model creates its own vector space, so vectors from two different models cannot be compared meaningfully (they may not even have the same dimension).</p>
+<p>If you change the embedding model, you must <strong>re-embed and re-index every document</strong>. Plan for this by storing the original text, keeping the model name and version in your index metadata, and building the new index next to the old one before switching.</p></div></details></section>
+<section class="sec-block" id="sec-2"><h2 class="sec">Retrieval and vector databases</h2><details class="item" id="r14"><summary><span><span class="qn">Q14</span>What is a vector database, and what is approximate nearest neighbor (ANN) search?</span></summary><div class="answer"><p>A vector database stores embeddings and quickly finds the ones closest to a query vector, usually with metadata filtering as well.</p>
+<p>Exact search compares the query with every vector, which gets too slow at millions of vectors. <strong>ANN</strong> algorithms trade a small loss in recall for a large gain in speed. Common ones:</p>
+<table>
+<thead>
+<tr>
+<th>Index</th>
+<th>Idea</th>
+<th>Main knobs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Flat</strong></td>
+<td>Exact brute-force comparison</td>
+<td>None, but slow at scale</td>
+</tr>
+<tr>
+<td><strong>HNSW</strong></td>
+<td>A layered graph that is searched by hopping to nearer neighbors</td>
+<td><code>M</code>, <code>efConstruction</code>, <code>efSearch</code></td>
+</tr>
+<tr>
+<td><strong>IVF</strong></td>
+<td>Clusters vectors and searches only the nearest clusters</td>
+<td>Number of clusters, <code>nprobe</code></td>
+</tr>
+<tr>
+<td><strong>PQ</strong></td>
+<td>Compresses vectors into short codes to save memory</td>
+<td>Number of sub-vectors, bits</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="r15"><summary><span><span class="qn">Q15</span>What is the difference between dense, sparse and hybrid retrieval?</span></summary><div class="answer"><ul>
+<li><strong>Dense retrieval:</strong> embedding similarity. It understands meaning and synonyms, but can miss exact terms such as product codes, names or error IDs.</li>
+<li><strong>Sparse retrieval:</strong> keyword-based methods such as BM25. It is excellent for exact terms, but does not understand meaning.</li>
+<li><strong>Hybrid retrieval:</strong> runs both and merges the results, usually giving the best overall recall.</li>
+</ul>
+<p>A popular way to merge the two ranked lists is <strong>Reciprocal Rank Fusion (RRF)</strong>:</p>
+<pre><code>score(d) = sum over each list of 1 / (k + rank(d))      # k is commonly 60
+</code></pre></div></details><details class="item" id="r16"><summary><span><span class="qn">Q16</span>What is BM25, and when can it beat embeddings?</span></summary><div class="answer"><p>BM25 is a keyword ranking function. It scores a document higher when it contains the query terms often (with diminishing returns) and when those terms are rare across the collection, and it adjusts for document length.</p>
+<p>It can beat embeddings when queries contain <strong>exact identifiers</strong>: product codes, function names, legal section numbers, rare names or error messages. This is why hybrid search is so common in production.</p></div></details><details class="item" id="r17"><summary><span><span class="qn">Q17</span>What is reranking, and why add it?</span></summary><div class="answer"><p>The first retrieval step is fast but approximate. A <strong>reranker</strong> takes the top candidates (for example 20 to 100) and reorders them with a more accurate model, and you keep only the best few for the prompt.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Bi-encoder (embedding retrieval)</th>
+<th>Cross-encoder (reranker)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>How it scores</td>
+<td>Encodes query and document separately, then compares vectors</td>
+<td>Reads query and document together</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>Fast, vectors can be pre-computed</td>
+<td>Slow, runs per query-document pair</td>
+</tr>
+<tr>
+<td>Accuracy</td>
+<td>Good</td>
+<td>Higher</td>
+</tr>
+<tr>
+<td>Used for</td>
+<td>First-stage retrieval over the whole corpus</td>
+<td>Second-stage reordering of a short list</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="r18"><summary><span><span class="qn">Q18</span>How do you choose top-k and a similarity threshold?</span></summary><div class="answer"><ul>
+<li><strong>Top-k:</strong> too small and you miss the answer, too large and you add noise and cost. Start with 3 to 5 chunks for the prompt (retrieving 20 to 50 first if you rerank), then tune on an evaluation set.</li>
+<li><strong>Similarity threshold:</strong> drop results below a minimum score so the model is not fed irrelevant text. It also lets the system answer "I don't know" when nothing relevant is found.</li>
+</ul>
+<p>Scores are not comparable across different embedding models, so tune the threshold per model.</p></div></details><details class="item" id="r19"><summary><span><span class="qn">Q19</span>What is Maximal Marginal Relevance (MMR)?</span></summary><div class="answer"><p>MMR is a re-selection method that balances <strong>relevance</strong> to the query with <strong>diversity</strong> among the chosen chunks. It avoids returning five near-identical chunks that all say the same thing.</p>
+<pre><code>MMR = argmax [ λ * sim(query, doc) - (1 - λ) * max sim(doc, already_selected) ]
+</code></pre>
+<p>A higher λ favors relevance, a lower λ favors diversity.</p></div></details><details class="item" id="r20"><summary><span><span class="qn">Q20</span>What is metadata filtering, and what is the difference between pre-filtering and post-filtering?</span></summary><div class="answer"><p>Metadata filtering restricts the search to chunks that match conditions such as date, department or user permissions.</p>
+<ul>
+<li><strong>Pre-filtering:</strong> apply the filter first, then search only the matching vectors. It returns the full top-k, but support and performance depend on the vector database and index type.</li>
+<li><strong>Post-filtering:</strong> search first, then remove results that do not match. It is simple, but you may end up with fewer than k results, or none.</li>
+</ul></div></details><details class="item" id="r21"><summary><span><span class="qn">Q21</span>How do you choose a vector database?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Typical fit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>FAISS</strong></td>
+<td>A library (not a server) for fast in-memory search, good for prototypes and research</td>
+</tr>
+<tr>
+<td><strong>Chroma</strong></td>
+<td>Easy local setup for prototypes and small apps</td>
+</tr>
+<tr>
+<td><strong>pgvector</strong></td>
+<td>You already use PostgreSQL and want vectors next to your relational data</td>
+</tr>
+<tr>
+<td><strong>Qdrant, Weaviate, Milvus</strong></td>
+<td>Dedicated open-source vector databases with filtering and scaling features</td>
+</tr>
+<tr>
+<td><strong>Pinecone</strong></td>
+<td>Fully managed service, less operational work</td>
+</tr>
+</tbody>
+</table>
+<p>Compare them on scale, filtering and hybrid search support, latency, cost, hosting needs and how well they fit your existing stack.</p></div></details><details class="item" id="r22"><summary><span><span class="qn">Q22</span>How do you keep a RAG index up to date?</span></summary><div class="answer"><ul>
+<li><strong>Incremental updates:</strong> re-embed only new or changed documents, detected by a content hash or modified date.</li>
+<li><strong>Deletions:</strong> remove the old chunks when a document is deleted or replaced, otherwise outdated answers keep appearing.</li>
+<li><strong>Stable IDs:</strong> give every chunk an ID derived from its document and position so it can be updated cleanly.</li>
+<li><strong>Versioning:</strong> store the embedding model and chunking settings, and rebuild the index when they change.</li>
+<li><strong>Scheduling:</strong> run the sync on a schedule or trigger it from document change events.</li>
+</ul></div></details></section>
+<section class="sec-block" id="sec-3"><h2 class="sec">Advanced RAG techniques</h2><details class="item" id="r23"><summary><span><span class="qn">Q23</span>What is query rewriting, query expansion and HyDE?</span></summary><div class="answer"><p>User questions are often short or vague, so the system improves the query before searching:</p>
+<ul>
+<li><strong>Query rewriting:</strong> an LLM rewrites the question into a clearer, standalone search query.</li>
+<li><strong>Query expansion:</strong> adds synonyms or related terms.</li>
+<li><strong>HyDE (Hypothetical Document Embeddings):</strong> the LLM first writes a hypothetical answer, and that text is embedded and used for the search. A made-up answer is often closer to real documents in vector space than the short question is.</li>
+</ul></div></details><details class="item" id="r24"><summary><span><span class="qn">Q24</span>How do you handle multi-hop or complex questions?</span></summary><div class="answer"><p>Questions like "Which team owns the service that caused last week's outage?" need information from several places.</p>
+<ul>
+<li><strong>Query decomposition:</strong> break the question into sub-questions, retrieve for each, then combine the results.</li>
+<li><strong>Multi-query retrieval:</strong> generate several phrasings of the question, retrieve for all of them and merge.</li>
+<li><strong>Iterative or agentic retrieval:</strong> retrieve, read, decide what is still missing, and retrieve again.</li>
+<li><strong>GraphRAG:</strong> use a knowledge graph when relationships between entities matter.</li>
+</ul></div></details><details class="item" id="r25"><summary><span><span class="qn">Q25</span>What is parent-document (small-to-big) retrieval?</span></summary><div class="answer"><p>Small chunks are best for matching a query precisely, while large chunks give the LLM enough context. Small-to-big does both: it <strong>searches over small chunks</strong>, but then <strong>returns the larger parent section</strong> (or the neighboring chunks) to the LLM.</p></div></details><details class="item" id="r26"><summary><span><span class="qn">Q26</span>What is contextual compression?</span></summary><div class="answer"><p>Retrieved chunks often contain a lot of irrelevant text. Contextual compression shortens them before they reach the LLM, either by extracting only the sentences relevant to the question, or by dropping chunks that fail a relevance check. It saves tokens and reduces noise, at the cost of one extra step.</p></div></details><details class="item" id="r27"><summary><span><span class="qn">Q27</span>What is GraphRAG, and when is it useful?</span></summary><div class="answer"><p>GraphRAG builds a <strong>knowledge graph</strong> (entities and their relationships) from the documents, often with summaries of related groups of entities, and retrieves from that graph instead of, or together with, plain text chunks.</p>
+<p>It is useful for questions about <strong>relationships and the big picture</strong> ("what are the main themes across these reports?"), which top-k chunk retrieval handles poorly. The cost is a heavier and more expensive indexing process.</p></div></details><details class="item" id="r28"><summary><span><span class="qn">Q28</span>What are agentic RAG, Self-RAG and Corrective RAG (CRAG)?</span></summary><div class="answer"><ul>
+<li><strong>Agentic RAG:</strong> an LLM agent decides whether to retrieve, which tool or source to use, and whether to search again.</li>
+<li><strong>Self-RAG:</strong> the model learns to decide when to retrieve and to critique its own retrieved context and output.</li>
+<li><strong>Corrective RAG (CRAG):</strong> a lightweight evaluator scores the retrieved documents. If they look wrong or weak, the system falls back to another source such as a web search or rewrites the query.</li>
+</ul>
+<p>The common idea: add a feedback step so bad retrieval is caught before the answer is generated.</p></div></details><details class="item" id="r29"><summary><span><span class="qn">Q29</span>How do you handle follow-up questions in a conversational RAG chatbot?</span></summary><div class="answer"><p>A follow-up such as "and what about the second one?" cannot be searched as it is. The usual fix is <strong>question condensation</strong>: use the chat history and the new message to ask an LLM to rewrite a <strong>standalone question</strong>, then retrieve with that. Also decide how much history to keep, so the prompt does not grow without limit.</p></div></details><details class="item" id="r30"><summary><span><span class="qn">Q30</span>What is multimodal RAG?</span></summary><div class="answer"><p>Multimodal RAG retrieves and uses more than text: images, charts, tables, audio or video. Two common approaches:</p>
+<ul>
+<li><strong>Convert to text:</strong> caption images and summarize tables, then use normal text retrieval.</li>
+<li><strong>Multimodal embeddings:</strong> embed images and text in the same vector space and pass the retrieved images to a vision-capable LLM.</li>
+</ul></div></details></section>
+<section class="sec-block" id="sec-4"><h2 class="sec">Generation and prompting</h2><details class="item" id="r31"><summary><span><span class="qn">Q31</span>How do you prompt the LLM to use the retrieved context and avoid hallucinating?</span></summary><div class="answer"><p>Give clear rules in the prompt:</p>
+<pre><code>Answer the question using ONLY the context below.
+If the answer is not in the context, reply &quot;I don't know&quot;.
+Quote the source name for every fact you use.
+
+Context:
+{retrieved_chunks}
+
+Question: {question}
+</code></pre>
+<p>Other helpful steps: keep the temperature low, ask for citations, and add a check that verifies the answer is supported by the context.</p></div></details><details class="item" id="r32"><summary><span><span class="qn">Q32</span>How do you make a RAG system cite its sources?</span></summary><div class="answer"><p>Store the source, page and section as metadata on every chunk, and give each retrieved chunk an ID in the prompt (for example <code>[1]</code>, <code>[2]</code>). Ask the model to reference those IDs for every claim, then map them back to document links in the UI. Verify citations automatically if possible, because models can cite the wrong chunk.</p></div></details><details class="item" id="r33"><summary><span><span class="qn">Q33</span>What is the “lost in the middle” problem, and how do you reduce it?</span></summary><div class="answer"><p>LLMs tend to use information at the <strong>beginning and the end</strong> of a long context better than information in the <strong>middle</strong>. If the key chunk is buried in the middle of many chunks, it may be ignored.</p>
+<p>To reduce it: send fewer, better chunks (rerank and compress), put the most relevant chunks first or last, and avoid padding the prompt with low-value text.</p></div></details><details class="item" id="r34"><summary><span><span class="qn">Q34</span>What do you do if the retrieved context is larger than the model’s context window?</span></summary><div class="answer"><ul>
+<li>Retrieve fewer chunks, or rerank and keep only the best.</li>
+<li>Compress or summarize the chunks.</li>
+<li><strong>Map-reduce:</strong> summarize or answer per chunk group, then combine the partial results.</li>
+<li><strong>Iterative refinement:</strong> go through chunks one by one and update the answer.</li>
+<li>Use a model with a larger context window if the cost is acceptable.</li>
+</ul></div></details></section>
+<section class="sec-block" id="sec-5"><h2 class="sec">Evaluation and production</h2><details class="item" id="r35"><summary><span><span class="qn">Q35</span>How do you evaluate a RAG system?</span></summary><div class="answer"><p>Evaluate retrieval and generation <strong>separately</strong>, using a test set of real questions with known answers and source documents.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Metric</th>
+<th>What it tells you</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval</td>
+<td>Recall@k / hit rate</td>
+<td>Was the right chunk among the top k?</td>
+</tr>
+<tr>
+<td>Retrieval</td>
+<td>MRR, nDCG</td>
+<td>Was the right chunk ranked high?</td>
+</tr>
+<tr>
+<td>Retrieval</td>
+<td>Context precision</td>
+<td>How much of the retrieved text was actually relevant?</td>
+</tr>
+<tr>
+<td>Generation</td>
+<td>Faithfulness (groundedness)</td>
+<td>Is the answer supported by the retrieved context?</td>
+</tr>
+<tr>
+<td>Generation</td>
+<td>Answer relevance</td>
+<td>Does the answer address the question?</td>
+</tr>
+<tr>
+<td>End to end</td>
+<td>Correctness, latency, cost, user feedback</td>
+<td>Does it work for real users?</td>
+</tr>
+</tbody>
+</table>
+<p>Frameworks such as RAGAS automate several of these using an LLM as a judge. Always spot-check with human review.</p></div></details><details class="item" id="r36"><summary><span><span class="qn">Q36</span>Your RAG chatbot gives wrong answers. How do you debug it?</span></summary><div class="answer"><p>Find out which stage failed, in this order:</p>
+<ol>
+<li><strong>Was the right information in the index?</strong> If not, it is an ingestion problem: parsing, missing documents, bad chunking.</li>
+<li><strong>Was the right chunk retrieved?</strong> Print the top-k for the failing question. If not, try hybrid search, better chunk size, query rewriting, a different embedding model or a reranker.</li>
+<li><strong>Was the right chunk in the final prompt?</strong> Check truncation, ordering and the lost-in-the-middle effect.</li>
+<li><strong>Did the LLM use it correctly?</strong> If the context was right but the answer wrong, improve the prompt, lower the temperature, or use a stronger model.</li>
+</ol>
+<p>Log the question, retrieved chunks, prompt and answer for every request so you can do this analysis.</p></div></details><details class="item" id="r37"><summary><span><span class="qn">Q37</span>How do you reduce the latency and cost of a RAG application?</span></summary><div class="answer"><ul>
+<li><strong>Cache</strong> embeddings, retrieval results and frequent answers.</li>
+<li>Tune ANN search parameters and keep the index in memory.</li>
+<li>Retrieve fewer chunks, and rerank only a short candidate list.</li>
+<li>Compress context so the prompt is shorter.</li>
+<li>Route easy questions to a smaller, cheaper model.</li>
+<li><strong>Stream</strong> the answer so users see output sooner.</li>
+<li>Run independent steps (for example several searches) in parallel.</li>
+</ul></div></details><details class="item" id="r38"><summary><span><span class="qn">Q38</span>What security risks does RAG introduce, and how do you handle them?</span></summary><div class="answer"><ul>
+<li><strong>Access control leaks:</strong> a user must only retrieve documents they are allowed to read. Enforce permissions with metadata filters at retrieval time, not in the prompt.</li>
+<li><strong>Prompt injection through documents:</strong> a retrieved document can contain instructions such as "ignore previous instructions". Treat retrieved text as untrusted data, keep it clearly separated from instructions, and limit what the model can do with tools.</li>
+<li><strong>Sensitive data:</strong> mask or exclude personal and confidential data before indexing.</li>
+<li><strong>Multi-tenancy:</strong> keep each customer's data isolated, for example in separate indexes or namespaces.</li>
+</ul></div></details><details class="item" id="r39"><summary><span><span class="qn">Q39</span>How should a RAG system respond when no relevant documents are found?</span></summary><div class="answer"><p>It should say so, instead of guessing. Use a similarity threshold or a relevance check to detect weak retrieval, and instruct the model to reply "I don't know" or ask a clarifying question. Optionally fall back to another source (for example web search) and show that the answer came from there.</p></div></details><details class="item" id="r40"><summary><span><span class="qn">Q40</span>How would you design a question-answering assistant over a company’s internal documents?</span></summary><div class="answer"><ol>
+<li><strong>Clarify requirements:</strong> who the users are, document types and volume, expected accuracy, latency, privacy and access rules.</li>
+<li><strong>Ingestion:</strong> connectors for each source, layout-aware parsing, chunking with metadata (source, date, owner, permissions).</li>
+<li><strong>Index:</strong> an embedding model plus a vector database with metadata filtering, and BM25 for hybrid search.</li>
+<li><strong>Retrieval:</strong> query rewriting, hybrid search, permission filtering, then reranking.</li>
+<li><strong>Generation:</strong> a grounded prompt, low temperature, citations, and an "I don't know" path.</li>
+<li><strong>Evaluation:</strong> a test set of real questions, retrieval and faithfulness metrics, and user feedback buttons.</li>
+<li><strong>Operations:</strong> incremental re-indexing, logging, monitoring of latency and cost, and guardrails against prompt injection.</li>
+</ol></div></details><details class="item" id="r41"><summary><span><span class="qn">Q41</span>Can you show a minimal RAG example in Python?</span></summary><div class="answer"><p>This example uses the <code>sentence-transformers</code> library for embeddings and NumPy for the similarity search. In a real system you would use a vector database and call an LLM at the end.</p>
+<pre><code class="language-python">from sentence_transformers import SentenceTransformer
+import numpy as np
+
+docs = [
+    &quot;Employees get 24 days of paid leave per year.&quot;,
+    &quot;Remote work requires manager approval.&quot;,
+    &quot;Expense claims must be filed within 30 days.&quot;,
+]
+
+model = SentenceTransformer(&quot;all-MiniLM-L6-v2&quot;)
+doc_vecs = model.encode(docs, normalize_embeddings=True)
+
+def retrieve(query, k=2):
+    q = model.encode([query], normalize_embeddings=True)[0]
+    scores = doc_vecs @ q                 # cosine similarity (vectors are normalized)
+    top = np.argsort(-scores)[:k]
+    return [(docs[i], float(scores[i])) for i in top]
+
+question = &quot;How many vacation days do I get?&quot;
+context = &quot;\n&quot;.join(text for text, _ in retrieve(question))
+
+prompt = f&quot;&quot;&quot;Answer using ONLY the context below.
+If the answer is not in the context, say &quot;I don't know&quot;.
+
+Context:
+{context}
+
+Question: {question}&quot;&quot;&quot;
+
+# answer = llm(prompt)    # call the LLM of your choice here
+</code></pre></div></details></section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

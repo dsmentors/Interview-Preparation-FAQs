@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System Design Interview Prep</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in" id="hd"><a class="brand" href="index.html"><span>Interview FAQ</span></a><a class="logo-link" href="index.html"><img class="logo" src="assets/logo.png" alt="Logo"></a></div></header>
+<div class="wrap">
+<a class="back" href="index.html">&larr; All topics</a>
+<div class="page-title"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><h1>System Design Interview Prep</h1></div>
+<p class="sub">53 questions</p>
+<div class="roles"><a class="role" href="index.html#role=se">Software Engineer (AI/ML)</a><a class="role alt" href="index.html#role=aiml">AI/ML</a></div>
+<div class="intro"><blockquote><p>System design interview questions, including machine learning and AI system design: approach and estimation, core building blocks, distributed systems concepts, classic design problems, ML and LLM system design, and reliability, security and interview strategy.</p></blockquote></div>
+<div class="tools"><input id="q" type="search" placeholder="Search questions..."><button type="button" class="primary" id="ex">Expand all</button><button type="button" id="co">Collapse all</button></div>
+<nav class="chips"><a href="#sec-0">Approach and fundamentals <small>8</small></a><a href="#sec-1">Core building blocks <small>10</small></a><a href="#sec-2">Distributed systems concepts <small>11</small></a><a href="#sec-3">Classic system design problems <small>9</small></a><a href="#sec-4">Machine learning and AI system design <small>9</small></a><a href="#sec-5">Reliability, security and interview strategy <small>6</small></a></nav>
+<section class="sec-block" id="sec-0"><h2 class="sec">Approach and fundamentals</h2><details class="item" id="y1"><summary><span><span class="qn">Q1</span>How do you approach a system design interview?</span></summary><div class="answer"><p>Use a clear, repeatable structure and talk through it:</p>
+<ol>
+<li><strong>Clarify requirements:</strong> functional (what the system does) and non-functional (scale, latency, availability, consistency). Agree on the scope.</li>
+<li><strong>Estimate the scale:</strong> users, requests per second, data size, bandwidth.</li>
+<li><strong>Define the API</strong> and the main <strong>data model</strong>.</li>
+<li><strong>Draw the high-level design:</strong> clients, load balancer, services, databases, caches, queues.</li>
+<li><strong>Deep dive</strong> into the one or two hardest parts (data storage, scaling, the core algorithm).</li>
+<li><strong>Find bottlenecks and failure points,</strong> and discuss trade-offs and improvements.</li>
+<li><strong>Summarize</strong> the design and what you would do next.</li>
+</ol>
+<p>State your assumptions out loud, and drive the conversation instead of waiting for questions.</p></div></details><details class="item" id="y2"><summary><span><span class="qn">Q2</span>What are functional and non-functional requirements?</span></summary><div class="answer"><ul>
+<li><strong>Functional:</strong> what the system must do (“users can post photos, follow others and see a feed”).</li>
+<li><strong>Non-functional:</strong> the qualities it must have: <strong>scalability, availability, latency, throughput, consistency, durability, security, cost, maintainability</strong>.</li>
+</ul>
+<p>Non-functional requirements usually drive the architecture. For example, “99.99% availability and 100 ms response” leads to very different designs from a nightly batch report.</p></div></details><details class="item" id="y3"><summary><span><span class="qn">Q3</span>How do you do back-of-the-envelope estimation? (worked example)</span></summary><div class="answer"><p>Round numbers and write down assumptions. Useful facts: a day has about <strong>86,400 seconds (~10⁵)</strong>, so <strong>1 million requests per day is about 12 requests per second</strong>.</p>
+<p><strong>Example: a URL shortener</strong></p>
+<ul>
+<li>100 million new URLs per month ⇒ about <strong>40 writes per second</strong>.</li>
+<li>Reads are 100 times more frequent ⇒ about <strong>4,000 reads per second</strong> (peak maybe 2 to 3 times higher).</li>
+<li>Storage for 5 years: 100M × 12 × 5 = <strong>6 billion URLs</strong>, at about 500 bytes each ⇒ <strong>about 3 TB</strong>.</li>
+<li>A 7-character code from 62 characters gives 62⁷ ≈ 3.5 trillion combinations, which is more than enough.</li>
+</ul>
+<p>Estimates show whether you need one database or sharding, and whether caching is essential.</p></div></details><details class="item" id="y4"><summary><span><span class="qn">Q4</span>What are some latency numbers every engineer should know?</span></summary><div class="answer"><p>Approximate orders of magnitude:</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read from main memory (RAM)</td>
+<td>~100 nanoseconds</td>
+</tr>
+<tr>
+<td>Read from an SSD (random)</td>
+<td>~100 microseconds</td>
+</tr>
+<tr>
+<td>Round trip within the same data center</td>
+<td>~0.5 milliseconds</td>
+</tr>
+<tr>
+<td>Read 1 MB sequentially from SSD</td>
+<td>~1 millisecond</td>
+</tr>
+<tr>
+<td>Disk (HDD) seek</td>
+<td>~10 milliseconds</td>
+</tr>
+<tr>
+<td>Round trip across continents</td>
+<td>~100 to 150 milliseconds</td>
+</tr>
+</tbody>
+</table>
+<p>The lesson: <strong>memory is much faster than disk, and disk is much faster than the network across regions.</strong> That is why caching and data locality matter.</p></div></details><details class="item" id="y5"><summary><span><span class="qn">Q5</span>What is the difference between vertical and horizontal scaling?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Vertical scaling (scale up)</th>
+<th>Horizontal scaling (scale out)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>How</td>
+<td>Bigger machine (more CPU, RAM)</td>
+<td><strong>More machines</strong> behind a load balancer</td>
+</tr>
+<tr>
+<td>Complexity</td>
+<td>Simple</td>
+<td>Needs distributed design (state, data, coordination)</td>
+</tr>
+<tr>
+<td>Limit</td>
+<td>Hardware ceiling, and a single point of failure</td>
+<td>Practically very large</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>Gets expensive at the top end</td>
+<td>Commodity hardware</td>
+</tr>
+</tbody>
+</table>
+<p>Large systems scale <strong>horizontally</strong>, which works best with <strong>stateless</strong> services, because any server can handle any request.</p></div></details><details class="item" id="y6"><summary><span><span class="qn">Q6</span>What is the difference between latency, throughput and bandwidth?</span></summary><div class="answer"><ul>
+<li><strong>Latency:</strong> how long <strong>one</strong> request takes (milliseconds). Look at percentiles (p50, p95, p99), not only the average.</li>
+<li><strong>Throughput:</strong> how many requests or operations are completed <strong>per unit of time</strong> (requests per second).</li>
+<li><strong>Bandwidth:</strong> the maximum amount of <strong>data</strong> that can be transferred per second over a link.</li>
+</ul>
+<p>Improving one can hurt another, for example batching increases throughput but also increases latency.</p></div></details><details class="item" id="y7"><summary><span><span class="qn">Q7</span>What are availability, reliability, SLA, SLO and SLI?</span></summary><div class="answer"><ul>
+<li><strong>Availability:</strong> the fraction of time the system is working. “Three nines” (99.9%) allows about <strong>8.8 hours of downtime per year</strong>, and “four nines” (99.99%) about <strong>53 minutes</strong>.</li>
+<li><strong>Reliability:</strong> the system keeps working correctly, even when failures happen.</li>
+<li><strong>SLI (indicator):</strong> a measured metric (for example the share of successful requests).</li>
+<li><strong>SLO (objective):</strong> the target for that metric (99.9% success over 30 days).</li>
+<li><strong>SLA (agreement):</strong> a contract with customers, usually with penalties if it is not met.</li>
+</ul></div></details><details class="item" id="y8"><summary><span><span class="qn">Q8</span>What is the CAP theorem?</span></summary><div class="answer"><p>In a distributed data store, when a <strong>network partition (P)</strong> happens, you can guarantee only one of:</p>
+<ul>
+<li><strong>Consistency (C):</strong> every read sees the latest write.</li>
+<li><strong>Availability (A):</strong> every request gets a response (even if it may be stale).</li>
+</ul>
+<p>Partitions cannot be avoided in real networks, so the real choice is <strong>CP or AP</strong> during a partition. A CP system (for example a strongly consistent store) may reject requests, while an AP system (for example Dynamo-style stores) stays available but may return stale data. When there is <strong>no</strong> partition, the trade-off is between <strong>latency and consistency</strong> (the PACELC extension).</p></div></details></section>
+<section class="sec-block" id="sec-1"><h2 class="sec">Core building blocks</h2><details class="item" id="y9"><summary><span><span class="qn">Q9</span>What does a load balancer do, and what algorithms does it use?</span></summary><div class="answer"><p>A load balancer <strong>distributes incoming requests across several servers</strong>, removes unhealthy servers (health checks) and avoids a single point of failure.</p>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>How it works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Round robin</strong></td>
+<td>Each server in turn</td>
+</tr>
+<tr>
+<td><strong>Weighted round robin</strong></td>
+<td>More requests to stronger servers</td>
+</tr>
+<tr>
+<td><strong>Least connections</strong></td>
+<td>The server with the fewest active connections</td>
+</tr>
+<tr>
+<td><strong>IP hash</strong></td>
+<td>The same client goes to the same server</td>
+</tr>
+<tr>
+<td><strong>Consistent hashing</strong></td>
+<td>Keeps related keys on the same server, with little reshuffling when servers change</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Layer 4</strong> balancers work on IP and port (fast, simple), and <strong>Layer 7</strong> balancers understand HTTP (route by URL, headers or cookies, and can terminate TLS). Load balancers themselves should be redundant.</p></div></details><details class="item" id="y10"><summary><span><span class="qn">Q10</span>What are a reverse proxy and an API gateway?</span></summary><div class="answer"><ul>
+<li>A <strong>reverse proxy</strong> (for example Nginx) sits in front of servers and forwards client requests: it can do load balancing, caching, compression and TLS termination.</li>
+<li>An <strong>API gateway</strong> is a reverse proxy specialized for APIs. It is the <strong>single entry point</strong> that handles <strong>authentication, rate limiting, routing to the right microservice, request transformation and monitoring</strong>.</li>
+</ul></div></details><details class="item" id="y11"><summary><span><span class="qn">Q11</span>What are the main caching strategies?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>How it works</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cache-aside (lazy loading)</strong></td>
+<td>App checks the cache, on a miss reads the DB and fills the cache</td>
+<td>Simple, but the first request is slow and data can become stale</td>
+</tr>
+<tr>
+<td><strong>Read-through</strong></td>
+<td>The cache itself loads data from the DB on a miss</td>
+<td>Cleaner code, depends on the cache provider</td>
+</tr>
+<tr>
+<td><strong>Write-through</strong></td>
+<td>Writes go to the cache and the DB together</td>
+<td>Consistent, but slower writes</td>
+</tr>
+<tr>
+<td><strong>Write-back (write-behind)</strong></td>
+<td>Writes go to the cache, and are saved to the DB later</td>
+<td>Fast writes, but data can be lost if the cache fails</td>
+</tr>
+<tr>
+<td><strong>Write-around</strong></td>
+<td>Writes go straight to the DB, skipping the cache</td>
+<td>Avoids filling the cache with rarely read data</td>
+</tr>
+</tbody>
+</table>
+<p>Common <strong>eviction policies</strong>: LRU (least recently used), LFU (least frequently used) and TTL (time to live).</p></div></details><details class="item" id="y12"><summary><span><span class="qn">Q12</span>What is cache invalidation, and what is a cache stampede?</span></summary><div class="answer"><p><strong>Cache invalidation</strong> is keeping cached data consistent with the source: use a <strong>TTL</strong>, <strong>delete or update the key on writes</strong>, or use events. It is famously hard to get right.</p>
+<p>A <strong>cache stampede (thundering herd)</strong> happens when a popular key expires and <strong>many requests hit the database at once</strong>. Solutions: <strong>locking or request coalescing</strong> (only one request rebuilds the value), <strong>jittered TTLs</strong> (so keys do not expire together), refreshing the value <strong>before</strong> it expires, and serving slightly stale data while refreshing.</p></div></details><details class="item" id="y13"><summary><span><span class="qn">Q13</span>What is a CDN, and when do you use it?</span></summary><div class="answer"><p>A Content Delivery Network is a set of <strong>servers spread around the world that cache content close to users</strong>, mostly static files (images, video, scripts, CSS) and sometimes API responses. It reduces <strong>latency, bandwidth and load on your origin servers</strong>, and helps absorb traffic spikes.</p>
+<ul>
+<li><strong>Pull CDN:</strong> the edge fetches content from the origin on the first request.</li>
+<li><strong>Push CDN:</strong> you upload content to the CDN in advance.</li>
+</ul>
+<p>Control freshness with cache headers and versioned file names.</p></div></details><details class="item" id="y14"><summary><span><span class="qn">Q14</span>SQL vs NoSQL: how do you choose?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>SQL (relational)</th>
+<th>NoSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data model</td>
+<td>Tables, fixed schema</td>
+<td>Key-value, document, wide-column, graph</td>
+</tr>
+<tr>
+<td>Consistency</td>
+<td>Strong, ACID transactions</td>
+<td>Often eventual (configurable)</td>
+</tr>
+<tr>
+<td>Queries</td>
+<td>Powerful joins and SQL</td>
+<td>Simple access patterns, joins are limited</td>
+</tr>
+<tr>
+<td>Scaling</td>
+<td>Vertical first, sharding is harder</td>
+<td>Designed to scale out horizontally</td>
+</tr>
+<tr>
+<td>Examples</td>
+<td>PostgreSQL, MySQL</td>
+<td>Redis, DynamoDB, MongoDB, Cassandra, Neo4j</td>
+</tr>
+</tbody>
+</table>
+<p>Choose <strong>SQL</strong> when data is relational and you need transactions and flexible queries. Choose <strong>NoSQL</strong> for massive scale, flexible schemas or a specific access pattern (for example key lookups or time-series). Many systems use <strong>both</strong>.</p></div></details><details class="item" id="y15"><summary><span><span class="qn">Q15</span>What are database indexes, and what is their cost?</span></summary><div class="answer"><p>An index is a data structure (usually a <strong>B-tree</strong>) that lets the database <strong>find rows without scanning the whole table</strong>, turning an O(n) scan into roughly O(log n). The cost: <strong>extra storage and slower writes</strong>, because every insert and update must also update the indexes. Index the columns used in filters, joins and sorting, and avoid indexing everything. <strong>LSM-tree</strong> based stores (Cassandra, RocksDB) optimize for fast writes instead.</p></div></details><details class="item" id="y16"><summary><span><span class="qn">Q16</span>What are database replication strategies?</span></summary><div class="answer"><ul>
+<li><strong>Leader-follower (primary-replica):</strong> writes go to the leader, which copies changes to followers. Followers serve <strong>reads</strong> and take over if the leader fails. Replication can be <strong>synchronous</strong> (safer, slower) or <strong>asynchronous</strong> (faster, but followers can lag and data may be lost on failover).</li>
+<li><strong>Multi-leader:</strong> several nodes accept writes (useful across regions), but you must <strong>resolve write conflicts</strong>.</li>
+<li><strong>Leaderless (Dynamo-style):</strong> any node accepts reads and writes, and <strong>quorums</strong> decide success: with <code>N</code> replicas, <code>W</code> write acknowledgments and <code>R</code> read acknowledgments, choose <strong>R + W &gt; N</strong> for strong consistency.</li>
+</ul></div></details><details class="item" id="y17"><summary><span><span class="qn">Q17</span>What is sharding (partitioning), and what are its challenges?</span></summary><div class="answer"><p>Sharding splits data <strong>across several databases or nodes</strong>, so no single machine holds everything.</p>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>How</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Range-based</strong></td>
+<td>By ranges of the key (A–F, G–M...)</td>
+<td>Hot spots if data is uneven</td>
+</tr>
+<tr>
+<td><strong>Hash-based</strong></td>
+<td><code>hash(key) % number_of_shards</code></td>
+<td>Even spread, but resharding moves a lot of data (use consistent hashing)</td>
+</tr>
+<tr>
+<td><strong>Directory-based</strong></td>
+<td>A lookup table maps keys to shards</td>
+<td>Flexible, but the directory is a dependency</td>
+</tr>
+</tbody>
+</table>
+<p>Challenges: <strong>hot partitions</strong> (for example a celebrity user), <strong>cross-shard joins and transactions</strong>, <strong>rebalancing</strong>, and choosing a good <strong>shard key</strong>.</p></div></details><details class="item" id="y18"><summary><span><span class="qn">Q18</span>What are message queues and streaming platforms (Kafka, RabbitMQ), and why use them?</span></summary><div class="answer"><p>A message queue lets services communicate <strong>asynchronously</strong>: producers put messages on a queue, and consumers process them later. It <strong>decouples</strong> services, <strong>absorbs traffic spikes</strong> (buffering), allows <strong>retries</strong> and makes it easy to scale consumers.</p>
+<ul>
+<li><strong>Kafka</strong> is a distributed, durable <strong>log</strong>: messages are written to <strong>topics split into partitions</strong>, kept for a retention period, and read by <strong>consumer groups</strong> with offsets. <strong>Ordering is guaranteed within a partition.</strong></li>
+<li><strong>RabbitMQ / SQS</strong> are traditional queues where messages are removed after being consumed.</li>
+</ul>
+<p>Delivery guarantees: <strong>at-most-once, at-least-once</strong> (the common default, so consumers must be <strong>idempotent</strong>) and <strong>exactly-once</strong> (achieved with idempotence or transactions).</p></div></details></section>
+<section class="sec-block" id="sec-2"><h2 class="sec">Distributed systems concepts</h2><details class="item" id="y19"><summary><span><span class="qn">Q19</span>What is consistent hashing, and why is it used?</span></summary><div class="answer"><p>With simple <code>hash(key) % N</code>, changing the number of servers <code>N</code> <strong>remaps almost every key</strong>, which empties caches and moves data. <strong>Consistent hashing</strong> places servers and keys on a <strong>ring</strong>, and each key belongs to the next server clockwise. Adding or removing a server moves only about <strong>1/N of the keys</strong>. <strong>Virtual nodes</strong> (each server appears many times on the ring) balance the load.</p>
+<pre><code class="language-python">import bisect
+import hashlib
+
+class ConsistentHash:
+    def __init__(self, nodes, replicas=100):
+        self.ring = []                                   # sorted list of (hash, node)
+        for node in nodes:
+            for i in range(replicas):
+                self.ring.append((self._hash(f&quot;{node}#{i}&quot;), node))
+        self.ring.sort()
+        self.keys = [h for h, _ in self.ring]
+
+    @staticmethod
+    def _hash(value):
+        return int(hashlib.md5(value.encode()).hexdigest(), 16)
+
+    def get_node(self, key):
+        idx = bisect.bisect(self.keys, self._hash(key)) % len(self.keys)
+        return self.ring[idx][1]
+
+ring = ConsistentHash([&quot;server-1&quot;, &quot;server-2&quot;, &quot;server-3&quot;])
+print(ring.get_node(&quot;user:42&quot;))
+</code></pre></div></details><details class="item" id="y20"><summary><span><span class="qn">Q20</span>What is the difference between ACID and BASE?</span></summary><div class="answer"><ul>
+<li><strong>ACID</strong> (relational databases): <strong>A</strong>tomicity, <strong>C</strong>onsistency, <strong>I</strong>solation, <strong>D</strong>urability. Strong guarantees for transactions.</li>
+<li><strong>BASE</strong> (many NoSQL systems): <strong>B</strong>asically <strong>A</strong>vailable, <strong>S</strong>oft state, <strong>E</strong>ventually consistent. Favors availability and scale over immediate consistency.</li>
+</ul></div></details><details class="item" id="y21"><summary><span><span class="qn">Q21</span>What consistency models should you know?</span></summary><div class="answer"><ul>
+<li><strong>Strong consistency:</strong> after a write, every read sees it. Simplest to reason about, slower and less available.</li>
+<li><strong>Eventual consistency:</strong> replicas converge over time, and reads may be stale for a while.</li>
+<li><strong>Read-your-writes:</strong> a user always sees their own updates.</li>
+<li><strong>Causal consistency:</strong> related events are seen in the same order by everyone.</li>
+</ul>
+<p>Choose the <strong>weakest model that is acceptable</strong> for the feature: a bank balance needs strong consistency, a like counter does not.</p></div></details><details class="item" id="y22"><summary><span><span class="qn">Q22</span>How do distributed transactions work? (2PC vs Saga)</span></summary><div class="answer"><ul>
+<li><strong>Two-Phase Commit (2PC):</strong> a coordinator asks all participants to <strong>prepare</strong>, then tells them all to <strong>commit</strong> (or abort). It gives atomicity, but it is <strong>blocking</strong> and the coordinator is a point of failure, so it is rarely used across microservices.</li>
+<li><strong>Saga:</strong> a sequence of <strong>local transactions</strong>, each with a <strong>compensating action</strong> that undoes it if a later step fails (for example “refund payment” if “reserve stock” fails). It gives eventual consistency without locking across services, and can be <strong>orchestrated</strong> (a central coordinator) or <strong>choreographed</strong> (services react to events).</li>
+</ul></div></details><details class="item" id="y23"><summary><span><span class="qn">Q23</span>What is idempotency, and why is it important in distributed systems?</span></summary><div class="answer"><p>An operation is <strong>idempotent</strong> if repeating it has the <strong>same effect as doing it once</strong>. Because networks fail and clients <strong>retry</strong>, requests and messages can be delivered more than once, so a payment must not be charged twice.</p>
+<p>Techniques: an <strong>idempotency key</strong> sent by the client and stored by the server (return the saved result for a repeated key), <strong>unique constraints</strong> in the database, and <strong>upserts</strong> instead of blind inserts.</p></div></details><details class="item" id="y24"><summary><span><span class="qn">Q24</span>How do you handle failures: retries, timeouts, backoff and circuit breakers?</span></summary><div class="answer"><ul>
+<li><strong>Timeouts:</strong> never wait forever for a dependency.</li>
+<li><strong>Retries with exponential backoff and jitter:</strong> wait longer after each failure, with random variation, to avoid synchronized retry storms. Only retry <strong>idempotent</strong> operations.</li>
+<li><strong>Circuit breaker:</strong> after repeated failures, <strong>stop calling</strong> the failing service for a while (open state), then try again carefully (half-open). It prevents cascading failures.</li>
+<li><strong>Bulkheads:</strong> isolate resources so one failing part cannot exhaust everything.</li>
+<li><strong>Fallbacks and graceful degradation:</strong> return cached or simplified data instead of failing completely.</li>
+</ul></div></details><details class="item" id="y25"><summary><span><span class="qn">Q25</span>What is consensus, and what are Raft and Paxos?</span></summary><div class="answer"><p>Consensus is how several nodes <strong>agree on a single value</strong> (for example who the leader is, or the order of log entries) even if some nodes fail. <strong>Paxos</strong> and <strong>Raft</strong> are consensus algorithms. Raft is designed to be easier to understand: nodes elect a <strong>leader</strong>, the leader appends entries to a <strong>replicated log</strong>, and an entry is committed once a <strong>majority (quorum)</strong> has stored it. They are the basis of systems such as etcd and ZooKeeper-like coordination services.</p></div></details><details class="item" id="y26"><summary><span><span class="qn">Q26</span>Monolith vs microservices: what are the trade-offs?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Monolith</th>
+<th>Microservices</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deployment</td>
+<td>One unit</td>
+<td>Many independent services</td>
+</tr>
+<tr>
+<td>Complexity</td>
+<td>Simple at first, grows hard to change</td>
+<td>Operational complexity (networking, monitoring, data consistency)</td>
+</tr>
+<tr>
+<td>Scaling</td>
+<td>Whole app at once</td>
+<td>Scale each service separately</td>
+</tr>
+<tr>
+<td>Team autonomy</td>
+<td>Low</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>One shared database</td>
+<td>Database per service, so no easy joins or transactions</td>
+</tr>
+</tbody>
+</table>
+<p>Start with a <strong>well-structured monolith</strong> unless you have clear needs (large teams, different scaling needs) to split it.</p></div></details><details class="item" id="y27"><summary><span><span class="qn">Q27</span>REST vs gRPC vs GraphQL, and synchronous vs asynchronous communication?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>REST</th>
+<th>gRPC</th>
+<th>GraphQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Format</td>
+<td>JSON over HTTP</td>
+<td>Protocol Buffers over HTTP/2</td>
+<td>Query language over HTTP</td>
+</tr>
+<tr>
+<td>Strength</td>
+<td>Simple, widely supported</td>
+<td>Fast, strongly typed, streaming</td>
+<td>Client chooses the exact fields, one request for many resources</td>
+</tr>
+<tr>
+<td>Typical use</td>
+<td>Public APIs</td>
+<td>Internal service-to-service calls</td>
+<td>Flexible client apps (mobile, web)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Synchronous</strong> calls (request-response) are simple, but the caller waits and is affected by failures. <strong>Asynchronous</strong> messaging (queues, events) decouples services and improves resilience, but is harder to follow and debug.</p></div></details><details class="item" id="y28"><summary><span><span class="qn">Q28</span>How do real-time updates work: polling, long polling, SSE and WebSockets?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>How</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Short polling</strong></td>
+<td>Client asks repeatedly</td>
+<td>Simple, infrequent updates</td>
+</tr>
+<tr>
+<td><strong>Long polling</strong></td>
+<td>Server holds the request until there is news</td>
+<td>Moderate real-time needs</td>
+</tr>
+<tr>
+<td><strong>Server-Sent Events (SSE)</strong></td>
+<td>One-way stream from server to client over HTTP</td>
+<td>Live feeds, streaming text (for example LLM output)</td>
+</tr>
+<tr>
+<td><strong>WebSockets</strong></td>
+<td><strong>Two-way</strong>, persistent connection</td>
+<td>Chat, games, collaboration</td>
+</tr>
+</tbody>
+</table></div></details><details class="item" id="y29"><summary><span><span class="qn">Q29</span>What is observability: logs, metrics and traces?</span></summary><div class="answer"><ul>
+<li><strong>Logs:</strong> records of events, for debugging specific cases (structured, with request IDs).</li>
+<li><strong>Metrics:</strong> numeric measurements over time (request rate, error rate, latency percentiles, CPU), for dashboards and alerts.</li>
+<li><strong>Traces:</strong> the path of <strong>one request across services</strong> (distributed tracing, for example with OpenTelemetry), to find where time is spent.</li>
+</ul>
+<p>Together they let you <strong>detect, diagnose and fix</strong> problems. Alert on user-facing symptoms (error rate, latency), not only on machine metrics.</p></div></details></section>
+<section class="sec-block" id="sec-3"><h2 class="sec">Classic system design problems</h2><details class="item" id="y30"><summary><span><span class="qn">Q30</span>Design a URL shortener (like bit.ly).</span></summary><div class="answer"><p><strong>Requirements:</strong> create a short link for a long URL, redirect quickly, optional expiry and analytics. Read-heavy (about 100:1). Estimates are in the estimation question above (about 40 writes per second, 4,000 reads per second, about 3 TB over 5 years).</p>
+<p><strong>API:</strong> <code>POST /shorten {url}</code> returns a short code, and <code>GET /{code}</code> returns a redirect (HTTP 301 or 302).</p>
+<p><strong>Generating the code:</strong> take a <strong>unique number</strong> (from a counter or a distributed ID generator) and encode it in <strong>base62</strong>. This avoids collisions. Hashing the URL and truncating needs collision handling.</p>
+<pre><code class="language-python">import string
+
+ALPHABET = string.digits + string.ascii_letters            # 62 characters
+
+def encode_base62(n):
+    if n == 0:
+        return ALPHABET[0]
+    chars = []
+    while n:
+        n, r = divmod(n, 62)
+        chars.append(ALPHABET[r])
+    return &quot;&quot;.join(reversed(chars))
+
+def decode_base62(s):
+    n = 0
+    for ch in s:
+        n = n * 62 + ALPHABET.index(ch)
+    return n
+
+print(encode_base62(125))       # 21
+</code></pre>
+<p><strong>Storage:</strong> a key-value or SQL table <code>code → long_url, created_at, expiry</code> (sharded by code when it gets large).</p>
+<p><strong>Scaling reads:</strong> a <strong>cache</strong> (for example Redis) for hot links, a CDN or many stateless servers behind a load balancer. <strong>302</strong> redirects allow counting clicks, <strong>301</strong> are cacheable by browsers.</p>
+<p><strong>Other points:</strong> avoid guessable sequences if privacy matters, rate limit creation, handle expired and deleted links, and push analytics events to a queue.</p></div></details><details class="item" id="y31"><summary><span><span class="qn">Q31</span>Design a rate limiter.</span></summary><div class="answer"><p><strong>Goal:</strong> limit how many requests a client can make in a time window (protect against abuse and overload). It sits in the API gateway or as middleware, and is keyed by user, IP or API key.</p>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Idea</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fixed window counter</strong></td>
+<td>Count requests per time window</td>
+<td>Simple, but allows bursts at window edges</td>
+</tr>
+<tr>
+<td><strong>Sliding window log</strong></td>
+<td>Store request timestamps</td>
+<td>Accurate, uses more memory</td>
+</tr>
+<tr>
+<td><strong>Sliding window counter</strong></td>
+<td>Weighted mix of the current and previous windows</td>
+<td>Good balance</td>
+</tr>
+<tr>
+<td><strong>Token bucket</strong></td>
+<td>Tokens refill at a constant rate, each request uses one</td>
+<td>Allows <strong>bursts</strong>, very common</td>
+</tr>
+<tr>
+<td><strong>Leaky bucket</strong></td>
+<td>Requests leave the queue at a fixed rate</td>
+<td>Smooths traffic</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python">import time
+
+class TokenBucket:
+    def __init__(self, rate, capacity):
+        self.rate = rate                      # tokens added per second
+        self.capacity = capacity              # maximum burst size
+        self.tokens = capacity
+        self.updated = time.monotonic()
+
+    def allow(self):
+        now = time.monotonic()
+        self.tokens = min(self.capacity, self.tokens + (now - self.updated) * self.rate)
+        self.updated = now
+        if self.tokens &gt;= 1:
+            self.tokens -= 1
+            return True
+        return False
+</code></pre>
+<p><strong>Distributed version:</strong> keep the counters in <strong>Redis</strong> and update them atomically (for example with <code>INCR</code> and <code>EXPIRE</code>, or a Lua script), so all servers share the same limits. Return <strong>HTTP 429</strong> with a <code>Retry-After</code> header, and decide whether to fail open or closed if the limiter is unavailable.</p></div></details><details class="item" id="y32"><summary><span><span class="qn">Q32</span>Design a news feed (timeline) system.</span></summary><div class="answer"><p><strong>Core question:</strong> when a user opens the app, how do you build the list of posts from the people they follow?</p>
+<ul>
+<li><strong>Fan-out on write (push):</strong> when a user posts, <strong>copy the post ID into each follower’s feed</strong> (stored in a cache or database). Reads are fast, but writes are expensive for users with millions of followers.</li>
+<li><strong>Fan-out on read (pull):</strong> when a user opens the feed, <strong>fetch recent posts of everyone they follow and merge</strong> them. Writes are cheap, but reads are slow.</li>
+<li><strong>Hybrid:</strong> push for normal users, <strong>pull for celebrities</strong> (merge their posts at read time).</li>
+</ul>
+<p><strong>Components:</strong> a post service, a follow graph, a <strong>feed service with a feed cache</strong> (Redis lists of post IDs), a ranking service (recency or ML ranking), a media CDN, and queues for fan-out workers. Paginate with cursors, and store posts in a sharded database.</p></div></details><details class="item" id="y33"><summary><span><span class="qn">Q33</span>Design a chat or messaging system (like WhatsApp).</span></summary><div class="answer"><ul>
+<li><strong>Connections:</strong> clients keep a <strong>WebSocket</strong> connection to a chat server. A <strong>session or presence service</strong> knows which server each user is connected to.</li>
+<li><strong>Sending:</strong> the sender’s server stores the message, finds the recipient’s server and forwards it. If the recipient is <strong>offline</strong>, store it and send a <strong>push notification</strong>.</li>
+<li><strong>Storage:</strong> messages are write-heavy, so use a store that scales for writes (for example Cassandra or HBase), keyed by chat and message ID.</li>
+<li><strong>Ordering and IDs:</strong> use per-chat, time-ordered unique IDs (Snowflake-style).</li>
+<li><strong>Group chats:</strong> fan out to all members (limit the group size).</li>
+<li><strong>Delivery receipts:</strong> sent, delivered and read status through acknowledgments.</li>
+<li><strong>Other:</strong> media in object storage with a CDN, end-to-end encryption, and message queues between services.</li>
+</ul></div></details><details class="item" id="y34"><summary><span><span class="qn">Q34</span>Design a notification system.</span></summary><div class="answer"><ol>
+<li><strong>Producers</strong> (services) send notification requests to an API.</li>
+<li>A <strong>notification service</strong> validates, applies <strong>user preferences</strong> (opt-outs, quiet hours), de-duplicates and renders <strong>templates</strong>.</li>
+<li>Messages go into <strong>queues</strong>, one per channel and priority (push, email, SMS), so a spike in one does not block the others.</li>
+<li><strong>Workers</strong> send them through providers (APNs and FCM for mobile push, an email service, an SMS gateway) with <strong>retries and backoff</strong>.</li>
+<li>Store <strong>status and logs</strong> (sent, delivered, failed) for tracking.</li>
+</ol>
+<p>Points to cover: <strong>rate limiting per user,</strong> priority (a security alert before marketing), <strong>idempotency</strong> to avoid duplicates, scalability through partitioned queues, and analytics.</p></div></details><details class="item" id="y35"><summary><span><span class="qn">Q35</span>Design a web crawler.</span></summary><div class="answer"><p><strong>Components:</strong></p>
+<ul>
+<li><strong>URL frontier:</strong> a queue of URLs to crawl, with <strong>priority</strong> and <strong>politeness</strong> (a limit per domain, respecting <code>robots.txt</code> and crawl delays).</li>
+<li><strong>Fetchers:</strong> many workers that download pages (with a <strong>DNS cache</strong> and timeouts).</li>
+<li><strong>Parser:</strong> extracts text and links.</li>
+<li><strong>Duplicate detection:</strong> do not crawl the same URL twice (a <strong>Bloom filter</strong> or a set of URL hashes) and detect duplicate <strong>content</strong> (content hashes).</li>
+<li><strong>Storage:</strong> raw pages in object storage, extracted data and an index in a database or search engine.</li>
+<li><strong>Scheduler for re-crawling</strong> frequently changing pages.</li>
+</ul>
+<p>Scale by <strong>partitioning the URLs by domain</strong> across workers, and handle traps (infinite URL spaces) with depth and size limits.</p></div></details><details class="item" id="y36"><summary><span><span class="qn">Q36</span>Design a distributed key-value store (like Dynamo).</span></summary><div class="answer"><ul>
+<li><strong>Partitioning:</strong> spread keys over nodes with <strong>consistent hashing</strong> and virtual nodes.</li>
+<li><strong>Replication:</strong> store each key on <code>N</code> nodes (the next nodes on the ring), across racks or zones.</li>
+<li><strong>Consistency:</strong> tunable <strong>quorums</strong> (<code>R</code>, <code>W</code>, with R + W &gt; N for strong consistency), with eventual consistency available for speed.</li>
+<li><strong>Conflict handling:</strong> <strong>vector clocks</strong> or last-write-wins, and read repair.</li>
+<li><strong>Failure handling:</strong> <strong>gossip protocol</strong> to detect failed nodes, <strong>hinted handoff</strong> (another node holds writes temporarily), and <strong>anti-entropy</strong> with Merkle trees to repair replicas.</li>
+<li><strong>Storage engine:</strong> a write-optimized <strong>LSM tree</strong> (a write-ahead log, an in-memory table and sorted files on disk).</li>
+</ul></div></details><details class="item" id="y37"><summary><span><span class="qn">Q37</span>Design a file storage and sync service (like Dropbox).</span></summary><div class="answer"><ul>
+<li>Split files into <strong>chunks</strong> (for example 4 MB), and store them in <strong>object storage</strong>, keyed by their <strong>content hash</strong>. Identical chunks are stored once (<strong>deduplication</strong>), and only changed chunks are uploaded on an edit (<strong>delta sync</strong>).</li>
+<li>A <strong>metadata service and database</strong> stores the file tree, versions, chunk lists and permissions.</li>
+<li>A <strong>sync service and notification channel</strong> tells the other devices about changes (long polling or WebSockets), and they download the new chunks.</li>
+<li>Handle <strong>conflicts</strong> (two edits at the same time) by creating a conflicted copy, keep <strong>versions</strong> for restore, and apply <strong>access control and encryption.</strong></li>
+</ul></div></details><details class="item" id="y38"><summary><span><span class="qn">Q38</span>How do you generate unique IDs in a distributed system?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Database auto-increment</strong></td>
+<td>Simple, ordered</td>
+<td>Single point of failure, hard to scale</td>
+</tr>
+<tr>
+<td><strong>UUID</strong> (random)</td>
+<td>No coordination</td>
+<td>Large (128 bits), not time-ordered, bad for index locality</td>
+</tr>
+<tr>
+<td><strong>Snowflake-style ID</strong></td>
+<td>64 bits, <strong>roughly time-ordered</strong>, no central database</td>
+<td>Needs unique machine IDs and a reasonable clock</td>
+</tr>
+<tr>
+<td><strong>Ticket server / range allocation</strong></td>
+<td>Simple, ordered by range</td>
+<td>Needs a central service (make it redundant)</td>
+</tr>
+</tbody>
+</table>
+<p>A Snowflake ID combines a <strong>timestamp, a machine ID and a sequence number</strong>, so each machine can generate IDs independently.</p></div></details></section>
+<section class="sec-block" id="sec-4"><h2 class="sec">Machine learning and AI system design</h2><details class="item" id="y39"><summary><span><span class="qn">Q39</span>What is the framework for an ML system design interview?</span></summary><div class="answer"><ol>
+<li><strong>Clarify the business goal and the success metrics</strong> (business metric, and the ML metric that supports it).</li>
+<li><strong>Frame it as an ML problem:</strong> the task (classification, ranking, regression), the inputs and outputs, and the constraints (latency, scale, cost, privacy).</li>
+<li><strong>Data:</strong> sources, labels (and how to get them), volume, quality, bias and privacy.</li>
+<li><strong>Features:</strong> what signals matter, and how they are computed in training and serving (a <strong>feature store</strong>).</li>
+<li><strong>Modeling:</strong> start with a <strong>simple baseline</strong>, then more complex models, with trade-offs.</li>
+<li><strong>Training:</strong> pipeline, validation, offline metrics, and retraining schedule.</li>
+<li><strong>Serving:</strong> batch vs online, latency budget, scaling, caching, fallbacks.</li>
+<li><strong>Evaluation:</strong> offline metrics, then <strong>A/B tests</strong> for online impact.</li>
+<li><strong>Monitoring and iteration:</strong> data drift, model quality, feedback loops, and retraining.</li>
+</ol></div></details><details class="item" id="y40"><summary><span><span class="qn">Q40</span>Design a recommendation system (for videos, products or posts).</span></summary><div class="answer"><p>Use a <strong>multi-stage funnel</strong>, because scoring millions of items with a heavy model is too slow:</p>
+<ol>
+<li><strong>Candidate generation (retrieval):</strong> quickly narrow millions of items to hundreds or thousands, using a <strong>two-tower model</strong> (user and item embeddings) with <strong>approximate nearest neighbor (ANN) search</strong>, plus collaborative filtering, popular items and recent activity.</li>
+<li><strong>Ranking:</strong> a more powerful model (for example gradient boosting or a deep model) scores each candidate with rich features (user history, item data, context) to predict click, watch time or purchase.</li>
+<li><strong>Re-ranking:</strong> apply business rules, <strong>diversity</strong>, freshness, fairness and removal of already-seen items.</li>
+</ol>
+<p><strong>Cold start:</strong> use content features, popularity, onboarding questions and exploration for new users and items. <strong>Metrics:</strong> offline (recall@k, NDCG), online (click-through rate, watch time, retention, revenue) through A/B tests. <strong>Risks:</strong> feedback loops, popularity bias and filter bubbles, so add <strong>exploration</strong>. <strong>Serving:</strong> precomputed embeddings, a feature store, caching and a latency budget for each stage.</p></div></details><details class="item" id="y41"><summary><span><span class="qn">Q41</span>Design a real-time fraud detection system.</span></summary><div class="answer"><ul>
+<li><strong>Requirements:</strong> decide within about <strong>50 to 100 ms</strong> whether to approve a transaction, with very <strong>imbalanced</strong> data and costly mistakes in both directions (missed fraud vs blocking good customers).</li>
+<li><strong>Data and features:</strong> transaction details, user and device history, and <strong>velocity features</strong> (number of transactions in the last 5 minutes), computed from a <strong>streaming pipeline</strong> into an online feature store.</li>
+<li><strong>Models:</strong> combine <strong>business rules</strong> with an ML model (for example gradient boosting), with scores mapped to <strong>approve, review or decline</strong> using a cost-based threshold.</li>
+<li><strong>Labels:</strong> often <strong>delayed</strong> (chargebacks arrive weeks later), so use proxy labels and human review, and retrain regularly.</li>
+<li><strong>Serving:</strong> an online scoring service with fallbacks if it fails.</li>
+<li><strong>Operations:</strong> monitor drift and false positive rates, give analysts <strong>explanations</strong>, and adapt to fraudsters changing their behavior.</li>
+</ul></div></details><details class="item" id="y42"><summary><span><span class="qn">Q42</span>How do you design a RAG system at scale?</span></summary><div class="answer"><ul>
+<li><strong>Ingestion pipeline:</strong> connectors, layout-aware parsing, chunking with metadata (including <strong>access permissions</strong>), embeddings, and a <strong>vector database</strong> plus a keyword index for <strong>hybrid search</strong>. Update incrementally.</li>
+<li><strong>Query path:</strong> query rewriting → hybrid retrieval → <strong>reranking</strong> → prompt building with citations → LLM generation (streamed).</li>
+<li><strong>Latency budget:</strong> for example retrieval 100 ms, reranking 100 ms, and the LLM first token under 1 second. Use caching (including a <strong>semantic cache</strong> for similar questions).</li>
+<li><strong>Security:</strong> enforce <strong>per-user permissions at retrieval time</strong> and guard against prompt injection from documents.</li>
+<li><strong>Quality and monitoring:</strong> retrieval and faithfulness metrics, user feedback, logging of retrieved chunks, and cost tracking per request.</li>
+<li><strong>Scaling:</strong> shard and replicate the index, batch embedding jobs, and route simple questions to cheaper models.</li>
+</ul></div></details><details class="item" id="y43"><summary><span><span class="qn">Q43</span>Design a system to serve a large language model (LLM inference).</span></summary><div class="answer"><p>LLM serving is limited by <strong>GPU memory and compute</strong>, and key techniques are:</p>
+<ul>
+<li><strong>KV cache:</strong> store the attention keys and values of earlier tokens, so each new token does not recompute the whole prompt.</li>
+<li><strong>Continuous batching:</strong> add new requests into the running batch <strong>at every generation step</strong>, which keeps GPUs busy and raises throughput.</li>
+<li><strong>Efficient memory management</strong> (for example paged attention in vLLM) to fit more concurrent requests.</li>
+<li><strong>Quantization</strong> (8-bit or 4-bit weights) to cut memory and cost, at a small quality loss.</li>
+<li><strong>Model parallelism</strong> (tensor or pipeline) to split a large model across GPUs.</li>
+<li><strong>Streaming responses</strong> (SSE or WebSockets) so users see tokens immediately.</li>
+<li><strong>Speculative decoding</strong> and <strong>prefix caching</strong> (reuse the computed prompt prefix) to cut latency.</li>
+</ul>
+<p>Track <strong>time to first token (TTFT)</strong>, <strong>tokens per second</strong>, queue time and cost per request. Add <strong>autoscaling</strong>, request routing and rate limits, plus fallbacks and a <strong>model router</strong> that sends easy requests to smaller models.</p></div></details><details class="item" id="y44"><summary><span><span class="qn">Q44</span>How do you handle online vs batch inference in system design?</span></summary><div class="answer"><table>
+<thead>
+<tr>
+<th></th>
+<th>Batch inference</th>
+<th>Online (real-time) inference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>When</td>
+<td>Scheduled (hourly, nightly)</td>
+<td>On each request</td>
+</tr>
+<tr>
+<td>Latency</td>
+<td>Not critical</td>
+<td>Milliseconds</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>Efficient, uses the hardware fully</td>
+<td>Needs always-on, scalable serving</td>
+</tr>
+<tr>
+<td>Freshness</td>
+<td>Predictions can be stale</td>
+<td>Uses the latest data</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>Daily churn scores, email recommendations</td>
+<td>Fraud checks, search ranking</td>
+</tr>
+</tbody>
+</table>
+<p>A common hybrid is <strong>precompute what you can in batch</strong> (embeddings, candidate lists) and compute the <strong>final, context-dependent step online</strong>.</p></div></details><details class="item" id="y45"><summary><span><span class="qn">Q45</span>What is a feature store, and where does it fit in an ML system design?</span></summary><div class="answer"><p>A feature store provides <strong>one consistent definition of features</strong> for both training (an <strong>offline store</strong> with history, point-in-time correct) and serving (an <strong>online store</strong> with low-latency lookups). It prevents <strong>training-serving skew</strong>, avoids duplicated work and enables feature reuse. In a design, it sits between the data pipelines (batch and streaming) and both the <strong>training pipeline</strong> and the <strong>online prediction service</strong>.</p></div></details><details class="item" id="y46"><summary><span><span class="qn">Q46</span>How do you evaluate an ML system: offline vs online metrics?</span></summary><div class="answer"><ul>
+<li><strong>Offline metrics</strong> (precision, recall, AUC, NDCG, RMSE) are computed on historical data. They are fast and cheap, and used to select candidate models.</li>
+<li><strong>Online metrics</strong> (click-through rate, conversion, retention, revenue, latency) measure the <strong>real business impact</strong> in production, and are validated with an <strong>A/B test</strong>.</li>
+</ul>
+<p>Offline gains do not always translate to online gains (for example because of feedback loops and changing behavior), so the final decision should rely on online experiments, with <strong>guardrail metrics</strong> for safety.</p></div></details><details class="item" id="y47"><summary><span><span class="qn">Q47</span>How do you monitor an ML system after launch and close the feedback loop?</span></summary><div class="answer"><p>Monitor <strong>system health</strong> (latency, errors, throughput, cost), <strong>data quality and drift</strong> in inputs, <strong>prediction distributions</strong>, and <strong>model quality</strong> (when labels arrive, or with proxy metrics). Log inputs, features, predictions and the model version. Collect <strong>feedback</strong> (clicks, corrections, labels from reviewers) into a dataset for <strong>retraining</strong>, and set up alerts, a rollback path and a regular retraining schedule. Watch for feedback loops where the model influences its own training data.</p></div></details></section>
+<section class="sec-block" id="sec-5"><h2 class="sec">Reliability, security and interview strategy</h2><details class="item" id="y48"><summary><span><span class="qn">Q48</span>How do you design for high availability and disaster recovery?</span></summary><div class="answer"><ul>
+<li><strong>Remove single points of failure:</strong> redundant servers, load balancers and databases (replicas with automatic failover).</li>
+<li>Spread across <strong>availability zones</strong>, and across <strong>regions</strong> for the highest requirements.</li>
+<li><strong>Health checks, autoscaling and self-healing</strong> (replacing failed instances).</li>
+<li><strong>Backups and tested restores.</strong></li>
+<li>Define <strong>RTO (Recovery Time Objective)</strong>, how fast you must recover, and <strong>RPO (Recovery Point Objective)</strong>, how much data loss is acceptable. They decide between a cheap cold standby and an expensive active-active setup.</li>
+<li>Use <strong>graceful degradation</strong> and <strong>chaos testing</strong> to prove it works.</li>
+</ul></div></details><details class="item" id="y49"><summary><span><span class="qn">Q49</span>How do you handle a hot key or hot partition?</span></summary><div class="answer"><p>A hot key is a key (a celebrity, a viral item) that gets a <strong>disproportionate amount of traffic</strong>, overloading one node. Solutions: <strong>cache</strong> it aggressively (including in a local in-memory cache), <strong>replicate</strong> the hot data on several nodes, <strong>split the key</strong> into several sub-keys (for example <code>key#1</code> to <code>key#10</code>) and combine on read, add a <strong>CDN</strong>, and use <strong>rate limiting or request coalescing</strong>.</p></div></details><details class="item" id="y50"><summary><span><span class="qn">Q50</span>What security topics should be covered in a system design?</span></summary><div class="answer"><ul>
+<li><strong>Authentication</strong> (who you are) and <strong>authorization</strong> (what you may do): OAuth 2.0, JWT, role-based access control.</li>
+<li><strong>Encryption</strong> in transit (TLS) and at rest.</li>
+<li><strong>Rate limiting</strong> and protection against abuse (DDoS, bots).</li>
+<li><strong>Input validation</strong> and protection against injection attacks.</li>
+<li><strong>Secrets management</strong> and <strong>least privilege</strong> between services.</li>
+<li><strong>Audit logs, privacy</strong> and compliance (for example data retention and deletion).</li>
+</ul></div></details><details class="item" id="y51"><summary><span><span class="qn">Q51</span>How do you control cost in a system design?</span></summary><div class="answer"><p>Right-size resources and <strong>autoscale</strong>, use <strong>caching and CDNs</strong> to cut compute and bandwidth, move cold data to <strong>cheaper storage tiers</strong>, use <strong>reserved or spot instances</strong> where possible, avoid over-engineering for a scale you do not have, and <strong>measure cost per request or per user</strong>. For ML systems, use smaller models, batching, quantization and caching to reduce GPU spend.</p></div></details><details class="item" id="y52"><summary><span><span class="qn">Q52</span>What are the common mistakes in system design interviews?</span></summary><div class="answer"><ul>
+<li><strong>Jumping into the solution</strong> without clarifying requirements and scale.</li>
+<li><strong>Skipping estimation</strong> or using unrealistic numbers.</li>
+<li>Drawing a <strong>generic diagram</strong> with no justification for the choices.</li>
+<li><strong>Over-engineering</strong> (microservices and sharding for a small problem), or ignoring failures and bottlenecks.</li>
+<li>Not discussing <strong>trade-offs</strong> (consistency vs availability, cost vs latency).</li>
+<li>Poor <strong>communication:</strong> long silences, ignoring the interviewer’s hints.</li>
+<li>Not covering <strong>monitoring, security and data</strong> aspects.</li>
+</ul></div></details><details class="item" id="y53"><summary><span><span class="qn">Q53</span>How should you prepare for system design interviews?</span></summary><div class="answer"><ul>
+<li>Learn the <strong>building blocks</strong> (load balancers, caches, queues, databases, sharding, replication) and the <strong>trade-offs</strong> between them.</li>
+<li><strong>Practice classic designs</strong> (URL shortener, news feed, chat, rate limiter) with a timer, and explain them out loud.</li>
+<li>Learn the <strong>estimation numbers</strong> and practice quick calculations.</li>
+<li>Read engineering blogs and papers (for example about Dynamo, Kafka, Bigtable) and <strong>real architectures</strong>.</li>
+<li>For AI roles, also practice <strong>ML system design</strong> (recommendation, search, fraud, LLM and RAG serving).</li>
+<li>Ask a friend to do <strong>mock interviews</strong> and give feedback.</li>
+</ul></div></details></section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
